@@ -1,0 +1,100 @@
+{
+    "name": "HelloSign",
+    "description": "HelloSign is the world's leading free eSignature platform. Send and receive electronic signatures securely with our end-user solution or our eSignature API. Soc2 and HIPAA compliant esignatures.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1422-hellosign.jpg",
+    "tags": [
+        "api provider",
+        "contracts",
+        "esignature",
+        "have api",
+        "signatures",
+        "target"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/hellosign\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "HelloSign",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1422-hellosign.jpg",
+            "humanURL": "https:\/\/faq.hellosign.com\/hc\/en-us\/articles\/208317867-How-to-Integrate-Slack-and-HelloSign",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/hellosign-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/hellosign-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Base",
+            "url": "https:\/\/api.hellosign.com\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/hellosign"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/hellosign"
+        },
+        {
+            "type": "Developers",
+            "url": "http:\/\/www.hellosign.com\/info\/api"
+        },
+        {
+            "type": "Email",
+            "url": "support@hellosign.com"
+        },
+        {
+            "type": "Email",
+            "url": "legal@hellosign.com"
+        },
+        {
+            "type": "Email",
+            "url": "bizdev@hellosign.com"
+        },
+        {
+            "type": "Email",
+            "url": "no3pm@hellosign.com"
+        },
+        {
+            "type": "Email",
+            "url": "apisupport@hellosign.com"
+        },
+        {
+            "type": "Email",
+            "url": "security@hellosign.com"
+        },
+        {
+            "type": "Privacy",
+            "url": "https:\/\/www.hellosign.com\/info\/privacyPolicy"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/HelloSignApp"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/HelloSign"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/faq.hellosign.com\/hc\/en-us\/articles\/208317867-How-to-Integrate-Slack-and-HelloSign"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.hellosign.com"
+        }
+    ]
+}
