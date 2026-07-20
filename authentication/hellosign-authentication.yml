@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/hellosign-openapi-original.yaml
+docs: https://developers.hellosign.com/api/reference/authentication/
+summary:
+  types:
+  - http
+  api_key_style: http-basic (API key as Basic username, empty password)
+  oauth2_flow: authorizationCode
+  oauth2_authorization_url: https://app.hellosign.com/oauth/authorize
+  oauth2_token_url: https://app.hellosign.com/oauth/token
+  scopes_artifact: scopes/hellosign-scopes.yml
+schemes:
+- name: api_key
+  type: http
+  scheme: basic
+  description: |-
+    Your API key can be used to make calls to the Dropbox Sign API. See [Authentication](/api/reference/authentication) for more information.
+    ✅ Supported by Try it console (calls sent in `test_mode` only).
+  sources:
+  - openapi/hellosign-openapi-original.yaml
+- name: oauth2
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: |-
+    You can use an Access Token issued through an OAuth flow to send calls to the Dropbox Sign API from your app. The access scopes required by this endpoint are listed in the gray box above. See [Authentication](/api/reference/authentication) for more information.
+    ❌ **Not supported** by Try it console.
+  sources:
+  - openapi/hellosign-openapi-original.yaml
