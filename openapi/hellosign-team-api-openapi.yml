@@ -1,0 +1,1850 @@
+openapi: 3.0.3
+info:
+  title: Dropbox Sign Account Team API
+  description: Dropbox Sign v3 API
+  termsOfService: https://www.hellosign.com/terms
+  contact:
+    email: apisupport@hellosign.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: 3.0.0
+servers:
+- url: https://api.hellosign.com/v3
+security:
+- api_key: []
+- oauth2:
+  - account_access
+  - signature_request_access
+  - template_access
+  - team_access
+  - api_app_access
+  - basic_account_info
+  - request_signature
+tags:
+- name: Team
+  description:
+    $ref: ./markdown/en/tags/team-tag-description.md
+paths:
+  /team/add_member:
+    put:
+      tags:
+      - Team
+      summary: Add User to Team
+      description: Invites a user (specified using the `email_address` parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a `team_invite_failed` error will be returned.
+      operationId: teamAddMember
+      parameters:
+      - name: team_id
+        in: query
+        description: The id of the team.
+        required: false
+        schema:
+          type: string
+        example: 4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamAddMemberRequest'
+            examples:
+              example:
+                $ref: '#/components/examples/TeamAddMemberRequest'
+              account_id_example:
+                $ref: '#/components/examples/TeamAddMemberRequestAccountId'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamGetResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TeamAddMemberResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - team_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TeamAddMemberExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TeamAddMemberExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TeamAddMemberExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TeamAddMemberExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TeamAddMemberExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TeamAddMemberExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TeamAddMemberExample.sh
+      x-meta:
+        seo:
+          title: Add User to Team | API Documentation | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API easily allows you to build custom eSign integrations. To find out how to invite a specified user to your Team, click here.
+  /team/create:
+    post:
+      tags:
+      - Team
+      summary: Create Team
+      description: Creates a new Team and makes you a member. You must not currently belong to a Team to invoke.
+      operationId: teamCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamCreateRequest'
+            examples:
+              example:
+                $ref: '#/components/examples/TeamCreateRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamGetResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TeamCreateResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - team_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TeamCreateExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TeamCreateExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TeamCreateExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TeamCreateExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TeamCreateExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TeamCreateExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TeamCreateExample.sh
+      x-meta:
+        seo:
+          title: Create Team | REST API Documentation | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API allows you to build custom eSign integrations. To find out how to create a new team and make yourself a member, click here.
+  /team/destroy:
+    delete:
+      tags:
+      - Team
+      summary: Delete Team
+      description: Deletes your Team. Can only be invoked when you have a Team with only one member (yourself).
+      operationId: teamDelete
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - team_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TeamDeleteExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TeamDeleteExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TeamDeleteExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TeamDeleteExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TeamDeleteExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TeamDeleteExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TeamDeleteExample.sh
+      x-meta:
+        seo:
+          title: Delete Team | REST API Documentation | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API easily allows you to build custom eSign integrations. To find out how to delete a team you are a member of, click here.
+  /team:
+    get:
+      tags:
+      - Team
+      summary: Get Team
+      description: Returns information about your Team as well as a list of its members. If you do not belong to a Team, a 404 error with an error_name of "not_found" will be returned.
+      operationId: teamGet
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamGetResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TeamGetResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - team_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TeamGetExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TeamGetExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TeamGetExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TeamGetExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TeamGetExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TeamGetExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TeamGetExample.sh
+      x-meta:
+        seo:
+          title: Get Team | REST API Documentation | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API easily allows you to build custom eSign integrations. To find out how to return information about your Team, click here.
+    put:
+      tags:
+      - Team
+      summary: Update Team
+      description: Updates the name of your Team.
+      operationId: teamUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamUpdateRequest'
+            examples:
+              example:
+                $ref: '#/components/examples/TeamUpdateRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamGetResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TeamUpdateResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - team_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TeamUpdateExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TeamUpdateExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TeamUpdateExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TeamUpdateExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TeamUpdateExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TeamUpdateExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TeamUpdateExample.sh
+      x-meta:
+        seo:
+          title: Update Team | API Documentation | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API easily allows you to build custom eSign integrations. To find out how to update the name of your team, click here.
+  /team/info:
+    get:
+      tags:
+      - Team
+      summary: Get Team Info
+      description: Provides information about a team.
+      operationId: teamInfo
+      parameters:
+      - name: team_id
+        in: query
+        description: The id of the team.
+        required: false
+        schema:
+          type: string
+        example: 4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamGetInfoResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TeamGetInfoResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                409_example:
+                  $ref: '#/components/examples/Error409Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - team_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TeamInfoExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TeamInfoExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TeamInfoExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TeamInfoExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TeamInfoExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TeamInfoExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TeamInfoExample.sh
+      x-meta:
+        seo:
+          title: Get Team Info | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you automate your team management. To find out how to get information about a specific team, click here.
+  /team/invites:
+    get:
+      tags:
+      - Team
+      summary: List Team Invites
+      description: Provides a list of team invites (and their roles).
+      operationId: teamInvites
+      parameters:
+      - name: email_address
+        in: query
+        description: The email address for which to display the team invites.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamInvitesResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TeamInvitesResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - account_access
+        - basic_account_info
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TeamInvitesExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TeamInvitesExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TeamInvitesExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TeamInvitesExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TeamInvitesExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TeamInvitesExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TeamInvitesExample.sh
+      x-meta:
+        seo:
+          title: List Team Invites | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you automate your team management. To find out how to get a list of team invites (and their roles), click here.
+  /team/members/{team_id}:
+    get:
+      tags:
+      - Team
+      summary: List Team Members
+      description: Provides a paginated list of members (and their roles) that belong to a given team.
+      operationId: teamMembers
+      parameters:
+      - name: team_id
+        in: path
+        description: The id of the team that a member list is being requested from.
+        required: true
+        schema:
+          type: string
+        example: 4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c
+      - name: page
+        in: query
+        description: Which page number of the team member list to return. Defaults to `1`.
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        description: Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.
+        schema:
+          type: integer
+          default: 20
+          maximum: 100
+          minimum: 1
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamMembersResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TeamMembersResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                409_example:
+                  $ref: '#/components/examples/Error409Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - team_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TeamMembersExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TeamMembersExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TeamMembersExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TeamMembersExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TeamMembersExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TeamMembersExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TeamMembersExample.sh
+      x-meta:
+        seo:
+          title: List Team Members | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you automate your team management. To find out how to get a list of team members and their roles for a specific team, click here.
+  /team/remove_member:
+    post:
+      tags:
+      - Team
+      summary: Remove User from Team
+      description: Removes the provided user Account from your Team. If the Account had an outstanding invitation to your Team, the invitation will be expired. If you choose to transfer documents from the removed Account to an Account provided in the `new_owner_email_address` parameter (available only for Enterprise plans), the response status code will be 201, which indicates that your request has been queued but not fully executed.
+      operationId: teamRemoveMember
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamRemoveMemberRequest'
+            examples:
+              example:
+                $ref: '#/components/examples/TeamRemoveMemberRequest'
+              account_id_example:
+                $ref: '#/components/examples/TeamRemoveMemberRequestAccountId'
+      responses:
+        '201':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamGetResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TeamRemoveMemberResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - team_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TeamRemoveMemberExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TeamRemoveMemberExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TeamRemoveMemberExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TeamRemoveMemberExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TeamRemoveMemberExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TeamRemoveMemberExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TeamRemoveMemberExample.sh
+      x-meta:
+        seo:
+          title: Remove User from Team | REST API | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API easily allows you to build custom eSign integrations. To find out how to remove a user Account from your Team, click here.
+  /team/sub_teams/{team_id}:
+    get:
+      tags:
+      - Team
+      summary: List Sub Teams
+      description: Provides a paginated list of sub teams that belong to a given team.
+      operationId: teamSubTeams
+      parameters:
+      - name: team_id
+        in: path
+        description: The id of the parent Team.
+        required: true
+        schema:
+          type: string
+        example: 4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c
+      - name: page
+        in: query
+        description: Which page number of the SubTeam List to return. Defaults to `1`.
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        description: Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.
+        schema:
+          type: integer
+          default: 20
+          maximum: 100
+          minimum: 1
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamSubTeamsResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TeamSubTeamsResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                409_example:
+                  $ref: '#/components/examples/Error409Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - team_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TeamSubTeamsExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TeamSubTeamsExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TeamSubTeamsExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TeamSubTeamsExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TeamSubTeamsExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TeamSubTeamsExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TeamSubTeamsExample.sh
+      x-meta:
+        seo:
+          title: List Sub Teams | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you automate your team management. To find out how to get a list of sub teams that exist for a given team, click here.
+components:
+  schemas:
+    TeamResponse:
+      description: Contains information about your team and its members
+      properties:
+        name:
+          description: The name of your Team
+          type: string
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountResponse'
+        invited_accounts:
+          description: A list of all Accounts that have an outstanding invitation to join your Team. Note that this response is a subset of the response parameters found in `GET /account`.
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountResponse'
+        invited_emails:
+          description: A list of email addresses that have an outstanding invitation to join your Team and do not yet have a Dropbox Sign account.
+          type: array
+          items:
+            type: string
+      type: object
+      x-internal-class: true
+    TeamParentResponse:
+      description: Information about the parent team if a team has one, set to `null` otherwise.
+      properties:
+        team_id:
+          description: The id of a team
+          type: string
+        name:
+          description: The name of a team
+          type: string
+      type: object
+      nullable: true
+      x-internal-class: true
+    SubTeamResponse:
+      properties:
+        team_id:
+          description: The id of a team
+          type: string
+        name:
+          description: The name of a team
+          type: string
+      type: object
+      x-internal-class: true
+    TeamRemoveMemberRequest:
+      properties:
+        account_id:
+          description: '**account_id** or **email_address** is required. If both are provided, the account id prevails.
+
+
+            Account id to remove from your Team.'
+          type: string
+        email_address:
+          description: '**account_id** or **email_address** is required. If both are provided, the account id prevails.
+
+
+            Email address of the Account to remove from your Team.'
+          type: string
+          format: email
+        new_owner_email_address:
+          description: 'The email address of an Account on this Team to receive all documents, templates, and API apps (if applicable) from the removed Account. If not provided, and on an Enterprise plan, this data will remain with the removed Account.
+
+
+            **NOTE:** Only available for Enterprise plans.'
+          type: string
+          format: email
+        new_team_id:
+          description: Id of the new Team.
+          type: string
+        new_role:
+          description: 'A new role member will take in a new Team.
+
+
+            **NOTE:** This parameter is used only if `new_team_id` is provided.'
+          type: string
+          enum:
+          - Member
+          - Developer
+          - Team Manager
+          - Admin
+      type: object
+    TeamSubTeamsResponse:
+      required:
+      - sub_teams
+      - list_info
+      properties:
+        sub_teams:
+          description: Contains a list with sub teams.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubTeamResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    TeamInvitesResponse:
+      required:
+      - team_invites
+      properties:
+        team_invites:
+          description: Contains a list of team invites and their roles.
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamInviteResponse'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    TeamGetInfoResponse:
+      required:
+      - team
+      properties:
+        team:
+          $ref: '#/components/schemas/TeamInfoResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    AccountResponseUsage:
+      description: Details concerning monthly usage
+      properties:
+        fax_pages_sent:
+          description: Number of fax pages sent
+          type: integer
+          nullable: true
+      type: object
+      x-internal-class: true
+    TeamCreateRequest:
+      properties:
+        name:
+          description: The name of your Team.
+          type: string
+          default: Untitled Team
+      type: object
+    TeamGetResponse:
+      required:
+      - team
+      properties:
+        team:
+          $ref: '#/components/schemas/TeamResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    AccountResponse:
+      properties:
+        account_id:
+          description: The ID of the Account
+          type: string
+        email_address:
+          description: The email address associated with the Account.
+          type: string
+        is_locked:
+          description: Returns `true` if the user has been locked out of their account by a team admin.
+          type: boolean
+        is_paid_hs:
+          description: Returns `true` if the user has a paid Dropbox Sign account.
+          type: boolean
+        is_paid_hf:
+          description: Returns `true` if the user has a paid HelloFax account.
+          type: boolean
+        quotas:
+          $ref: '#/components/schemas/AccountResponseQuotas'
+        callback_url:
+          description: The URL that Dropbox Sign events will `POST` to.
+          type: string
+          nullable: true
+        role_code:
+          description: The membership role for the team.
+          type: string
+          nullable: true
+        team_id:
+          description: The id of the team account belongs to.
+          type: string
+          nullable: true
+        locale:
+          description: The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
+          type: string
+          nullable: true
+        usage:
+          $ref: '#/components/schemas/AccountResponseUsage'
+        settings:
+          $ref: '#/components/schemas/AccountResponseSettings'
+      type: object
+      x-internal-class: true
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
+      type: object
+    TeamInfoResponse:
+      properties:
+        team_id:
+          description: The id of a team
+          type: string
+        team_parent:
+          $ref: '#/components/schemas/TeamParentResponse'
+        name:
+          description: The name of a team
+          type: string
+        num_members:
+          description: Number of members within a team
+          type: integer
+        num_sub_teams:
+          description: Number of sub teams within a team
+          type: integer
+      type: object
+      x-internal-class: true
+    TeamMemberResponse:
+      properties:
+        account_id:
+          description: Account id of the team member.
+          type: string
+        email_address:
+          description: Email address of the team member.
+          type: string
+        role:
+          description: The specific role a member has on the team.
+          type: string
+      type: object
+      x-internal-class: true
+    TeamAddMemberRequest:
+      properties:
+        account_id:
+          description: '`account_id` or `email_address` is required. If both are provided, the account id prevails.
+
+
+            Account id of the user to invite to your Team.'
+          type: string
+        email_address:
+          description: '`account_id` or `email_address` is required, If both are provided, the account id prevails.
+
+
+            Email address of the user to invite to your Team.'
+          type: string
+          format: email
+        role:
+          description: 'A role member will take in a new Team.
+
+
+            **NOTE:** This parameter is used only if `team_id` is provided.'
+          type: string
+          enum:
+          - Member
+          - Developer
+          - Team Manager
+          - Admin
+      type: object
+    AccountResponseQuotas:
+      description: Details concerning remaining monthly quotas.
+      properties:
+        api_signature_requests_left:
+          description: API signature requests remaining.
+          type: integer
+          nullable: true
+        documents_left:
+          description: Signature requests remaining.
+          type: integer
+          nullable: true
+        templates_total:
+          description: Total API templates allowed.
+          type: integer
+          nullable: true
+        templates_left:
+          description: API templates remaining.
+          type: integer
+          nullable: true
+        sms_verifications_left:
+          description: SMS verifications remaining.
+          type: integer
+          nullable: true
+        num_fax_pages_left:
+          description: Number of fax pages left
+          type: integer
+          nullable: true
+      type: object
+      x-internal-class: true
+    AccountResponseSettings:
+      description: Subset of configured settings
+      properties:
+        signer_access_codes:
+          description: Returns `true` if _Custom access codes_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_delivery:
+          description: Returns `true` if _Text message_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_authentication:
+          description: Returns `true` if _Signer authentication_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+      type: object
+      x-internal-class: true
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
+      type: object
+    ListInfoResponse:
+      description: Contains pagination information about the data returned.
+      properties:
+        num_pages:
+          description: Total number of pages available.
+          type: integer
+        num_results:
+          description: Total number of objects available.
+          type: integer
+          nullable: true
+        page:
+          description: Number of the page being returned.
+          type: integer
+        page_size:
+          description: Objects returned per page.
+          type: integer
+      type: object
+      x-internal-class: true
+    TeamInviteResponse:
+      properties:
+        email_address:
+          description: Email address of the user invited to this team.
+          type: string
+        team_id:
+          description: Id of the team.
+          type: string
+        role:
+          description: Role of the user invited to this team.
+          type: string
+        sent_at:
+          description: Timestamp when the invitation was sent.
+          type: integer
+        redeemed_at:
+          description: Timestamp when the invitation was redeemed.
+          type: integer
+        expires_at:
+          description: Timestamp when the invitation is expiring.
+          type: integer
+      type: object
+      x-internal-class: true
+    TeamMembersResponse:
+      required:
+      - team_members
+      - list_info
+      properties:
+        team_members:
+          description: Contains a list of team members and their roles for a specific team.
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMemberResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    TeamUpdateRequest:
+      properties:
+        name:
+          description: The name of your Team.
+          type: string
+      type: object
+  examples:
+    TeamGetResponse:
+      summary: Team Get
+      value:
+        $ref: examples/json/TeamGetResponse.json
+    TeamUpdateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/TeamUpdateRequest.json
+    TeamAddMemberRequest:
+      summary: Email Address Example
+      value:
+        $ref: examples/json/TeamAddMemberRequest.json
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    TeamMembersResponse:
+      summary: Team Members List
+      value:
+        $ref: examples/json/TeamMembersResponse.json
+    TeamRemoveMemberRequest:
+      summary: Email Address Example
+      value:
+        $ref: examples/json/TeamRemoveMemberRequest.json
+    TeamInvitesResponse:
+      summary: Team Invites
+      value:
+        $ref: examples/json/TeamInvitesResponse.json
+    TeamRemoveMemberResponse:
+      summary: Team Remove Member
+      value:
+        $ref: examples/json/TeamRemoveMemberResponse.json
+    TeamAddMemberResponse:
+      summary: Team Add Member
+      value:
+        $ref: examples/json/TeamAddMemberResponse.json
+    TeamAddMemberRequestAccountId:
+      summary: Account ID Example
+      value:
+        $ref: examples/json/TeamAddMemberRequestAccountId.json
+    TeamRemoveMemberRequestAccountId:
+      summary: Account ID Example
+      value:
+        $ref: examples/json/TeamRemoveMemberRequestAccountId.json
+    TeamUpdateResponse:
+      summary: Team Update
+      value:
+        $ref: examples/json/TeamUpdateResponse.json
+    Error409Response:
+      summary: Error 409 conflict
+      value:
+        $ref: examples/json/Error409Response.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
+    TeamGetInfoResponse:
+      summary: Team Get Info
+      value:
+        $ref: examples/json/TeamGetInfoResponse.json
+    TeamCreateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/TeamCreateRequest.json
+    TeamCreateResponse:
+      summary: Team Create
+      value:
+        $ref: examples/json/TeamCreateResponse.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    TeamSubTeamsResponse:
+      summary: Team Sub Teams List
+      value:
+        $ref: examples/json/TeamSubTeamsResponse.json
+  headers:
+    X-Ratelimit-Reset:
+      description: The Unix time at which the rate limit will reset to its maximum.
+      schema:
+        type: integer
+        format: int64
+        example: 1430170900
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
+  securitySchemes:
+    api_key:
+      type: http
+      description: 'Your API key can be used to make calls to the Dropbox Sign API. See [Authentication](/api/reference/authentication) for more information.
+
+        ✅ Supported by Try it console (calls sent in `test_mode` only).'
+      scheme: basic
+    oauth2:
+      type: http
+      description: 'You can use an Access Token issued through an OAuth flow to send calls to the Dropbox Sign API from your app. The access scopes required by this endpoint are listed in the gray box above. See [Authentication](/api/reference/authentication) for more information.
+
+        ❌ **Not supported** by Try it console.'
+      bearerFormat: JWT
+      scheme: bearer
+externalDocs:
+  description: Legacy API Reference
+  url: https://app.hellosign.com/api/reference
+x-webhooks:
+  accountCallback:
+    post:
+      summary: Account Callbacks
+      operationId: accountUpdateEventCallback
+      description:
+        $ref: ./markdown/en/descriptions/account-callback-description.md
+      tags:
+      - Callbacks and Events
+      x-meta:
+        seo:
+          title: Account Callbacks | API Documentation | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the account level, click here.
+      x-fern-audiences:
+      - events
+      requestBody:
+        description: "**Account Callback Payloads --**\n      Events that are reported at the Account level through the the *Account callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api). The *Account callback URL* can also be updated by calling [Update Account](/api/reference/operation/accountUpdate) and passing a `callback_url`."
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCallbackPayload'
+            examples:
+              signature_request_viewed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
+              signature_request_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
+              signature_request_signer_removed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
+              signature_request_downloadable_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
+              signature_request_sent_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
+              signature_request_all_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
+              signature_request_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
+              signature_request_email_bounce_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
+              signature_request_remind_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
+              signature_request_incomplete_qes_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
+              signature_request_destroyed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
+              signature_request_canceled_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
+              signature_request_declined_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
+              signature_request_expired_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
+              signature_request_reassigned_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
+              signature_request_prepared_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
+              account_confirmed_example:
+                $ref: '#/components/examples/EventCallbackAccountConfirmed'
+              unknown_error_example:
+                $ref: '#/components/examples/EventCallbackUnknownError'
+              file_error_example:
+                $ref: '#/components/examples/EventCallbackFileError'
+              template_created_example:
+                $ref: '#/components/examples/EventCallbackTemplateCreated'
+              template_error_example:
+                $ref: '#/components/examples/EventCallbackTemplateError'
+              sign_url_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
+              callback_test_example:
+                $ref: '#/components/examples/EventCallbackCallbackTest'
+      responses:
+        200:
+          $ref: '#/components/responses/EventCallbackResponse'
+  appCallback:
+    post:
+      summary: App Callbacks
+      operationId: apiAppCreateEventCallback
+      description:
+        $ref: ./markdown/en/descriptions/api-app-callback-description.md
+      tags:
+      - Callbacks and Events
+      x-meta:
+        seo:
+          title: App Callbacks | API Documentation | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the App level, click here.
+      x-fern-audiences:
+      - events
+      requestBody:
+        description: '**API App Callback Payloads --**
+
+          Events that are reported at the API App level through the *Event callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api) for a specific app. The *Event callback URL* can also be updated by calling [Update API App](/api/reference/operation/apiAppUpdate) and passing a `callback_url`.'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCallbackPayload'
+            examples:
+              signature_request_viewed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
+              signature_request_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
+              signature_request_signer_removed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
+              signature_request_downloadable_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
+              signature_request_sent_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
+              signature_request_all_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
+              signature_request_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
+              signature_request_email_bounce_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
+              signature_request_remind_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
+              signature_request_incomplete_qes_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
+              signature_request_destroyed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
+              signature_request_canceled_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
+              signature_request_declined_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
+              signature_request_expired_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
+              signature_request_reassigned_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
+              signature_request_prepared_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
+              account_confirmed_example:
+                $ref: '#/components/examples/EventCallbackAccountConfirmed'
+              unknown_error_example:
+                $ref: '#/components/examples/EventCallbackUnknownError'
+              file_error_example:
+                $ref: '#/components/examples/EventCallbackFileError'
+              template_created_example:
+                $ref: '#/components/examples/EventCallbackTemplateCreated'
+              template_error_example:
+                $ref: '#/components/examples/EventCallbackTemplateError'
+              sign_url_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
+              callback_test_example:
+                $ref: '#/components/examples/EventCallbackCallbackTest'
+      responses:
+        200:
+          $ref: '#/components/responses/EventCallbackResponse'
+x-error-codes:
+  bad_request:
+    http_status: 400
+    summary: The request contained invalid or malformed parameters.
+    cause: A parameter failed validation, or the request body was malformed.
+    remediation: Inspect error_msg and error_path, correct the offending parameter, and resend.
+    retryable: 'no'
+  unauthorized:
+    http_status: 401
+    summary: The credentials supplied are missing or invalid.
+    cause: Missing, malformed, or invalid API key or OAuth access token.
+    remediation: Verify the API key or OAuth token and the Authorization header, then retry.
+    retryable: 'no'
+  payment_required:
+    http_status: 402
+    summary: The account must be credited or upgraded to perform this action.
+    cause: The action requires a paid plan, additional quota, or API credits.
+    remediation: Upgrade the plan or add the required credits/quota, then retry.
+    retryable: 'no'
+  forbidden:
+    http_status: 403
+    summary: The action is not allowed for these credentials or in the current context.
+    cause: The authenticated account lacks access to the resource or operation.
+    remediation: Confirm the account has access to the resource and the required permissions.
+    retryable: 'no'
+  not_found:
+    http_status: 404
+    summary: Nothing matches the requested resource.
+    cause: The resource id does not exist or is not visible to this account.
+    remediation: Verify the id and that the resource belongs to the authenticated account.
+    retryable: 'no'
+  conflict:
+    http_status: 409
+    summary: The request was well-formed but conflicts with the current state.
+    cause: The target resource is in a state incompatible with the request (e.g. a signature request is still being set up).
+    remediation: Wait briefly and retry, or listen for a callback event confirming the resource is ready.
+    retryable: conditional
+  exceeded_rate:
+    http_status: 429
+    summary: Your account's API request rate limit has been exceeded.
+    cause: Too many requests were sent within the rate-limit window for this request type.
+    remediation: Pace requests using the X-RateLimit-* response headers and retry after the window resets.
+    retryable: 'yes'
+    backoff: Honor X-Ratelimit-Reset (Unix epoch); otherwise exponential backoff with jitter. No Retry-After header is sent.
+  unknown:
+    http_status: 500
+    summary: An unexpected error occurred.
+    cause: An unhandled server-side error, or a status code without a more specific error_name.
+    remediation: Retry transient failures; if it persists, contact support with the request details.
+    retryable: conditional
+    backoff: For transient 5xx, retry with exponential backoff; otherwise do not retry.
+  team_invite_failed:
+    http_status: 403
+    summary: The team invitation could not be completed.
+    cause: The invitee already belongs to a team, or the invite is otherwise not permitted.
+    remediation: Confirm the invitee is not already on a team before inviting.
+    retryable: 'no'
+  max_faxes:
+    http_status: 429
+    summary: Too many fax transmissions are currently pending or transmitting.
+    cause: The account has reached the limit of concurrent in-flight fax transmissions.
+    remediation: Wait for outstanding transmissions to complete, then retry.
+    retryable: 'yes'
+    backoff: Retry with exponential backoff once pending transmissions clear.
+  invalid_recipient:
+    http_status: 400
+    summary: The recipient (fax number or email address) is invalid.
+    cause: A recipient value did not pass validation.
+    remediation: Correct the recipient value and resend.
+    retryable: 'no'
+  signature_request_cancel_failed:
+    http_status: 400
+    summary: The signature request could not be cancelled.
+    cause: The caller is not the requester, or the request is already fully executed/closed.
+    remediation: Only the requester can cancel, and only before the request is fully executed.
+    retryable: 'no'
+  signature_request_remove_failed:
+    http_status: 400
+    summary: Access to the signature request could not be removed.
+    cause: The signature request has not yet been fully executed, so access cannot be revoked.
+    remediation: Wait until all parties have signed, or call /signature_request/cancel to cancel incomplete requests instead.
+    retryable: 'no'
+  maintenance:
+    http_status: 503
+    summary: The request could not be completed because the site is under maintenance.
+    cause: The API is in a scheduled maintenance window.
+    remediation: Retry once the maintenance window ends.
+    retryable: 'yes'
+    backoff: Retry later with exponential backoff.
+  method_not_supported:
+    http_status: 405
+    summary: The HTTP method is not supported for this endpoint.
+    cause: The request used a verb the endpoint does not accept.
+    remediation: Use the HTTP method documented for the endpoint.
+    retryable: 'no'
+  invalid_reminder:
+    http_status: 400
+    summary: The signature request reminder was invalid.
+    cause: A reminder was attempted against an ineligible request (e.g. embedded, closed, or expired).
+    remediation: Only send reminders for eligible (non-embedded, open) signature requests.
+    retryable: 'no'
+  unavailable:
+    http_status: 503
+    summary: The service is temporarily unavailable.
+    cause: A downstream dependency or the service itself is temporarily unavailable.
+    remediation: Retry later with exponential backoff.
+    retryable: 'yes'
+    backoff: Retry later with exponential backoff and jitter.
+  unprocessable_entity:
+    http_status: 422
+    summary: The request was understood but the target entity cannot be processed.
+    cause: The resource is still being processed, or it is in an error state.
+    remediation: If the resource is still processing, wait and retry; if it is in an error state, recreate/resend it instead of retrying.
+    retryable: conditional
+    backoff: If still processing, retry with exponential backoff; if in an error state, do not retry.
+  signature_request_expired:
+    http_status:
+    - 400
+    - 403
+    summary: The signature request has expired.
+    cause: The operation targets a request whose expiration has passed. Most endpoints return 400; final-copy/download endpoints return 403.
+    remediation: The request can no longer be acted upon; create a new signature request.
+    retryable: 'no'
+  deleted:
+    http_status: 410
+    summary: The request was cancelled or deleted.
+    cause: The resource has been cancelled or removed and is no longer available.
+    remediation: Do not retry; the resource is permanently gone.
+    retryable: 'no'
+x-oauth-error-codes:
+  invalid_grant:
+    http_status:
+    - 400
+    - 401
+    summary: The OAuth grant (authorization code or refresh token) is invalid or expired.
+    cause: The code/token was already used, expired, or does not match the client.
+    remediation: Re-initiate the OAuth flow to obtain a fresh authorization code.
+    retryable: 'no'
+  invalid_client:
+    http_status: 400
+    summary: The OAuth client credentials are invalid.
+    cause: The client_id or client_secret is unrecognized or incorrect.
+    remediation: Verify the client_id and client_secret from the API app settings.
+    retryable: 'no'
+  invalid_request:
+    http_status: 400
+    summary: The OAuth request is malformed or missing required parameters.
+    cause: A required parameter is missing, or the request format is invalid.
+    remediation: Check the request against the OAuth token endpoint documentation.
+    retryable: 'no'
+  unauthorized_client:
+    http_status:
+    - 401
+    - 403
+    summary: The OAuth client is not authorized to perform this action.
+    cause: The app has not been approved, or the action is outside the granted scopes.
+    remediation: Ensure the app is approved and the required scopes are granted.
+    retryable: 'no'
+  unsupported_grant_type:
+    http_status: 400
+    summary: The grant type is not supported.
+    cause: The grant_type parameter value is not recognized.
+    remediation: Use authorization_code or refresh_token as the grant_type.
+    retryable: 'no'
+  payment_required:
+    http_status: 402
+    summary: The account requires a paid plan to use this OAuth app.
+    cause: The authorizing account does not have a plan that supports this integration.
+    remediation: Upgrade the account to a plan that includes OAuth app access.
+    retryable: 'no'
+  addon_required:
+    http_status: 402
+    summary: An add-on is required to use this OAuth app.
+    cause: The account plan does not include the add-on needed for this integration.
+    remediation: Add the required add-on to the account subscription.
+    retryable: 'no'
+  invalid_scope:
+    http_status: 400
+    summary: The requested OAuth scope is invalid.
+    cause: The scope parameter contains values not permitted for the app.
+    remediation: Request only scopes that the app is configured to use.
+    retryable: 'no'
+  quota_reached:
+    http_status: 402
+    summary: The account has reached its usage quota for this OAuth app.
+    cause: The authorizing account has exhausted its quota for the integration.
+    remediation: Contact the app owner or upgrade the account quota.
+    retryable: 'no'
+  server_error:
+    http_status: 500
+    summary: An internal server error occurred during OAuth processing.
+    cause: An unexpected error on the server side while handling the OAuth request.
+    remediation: Retry the request; if it persists, contact support.
+    retryable: 'yes'
+    backoff: Retry with exponential backoff.
+  temporary_unavailable:
+    http_status: 503
+    summary: The OAuth service is temporarily unavailable.
+    cause: The service is under maintenance or experiencing temporary issues.
+    remediation: Retry after a short delay.
+    retryable: 'yes'
+    backoff: Retry with exponential backoff.
+x-error-events:
+  signature_request_invalid:
+    event_type: signature_request_invalid
+    delivery: webhook
+    summary: Asynchronous error while processing a signature request.
+    cause: A signature request could not be processed (e.g. invalid tags, fields, or merge data).
+    remediation: Inspect event.event_metadata.event_message in the callback, correct the request, and resend.
+    retryable: conditional
+  unknown_error:
+    event_type: unknown_error
+    delivery: webhook
+    summary: An unspecified asynchronous processing error occurred.
+    cause: An unexpected error occurred while processing the request asynchronously.
+    remediation: Check the request status in the API dashboard; retry or contact support if it persists.
+    retryable: conditional
+  file_error:
+    event_type: file_error
+    delivery: webhook
+    summary: Asynchronous error while processing an uploaded file.
+    cause: A file attached to a request could not be processed.
+    remediation: Resend the request with a supported, non-corrupt file.
+    retryable: conditional
+  template_error:
+    event_type: template_error
+    delivery: webhook
+    summary: Asynchronous error while creating a template.
+    cause: Template file processing failed (e.g. unsupported or corrupt file).
+    remediation: Recreate the template with a valid file; check status in the API dashboard.
+    retryable: conditional
+  sign_url_invalid:
+    event_type: sign_url_invalid
+    delivery: webhook
+    summary: An embedded signing URL has expired or become invalid.
+    cause: The embedded sign_url is no longer valid (e.g. expired).
+    remediation: Generate a fresh embedded sign_url via the embedded sign URL endpoint.
+    retryable: 'yes'

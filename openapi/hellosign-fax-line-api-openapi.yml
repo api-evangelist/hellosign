@@ -1,0 +1,1479 @@
+openapi: 3.0.3
+info:
+  title: Dropbox Sign Account Fax Line API
+  description: Dropbox Sign v3 API
+  termsOfService: https://www.hellosign.com/terms
+  contact:
+    email: apisupport@hellosign.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: 3.0.0
+servers:
+- url: https://api.hellosign.com/v3
+security:
+- api_key: []
+- oauth2:
+  - account_access
+  - signature_request_access
+  - template_access
+  - team_access
+  - api_app_access
+  - basic_account_info
+  - request_signature
+tags:
+- name: Fax Line
+  description:
+    $ref: ./markdown/en/tags/fax-lines-tag-description.md
+paths:
+  /fax_line/add_user:
+    put:
+      tags:
+      - Fax Line
+      summary: Add Fax Line User
+      description: Grants a user access to the specified Fax Line.
+      operationId: faxLineAddUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaxLineAddUserRequest'
+            examples:
+              example:
+                $ref: '#/components/examples/FaxLineAddUserRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaxLineResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/FaxLineResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/FaxLineAddUserExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/FaxLineAddUserExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/FaxLineAddUserExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/FaxLineAddUserExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/FaxLineAddUserExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/FaxLineAddUserExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/FaxLineAddUserExample.sh
+      x-meta:
+        seo:
+          title: Fax Line Add User | API Documentation | Dropbox Fax for Developers
+          description: The Dropbox Fax API allows you to build custom integrations. To find out how to add a user to an existing fax line, click here.
+  /fax_line/area_codes:
+    get:
+      tags:
+      - Fax Line
+      summary: Get Available Fax Line Area Codes
+      description: Returns a list of available area codes for a given state/province and city
+      operationId: faxLineAreaCodeGet
+      parameters:
+      - name: country
+        in: query
+        description: Filter area codes by country
+        required: true
+        schema:
+          type: string
+          enum:
+          - CA
+          - US
+          - UK
+          example: US
+      - name: state
+        in: query
+        description: Filter area codes by state
+        schema:
+          type: string
+          enum:
+          - AK
+          - AL
+          - AR
+          - AZ
+          - CA
+          - CO
+          - CT
+          - DC
+          - DE
+          - FL
+          - GA
+          - HI
+          - IA
+          - ID
+          - IL
+          - IN
+          - KS
+          - KY
+          - LA
+          - MA
+          - MD
+          - ME
+          - MI
+          - MN
+          - MO
+          - MS
+          - MT
+          - NC
+          - ND
+          - NE
+          - NH
+          - NJ
+          - NM
+          - NV
+          - NY
+          - OH
+          - OK
+          - OR
+          - PA
+          - RI
+          - SC
+          - SD
+          - TN
+          - TX
+          - UT
+          - VA
+          - VT
+          - WA
+          - WI
+          - WV
+          - WY
+      - name: province
+        in: query
+        description: Filter area codes by province
+        schema:
+          type: string
+          enum:
+          - AB
+          - BC
+          - MB
+          - NB
+          - NL
+          - NT
+          - NS
+          - NU
+          - 'ON'
+          - PE
+          - QC
+          - SK
+          - YT
+      - name: city
+        in: query
+        description: Filter area codes by city
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaxLineAreaCodeGetResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/FaxLineAreaCodeGetResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/FaxLineAreaCodeGetExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/FaxLineAreaCodeGetExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/FaxLineAreaCodeGetExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/FaxLineAreaCodeGetExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/FaxLineAreaCodeGetExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/FaxLineAreaCodeGetExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/FaxLineAreaCodeGetExample.sh
+      x-meta:
+        seo:
+          title: Fax Line Get Area Codes | API Documentation | Dropbox Fax for Developers
+          description: The Dropbox Fax API allows you to build custom integrations. To find out what area codes are available, click here.
+  /fax_line/create:
+    post:
+      tags:
+      - Fax Line
+      summary: Purchase Fax Line
+      description: Purchases a new Fax Line
+      operationId: faxLineCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaxLineCreateRequest'
+            examples:
+              example:
+                $ref: '#/components/examples/FaxLineCreateRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaxLineResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/FaxLineResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/FaxLineCreateExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/FaxLineCreateExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/FaxLineCreateExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/FaxLineCreateExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/FaxLineCreateExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/FaxLineCreateExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/FaxLineCreateExample.sh
+      x-meta:
+        seo:
+          title: Purchase Fax Line | API Documentation | Dropbox Fax for Developers
+          description: The Dropbox Fax API allows you to build custom integrations. To find out how to purchase a new fax line, click here.
+  /fax_line:
+    get:
+      tags:
+      - Fax Line
+      summary: Get Fax Line
+      description: Returns the properties and settings of a Fax Line.
+      operationId: faxLineGet
+      parameters:
+      - name: number
+        in: query
+        description: The Fax Line number
+        required: true
+        schema:
+          type: string
+          example: 123-123-1234
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaxLineResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/FaxLineResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/FaxLineGetExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/FaxLineGetExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/FaxLineGetExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/FaxLineGetExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/FaxLineGetExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/FaxLineGetExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/FaxLineGetExample.sh
+      x-meta:
+        seo:
+          title: Get Fax Line | API Documentation | Dropbox Fax for Developers
+          description: The Dropbox Fax API allows you to build custom integrations. To find out how to retrieve the properties of a fax line, click here.
+    delete:
+      tags:
+      - Fax Line
+      summary: Delete Fax Line
+      description: Deletes the specified Fax Line from the subscription.
+      operationId: faxLineDelete
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaxLineDeleteRequest'
+            examples:
+              example:
+                $ref: '#/components/examples/FaxLineDeleteRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json: {}
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/FaxLineDeleteExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/FaxLineDeleteExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/FaxLineDeleteExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/FaxLineDeleteExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/FaxLineDeleteExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/FaxLineDeleteExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/FaxLineDeleteExample.sh
+      x-meta:
+        seo:
+          title: Delete Fax Line | API Documentation | Dropbox Fax for Developers
+          description: The Dropbox Fax API allows you to build custom integrations. To find out how to delete a fax line, click here.
+  /fax_line/list:
+    get:
+      tags:
+      - Fax Line
+      summary: List Fax Lines
+      description: Returns the properties and settings of multiple Fax Lines.
+      operationId: faxLineList
+      parameters:
+      - name: account_id
+        in: query
+        description: Account ID
+        schema:
+          type: string
+          example: ab55cd14a97219e36b5ff5fe23f2f9329b0c1e97
+      - name: page
+        in: query
+        description: Which page number of the Fax Line List to return. Defaults to `1`.
+        schema:
+          type: integer
+          default: 1
+          example: 1
+      - name: page_size
+        in: query
+        description: Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.
+        schema:
+          type: integer
+          default: 20
+          example: 20
+      - name: show_team_lines
+        in: query
+        description: Include Fax Lines belonging to team members in the list
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaxLineListResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/FaxLineListResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/FaxLineListExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/FaxLineListExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/FaxLineListExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/FaxLineListExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/FaxLineListExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/FaxLineListExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/FaxLineListExample.sh
+      x-meta:
+        seo:
+          title: List Fax Lines | API Documentation | Dropbox Fax for Developers
+          description: The Dropbox Fax API allows you to build custom integrations. To find out how to list your fax lines, click here.
+  /fax_line/remove_user:
+    put:
+      tags:
+      - Fax Line
+      summary: Remove Fax Line Access
+      description: Removes a user's access to the specified Fax Line
+      operationId: faxLineRemoveUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaxLineRemoveUserRequest'
+            examples:
+              example:
+                $ref: '#/components/examples/FaxLineRemoveUserRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaxLineResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/FaxLineResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/FaxLineRemoveUserExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/FaxLineRemoveUserExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/FaxLineRemoveUserExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/FaxLineRemoveUserExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/FaxLineRemoveUserExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/FaxLineRemoveUserExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/FaxLineRemoveUserExample.sh
+      x-meta:
+        seo:
+          title: Fax Line Remove User | API Documentation | Dropbox Fax for Developers
+          description: The Dropbox Fax API allows you to build custom integrations. To find out how to remove a user from an existing fax line, click here.
+components:
+  examples:
+    FaxLineAreaCodeGetResponse:
+      summary: Sample Area Code Response
+      value:
+        $ref: examples/json/FaxLineAreaCodeGetResponse.json
+    FaxLineAddUserRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/FaxLineAddUserRequest.json
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    FaxLineListResponse:
+      summary: Sample Fax Line List Response
+      value:
+        $ref: examples/json/FaxLineListResponse.json
+    FaxLineResponse:
+      summary: Sample Fax Line Response
+      value:
+        $ref: examples/json/FaxLineResponse.json
+    FaxLineDeleteRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/FaxLineDeleteRequest.json
+    FaxLineCreateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/FaxLineCreateRequest.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    FaxLineRemoveUserRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/FaxLineRemoveUserRequest.json
+  schemas:
+    FaxLineRemoveUserRequest:
+      required:
+      - number
+      properties:
+        number:
+          description: The Fax Line number
+          type: string
+        account_id:
+          description: Account ID of the user to remove access
+          type: string
+          example: ab55cd14a97219e36b5ff5fe23f2f9329b0c1e97
+        email_address:
+          description: Email address of the user to remove access
+          type: string
+          format: email
+      type: object
+    AccountResponseUsage:
+      description: Details concerning monthly usage
+      properties:
+        fax_pages_sent:
+          description: Number of fax pages sent
+          type: integer
+          nullable: true
+      type: object
+      x-internal-class: true
+    FaxLineResponse:
+      required:
+      - fax_line
+      properties:
+        fax_line:
+          $ref: '#/components/schemas/FaxLineResponseFaxLine'
+        warnings:
+          $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    AccountResponse:
+      properties:
+        account_id:
+          description: The ID of the Account
+          type: string
+        email_address:
+          description: The email address associated with the Account.
+          type: string
+        is_locked:
+          description: Returns `true` if the user has been locked out of their account by a team admin.
+          type: boolean
+        is_paid_hs:
+          description: Returns `true` if the user has a paid Dropbox Sign account.
+          type: boolean
+        is_paid_hf:
+          description: Returns `true` if the user has a paid HelloFax account.
+          type: boolean
+        quotas:
+          $ref: '#/components/schemas/AccountResponseQuotas'
+        callback_url:
+          description: The URL that Dropbox Sign events will `POST` to.
+          type: string
+          nullable: true
+        role_code:
+          description: The membership role for the team.
+          type: string
+          nullable: true
+        team_id:
+          description: The id of the team account belongs to.
+          type: string
+          nullable: true
+        locale:
+          description: The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
+          type: string
+          nullable: true
+        usage:
+          $ref: '#/components/schemas/AccountResponseUsage'
+        settings:
+          $ref: '#/components/schemas/AccountResponseSettings'
+      type: object
+      x-internal-class: true
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
+      type: object
+    FaxLineDeleteRequest:
+      required:
+      - number
+      properties:
+        number:
+          description: The Fax Line number
+          type: string
+      type: object
+    FaxLineResponseFaxLine:
+      properties:
+        number:
+          description: Number
+          type: string
+        created_at:
+          description: Created at
+          type: integer
+        updated_at:
+          description: Updated at
+          type: integer
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountResponse'
+      type: object
+      x-internal-class: true
+    AccountResponseQuotas:
+      description: Details concerning remaining monthly quotas.
+      properties:
+        api_signature_requests_left:
+          description: API signature requests remaining.
+          type: integer
+          nullable: true
+        documents_left:
+          description: Signature requests remaining.
+          type: integer
+          nullable: true
+        templates_total:
+          description: Total API templates allowed.
+          type: integer
+          nullable: true
+        templates_left:
+          description: API templates remaining.
+          type: integer
+          nullable: true
+        sms_verifications_left:
+          description: SMS verifications remaining.
+          type: integer
+          nullable: true
+        num_fax_pages_left:
+          description: Number of fax pages left
+          type: integer
+          nullable: true
+      type: object
+      x-internal-class: true
+    FaxLineAreaCodeGetResponse:
+      required:
+      - area_codes
+      properties:
+        area_codes:
+          type: array
+          items:
+            type: integer
+      type: object
+      x-internal-class: true
+    AccountResponseSettings:
+      description: Subset of configured settings
+      properties:
+        signer_access_codes:
+          description: Returns `true` if _Custom access codes_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_delivery:
+          description: Returns `true` if _Text message_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_authentication:
+          description: Returns `true` if _Signer authentication_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+      type: object
+      x-internal-class: true
+    FaxLineAddUserRequest:
+      required:
+      - number
+      properties:
+        number:
+          description: The Fax Line number
+          type: string
+        account_id:
+          description: Account ID
+          type: string
+          example: ab55cd14a97219e36b5ff5fe23f2f9329b0c1e97
+        email_address:
+          description: Email address
+          type: string
+          format: email
+      type: object
+    FaxLineCreateRequest:
+      required:
+      - area_code
+      - country
+      properties:
+        area_code:
+          description: Area code of the new Fax Line
+          type: integer
+        country:
+          description: Country of the area code
+          type: string
+          enum:
+          - CA
+          - US
+          - UK
+        city:
+          description: City of the area code
+          type: string
+        account_id:
+          description: Account ID of the account that will be assigned this new Fax Line
+          type: string
+          example: ab55cd14a97219e36b5ff5fe23f2f9329b0c1e97
+      type: object
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
+      type: object
+    ListInfoResponse:
+      description: Contains pagination information about the data returned.
+      properties:
+        num_pages:
+          description: Total number of pages available.
+          type: integer
+        num_results:
+          description: Total number of objects available.
+          type: integer
+          nullable: true
+        page:
+          description: Number of the page being returned.
+          type: integer
+        page_size:
+          description: Objects returned per page.
+          type: integer
+      type: object
+      x-internal-class: true
+    FaxLineListResponse:
+      required:
+      - fax_lines
+      - list_info
+      properties:
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        fax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/FaxLineResponseFaxLine'
+        warnings:
+          $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+  headers:
+    X-Ratelimit-Reset:
+      description: The Unix time at which the rate limit will reset to its maximum.
+      schema:
+        type: integer
+        format: int64
+        example: 1430170900
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
+  securitySchemes:
+    api_key:
+      type: http
+      description: 'Your API key can be used to make calls to the Dropbox Sign API. See [Authentication](/api/reference/authentication) for more information.
+
+        ✅ Supported by Try it console (calls sent in `test_mode` only).'
+      scheme: basic
+    oauth2:
+      type: http
+      description: 'You can use an Access Token issued through an OAuth flow to send calls to the Dropbox Sign API from your app. The access scopes required by this endpoint are listed in the gray box above. See [Authentication](/api/reference/authentication) for more information.
+
+        ❌ **Not supported** by Try it console.'
+      bearerFormat: JWT
+      scheme: bearer
+externalDocs:
+  description: Legacy API Reference
+  url: https://app.hellosign.com/api/reference
+x-webhooks:
+  accountCallback:
+    post:
+      summary: Account Callbacks
+      operationId: accountUpdateEventCallback
+      description:
+        $ref: ./markdown/en/descriptions/account-callback-description.md
+      tags:
+      - Callbacks and Events
+      x-meta:
+        seo:
+          title: Account Callbacks | API Documentation | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the account level, click here.
+      x-fern-audiences:
+      - events
+      requestBody:
+        description: "**Account Callback Payloads --**\n      Events that are reported at the Account level through the the *Account callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api). The *Account callback URL* can also be updated by calling [Update Account](/api/reference/operation/accountUpdate) and passing a `callback_url`."
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCallbackPayload'
+            examples:
+              signature_request_viewed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
+              signature_request_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
+              signature_request_signer_removed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
+              signature_request_downloadable_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
+              signature_request_sent_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
+              signature_request_all_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
+              signature_request_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
+              signature_request_email_bounce_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
+              signature_request_remind_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
+              signature_request_incomplete_qes_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
+              signature_request_destroyed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
+              signature_request_canceled_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
+              signature_request_declined_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
+              signature_request_expired_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
+              signature_request_reassigned_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
+              signature_request_prepared_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
+              account_confirmed_example:
+                $ref: '#/components/examples/EventCallbackAccountConfirmed'
+              unknown_error_example:
+                $ref: '#/components/examples/EventCallbackUnknownError'
+              file_error_example:
+                $ref: '#/components/examples/EventCallbackFileError'
+              template_created_example:
+                $ref: '#/components/examples/EventCallbackTemplateCreated'
+              template_error_example:
+                $ref: '#/components/examples/EventCallbackTemplateError'
+              sign_url_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
+              callback_test_example:
+                $ref: '#/components/examples/EventCallbackCallbackTest'
+      responses:
+        200:
+          $ref: '#/components/responses/EventCallbackResponse'
+  appCallback:
+    post:
+      summary: App Callbacks
+      operationId: apiAppCreateEventCallback
+      description:
+        $ref: ./markdown/en/descriptions/api-app-callback-description.md
+      tags:
+      - Callbacks and Events
+      x-meta:
+        seo:
+          title: App Callbacks | API Documentation | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the App level, click here.
+      x-fern-audiences:
+      - events
+      requestBody:
+        description: '**API App Callback Payloads --**
+
+          Events that are reported at the API App level through the *Event callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api) for a specific app. The *Event callback URL* can also be updated by calling [Update API App](/api/reference/operation/apiAppUpdate) and passing a `callback_url`.'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCallbackPayload'
+            examples:
+              signature_request_viewed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
+              signature_request_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
+              signature_request_signer_removed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
+              signature_request_downloadable_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
+              signature_request_sent_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
+              signature_request_all_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
+              signature_request_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
+              signature_request_email_bounce_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
+              signature_request_remind_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
+              signature_request_incomplete_qes_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
+              signature_request_destroyed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
+              signature_request_canceled_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
+              signature_request_declined_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
+              signature_request_expired_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
+              signature_request_reassigned_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
+              signature_request_prepared_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
+              account_confirmed_example:
+                $ref: '#/components/examples/EventCallbackAccountConfirmed'
+              unknown_error_example:
+                $ref: '#/components/examples/EventCallbackUnknownError'
+              file_error_example:
+                $ref: '#/components/examples/EventCallbackFileError'
+              template_created_example:
+                $ref: '#/components/examples/EventCallbackTemplateCreated'
+              template_error_example:
+                $ref: '#/components/examples/EventCallbackTemplateError'
+              sign_url_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
+              callback_test_example:
+                $ref: '#/components/examples/EventCallbackCallbackTest'
+      responses:
+        200:
+          $ref: '#/components/responses/EventCallbackResponse'
+x-error-codes:
+  bad_request:
+    http_status: 400
+    summary: The request contained invalid or malformed parameters.
+    cause: A parameter failed validation, or the request body was malformed.
+    remediation: Inspect error_msg and error_path, correct the offending parameter, and resend.
+    retryable: 'no'
+  unauthorized:
+    http_status: 401
+    summary: The credentials supplied are missing or invalid.
+    cause: Missing, malformed, or invalid API key or OAuth access token.
+    remediation: Verify the API key or OAuth token and the Authorization header, then retry.
+    retryable: 'no'
+  payment_required:
+    http_status: 402
+    summary: The account must be credited or upgraded to perform this action.
+    cause: The action requires a paid plan, additional quota, or API credits.
+    remediation: Upgrade the plan or add the required credits/quota, then retry.
+    retryable: 'no'
+  forbidden:
+    http_status: 403
+    summary: The action is not allowed for these credentials or in the current context.
+    cause: The authenticated account lacks access to the resource or operation.
+    remediation: Confirm the account has access to the resource and the required permissions.
+    retryable: 'no'
+  not_found:
+    http_status: 404
+    summary: Nothing matches the requested resource.
+    cause: The resource id does not exist or is not visible to this account.
+    remediation: Verify the id and that the resource belongs to the authenticated account.
+    retryable: 'no'
+  conflict:
+    http_status: 409
+    summary: The request was well-formed but conflicts with the current state.
+    cause: The target resource is in a state incompatible with the request (e.g. a signature request is still being set up).
+    remediation: Wait briefly and retry, or listen for a callback event confirming the resource is ready.
+    retryable: conditional
+  exceeded_rate:
+    http_status: 429
+    summary: Your account's API request rate limit has been exceeded.
+    cause: Too many requests were sent within the rate-limit window for this request type.
+    remediation: Pace requests using the X-RateLimit-* response headers and retry after the window resets.
+    retryable: 'yes'
+    backoff: Honor X-Ratelimit-Reset (Unix epoch); otherwise exponential backoff with jitter. No Retry-After header is sent.
+  unknown:
+    http_status: 500
+    summary: An unexpected error occurred.
+    cause: An unhandled server-side error, or a status code without a more specific error_name.
+    remediation: Retry transient failures; if it persists, contact support with the request details.
+    retryable: conditional
+    backoff: For transient 5xx, retry with exponential backoff; otherwise do not retry.
+  team_invite_failed:
+    http_status: 403
+    summary: The team invitation could not be completed.
+    cause: The invitee already belongs to a team, or the invite is otherwise not permitted.
+    remediation: Confirm the invitee is not already on a team before inviting.
+    retryable: 'no'
+  max_faxes:
+    http_status: 429
+    summary: Too many fax transmissions are currently pending or transmitting.
+    cause: The account has reached the limit of concurrent in-flight fax transmissions.
+    remediation: Wait for outstanding transmissions to complete, then retry.
+    retryable: 'yes'
+    backoff: Retry with exponential backoff once pending transmissions clear.
+  invalid_recipient:
+    http_status: 400
+    summary: The recipient (fax number or email address) is invalid.
+    cause: A recipient value did not pass validation.
+    remediation: Correct the recipient value and resend.
+    retryable: 'no'
+  signature_request_cancel_failed:
+    http_status: 400
+    summary: The signature request could not be cancelled.
+    cause: The caller is not the requester, or the request is already fully executed/closed.
+    remediation: Only the requester can cancel, and only before the request is fully executed.
+    retryable: 'no'
+  signature_request_remove_failed:
+    http_status: 400
+    summary: Access to the signature request could not be removed.
+    cause: The signature request has not yet been fully executed, so access cannot be revoked.
+    remediation: Wait until all parties have signed, or call /signature_request/cancel to cancel incomplete requests instead.
+    retryable: 'no'
+  maintenance:
+    http_status: 503
+    summary: The request could not be completed because the site is under maintenance.
+    cause: The API is in a scheduled maintenance window.
+    remediation: Retry once the maintenance window ends.
+    retryable: 'yes'
+    backoff: Retry later with exponential backoff.
+  method_not_supported:
+    http_status: 405
+    summary: The HTTP method is not supported for this endpoint.
+    cause: The request used a verb the endpoint does not accept.
+    remediation: Use the HTTP method documented for the endpoint.
+    retryable: 'no'
+  invalid_reminder:
+    http_status: 400
+    summary: The signature request reminder was invalid.
+    cause: A reminder was attempted against an ineligible request (e.g. embedded, closed, or expired).
+    remediation: Only send reminders for eligible (non-embedded, open) signature requests.
+    retryable: 'no'
+  unavailable:
+    http_status: 503
+    summary: The service is temporarily unavailable.
+    cause: A downstream dependency or the service itself is temporarily unavailable.
+    remediation: Retry later with exponential backoff.
+    retryable: 'yes'
+    backoff: Retry later with exponential backoff and jitter.
+  unprocessable_entity:
+    http_status: 422
+    summary: The request was understood but the target entity cannot be processed.
+    cause: The resource is still being processed, or it is in an error state.
+    remediation: If the resource is still processing, wait and retry; if it is in an error state, recreate/resend it instead of retrying.
+    retryable: conditional
+    backoff: If still processing, retry with exponential backoff; if in an error state, do not retry.
+  signature_request_expired:
+    http_status:
+    - 400
+    - 403
+    summary: The signature request has expired.
+    cause: The operation targets a request whose expiration has passed. Most endpoints return 400; final-copy/download endpoints return 403.
+    remediation: The request can no longer be acted upon; create a new signature request.
+    retryable: 'no'
+  deleted:
+    http_status: 410
+    summary: The request was cancelled or deleted.
+    cause: The resource has been cancelled or removed and is no longer available.
+    remediation: Do not retry; the resource is permanently gone.
+    retryable: 'no'
+x-oauth-error-codes:
+  invalid_grant:
+    http_status:
+    - 400
+    - 401
+    summary: The OAuth grant (authorization code or refresh token) is invalid or expired.
+    cause: The code/token was already used, expired, or does not match the client.
+    remediation: Re-initiate the OAuth flow to obtain a fresh authorization code.
+    retryable: 'no'
+  invalid_client:
+    http_status: 400
+    summary: The OAuth client credentials are invalid.
+    cause: The client_id or client_secret is unrecognized or incorrect.
+    remediation: Verify the client_id and client_secret from the API app settings.
+    retryable: 'no'
+  invalid_request:
+    http_status: 400
+    summary: The OAuth request is malformed or missing required parameters.
+    cause: A required parameter is missing, or the request format is invalid.
+    remediation: Check the request against the OAuth token endpoint documentation.
+    retryable: 'no'
+  unauthorized_client:
+    http_status:
+    - 401
+    - 403
+    summary: The OAuth client is not authorized to perform this action.
+    cause: The app has not been approved, or the action is outside the granted scopes.
+    remediation: Ensure the app is approved and the required scopes are granted.
+    retryable: 'no'
+  unsupported_grant_type:
+    http_status: 400
+    summary: The grant type is not supported.
+    cause: The grant_type parameter value is not recognized.
+    remediation: Use authorization_code or refresh_token as the grant_type.
+    retryable: 'no'
+  payment_required:
+    http_status: 402
+    summary: The account requires a paid plan to use this OAuth app.
+    cause: The authorizing account does not have a plan that supports this integration.
+    remediation: Upgrade the account to a plan that includes OAuth app access.
+    retryable: 'no'
+  addon_required:
+    http_status: 402
+    summary: An add-on is required to use this OAuth app.
+    cause: The account plan does not include the add-on needed for this integration.
+    remediation: Add the required add-on to the account subscription.
+    retryable: 'no'
+  invalid_scope:
+    http_status: 400
+    summary: The requested OAuth scope is invalid.
+    cause: The scope parameter contains values not permitted for the app.
+    remediation: Request only scopes that the app is configured to use.
+    retryable: 'no'
+  quota_reached:
+    http_status: 402
+    summary: The account has reached its usage quota for this OAuth app.
+    cause: The authorizing account has exhausted its quota for the integration.
+    remediation: Contact the app owner or upgrade the account quota.
+    retryable: 'no'
+  server_error:
+    http_status: 500
+    summary: An internal server error occurred during OAuth processing.
+    cause: An unexpected error on the server side while handling the OAuth request.
+    remediation: Retry the request; if it persists, contact support.
+    retryable: 'yes'
+    backoff: Retry with exponential backoff.
+  temporary_unavailable:
+    http_status: 503
+    summary: The OAuth service is temporarily unavailable.
+    cause: The service is under maintenance or experiencing temporary issues.
+    remediation: Retry after a short delay.
+    retryable: 'yes'
+    backoff: Retry with exponential backoff.
+x-error-events:
+  signature_request_invalid:
+    event_type: signature_request_invalid
+    delivery: webhook
+    summary: Asynchronous error while processing a signature request.
+    cause: A signature request could not be processed (e.g. invalid tags, fields, or merge data).
+    remediation: Inspect event.event_metadata.event_message in the callback, correct the request, and resend.
+    retryable: conditional
+  unknown_error:
+    event_type: unknown_error
+    delivery: webhook
+    summary: An unspecified asynchronous processing error occurred.
+    cause: An unexpected error occurred while processing the request asynchronously.
+    remediation: Check the request status in the API dashboard; retry or contact support if it persists.
+    retryable: conditional
+  file_error:
+    event_type: file_error
+    delivery: webhook
+    summary: Asynchronous error while processing an uploaded file.
+    cause: A file attached to a request could not be processed.
+    remediation: Resend the request with a supported, non-corrupt file.
+    retryable: conditional
+  template_error:
+    event_type: template_error
+    delivery: webhook
+    summary: Asynchronous error while creating a template.
+    cause: Template file processing failed (e.g. unsupported or corrupt file).
+    remediation: Recreate the template with a valid file; check status in the API dashboard.
+    retryable: conditional
+  sign_url_invalid:
+    event_type: sign_url_invalid
+    delivery: webhook
+    summary: An embedded signing URL has expired or become invalid.
+    cause: The embedded sign_url is no longer valid (e.g. expired).
+    remediation: Generate a fresh embedded sign_url via the embedded sign URL endpoint.
+    retryable: 'yes'

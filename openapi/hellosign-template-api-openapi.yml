@@ -1,0 +1,2870 @@
+openapi: 3.0.3
+info:
+  title: Dropbox Sign Account Template API
+  description: Dropbox Sign v3 API
+  termsOfService: https://www.hellosign.com/terms
+  contact:
+    email: apisupport@hellosign.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: 3.0.0
+servers:
+- url: https://api.hellosign.com/v3
+security:
+- api_key: []
+- oauth2:
+  - account_access
+  - signature_request_access
+  - template_access
+  - team_access
+  - api_app_access
+  - basic_account_info
+  - request_signature
+tags:
+- name: Template
+  description:
+    $ref: ./markdown/en/tags/template-tag-description.md
+paths:
+  /template/add_user/{template_id}:
+    post:
+      tags:
+      - Template
+      summary: Add User to Template
+      description: Gives the specified Account access to the specified Template. The specified Account must be a part of your Team.
+      operationId: templateAddUser
+      parameters:
+      - name: template_id
+        in: path
+        description: The id of the Template to give the Account access to.
+        required: true
+        schema:
+          type: string
+        example: f57db65d3f933b5316d398057a36176831451a35
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateAddUserRequest'
+            examples:
+              example:
+                $ref: '#/components/examples/TemplateAddUserRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateGetResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TemplateAddUserResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - template_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TemplateAddUserExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TemplateAddUserExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TemplateAddUserExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TemplateAddUserExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TemplateAddUserExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TemplateAddUserExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TemplateAddUserExample.sh
+      x-meta:
+        seo:
+          title: Add User to Template | REST API | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API easily allows you to build custom eSign integrations. To find out how to give an Account access to a Template, click here.
+  /template/create:
+    post:
+      tags:
+      - Template
+      summary: Create Template
+      description: 'Creates a template that can be used in future signature requests.
+
+
+        If `client_id` is provided, the template will be created as an embedded template. Embedded templates can be used for embedded signature requests and can be edited later by generating a new `edit_url` with [/embedded/edit_url/{template_id}](/api/reference/operation/embeddedEditUrl/).
+
+
+        Template creation may complete asynchronously after the initial request is accepted. It is recommended that a callback be implemented to listen for the callback event. A `template_created` event indicates the template is ready to use, while a `template_error` event indicates there was a problem while creating the template. If a callback handler has been configured and the event has not been received within 60 minutes of making the call, check the status of the request in the API dashboard and retry the request if necessary.'
+      operationId: templateCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateCreateRequest'
+            examples:
+              example:
+                $ref: '#/components/examples/TemplateCreateRequest'
+              form_fields_per_document_example:
+                $ref: '#/components/examples/TemplateCreateRequestFormFieldsPerDocument'
+              form_field_groups_example:
+                $ref: '#/components/examples/TemplateCreateRequestFormFieldGroups'
+              form_field_rules_example:
+                $ref: '#/components/examples/TemplateCreateRequestFormFieldRules'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TemplateCreateRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateCreateResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TemplateCreateResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                409_example:
+                  $ref: '#/components/examples/Error409Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - template_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TemplateCreateExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TemplateCreateExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TemplateCreateExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TemplateCreateExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TemplateCreateExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TemplateCreateExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TemplateCreateExample.sh
+      x-meta:
+        seo:
+          title: Create Template | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API easily allows you to build custom eSign integrations. To find out how to create an template, click here.
+  /template/create_embedded_draft:
+    post:
+      tags:
+      - Template
+      summary: Create Embedded Template Draft
+      description: The first step in an embedded template workflow. Creates a draft template that can then be further set up in the template 'edit' stage.
+      operationId: templateCreateEmbeddedDraft
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateCreateEmbeddedDraftRequest'
+            examples:
+              example:
+                $ref: '#/components/examples/TemplateCreateEmbeddedDraftRequest'
+              form_fields_per_document_example:
+                $ref: '#/components/examples/TemplateCreateEmbeddedDraftRequestFormFieldsPerDocument'
+              form_field_groups_example:
+                $ref: '#/components/examples/TemplateCreateEmbeddedDraftRequestFormFieldGroups'
+              form_field_rules_example:
+                $ref: '#/components/examples/TemplateCreateEmbeddedDraftRequestFormFieldRules'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TemplateCreateEmbeddedDraftRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateCreateEmbeddedDraftResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TemplateCreateEmbeddedDraftResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                409_example:
+                  $ref: '#/components/examples/Error409Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - template_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TemplateCreateEmbeddedDraftExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TemplateCreateEmbeddedDraftExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TemplateCreateEmbeddedDraftExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TemplateCreateEmbeddedDraftExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TemplateCreateEmbeddedDraftExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TemplateCreateEmbeddedDraftExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TemplateCreateEmbeddedDraftExample.sh
+      x-meta:
+        seo:
+          title: Create Embedded Template Draft | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API easily allows you to build custom eSign integrations. To find out how to create an embedded draft template, click here.
+  /template/delete/{template_id}:
+    post:
+      tags:
+      - Template
+      summary: Delete Template
+      description: Completely deletes the template specified from the account.
+      operationId: templateDelete
+      parameters:
+      - name: template_id
+        in: path
+        description: The id of the Template to delete.
+        required: true
+        schema:
+          type: string
+        example: f57db65d3f933b5316d398057a36176831451a35
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json: {}
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                409_example:
+                  $ref: '#/components/examples/Error409Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - template_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TemplateDeleteExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TemplateDeleteExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TemplateDeleteExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TemplateDeleteExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TemplateDeleteExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TemplateDeleteExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TemplateDeleteExample.sh
+      x-meta:
+        seo:
+          title: Delete Template | API Documentation | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API easily allows you to build custom integrations. To find out how to completely delete a template from the account, click here.
+  /template/files/{template_id}:
+    get:
+      tags:
+      - Template
+      summary: Get Template Files
+      description: 'Obtain a copy of the current documents specified by the `template_id` parameter. Returns a PDF or ZIP file.
+
+
+        If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.'
+      operationId: templateFiles
+      parameters:
+      - name: template_id
+        in: path
+        description: The id of the template files to retrieve.
+        required: true
+        schema:
+          type: string
+        example: f57db65d3f933b5316d398057a36176831451a35
+      - name: file_type
+        in: query
+        description: Set to `pdf` for a single merged document or `zip` for a collection of individual documents.
+        schema:
+          type: string
+          enum:
+          - pdf
+          - zip
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                409_example:
+                  $ref: '#/components/examples/Error409Response'
+                422_example:
+                  $ref: '#/components/examples/Error422Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - template_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TemplateFilesExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TemplateFilesExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TemplateFilesExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TemplateFilesExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TemplateFilesExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TemplateFilesExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TemplateFilesExample.sh
+      x-meta:
+        seo:
+          title: Get Template Files | API Documentation | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API easily allows you to build custom integrations. To find out how to get a copy of the current specified documents, click here.
+  /template/files_as_data_uri/{template_id}:
+    get:
+      tags:
+      - Template
+      summary: Get Template Files as Data Uri
+      description: 'Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).
+
+
+        If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.'
+      operationId: templateFilesAsDataUri
+      parameters:
+      - name: template_id
+        in: path
+        description: The id of the template files to retrieve.
+        required: true
+        schema:
+          type: string
+        example: f57db65d3f933b5316d398057a36176831451a35
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileResponseDataUri'
+              examples:
+                example:
+                  $ref: '#/components/examples/TemplateFilesResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                409_example:
+                  $ref: '#/components/examples/Error409Response'
+                422_example:
+                  $ref: '#/components/examples/Error422Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - template_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TemplateFilesAsDataUriExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TemplateFilesAsDataUriExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TemplateFilesAsDataUriExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TemplateFilesAsDataUriExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TemplateFilesAsDataUriExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TemplateFilesAsDataUriExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TemplateFilesAsDataUriExample.sh
+      x-meta:
+        seo:
+          title: Get Template Files | API Documentation | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API easily allows you to build custom integrations. To find out how to get a copy of the current specified documents, click here.
+  /template/files_as_file_url/{template_id}:
+    get:
+      tags:
+      - Template
+      summary: Get Template Files as File Url
+      description: 'Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).
+
+
+        If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.'
+      operationId: templateFilesAsFileUrl
+      parameters:
+      - name: template_id
+        in: path
+        description: The id of the template files to retrieve.
+        required: true
+        schema:
+          type: string
+        example: f57db65d3f933b5316d398057a36176831451a35
+      - name: force_download
+        in: query
+        description: By default when opening the `file_url` a browser will download the PDF and save it locally. When set to `0` the PDF file will be displayed in the browser.
+        schema:
+          type: integer
+          default: 1
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TemplateFilesResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                409_example:
+                  $ref: '#/components/examples/Error409Response'
+                422_example:
+                  $ref: '#/components/examples/Error422Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - template_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TemplateFilesAsFileUrlExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TemplateFilesAsFileUrlExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TemplateFilesAsFileUrlExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TemplateFilesAsFileUrlExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TemplateFilesAsFileUrlExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TemplateFilesAsFileUrlExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TemplateFilesAsFileUrlExample.sh
+      x-meta:
+        seo:
+          title: Get Template Files | API Documentation | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API easily allows you to build custom integrations. To find out how to get a copy of the current specified documents, click here.
+  /template/{template_id}:
+    get:
+      tags:
+      - Template
+      summary: Get Template
+      description: Returns the Template specified by the `template_id` parameter.
+      operationId: templateGet
+      parameters:
+      - name: template_id
+        in: path
+        description: The id of the Template to retrieve.
+        required: true
+        schema:
+          type: string
+        example: f57db65d3f933b5316d398057a36176831451a35
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateGetResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TemplateGetResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - template_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TemplateGetExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TemplateGetExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TemplateGetExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TemplateGetExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TemplateGetExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TemplateGetExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TemplateGetExample.sh
+      x-meta:
+        seo:
+          title: Get Template | API Documentation | Dropbox Sign for Developers
+          description: The RESTful Dropbox Sign API easily allows you to build custom integrations. To find out how to return the Template specified by the `template_id` parameter, click here.
+  /template/list:
+    get:
+      tags:
+      - Template
+      summary: List Templates
+      description: 'Returns a list of the Templates that are accessible by you.
+
+
+        Take a look at our [search guide](/api/reference/search/) to learn more about querying templates.'
+      operationId: templateList
+      parameters:
+      - name: account_id
+        in: query
+        description: Which account to return Templates for. Must be a team member. Use `all` to indicate all team members. Defaults to your account.
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Which page number of the Template List to return. Defaults to `1`.
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        description: Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.
+        schema:
+          type: integer
+          default: 20
+          maximum: 100
+          minimum: 1
+      - name: query
+        in: query
+        description: String that includes search terms and/or fields to be used to filter the Template objects.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateListResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TemplateListResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                409_example:
+                  $ref: '#/components/examples/Error409Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - template_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TemplateListExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TemplateListExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TemplateListExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TemplateListExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TemplateListExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TemplateListExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TemplateListExample.sh
+      x-meta:
+        seo:
+          title: List Templates | API Documentation | Dropbox Sign for Developers
+          description: The Dropbox Sign API easily allows you to build custom integrations. To find out how to return a list of the Templates that can be accessed by you, click here.
+  /template/remove_user/{template_id}:
+    post:
+      tags:
+      - Template
+      summary: Remove User from Template
+      description: Removes the specified Account's access to the specified Template.
+      operationId: templateRemoveUser
+      parameters:
+      - name: template_id
+        in: path
+        description: The id of the Template to remove the Account's access to.
+        required: true
+        schema:
+          type: string
+        example: f57db65d3f933b5316d398057a36176831451a35
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateRemoveUserRequest'
+            examples:
+              example:
+                $ref: '#/components/examples/TemplateRemoveUserRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateGetResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TemplateRemoveUserResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - template_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TemplateRemoveUserExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TemplateRemoveUserExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TemplateRemoveUserExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TemplateRemoveUserExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TemplateRemoveUserExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TemplateRemoveUserExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TemplateRemoveUserExample.sh
+      x-meta:
+        seo:
+          title: Remove User from Template | REST API | Dropbox Sign for Developers
+          description: The Dropbox Sign API easily allows you to build custom integrations. To find out how to remove a specified Account's access to a Template, click here.
+  /template/update_files/{template_id}:
+    post:
+      tags:
+      - Template
+      summary: Update Template Files
+      description: 'Overlays a new file with the overlay of an existing template. The new file(s) must:
+
+
+        1. have the same or higher page count
+
+        2. the same orientation as the file(s) being replaced.
+
+
+        This will not overwrite or in any way affect the existing template. Both the existing template and new template will be available for use after executing this endpoint. Also note that this will decrement your template quota.
+
+
+        Overlaying new files is asynchronous and a successful call to this endpoint will return 200 OK response if the request passes initial validation checks.
+
+
+        It is recommended that a callback be implemented to listen for the callback event. A `template_created` event will be sent when the files are updated or a `template_error` event will be sent if there was a problem while updating the files. If a callback handler has been configured and the event has not been received within 60 minutes of making the call, check the status of the request in the API dashboard and retry the request if necessary.
+
+
+        If the page orientation or page count is different from the original template document, we will notify you with a `template_error` [callback event](https://app.hellosign.com/api/eventsAndCallbacksWalkthrough).'
+      operationId: templateUpdateFiles
+      parameters:
+      - name: template_id
+        in: path
+        description: The ID of the template whose files to update.
+        required: true
+        schema:
+          type: string
+        example: f57db65d3f933b5316d398057a36176831451a35
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateUpdateFilesRequest'
+            examples:
+              example:
+                $ref: '#/components/examples/TemplateUpdateFilesRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TemplateUpdateFilesRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateUpdateFilesResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/TemplateUpdateFilesResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                404_example:
+                  $ref: '#/components/examples/Error404Response'
+                409_example:
+                  $ref: '#/components/examples/Error409Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - template_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/TemplateUpdateFilesExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/TemplateUpdateFilesExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/TemplateUpdateFilesExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/TemplateUpdateFilesExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/TemplateUpdateFilesExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/TemplateUpdateFilesExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/TemplateUpdateFilesExample.sh
+      x-meta:
+        seo:
+          title: Update Template Files | REST API | Dropbox Sign for Developers
+          description: Overlays a new file with the overlay of an existing template
+components:
+  schemas:
+    SubFormFieldRuleTrigger:
+      required:
+      - id
+      - operator
+      properties:
+        id:
+          description: Must reference the `api_id` of an existing field defined within `form_fields_per_document`. Trigger and action fields and groups must belong to the same signer.
+          type: string
+        operator:
+          description: "Different field types allow different `operator` values:\n- Field type of **text**:\n  - **is**: exact match\n  - **not**: not exact match\n  - **match**: regular expression, without /. Example:\n    - OK `[a-zA-Z0-9]`\n    - Not OK `/[a-zA-Z0-9]/`\n- Field type of **dropdown**:\n  - **is**: exact match, single value\n  - **not**: not exact match, single value\n  - **any**: exact match, array of values.\n  - **none**: not exact match, array of values.\n- Field type of **checkbox**:\n  - **is**: exact match, single value\n  - **not**: not exact match, single value\n- Field type of **radio**:\n  - **is**: exact match, single value\n  - **not**: not exact match, single value"
+          type: string
+          enum:
+          - any
+          - is
+          - match
+          - none
+          - not
+        value:
+          description: "**value** or **values** is required, but not both.\n\nThe value to match against **operator**.\n\n- When **operator** is one of the following, **value** must be `String`:\n  - `is`\n  - `not`\n  - `match`\n\nOtherwise,\n- **checkbox**: When **type** of trigger is **checkbox**, **value** must be `0` or `1`\n- **radio**: When **type** of trigger is **radio**, **value** must be `1`"
+          type: string
+        values:
+          description: '**values** or **value** is required, but not both.
+
+
+            The values to match against **operator** when it is one of the following:
+
+
+            - `any`
+
+            - `none`'
+          type: array
+          items:
+            type: string
+      type: object
+    TemplateCreateEmbeddedDraftResponseTemplate:
+      description: 'Template object with parameters: `template_id`, `edit_url`, `expires_at`.'
+      properties:
+        template_id:
+          description: The id of the Template.
+          type: string
+        edit_url:
+          description: Link to edit the template.
+          type: string
+        expires_at:
+          description: When the link expires.
+          type: integer
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+          deprecated: true
+      type: object
+      x-internal-class: true
+    TemplateResponseDocumentStaticFieldBase:
+      description: An array describing static overlay fields. **NOTE:** Only available for certain subscriptions.
+      required:
+      - type
+      properties:
+        api_id:
+          description: A unique id for the static field.
+          type: string
+        name:
+          description: The name of the static field.
+          type: string
+        type:
+          type: string
+        signer:
+          description: The signer of the Static Field.
+          type: string
+          default: me_now
+        x:
+          description: The horizontal offset in pixels for this static field.
+          type: integer
+        y:
+          description: The vertical offset in pixels for this static field.
+          type: integer
+        width:
+          description: The width in pixels of this static field.
+          type: integer
+        height:
+          description: The height in pixels of this static field.
+          type: integer
+        required:
+          description: Boolean showing whether or not this field is required.
+          type: boolean
+        group:
+          description: The name of the group this field is in. If this field is not a group, this defaults to `null`.
+          type: string
+          nullable: true
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/TemplateResponseDocumentStaticFieldText'
+          dropdown: '#/components/schemas/TemplateResponseDocumentStaticFieldDropdown'
+          hyperlink: '#/components/schemas/TemplateResponseDocumentStaticFieldHyperlink'
+          checkbox: '#/components/schemas/TemplateResponseDocumentStaticFieldCheckbox'
+          radio: '#/components/schemas/TemplateResponseDocumentStaticFieldRadio'
+          signature: '#/components/schemas/TemplateResponseDocumentStaticFieldSignature'
+          date_signed: '#/components/schemas/TemplateResponseDocumentStaticFieldDateSigned'
+          initials: '#/components/schemas/TemplateResponseDocumentStaticFieldInitials'
+      x-internal-class: true
+      x-base-class: true
+    TemplateResponseDocumentFieldGroup:
+      properties:
+        name:
+          description: The name of the form field group.
+          type: string
+        rule:
+          $ref: '#/components/schemas/TemplateResponseDocumentFieldGroupRule'
+      type: object
+      x-internal-class: true
+    SignatureRequestResponseAttachment:
+      description: Signer attachments.
+      required:
+      - id
+      - signer
+      - name
+      - required
+      properties:
+        id:
+          description: The unique ID for this attachment.
+          type: string
+        signer:
+          description: The Signer this attachment is assigned to.
+          type: string
+          x-int-or-string: true
+        name:
+          description: The name of this attachment.
+          type: string
+        required:
+          description: A boolean value denoting if this attachment is required.
+          type: boolean
+        instructions:
+          description: Instructions for Signer.
+          type: string
+          nullable: true
+        uploaded_at:
+          description: Timestamp when attachment was uploaded by Signer.
+          type: integer
+          nullable: true
+      type: object
+      x-internal-class: true
+    TemplateCreateEmbeddedDraftResponse:
+      required:
+      - template
+      properties:
+        template:
+          $ref: '#/components/schemas/TemplateCreateEmbeddedDraftResponseTemplate'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    TemplateResponseSignerRole:
+      properties:
+        name:
+          description: The name of the Role.
+          type: string
+        order:
+          description: If signer order is assigned this is the 0-based index for this role.
+          type: integer
+      type: object
+      x-internal-class: true
+    SubTemplateRole:
+      properties:
+        name:
+          description: The role name of the signer that will be displayed when the template is used to create a signature request.
+          type: string
+        order:
+          description: The order in which this signer role is required to sign.
+          type: integer
+          nullable: true
+      type: object
+    SubFormFieldRule:
+      required:
+      - id
+      - trigger_operator
+      - triggers
+      - actions
+      properties:
+        id:
+          description: Must be unique across all defined rules.
+          type: string
+        trigger_operator:
+          description: Currently only `AND` is supported. Support for `OR` is being worked on.
+          type: string
+          default: AND
+        triggers:
+          description: An array of trigger definitions, the "if this" part of "**if this**, then that". Currently only a single trigger per rule is allowed.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubFormFieldRuleTrigger'
+          maxItems: 1
+          minItems: 1
+        actions:
+          description: An array of action definitions, the "then that" part of "if this, **then that**". Any number of actions may be attached to a single rule.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubFormFieldRuleAction'
+          minItems: 1
+      type: object
+    TemplateUpdateFilesResponse:
+      required:
+      - template
+      properties:
+        template:
+          $ref: '#/components/schemas/TemplateUpdateFilesResponseTemplate'
+      type: object
+      x-internal-class: true
+    SubFormFieldsPerDocumentBase:
+      description: 'The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)
+
+
+        **NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.
+
+
+        * Text Field use `SubFormFieldsPerDocumentText`
+
+        * Dropdown Field use `SubFormFieldsPerDocumentDropdown`
+
+        * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`
+
+        * Checkbox Field use `SubFormFieldsPerDocumentCheckbox`
+
+        * Radio Field use `SubFormFieldsPerDocumentRadio`
+
+        * Signature Field use `SubFormFieldsPerDocumentSignature`
+
+        * Date Signed Field use `SubFormFieldsPerDocumentDateSigned`
+
+        * Initials Field use `SubFormFieldsPerDocumentInitials`
+
+        * Text Merge Field use `SubFormFieldsPerDocumentTextMerge`
+
+        * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`'
+      required:
+      - document_index
+      - api_id
+      - type
+      - required
+      - signer
+      - width
+      - height
+      - x
+      - y
+      properties:
+        document_index:
+          description: Represents the integer index of the `file` or `file_url` document the field should be attached to.
+          type: integer
+        api_id:
+          description: An identifier for the field that is unique across all documents in the request.
+          type: string
+        height:
+          description: Size of the field in pixels.
+          type: integer
+        name:
+          description: Display name for the field.
+          type: string
+        page:
+          description: 'Page in the document where the field should be placed (requires documents be PDF files).
+
+
+            - When the page number parameter is supplied, the API will use the new coordinate system.
+
+            - Check out the differences between both [coordinate systems](https://faq.hellosign.com/hc/en-us/articles/217115577) and how to use them.'
+          type: integer
+          nullable: true
+        required:
+          description: Whether this field is required.
+          type: boolean
+        signer:
+          description: 'Signer index identified by the offset in the signers parameter (0-based indexing), indicating which signer should fill out the field.
+
+
+            **NOTE:** To set the value of the field as the preparer you must set this to `me_now`
+
+
+            **NOTE:** If type is `text-merge` or `checkbox-merge`, you must set this to sender in order to use pre-filled data.'
+          type: string
+          x-int-or-string: true
+        type:
+          type: string
+        width:
+          description: Size of the field in pixels.
+          type: integer
+        x:
+          description: Location coordinates of the field in pixels.
+          type: integer
+        y:
+          description: Location coordinates of the field in pixels.
+          type: integer
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/SubFormFieldsPerDocumentText'
+          dropdown: '#/components/schemas/SubFormFieldsPerDocumentDropdown'
+          hyperlink: '#/components/schemas/SubFormFieldsPerDocumentHyperlink'
+          checkbox: '#/components/schemas/SubFormFieldsPerDocumentCheckbox'
+          radio: '#/components/schemas/SubFormFieldsPerDocumentRadio'
+          signature: '#/components/schemas/SubFormFieldsPerDocumentSignature'
+          date_signed: '#/components/schemas/SubFormFieldsPerDocumentDateSigned'
+          initials: '#/components/schemas/SubFormFieldsPerDocumentInitials'
+          text-merge: '#/components/schemas/SubFormFieldsPerDocumentTextMerge'
+          checkbox-merge: '#/components/schemas/SubFormFieldsPerDocumentCheckboxMerge'
+      x-internal-class: true
+      x-base-class: true
+    SubMergeField:
+      required:
+      - name
+      - type
+      properties:
+        name:
+          description: The name of the merge field. Must be unique.
+          type: string
+        type:
+          description: The type of merge field.
+          type: string
+          enum:
+          - text
+          - checkbox
+          x-enumDescriptions:
+            text: Sets merge [field type](/api/reference/constants/#field-types) to `text`.
+            checkbox: Sets merge [field type](/api/reference/constants/#field-types) to `checkbox`.
+      type: object
+    TemplateUpdateFilesResponseTemplate:
+      description: Contains template id
+      properties:
+        template_id:
+          description: The id of the Template.
+          type: string
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+          deprecated: true
+      type: object
+      x-internal-class: true
+    TemplateUpdateFilesRequest:
+      properties:
+        client_id:
+          description: Client id of the app you're using to update this template.
+          type: string
+        files:
+          description: 'Use `files[]` to indicate the uploaded file(s) to use for the template.
+
+
+            This endpoint requires either **files** or **file_urls[]**, but not both.'
+          type: array
+          items:
+            type: string
+            format: binary
+        file_urls:
+          description: 'Use `file_urls[]` to have Dropbox Sign download the file(s) to use for the template.
+
+
+            This endpoint requires either **files** or **file_urls[]**, but not both.'
+          type: array
+          items:
+            type: string
+        message:
+          description: The new default template email message.
+          type: string
+          maxLength: 5000
+        subject:
+          description: The new default template email subject.
+          type: string
+          maxLength: 100
+        test_mode:
+          description: Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.
+          type: boolean
+          default: false
+      type: object
+    SubFormFieldGroup:
+      required:
+      - group_id
+      - group_label
+      - requirement
+      properties:
+        group_id:
+          description: ID of group. Use this to reference a specific group from the `group` value in `form_fields_per_document`.
+          type: string
+        group_label:
+          description: Name of the group
+          type: string
+        requirement:
+          description: 'Examples: `require_0-1` `require_1` `require_1-ormore`
+
+
+            - Check out the list of [acceptable `requirement` checkbox type values](/api/reference/constants/#checkbox-field-grouping).
+
+            - Check out the list of [acceptable `requirement` radio type fields](/api/reference/constants/#radio-field-grouping).
+
+            - Radio groups require **at least** two fields per group.'
+          type: string
+      type: object
+    SubFormFieldRuleAction:
+      required:
+      - hidden
+      - type
+      properties:
+        field_id:
+          description: '**field_id** or **group_id** is required, but not both.
+
+
+            Must reference the `api_id` of an existing field defined within `form_fields_per_document`.
+
+
+            Cannot use with `group_id`. Trigger and action fields must belong to the same signer.'
+          type: string
+        group_id:
+          description: '**group_id** or **field_id** is required, but not both.
+
+
+            Must reference the ID of an existing group defined within `form_field_groups`.
+
+
+            Cannot use with `field_id`. Trigger and action fields and groups must belong to the same signer.'
+          type: string
+        hidden:
+          description: '`true` to hide the target field when rule is satisfied, otherwise `false`.'
+          type: boolean
+        type:
+          type: string
+          enum:
+          - change-field-visibility
+          - change-group-visibility
+      type: object
+    TemplateGetResponse:
+      required:
+      - template
+      properties:
+        template:
+          $ref: '#/components/schemas/TemplateResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    TemplateResponseDocumentCustomFieldBase:
+      description: An array of Form Field objects containing the name and type of each named field.
+      required:
+      - type
+      properties:
+        api_id:
+          description: The unique ID for this field.
+          type: string
+        name:
+          description: The name of the Custom Field.
+          type: string
+        type:
+          type: string
+        signer:
+          description: The signer of the Custom Field. Can be `null` if field is a merge field (assigned to Sender).
+          type: string
+          nullable: true
+          x-int-or-string: true
+        x:
+          description: The horizontal offset in pixels for this form field.
+          type: integer
+        y:
+          description: The vertical offset in pixels for this form field.
+          type: integer
+        width:
+          description: The width in pixels of this form field.
+          type: integer
+        height:
+          description: The height in pixels of this form field.
+          type: integer
+        required:
+          description: Boolean showing whether or not this field is required.
+          type: boolean
+        group:
+          description: The name of the group this field is in. If this field is not a group, this defaults to `null`.
+          type: string
+          nullable: true
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/TemplateResponseDocumentCustomFieldText'
+          checkbox: '#/components/schemas/TemplateResponseDocumentCustomFieldCheckbox'
+      x-internal-class: true
+      x-base-class: true
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
+      type: object
+    TemplateRemoveUserRequest:
+      properties:
+        account_id:
+          description: The id or email address of the Account to remove access to the Template. The account id prevails if both are provided.
+          type: string
+        email_address:
+          description: The id or email address of the Account to remove access to the Template. The account id prevails if both are provided.
+          type: string
+          format: email
+      type: object
+    TemplateCreateEmbeddedDraftRequest:
+      required:
+      - client_id
+      properties:
+        files:
+          description: 'Use `files[]` to indicate the uploaded file(s) to send for signature.
+
+
+            This endpoint requires either **files** or **file_urls[]**, but not both.'
+          type: array
+          items:
+            type: string
+            format: binary
+        file_urls:
+          description: 'Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.
+
+
+            This endpoint requires either **files** or **file_urls[]**, but not both.'
+          type: array
+          items:
+            type: string
+        allow_ccs:
+          description: This allows the requester to specify whether the user is allowed to provide email addresses to CC when creating a template.
+          type: boolean
+          default: true
+        allow_reassign:
+          description: 'Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.
+
+
+            **NOTE:** Only available for Premium plan and higher.'
+          type: boolean
+          default: false
+        attachments:
+          description: A list describing the attachments
+          type: array
+          items:
+            $ref: '#/components/schemas/SubAttachment'
+        cc_roles:
+          description: The CC roles that must be assigned when using the template to send a signature request
+          type: array
+          items:
+            type: string
+        client_id:
+          description: Client id of the app you're using to create this draft. Used to apply the branding and callback url defined for the app.
+          type: string
+        editor_options:
+          $ref: '#/components/schemas/SubEditorOptions'
+        field_options:
+          $ref: '#/components/schemas/SubFieldOptions'
+        force_signer_roles:
+          description: Provide users the ability to review/edit the template signer roles.
+          type: boolean
+          default: false
+        force_subject_message:
+          description: Provide users the ability to review/edit the template subject and message.
+          type: boolean
+          default: false
+        form_field_groups:
+          description: Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubFormFieldGroup'
+        form_field_rules:
+          description: Conditional Logic rules for fields defined in `form_fields_per_document`.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubFormFieldRule'
+        form_fields_per_document:
+          description: 'The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)
+
+
+            **NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.
+
+
+            * Text Field use `SubFormFieldsPerDocumentText`
+
+            * Dropdown Field use `SubFormFieldsPerDocumentDropdown`
+
+            * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`
+
+            * Checkbox Field use `SubFormFieldsPerDocumentCheckbox`
+
+            * Radio Field use `SubFormFieldsPerDocumentRadio`
+
+            * Signature Field use `SubFormFieldsPerDocumentSignature`
+
+            * Date Signed Field use `SubFormFieldsPerDocumentDateSigned`
+
+            * Initials Field use `SubFormFieldsPerDocumentInitials`
+
+            * Text Merge Field use `SubFormFieldsPerDocumentTextMerge`
+
+            * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`'
+          type: array
+          items:
+            $ref: '#/components/schemas/SubFormFieldsPerDocumentBase'
+        merge_fields:
+          description: 'Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.
+
+            If the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document.'
+          type: array
+          items:
+            $ref: '#/components/schemas/SubMergeField'
+        message:
+          description: The default template email message.
+          type: string
+          maxLength: 5000
+        metadata:
+          description: 'Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer''s order number for look up when receiving events for the signature request.
+
+
+            Each request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.'
+          type: object
+          maxItems: 10
+          additionalProperties: {}
+        show_preview:
+          description: 'This allows the requester to enable the editor/preview experience.
+
+
+            - `show_preview=true`: Allows requesters to enable the editor/preview experience.
+
+            - `show_preview=false`: Allows requesters to disable the editor/preview experience.'
+          type: boolean
+          default: false
+        show_progress_stepper:
+          description: When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.
+          type: boolean
+          default: true
+        signer_roles:
+          description: An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubTemplateRole'
+        skip_me_now:
+          description: Disables the "Me (Now)" option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`.
+          type: boolean
+          default: false
+        subject:
+          description: The template title (alias).
+          type: string
+          maxLength: 200
+        test_mode:
+          description: Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.
+          type: boolean
+          default: false
+        title:
+          description: The title you want to assign to the SignatureRequest.
+          type: string
+        use_preexisting_fields:
+          description: Enable the detection of predefined PDF fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`).
+          type: boolean
+          default: false
+      type: object
+    TemplateResponseDocumentFormFieldBase:
+      description: An array of Form Field objects containing the name and type of each named field.
+      required:
+      - type
+      properties:
+        api_id:
+          description: A unique id for the form field.
+          type: string
+        name:
+          description: The name of the form field.
+          type: string
+        type:
+          type: string
+        signer:
+          description: The signer of the Form Field.
+          type: string
+          x-int-or-string: true
+        x:
+          description: The horizontal offset in pixels for this form field.
+          type: integer
+        y:
+          description: The vertical offset in pixels for this form field.
+          type: integer
+        width:
+          description: The width in pixels of this form field.
+          type: integer
+        height:
+          description: The height in pixels of this form field.
+          type: integer
+        required:
+          description: Boolean showing whether or not this field is required.
+          type: boolean
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/TemplateResponseDocumentFormFieldText'
+          dropdown: '#/components/schemas/TemplateResponseDocumentFormFieldDropdown'
+          hyperlink: '#/components/schemas/TemplateResponseDocumentFormFieldHyperlink'
+          checkbox: '#/components/schemas/TemplateResponseDocumentFormFieldCheckbox'
+          radio: '#/components/schemas/TemplateResponseDocumentFormFieldRadio'
+          signature: '#/components/schemas/TemplateResponseDocumentFormFieldSignature'
+          date_signed: '#/components/schemas/TemplateResponseDocumentFormFieldDateSigned'
+          initials: '#/components/schemas/TemplateResponseDocumentFormFieldInitials'
+      x-internal-class: true
+      x-base-class: true
+    TemplateResponse:
+      description: Contains information about the templates you and your team have created.
+      properties:
+        template_id:
+          description: The id of the Template.
+          type: string
+        title:
+          description: The title of the Template. This will also be the default subject of the message sent to signers when using this Template to send a SignatureRequest. This can be overridden when sending the SignatureRequest.
+          type: string
+        message:
+          description: The default message that will be sent to signers when using this Template to send a SignatureRequest. This can be overridden when sending the SignatureRequest.
+          type: string
+        updated_at:
+          description: Time the template was last updated.
+          type: integer
+        is_embedded:
+          description: '`true` if this template was created using an embedded flow, `false` if it was created on our website. Will be `null` when you are not the creator of the Template.'
+          type: boolean
+          nullable: true
+        is_creator:
+          description: '`true` if you are the owner of this template, `false` if it''s been shared with you by a team member.'
+          type: boolean
+        can_edit:
+          description: Indicates whether edit rights have been granted to you by the owner (always `true` if that's you).
+          type: boolean
+        is_locked:
+          description: 'Indicates whether the template is locked.
+
+            If `true`, then the template was created outside your quota and can only be used in `test_mode`.
+
+            If `false`, then the template is within your quota and can be used to create signature requests.'
+          type: boolean
+        metadata:
+          description: The metadata attached to the template.
+          type: object
+          additionalProperties: {}
+        signer_roles:
+          description: An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseSignerRole'
+        cc_roles:
+          description: An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseCCRole'
+        documents:
+          description: An array describing each document associated with this Template. Includes form field data for each document.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocument'
+        custom_fields:
+          description: Deprecated. Use `custom_fields` inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c=200&path=template/documents&t=response) array instead.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocumentCustomFieldBase'
+          nullable: true
+          deprecated: true
+        named_form_fields:
+          description: Deprecated. Use `form_fields` inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c=200&path=template/documents&t=response) array instead.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocumentFormFieldBase'
+          nullable: true
+          deprecated: true
+        accounts:
+          description: An array of the Accounts that can use this Template.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseAccount'
+        attachments:
+          description: Signer attachments.
+          type: array
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseAttachment'
+      type: object
+      x-internal-class: true
+    TemplateResponseDocument:
+      properties:
+        name:
+          description: Name of the associated file.
+          type: string
+        index:
+          description: Document ordering, the lowest index is displayed first and the highest last (0-based indexing).
+          type: integer
+        field_groups:
+          description: An array of Form Field Group objects.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocumentFieldGroup'
+        form_fields:
+          description: An array of Form Field objects containing the name and type of each named field.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocumentFormFieldBase'
+        custom_fields:
+          description: An array of Form Field objects containing the name and type of each named field.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocumentCustomFieldBase'
+        static_fields:
+          description: An array describing static overlay fields. **NOTE:** Only available for certain subscriptions.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocumentStaticFieldBase'
+      type: object
+      x-internal-class: true
+    TemplateResponseAccountQuota:
+      description: An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.
+      properties:
+        templates_left:
+          description: API templates remaining.
+          type: integer
+        api_signature_requests_left:
+          description: API signature requests remaining.
+          type: integer
+        documents_left:
+          description: Signature requests remaining.
+          type: integer
+        sms_verifications_left:
+          description: SMS verifications remaining.
+          type: integer
+      type: object
+      x-internal-class: true
+    TemplateCreateResponseTemplate:
+      description: 'Template object with parameters: `template_id`.'
+      properties:
+        template_id:
+          description: The id of the Template.
+          type: string
+      type: object
+      x-internal-class: true
+    SubEditorOptions:
+      description: This allows the requester to specify editor options when a preparing a document
+      properties:
+        allow_edit_signers:
+          description: Allows requesters to edit the list of signers
+          type: boolean
+          default: false
+        allow_edit_documents:
+          description: Allows requesters to edit documents, including delete and add
+          type: boolean
+          default: false
+      type: object
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    SubFieldOptions:
+      description: This allows the requester to specify field options for a signature request.
+      required:
+      - date_format
+      properties:
+        date_format:
+          description: 'Allows requester to specify the date format (see list of allowed [formats](/api/reference/constants/#date-formats))
+
+
+            **NOTE:** Only available for Premium and higher.'
+          type: string
+          enum:
+          - MM / DD / YYYY
+          - MM - DD - YYYY
+          - DD / MM / YYYY
+          - DD - MM - YYYY
+          - YYYY / MM / DD
+          - YYYY - MM - DD
+          x-enum-varnames:
+          - MMDDYYYY
+          - MM_DD_YYYY
+          - DDMMYYYY
+          - DD_MM_YYYY
+          - YYYYMMDD
+          - YYYY_MM_DD
+      type: object
+    TemplateAddUserRequest:
+      properties:
+        account_id:
+          description: 'The id of the Account to give access to the Template.
+
+            **NOTE:** The account id prevails if email address is also provided.'
+          type: string
+        email_address:
+          description: 'The email address of the Account to give access to the Template.
+
+            **NOTE:** The account id prevails if it is also provided.'
+          type: string
+          format: email
+        skip_notification:
+          description: If set to `true`, the user does not receive an email notification when a template has been shared with them. Defaults to `false`.
+          type: boolean
+          default: false
+      type: object
+    TemplateCreateRequest:
+      required:
+      - signer_roles
+      - form_fields_per_document
+      properties:
+        files:
+          description: 'Use `files[]` to indicate the uploaded file(s) to send for signature.
+
+
+            This endpoint requires either **files** or **file_urls[]**, but not both.'
+          type: array
+          items:
+            type: string
+            format: binary
+        file_urls:
+          description: 'Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.
+
+
+            This endpoint requires either **files** or **file_urls[]**, but not both.'
+          type: array
+          items:
+            type: string
+        allow_reassign:
+          description: 'Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.
+
+
+            **NOTE:** Only available for Premium plan and higher.'
+          type: boolean
+          default: false
+        attachments:
+          description: A list describing the attachments
+          type: array
+          items:
+            $ref: '#/components/schemas/SubAttachment'
+        cc_roles:
+          description: The CC roles that must be assigned when using the template to send a signature request
+          type: array
+          items:
+            type: string
+        client_id:
+          description: Client id of the app you're using to create this draft. Used to apply the branding and callback url defined for the app.
+          type: string
+        field_options:
+          $ref: '#/components/schemas/SubFieldOptions'
+        form_field_groups:
+          description: Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubFormFieldGroup'
+        form_field_rules:
+          description: Conditional Logic rules for fields defined in `form_fields_per_document`.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubFormFieldRule'
+        form_fields_per_document:
+          description: 'The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)
+
+
+            **NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.
+
+
+            * Text Field use `SubFormFieldsPerDocumentText`
+
+            * Dropdown Field use `SubFormFieldsPerDocumentDropdown`
+
+            * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`
+
+            * Checkbox Field use `SubFormFieldsPerDocumentCheckbox`
+
+            * Radio Field use `SubFormFieldsPerDocumentRadio`
+
+            * Signature Field use `SubFormFieldsPerDocumentSignature`
+
+            * Date Signed Field use `SubFormFieldsPerDocumentDateSigned`
+
+            * Initials Field use `SubFormFieldsPerDocumentInitials`
+
+            * Text Merge Field use `SubFormFieldsPerDocumentTextMerge`
+
+            * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`'
+          type: array
+          items:
+            $ref: '#/components/schemas/SubFormFieldsPerDocumentBase'
+        merge_fields:
+          description: 'Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.
+
+            If the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document.'
+          type: array
+          items:
+            $ref: '#/components/schemas/SubMergeField'
+        message:
+          description: The default template email message.
+          type: string
+          maxLength: 5000
+        metadata:
+          description: 'Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer''s order number for look up when receiving events for the signature request.
+
+
+            Each request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.'
+          type: object
+          maxItems: 10
+          additionalProperties: {}
+        signer_roles:
+          description: An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubTemplateRole'
+        subject:
+          description: The template title (alias).
+          type: string
+          maxLength: 200
+        test_mode:
+          description: Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.
+          type: boolean
+          default: false
+        title:
+          description: The title you want to assign to the SignatureRequest.
+          type: string
+        use_preexisting_fields:
+          description: Enable the detection of predefined PDF fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`).
+          type: boolean
+          default: false
+      type: object
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
+      type: object
+    SubAttachment:
+      required:
+      - name
+      - signer_index
+      properties:
+        instructions:
+          description: The instructions for uploading the attachment.
+          type: string
+        name:
+          description: The name of attachment.
+          type: string
+        required:
+          description: Determines if the attachment must be uploaded.
+          type: boolean
+          default: false
+        signer_index:
+          description: 'The signer''s index in the `signers` parameter (0-based indexing).
+
+
+            **NOTE:** Only one signer can be assigned per attachment.'
+          type: integer
+      type: object
+    ListInfoResponse:
+      description: Contains pagination information about the data returned.
+      properties:
+        num_pages:
+          description: Total number of pages available.
+          type: integer
+        num_results:
+          description: Total number of objects available.
+          type: integer
+          nullable: true
+        page:
+          description: Number of the page being returned.
+          type: integer
+        page_size:
+          description: Objects returned per page.
+          type: integer
+      type: object
+      x-internal-class: true
+    TemplateCreateResponse:
+      required:
+      - template
+      properties:
+        template:
+          $ref: '#/components/schemas/TemplateCreateResponseTemplate'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    TemplateResponseDocumentFieldGroupRule:
+      description: The rule used to validate checkboxes in the form field group. See [checkbox field grouping](/api/reference/constants/#checkbox-field-grouping).
+      properties:
+        requirement:
+          description: 'Examples: `require_0-1` `require_1` `require_1-ormore`
+
+
+            - Check out the list of [acceptable `requirement` checkbox type values](/api/reference/constants/#checkbox-field-grouping).
+
+            - Check out the list of [acceptable `requirement` radio type fields](/api/reference/constants/#radio-field-grouping).
+
+            - Radio groups require **at least** two fields per group.'
+          type: string
+        groupLabel:
+          description: Name of the group
+          type: string
+      type: object
+      x-internal-class: true
+    TemplateListResponse:
+      required:
+      - templates
+      - list_info
+      properties:
+        templates:
+          description: List of templates that the API caller has access to.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    FileResponse:
+      required:
+      - file_url
+      - expires_at
+      properties:
+        file_url:
+          description: URL to the file.
+          type: string
+        expires_at:
+          description: When the link expires.
+          type: integer
+      type: object
+      x-internal-class: true
+    TemplateResponseAccount:
+      properties:
+        account_id:
+          description: The id of the Account.
+          type: string
+        email_address:
+          description: The email address associated with the Account.
+          type: string
+        is_locked:
+          description: Returns `true` if the user has been locked out of their account by a team admin.
+          type: boolean
+        is_paid_hs:
+          description: Returns `true` if the user has a paid Dropbox Sign account.
+          type: boolean
+        is_paid_hf:
+          description: Returns `true` if the user has a paid HelloFax account.
+          type: boolean
+        quotas:
+          $ref: '#/components/schemas/TemplateResponseAccountQuota'
+      type: object
+      x-internal-class: true
+    TemplateResponseCCRole:
+      properties:
+        name:
+          description: The name of the Role.
+          type: string
+      type: object
+      x-internal-class: true
+    FileResponseDataUri:
+      required:
+      - data_uri
+      properties:
+        data_uri:
+          description: File as base64 encoded string.
+          type: string
+      type: object
+      x-internal-class: true
+  examples:
+    TemplateRemoveUserRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/TemplateRemoveUserRequest.json
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    TemplateCreateResponse:
+      summary: Create Template
+      value:
+        $ref: examples/json/TemplateCreateResponse.json
+    TemplateCreateEmbeddedDraftRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/TemplateCreateEmbeddedDraftRequest.json
+    TemplateUpdateFilesResponse:
+      summary: Update Template Files
+      value:
+        $ref: examples/json/TemplateUpdateFilesResponse.json
+    TemplateCreateEmbeddedDraftRequestFormFieldGroups:
+      summary: Form Fields Per Document and Groups Example
+      value:
+        $ref: examples/json/TemplateCreateEmbeddedDraftRequestFormFieldGroups.json
+    TemplateCreateEmbeddedDraftResponse:
+      summary: Create Embedded Draft Template
+      value:
+        $ref: examples/json/TemplateCreateEmbeddedDraftResponse.json
+    TemplateAddUserResponse:
+      summary: Add User to Template
+      value:
+        $ref: examples/json/TemplateAddUserResponse.json
+    TemplateCreateRequestFormFieldRules:
+      summary: Form Fields Per Document and Rules Example
+      value:
+        $ref: examples/json/TemplateCreateRequestFormFieldRules.json
+    Error422Response:
+      summary: Error 422 unprocessable_entity
+      value:
+        $ref: examples/json/Error422Response.json
+    TemplateAddUserRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/TemplateAddUserRequest.json
+    TemplateGetResponse:
+      summary: Get Template
+      value:
+        $ref: examples/json/TemplateGetResponse.json
+    TemplateRemoveUserResponse:
+      summary: Remove User from Template
+      value:
+        $ref: examples/json/TemplateRemoveUserResponse.json
+    TemplateUpdateFilesRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/TemplateUpdateFilesRequest.json
+    Error409Response:
+      summary: Error 409 conflict
+      value:
+        $ref: examples/json/Error409Response.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    TemplateFilesResponse:
+      summary: Template Files
+      value:
+        $ref: examples/json/TemplateFilesResponse.json
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
+    TemplateCreateRequestFormFieldGroups:
+      summary: Form Fields Per Document and Groups Example
+      value:
+        $ref: examples/json/TemplateCreateRequestFormFieldGroups.json
+    TemplateCreateRequestFormFieldsPerDocument:
+      summary: Form Fields Per Document Example
+      value:
+        $ref: examples/json/TemplateCreateRequestFormFieldsPerDocument.json
+    TemplateCreateEmbeddedDraftRequestFormFieldsPerDocument:
+      summary: Form Fields Per Document Example
+      value:
+        $ref: examples/json/TemplateCreateEmbeddedDraftRequestFormFieldsPerDocument.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    TemplateCreateEmbeddedDraftRequestFormFieldRules:
+      summary: Form Fields Per Document and Rules Example
+      value:
+        $ref: examples/json/TemplateCreateEmbeddedDraftRequestFormFieldRules.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    TemplateListResponse:
+      summary: List Templates
+      value:
+        $ref: examples/json/TemplateListResponse.json
+    TemplateCreateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/TemplateCreateRequest.json
+  headers:
+    X-Ratelimit-Reset:
+      description: The Unix time at which the rate limit will reset to its maximum.
+      schema:
+        type: integer
+        format: int64
+        example: 1430170900
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
+  securitySchemes:
+    api_key:
+      type: http
+      description: 'Your API key can be used to make calls to the Dropbox Sign API. See [Authentication](/api/reference/authentication) for more information.
+
+        ✅ Supported by Try it console (calls sent in `test_mode` only).'
+      scheme: basic
+    oauth2:
+      type: http
+      description: 'You can use an Access Token issued through an OAuth flow to send calls to the Dropbox Sign API from your app. The access scopes required by this endpoint are listed in the gray box above. See [Authentication](/api/reference/authentication) for more information.
+
+        ❌ **Not supported** by Try it console.'
+      bearerFormat: JWT
+      scheme: bearer
+externalDocs:
+  description: Legacy API Reference
+  url: https://app.hellosign.com/api/reference
+x-webhooks:
+  accountCallback:
+    post:
+      summary: Account Callbacks
+      operationId: accountUpdateEventCallback
+      description:
+        $ref: ./markdown/en/descriptions/account-callback-description.md
+      tags:
+      - Callbacks and Events
+      x-meta:
+        seo:
+          title: Account Callbacks | API Documentation | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the account level, click here.
+      x-fern-audiences:
+      - events
+      requestBody:
+        description: "**Account Callback Payloads --**\n      Events that are reported at the Account level through the the *Account callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api). The *Account callback URL* can also be updated by calling [Update Account](/api/reference/operation/accountUpdate) and passing a `callback_url`."
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCallbackPayload'
+            examples:
+              signature_request_viewed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
+              signature_request_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
+              signature_request_signer_removed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
+              signature_request_downloadable_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
+              signature_request_sent_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
+              signature_request_all_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
+              signature_request_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
+              signature_request_email_bounce_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
+              signature_request_remind_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
+              signature_request_incomplete_qes_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
+              signature_request_destroyed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
+              signature_request_canceled_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
+              signature_request_declined_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
+              signature_request_expired_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
+              signature_request_reassigned_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
+              signature_request_prepared_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
+              account_confirmed_example:
+                $ref: '#/components/examples/EventCallbackAccountConfirmed'
+              unknown_error_example:
+                $ref: '#/components/examples/EventCallbackUnknownError'
+              file_error_example:
+                $ref: '#/components/examples/EventCallbackFileError'
+              template_created_example:
+                $ref: '#/components/examples/EventCallbackTemplateCreated'
+              template_error_example:
+                $ref: '#/components/examples/EventCallbackTemplateError'
+              sign_url_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
+              callback_test_example:
+                $ref: '#/components/examples/EventCallbackCallbackTest'
+      responses:
+        200:
+          $ref: '#/components/responses/EventCallbackResponse'
+  appCallback:
+    post:
+      summary: App Callbacks
+      operationId: apiAppCreateEventCallback
+      description:
+        $ref: ./markdown/en/descriptions/api-app-callback-description.md
+      tags:
+      - Callbacks and Events
+      x-meta:
+        seo:
+          title: App Callbacks | API Documentation | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the App level, click here.
+      x-fern-audiences:
+      - events
+      requestBody:
+        description: '**API App Callback Payloads --**
+
+          Events that are reported at the API App level through the *Event callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api) for a specific app. The *Event callback URL* can also be updated by calling [Update API App](/api/reference/operation/apiAppUpdate) and passing a `callback_url`.'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCallbackPayload'
+            examples:
+              signature_request_viewed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
+              signature_request_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
+              signature_request_signer_removed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
+              signature_request_downloadable_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
+              signature_request_sent_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
+              signature_request_all_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
+              signature_request_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
+              signature_request_email_bounce_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
+              signature_request_remind_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
+              signature_request_incomplete_qes_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
+              signature_request_destroyed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
+              signature_request_canceled_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
+              signature_request_declined_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
+              signature_request_expired_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
+              signature_request_reassigned_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
+              signature_request_prepared_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
+              account_confirmed_example:
+                $ref: '#/components/examples/EventCallbackAccountConfirmed'
+              unknown_error_example:
+                $ref: '#/components/examples/EventCallbackUnknownError'
+              file_error_example:
+                $ref: '#/components/examples/EventCallbackFileError'
+              template_created_example:
+                $ref: '#/components/examples/EventCallbackTemplateCreated'
+              template_error_example:
+                $ref: '#/components/examples/EventCallbackTemplateError'
+              sign_url_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
+              callback_test_example:
+                $ref: '#/components/examples/EventCallbackCallbackTest'
+      responses:
+        200:
+          $ref: '#/components/responses/EventCallbackResponse'
+x-error-codes:
+  bad_request:
+    http_status: 400
+    summary: The request contained invalid or malformed parameters.
+    cause: A parameter failed validation, or the request body was malformed.
+    remediation: Inspect error_msg and error_path, correct the offending parameter, and resend.
+    retryable: 'no'
+  unauthorized:
+    http_status: 401
+    summary: The credentials supplied are missing or invalid.
+    cause: Missing, malformed, or invalid API key or OAuth access token.
+    remediation: Verify the API key or OAuth token and the Authorization header, then retry.
+    retryable: 'no'
+  payment_required:
+    http_status: 402
+    summary: The account must be credited or upgraded to perform this action.
+    cause: The action requires a paid plan, additional quota, or API credits.
+    remediation: Upgrade the plan or add the required credits/quota, then retry.
+    retryable: 'no'
+  forbidden:
+    http_status: 403
+    summary: The action is not allowed for these credentials or in the current context.
+    cause: The authenticated account lacks access to the resource or operation.
+    remediation: Confirm the account has access to the resource and the required permissions.
+    retryable: 'no'
+  not_found:
+    http_status: 404
+    summary: Nothing matches the requested resource.
+    cause: The resource id does not exist or is not visible to this account.
+    remediation: Verify the id and that the resource belongs to the authenticated account.
+    retryable: 'no'
+  conflict:
+    http_status: 409
+    summary: The request was well-formed but conflicts with the current state.
+    cause: The target resource is in a state incompatible with the request (e.g. a signature request is still being set up).
+    remediation: Wait briefly and retry, or listen for a callback event confirming the resource is ready.
+    retryable: conditional
+  exceeded_rate:
+    http_status: 429
+    summary: Your account's API request rate limit has been exceeded.
+    cause: Too many requests were sent within the rate-limit window for this request type.
+    remediation: Pace requests using the X-RateLimit-* response headers and retry after the window resets.
+    retryable: 'yes'
+    backoff: Honor X-Ratelimit-Reset (Unix epoch); otherwise exponential backoff with jitter. No Retry-After header is sent.
+  unknown:
+    http_status: 500
+    summary: An unexpected error occurred.
+    cause: An unhandled server-side error, or a status code without a more specific error_name.
+    remediation: Retry transient failures; if it persists, contact support with the request details.
+    retryable: conditional
+    backoff: For transient 5xx, retry with exponential backoff; otherwise do not retry.
+  team_invite_failed:
+    http_status: 403
+    summary: The team invitation could not be completed.
+    cause: The invitee already belongs to a team, or the invite is otherwise not permitted.
+    remediation: Confirm the invitee is not already on a team before inviting.
+    retryable: 'no'
+  max_faxes:
+    http_status: 429
+    summary: Too many fax transmissions are currently pending or transmitting.
+    cause: The account has reached the limit of concurrent in-flight fax transmissions.
+    remediation: Wait for outstanding transmissions to complete, then retry.
+    retryable: 'yes'
+    backoff: Retry with exponential backoff once pending transmissions clear.
+  invalid_recipient:
+    http_status: 400
+    summary: The recipient (fax number or email address) is invalid.
+    cause: A recipient value did not pass validation.
+    remediation: Correct the recipient value and resend.
+    retryable: 'no'
+  signature_request_cancel_failed:
+    http_status: 400
+    summary: The signature request could not be cancelled.
+    cause: The caller is not the requester, or the request is already fully executed/closed.
+    remediation: Only the requester can cancel, and only before the request is fully executed.
+    retryable: 'no'
+  signature_request_remove_failed:
+    http_status: 400
+    summary: Access to the signature request could not be removed.
+    cause: The signature request has not yet been fully executed, so access cannot be revoked.
+    remediation: Wait until all parties have signed, or call /signature_request/cancel to cancel incomplete requests instead.
+    retryable: 'no'
+  maintenance:
+    http_status: 503
+    summary: The request could not be completed because the site is under maintenance.
+    cause: The API is in a scheduled maintenance window.
+    remediation: Retry once the maintenance window ends.
+    retryable: 'yes'
+    backoff: Retry later with exponential backoff.
+  method_not_supported:
+    http_status: 405
+    summary: The HTTP method is not supported for this endpoint.
+    cause: The request used a verb the endpoint does not accept.
+    remediation: Use the HTTP method documented for the endpoint.
+    retryable: 'no'
+  invalid_reminder:
+    http_status: 400
+    summary: The signature request reminder was invalid.
+    cause: A reminder was attempted against an ineligible request (e.g. embedded, closed, or expired).
+    remediation: Only send reminders for eligible (non-embedded, open) signature requests.
+    retryable: 'no'
+  unavailable:
+    http_status: 503
+    summary: The service is temporarily unavailable.
+    cause: A downstream dependency or the service itself is temporarily unavailable.
+    remediation: Retry later with exponential backoff.
+    retryable: 'yes'
+    backoff: Retry later with exponential backoff and jitter.
+  unprocessable_entity:
+    http_status: 422
+    summary: The request was understood but the target entity cannot be processed.
+    cause: The resource is still being processed, or it is in an error state.
+    remediation: If the resource is still processing, wait and retry; if it is in an error state, recreate/resend it instead of retrying.
+    retryable: conditional
+    backoff: If still processing, retry with exponential backoff; if in an error state, do not retry.
+  signature_request_expired:
+    http_status:
+    - 400
+    - 403
+    summary: The signature request has expired.
+    cause: The operation targets a request whose expiration has passed. Most endpoints return 400; final-copy/download endpoints return 403.
+    remediation: The request can no longer be acted upon; create a new signature request.
+    retryable: 'no'
+  deleted:
+    http_status: 410
+    summary: The request was cancelled or deleted.
+    cause: The resource has been cancelled or removed and is no longer available.
+    remediation: Do not retry; the resource is permanently gone.
+    retryable: 'no'
+x-oauth-error-codes:
+  invalid_grant:
+    http_status:
+    - 400
+    - 401
+    summary: The OAuth grant (authorization code or refresh token) is invalid or expired.
+    cause: The code/token was already used, expired, or does not match the client.
+    remediation: Re-initiate the OAuth flow to obtain a fresh authorization code.
+    retryable: 'no'
+  invalid_client:
+    http_status: 400
+    summary: The OAuth client credentials are invalid.
+    cause: The client_id or client_secret is unrecognized or incorrect.
+    remediation: Verify the client_id and client_secret from the API app settings.
+    retryable: 'no'
+  invalid_request:
+    http_status: 400
+    summary: The OAuth request is malformed or missing required parameters.
+    cause: A required parameter is missing, or the request format is invalid.
+    remediation: Check the request against the OAuth token endpoint documentation.
+    retryable: 'no'
+  unauthorized_client:
+    http_status:
+    - 401
+    - 403
+    summary: The OAuth client is not authorized to perform this action.
+    cause: The app has not been approved, or the action is outside the granted scopes.
+    remediation: Ensure the app is approved and the required scopes are granted.
+    retryable: 'no'
+  unsupported_grant_type:
+    http_status: 400
+    summary: The grant type is not supported.
+    cause: The grant_type parameter value is not recognized.
+    remediation: Use authorization_code or refresh_token as the grant_type.
+    retryable: 'no'
+  payment_required:
+    http_status: 402
+    summary: The account requires a paid plan to use this OAuth app.
+    cause: The authorizing account does not have a plan that supports this integration.
+    remediation: Upgrade the account to a plan that includes OAuth app access.
+    retryable: 'no'
+  addon_required:
+    http_status: 402
+    summary: An add-on is required to use this OAuth app.
+    cause: The account plan does not include the add-on needed for this integration.
+    remediation: Add the required add-on to the account subscription.
+    retryable: 'no'
+  invalid_scope:
+    http_status: 400
+    summary: The requested OAuth scope is invalid.
+    cause: The scope parameter contains values not permitted for the app.
+    remediation: Request only scopes that the app is configured to use.
+    retryable: 'no'
+  quota_reached:
+    http_status: 402
+    summary: The account has reached its usage quota for this OAuth app.
+    cause: The authorizing account has exhausted its quota for the integration.
+    remediation: Contact the app owner or upgrade the account quota.
+    retryable: 'no'
+  server_error:
+    http_status: 500
+    summary: An internal server error occurred during OAuth processing.
+    cause: An unexpected error on the server side while handling the OAuth request.
+    remediation: Retry the request; if it persists, contact support.
+    retryable: 'yes'
+    backoff: Retry with exponential backoff.
+  temporary_unavailable:
+    http_status: 503
+    summary: The OAuth service is temporarily unavailable.
+    cause: The service is under maintenance or experiencing temporary issues.
+    remediation: Retry after a short delay.
+    retryable: 'yes'
+    backoff: Retry with exponential backoff.
+x-error-events:
+  signature_request_invalid:
+    event_type: signature_request_invalid
+    delivery: webhook
+    summary: Asynchronous error while processing a signature request.
+    cause: A signature request could not be processed (e.g. invalid tags, fields, or merge data).
+    remediation: Inspect event.event_metadata.event_message in the callback, correct the request, and resend.
+    retryable: conditional
+  unknown_error:
+    event_type: unknown_error
+    delivery: webhook
+    summary: An unspecified asynchronous processing error occurred.
+    cause: An unexpected error occurred while processing the request asynchronously.
+    remediation: Check the request status in the API dashboard; retry or contact support if it persists.
+    retryable: conditional
+  file_error:
+    event_type: file_error
+    delivery: webhook
+    summary: Asynchronous error while processing an uploaded file.
+    cause: A file attached to a request could not be processed.
+    remediation: Resend the request with a supported, non-corrupt file.
+    retryable: conditional
+  template_error:
+    event_type: template_error
+    delivery: webhook
+    summary: Asynchronous error while creating a template.
+    cause: Template file processing failed (e.g. unsupported or corrupt file).
+    remediation: Recreate the template with a valid file; check status in the API dashboard.
+    retryable: conditional
+  sign_url_invalid:
+    event_type: sign_url_invalid
+    delivery: webhook
+    summary: An embedded signing URL has expired or become invalid.
+    cause: The embedded sign_url is no longer valid (e.g. expired).
+    remediation: Generate a fresh embedded sign_url via the embedded sign URL endpoint.
+    retryable: 'yes'

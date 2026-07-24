@@ -1,0 +1,1088 @@
+openapi: 3.0.3
+info:
+  title: Dropbox Sign Account Bulk Send Job API
+  description: Dropbox Sign v3 API
+  termsOfService: https://www.hellosign.com/terms
+  contact:
+    email: apisupport@hellosign.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: 3.0.0
+servers:
+- url: https://api.hellosign.com/v3
+security:
+- api_key: []
+- oauth2:
+  - account_access
+  - signature_request_access
+  - template_access
+  - team_access
+  - api_app_access
+  - basic_account_info
+  - request_signature
+tags:
+- name: Bulk Send Job
+  description:
+    $ref: ./markdown/en/tags/bulk-send-job-tag-description.md
+paths:
+  /bulk_send_job/{bulk_send_job_id}:
+    get:
+      tags:
+      - Bulk Send Job
+      summary: Get Bulk Send Job
+      description: Returns the status of the BulkSendJob and its SignatureRequests specified by the `bulk_send_job_id` parameter.
+      operationId: bulkSendJobGet
+      parameters:
+      - name: bulk_send_job_id
+        in: path
+        description: The id of the BulkSendJob to retrieve.
+        required: true
+        schema:
+          type: string
+        example: 6e683bc0369ba3d5b6f43c2c22a8031dbf6bd174
+      - name: page
+        in: query
+        description: Which page number of the BulkSendJob list to return. Defaults to `1`.
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        description: Number of objects to be returned per page. Must be between `1` and `100`. Default is 20.
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkSendJobGetResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/BulkSendJobGetResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - request_signature
+        - signature_request_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/BulkSendJobGetExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/BulkSendJobGetExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/BulkSendJobGetExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/BulkSendJobGetExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/BulkSendJobGetExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/BulkSendJobGetExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/BulkSendJobGetExample.sh
+      x-meta:
+        seo:
+          title: Get Bulk Send Job | API Documentation | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you to build custom integrations. To find out how to return the status of the BulkSendJob and SignatureRequests, click here.
+  /bulk_send_job/list:
+    get:
+      tags:
+      - Bulk Send Job
+      summary: List Bulk Send Jobs
+      description: Returns a list of BulkSendJob that you can access.
+      operationId: bulkSendJobList
+      parameters:
+      - name: page
+        in: query
+        description: Which page number of the BulkSendJob List to return. Defaults to `1`.
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        description: Number of objects to be returned per page. Must be between `1` and `100`. Default is 20.
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-Ratelimit-Reset:
+              $ref: '#/components/headers/X-Ratelimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkSendJobListResponse'
+              examples:
+                example:
+                  $ref: '#/components/examples/BulkSendJobListResponse'
+        4XX:
+          description: failed_operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                400_example:
+                  $ref: '#/components/examples/Error400Response'
+                401_example:
+                  $ref: '#/components/examples/Error401Response'
+                402_example:
+                  $ref: '#/components/examples/Error402Response'
+                403_example:
+                  $ref: '#/components/examples/Error403Response'
+                429_example:
+                  $ref: '#/components/examples/Error429Response'
+                4XX_example:
+                  $ref: '#/components/examples/Error4XXResponse'
+      security:
+      - api_key: []
+      - oauth2:
+        - request_signature
+        - signature_request_access
+      x-codeSamples:
+      - lang: PHP
+        label: PHP
+        source:
+          $ref: examples/BulkSendJobListExample.php
+      - lang: C#
+        label: C#
+        source:
+          $ref: examples/BulkSendJobListExample.cs
+      - lang: TypeScript
+        label: TypeScript
+        source:
+          $ref: examples/BulkSendJobListExample.ts
+      - lang: Java
+        label: Java
+        source:
+          $ref: examples/BulkSendJobListExample.java
+      - lang: Ruby
+        label: Ruby
+        source:
+          $ref: examples/BulkSendJobListExample.rb
+      - lang: Python
+        label: Python
+        source:
+          $ref: examples/BulkSendJobListExample.py
+      - lang: cURL
+        label: cURL
+        source:
+          $ref: examples/BulkSendJobListExample.sh
+      x-meta:
+        seo:
+          title: List Bulk Send Jobs | Documentation | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you to build custom integrations. To find out how to return a list of BulkSendJob that you can access, click here.
+components:
+  examples:
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    BulkSendJobGetResponse:
+      summary: Bulk Send Job
+      value:
+        $ref: examples/json/BulkSendJobGetResponse.json
+    BulkSendJobListResponse:
+      summary: Bulk Send Job List
+      value:
+        $ref: examples/json/BulkSendJobListResponse.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+  schemas:
+    SignatureRequestResponseAttachment:
+      description: Signer attachments.
+      required:
+      - id
+      - signer
+      - name
+      - required
+      properties:
+        id:
+          description: The unique ID for this attachment.
+          type: string
+        signer:
+          description: The Signer this attachment is assigned to.
+          type: string
+          x-int-or-string: true
+        name:
+          description: The name of this attachment.
+          type: string
+        required:
+          description: A boolean value denoting if this attachment is required.
+          type: boolean
+        instructions:
+          description: Instructions for Signer.
+          type: string
+          nullable: true
+        uploaded_at:
+          description: Timestamp when attachment was uploaded by Signer.
+          type: integer
+          nullable: true
+      type: object
+      x-internal-class: true
+    BulkSendJobResponse:
+      description: Contains information about the BulkSendJob such as when it was created and how many signature requests are queued.
+      properties:
+        bulk_send_job_id:
+          description: The id of the BulkSendJob.
+          type: string
+          nullable: true
+        total:
+          description: The total amount of Signature Requests queued for sending.
+          type: integer
+        is_creator:
+          description: True if you are the owner of this BulkSendJob, false if it's been shared with you by a team member.
+          type: boolean
+        created_at:
+          description: Time that the BulkSendJob was created.
+          type: integer
+      type: object
+      x-internal-class: true
+    SignatureRequestResponseCustomFieldBase:
+      description: 'An array of Custom Field objects containing the name and type of each custom field.
+
+
+        * Text Field uses `SignatureRequestResponseCustomFieldText`
+
+        * Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`'
+      required:
+      - name
+      - type
+      properties:
+        type:
+          description: The type of this Custom Field. Only 'text' and 'checkbox' are currently supported.
+          type: string
+        name:
+          description: The name of the Custom Field.
+          type: string
+        required:
+          description: A boolean value denoting if this field is required.
+          type: boolean
+        api_id:
+          description: The unique ID for this field.
+          type: string
+        editor:
+          description: The name of the Role that is able to edit this field.
+          type: string
+          nullable: true
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/SignatureRequestResponseCustomFieldText'
+          checkbox: '#/components/schemas/SignatureRequestResponseCustomFieldCheckbox'
+      x-internal-class: true
+      x-base-class: true
+    BulkSendJobListResponse:
+      required:
+      - bulk_send_jobs
+      - list_info
+      properties:
+        bulk_send_jobs:
+          description: Contains a list of BulkSendJobs that the API caller has access to.
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkSendJobResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    BulkSendJobGetResponseSignatureRequests:
+      title: BulkSendJobGetResponseSignatureRequests
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/SignatureRequestResponse'
+      - properties:
+          bulk_send_job_id:
+            description: The id of the BulkSendJob.
+            type: string
+          metadata:
+            description: The metadata attached to the signature request.
+            type: object
+            additionalProperties: {}
+      x-internal-class: true
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
+      type: object
+    BulkSendJobGetResponse:
+      required:
+      - bulk_send_job
+      - list_info
+      - signature_requests
+      properties:
+        bulk_send_job:
+          $ref: '#/components/schemas/BulkSendJobResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        signature_requests:
+          description: Contains information about the Signature Requests sent in bulk.
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkSendJobGetResponseSignatureRequests'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    SignatureRequestResponse:
+      description: Contains information about a signature request.
+      properties:
+        test_mode:
+          description: Whether this is a test signature request. Test requests have no legal value. Defaults to `false`.
+          type: boolean
+          default: false
+        signature_request_id:
+          description: The id of the SignatureRequest.
+          type: string
+        requester_email_address:
+          description: The email address of the initiator of the SignatureRequest.
+          type: string
+          nullable: true
+        title:
+          description: The title the specified Account uses for the SignatureRequest.
+          type: string
+        original_title:
+          description: Default Label for account.
+          type: string
+        subject:
+          description: The subject in the email that was initially sent to the signers.
+          type: string
+          nullable: true
+        message:
+          description: The custom message in the email that was initially sent to the signers.
+          type: string
+          nullable: true
+        metadata:
+          description: The metadata attached to the signature request.
+          type: object
+          additionalProperties: {}
+        created_at:
+          description: Time the signature request was created.
+          type: integer
+        expires_at:
+          description: The time when the signature request will expire unsigned signatures. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details.
+          type: integer
+          nullable: true
+        is_complete:
+          description: Whether or not the SignatureRequest has been fully executed by all signers.
+          type: boolean
+        is_declined:
+          description: Whether or not the SignatureRequest has been declined by a signer.
+          type: boolean
+        has_error:
+          description: Whether or not an error occurred (either during the creation of the SignatureRequest or during one of the signings).
+          type: boolean
+        files_url:
+          description: The URL where a copy of the request's documents can be downloaded.
+          type: string
+        signing_url:
+          description: The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing Dropbox Sign accounts as they will be required to log in before signing.
+          type: string
+          nullable: true
+        details_url:
+          description: The URL where the requester and the signers can view the current status of the SignatureRequest.
+          type: string
+        cc_email_addresses:
+          description: A list of email addresses that were CCed on the SignatureRequest. They will receive a copy of the final PDF once all the signers have signed.
+          type: array
+          items:
+            type: string
+        signing_redirect_url:
+          description: The URL you want the signer redirected to after they successfully sign.
+          type: string
+          nullable: true
+        final_copy_uri:
+          description: The path where the completed document can be downloaded
+          type: string
+          nullable: true
+        template_ids:
+          description: Templates IDs used in this SignatureRequest (if any).
+          type: array
+          items:
+            type: string
+          nullable: true
+        custom_fields:
+          description: 'An array of Custom Field objects containing the name and type of each custom field.
+
+
+            * Text Field uses `SignatureRequestResponseCustomFieldText`
+
+            * Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`'
+          type: array
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseCustomFieldBase'
+          nullable: true
+        attachments:
+          description: Signer attachments.
+          type: array
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseAttachment'
+          nullable: true
+        response_data:
+          description: An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
+          type: array
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseDataBase'
+          nullable: true
+        signatures:
+          description: An array of signature objects, 1 for each signer.
+          type: array
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseSignatures'
+        bulk_send_job_id:
+          description: The ID of the Bulk Send job which sent the signature request, if applicable.
+          type: string
+          nullable: true
+      type: object
+      x-internal-class: true
+    SignatureRequestResponseSignatures:
+      description: An array of signature objects, 1 for each signer.
+      properties:
+        signature_id:
+          description: Signature identifier.
+          type: string
+        signer_group_guid:
+          description: Signer Group GUID
+          type: string
+          nullable: true
+        signer_email_address:
+          description: The email address of the signer.
+          type: string
+        signer_name:
+          description: The name of the signer.
+          type: string
+          nullable: true
+        signer_role:
+          description: The role of the signer.
+          type: string
+          nullable: true
+        order:
+          description: If signer order is assigned this is the 0-based index for this signer.
+          type: integer
+          nullable: true
+        status_code:
+          description: 'The current status of the signature. eg: awaiting_signature, signed, declined.'
+          type: string
+        decline_reason:
+          description: The reason provided by the signer for declining the request.
+          type: string
+          nullable: true
+        signed_at:
+          description: Time that the document was signed or null.
+          type: integer
+          nullable: true
+        last_viewed_at:
+          description: The time that the document was last viewed by this signer or null.
+          type: integer
+          nullable: true
+        last_reminded_at:
+          description: The time the last reminder email was sent to the signer or null.
+          type: integer
+          nullable: true
+        has_pin:
+          description: Boolean to indicate whether this signature requires a PIN to access.
+          type: boolean
+        has_sms_auth:
+          description: Boolean to indicate whether this signature has SMS authentication enabled.
+          type: boolean
+          nullable: true
+        has_sms_delivery:
+          description: Boolean to indicate whether this signature has SMS delivery enabled.
+          type: boolean
+          nullable: true
+        sms_phone_number:
+          description: The SMS phone number used for authentication or signature request delivery.
+          type: string
+          nullable: true
+        reassigned_by:
+          description: Email address of original signer who reassigned to this signer.
+          type: string
+          nullable: true
+        reassignment_reason:
+          description: Reason provided by original signer who reassigned to this signer.
+          type: string
+          nullable: true
+        reassigned_from:
+          description: Previous signature identifier.
+          type: string
+          nullable: true
+        error:
+          description: Error message pertaining to this signer, or null.
+          type: string
+          nullable: true
+      type: object
+      x-internal-class: true
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
+      type: object
+    ListInfoResponse:
+      description: Contains pagination information about the data returned.
+      properties:
+        num_pages:
+          description: Total number of pages available.
+          type: integer
+        num_results:
+          description: Total number of objects available.
+          type: integer
+          nullable: true
+        page:
+          description: Number of the page being returned.
+          type: integer
+        page_size:
+          description: Objects returned per page.
+          type: integer
+      type: object
+      x-internal-class: true
+    SignatureRequestResponseDataBase:
+      description: An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
+      properties:
+        api_id:
+          description: The unique ID for this field.
+          type: string
+        signature_id:
+          description: The ID of the signature to which this response is linked.
+          type: string
+        name:
+          description: The name of the form field.
+          type: string
+        required:
+          description: A boolean value denoting if this field is required.
+          type: boolean
+        type:
+          type: string
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/SignatureRequestResponseDataValueText'
+          checkbox: '#/components/schemas/SignatureRequestResponseDataValueCheckbox'
+          dropdown: '#/components/schemas/SignatureRequestResponseDataValueDropdown'
+          radio: '#/components/schemas/SignatureRequestResponseDataValueRadio'
+          signature: '#/components/schemas/SignatureRequestResponseDataValueSignature'
+          date_signed: '#/components/schemas/SignatureRequestResponseDataValueDateSigned'
+          initials: '#/components/schemas/SignatureRequestResponseDataValueInitials'
+          text-merge: '#/components/schemas/SignatureRequestResponseDataValueTextMerge'
+          checkbox-merge: '#/components/schemas/SignatureRequestResponseDataValueCheckboxMerge'
+      x-internal-class: true
+      x-base-class: true
+  headers:
+    X-Ratelimit-Reset:
+      description: The Unix time at which the rate limit will reset to its maximum.
+      schema:
+        type: integer
+        format: int64
+        example: 1430170900
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
+  securitySchemes:
+    api_key:
+      type: http
+      description: 'Your API key can be used to make calls to the Dropbox Sign API. See [Authentication](/api/reference/authentication) for more information.
+
+        ✅ Supported by Try it console (calls sent in `test_mode` only).'
+      scheme: basic
+    oauth2:
+      type: http
+      description: 'You can use an Access Token issued through an OAuth flow to send calls to the Dropbox Sign API from your app. The access scopes required by this endpoint are listed in the gray box above. See [Authentication](/api/reference/authentication) for more information.
+
+        ❌ **Not supported** by Try it console.'
+      bearerFormat: JWT
+      scheme: bearer
+externalDocs:
+  description: Legacy API Reference
+  url: https://app.hellosign.com/api/reference
+x-webhooks:
+  accountCallback:
+    post:
+      summary: Account Callbacks
+      operationId: accountUpdateEventCallback
+      description:
+        $ref: ./markdown/en/descriptions/account-callback-description.md
+      tags:
+      - Callbacks and Events
+      x-meta:
+        seo:
+          title: Account Callbacks | API Documentation | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the account level, click here.
+      x-fern-audiences:
+      - events
+      requestBody:
+        description: "**Account Callback Payloads --**\n      Events that are reported at the Account level through the the *Account callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api). The *Account callback URL* can also be updated by calling [Update Account](/api/reference/operation/accountUpdate) and passing a `callback_url`."
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCallbackPayload'
+            examples:
+              signature_request_viewed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
+              signature_request_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
+              signature_request_signer_removed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
+              signature_request_downloadable_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
+              signature_request_sent_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
+              signature_request_all_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
+              signature_request_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
+              signature_request_email_bounce_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
+              signature_request_remind_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
+              signature_request_incomplete_qes_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
+              signature_request_destroyed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
+              signature_request_canceled_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
+              signature_request_declined_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
+              signature_request_expired_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
+              signature_request_reassigned_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
+              signature_request_prepared_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
+              account_confirmed_example:
+                $ref: '#/components/examples/EventCallbackAccountConfirmed'
+              unknown_error_example:
+                $ref: '#/components/examples/EventCallbackUnknownError'
+              file_error_example:
+                $ref: '#/components/examples/EventCallbackFileError'
+              template_created_example:
+                $ref: '#/components/examples/EventCallbackTemplateCreated'
+              template_error_example:
+                $ref: '#/components/examples/EventCallbackTemplateError'
+              sign_url_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
+              callback_test_example:
+                $ref: '#/components/examples/EventCallbackCallbackTest'
+      responses:
+        200:
+          $ref: '#/components/responses/EventCallbackResponse'
+  appCallback:
+    post:
+      summary: App Callbacks
+      operationId: apiAppCreateEventCallback
+      description:
+        $ref: ./markdown/en/descriptions/api-app-callback-description.md
+      tags:
+      - Callbacks and Events
+      x-meta:
+        seo:
+          title: App Callbacks | API Documentation | Dropbox Sign for Developers
+          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the App level, click here.
+      x-fern-audiences:
+      - events
+      requestBody:
+        description: '**API App Callback Payloads --**
+
+          Events that are reported at the API App level through the *Event callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api) for a specific app. The *Event callback URL* can also be updated by calling [Update API App](/api/reference/operation/apiAppUpdate) and passing a `callback_url`.'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCallbackPayload'
+            examples:
+              signature_request_viewed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
+              signature_request_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
+              signature_request_signer_removed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
+              signature_request_downloadable_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
+              signature_request_sent_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
+              signature_request_all_signed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
+              signature_request_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
+              signature_request_email_bounce_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
+              signature_request_remind_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
+              signature_request_incomplete_qes_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
+              signature_request_destroyed_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
+              signature_request_canceled_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
+              signature_request_declined_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
+              signature_request_expired_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
+              signature_request_reassigned_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
+              signature_request_prepared_example:
+                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
+              account_confirmed_example:
+                $ref: '#/components/examples/EventCallbackAccountConfirmed'
+              unknown_error_example:
+                $ref: '#/components/examples/EventCallbackUnknownError'
+              file_error_example:
+                $ref: '#/components/examples/EventCallbackFileError'
+              template_created_example:
+                $ref: '#/components/examples/EventCallbackTemplateCreated'
+              template_error_example:
+                $ref: '#/components/examples/EventCallbackTemplateError'
+              sign_url_invalid_example:
+                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
+              callback_test_example:
+                $ref: '#/components/examples/EventCallbackCallbackTest'
+      responses:
+        200:
+          $ref: '#/components/responses/EventCallbackResponse'
+x-error-codes:
+  bad_request:
+    http_status: 400
+    summary: The request contained invalid or malformed parameters.
+    cause: A parameter failed validation, or the request body was malformed.
+    remediation: Inspect error_msg and error_path, correct the offending parameter, and resend.
+    retryable: 'no'
+  unauthorized:
+    http_status: 401
+    summary: The credentials supplied are missing or invalid.
+    cause: Missing, malformed, or invalid API key or OAuth access token.
+    remediation: Verify the API key or OAuth token and the Authorization header, then retry.
+    retryable: 'no'
+  payment_required:
+    http_status: 402
+    summary: The account must be credited or upgraded to perform this action.
+    cause: The action requires a paid plan, additional quota, or API credits.
+    remediation: Upgrade the plan or add the required credits/quota, then retry.
+    retryable: 'no'
+  forbidden:
+    http_status: 403
+    summary: The action is not allowed for these credentials or in the current context.
+    cause: The authenticated account lacks access to the resource or operation.
+    remediation: Confirm the account has access to the resource and the required permissions.
+    retryable: 'no'
+  not_found:
+    http_status: 404
+    summary: Nothing matches the requested resource.
+    cause: The resource id does not exist or is not visible to this account.
+    remediation: Verify the id and that the resource belongs to the authenticated account.
+    retryable: 'no'
+  conflict:
+    http_status: 409
+    summary: The request was well-formed but conflicts with the current state.
+    cause: The target resource is in a state incompatible with the request (e.g. a signature request is still being set up).
+    remediation: Wait briefly and retry, or listen for a callback event confirming the resource is ready.
+    retryable: conditional
+  exceeded_rate:
+    http_status: 429
+    summary: Your account's API request rate limit has been exceeded.
+    cause: Too many requests were sent within the rate-limit window for this request type.
+    remediation: Pace requests using the X-RateLimit-* response headers and retry after the window resets.
+    retryable: 'yes'
+    backoff: Honor X-Ratelimit-Reset (Unix epoch); otherwise exponential backoff with jitter. No Retry-After header is sent.
+  unknown:
+    http_status: 500
+    summary: An unexpected error occurred.
+    cause: An unhandled server-side error, or a status code without a more specific error_name.
+    remediation: Retry transient failures; if it persists, contact support with the request details.
+    retryable: conditional
+    backoff: For transient 5xx, retry with exponential backoff; otherwise do not retry.
+  team_invite_failed:
+    http_status: 403
+    summary: The team invitation could not be completed.
+    cause: The invitee already belongs to a team, or the invite is otherwise not permitted.
+    remediation: Confirm the invitee is not already on a team before inviting.
+    retryable: 'no'
+  max_faxes:
+    http_status: 429
+    summary: Too many fax transmissions are currently pending or transmitting.
+    cause: The account has reached the limit of concurrent in-flight fax transmissions.
+    remediation: Wait for outstanding transmissions to complete, then retry.
+    retryable: 'yes'
+    backoff: Retry with exponential backoff once pending transmissions clear.
+  invalid_recipient:
+    http_status: 400
+    summary: The recipient (fax number or email address) is invalid.
+    cause: A recipient value did not pass validation.
+    remediation: Correct the recipient value and resend.
+    retryable: 'no'
+  signature_request_cancel_failed:
+    http_status: 400
+    summary: The signature request could not be cancelled.
+    cause: The caller is not the requester, or the request is already fully executed/closed.
+    remediation: Only the requester can cancel, and only before the request is fully executed.
+    retryable: 'no'
+  signature_request_remove_failed:
+    http_status: 400
+    summary: Access to the signature request could not be removed.
+    cause: The signature request has not yet been fully executed, so access cannot be revoked.
+    remediation: Wait until all parties have signed, or call /signature_request/cancel to cancel incomplete requests instead.
+    retryable: 'no'
+  maintenance:
+    http_status: 503
+    summary: The request could not be completed because the site is under maintenance.
+    cause: The API is in a scheduled maintenance window.
+    remediation: Retry once the maintenance window ends.
+    retryable: 'yes'
+    backoff: Retry later with exponential backoff.
+  method_not_supported:
+    http_status: 405
+    summary: The HTTP method is not supported for this endpoint.
+    cause: The request used a verb the endpoint does not accept.
+    remediation: Use the HTTP method documented for the endpoint.
+    retryable: 'no'
+  invalid_reminder:
+    http_status: 400
+    summary: The signature request reminder was invalid.
+    cause: A reminder was attempted against an ineligible request (e.g. embedded, closed, or expired).
+    remediation: Only send reminders for eligible (non-embedded, open) signature requests.
+    retryable: 'no'
+  unavailable:
+    http_status: 503
+    summary: The service is temporarily unavailable.
+    cause: A downstream dependency or the service itself is temporarily unavailable.
+    remediation: Retry later with exponential backoff.
+    retryable: 'yes'
+    backoff: Retry later with exponential backoff and jitter.
+  unprocessable_entity:
+    http_status: 422
+    summary: The request was understood but the target entity cannot be processed.
+    cause: The resource is still being processed, or it is in an error state.
+    remediation: If the resource is still processing, wait and retry; if it is in an error state, recreate/resend it instead of retrying.
+    retryable: conditional
+    backoff: If still processing, retry with exponential backoff; if in an error state, do not retry.
+  signature_request_expired:
+    http_status:
+    - 400
+    - 403
+    summary: The signature request has expired.
+    cause: The operation targets a request whose expiration has passed. Most endpoints return 400; final-copy/download endpoints return 403.
+    remediation: The request can no longer be acted upon; create a new signature request.
+    retryable: 'no'
+  deleted:
+    http_status: 410
+    summary: The request was cancelled or deleted.
+    cause: The resource has been cancelled or removed and is no longer available.
+    remediation: Do not retry; the resource is permanently gone.
+    retryable: 'no'
+x-oauth-error-codes:
+  invalid_grant:
+    http_status:
+    - 400
+    - 401
+    summary: The OAuth grant (authorization code or refresh token) is invalid or expired.
+    cause: The code/token was already used, expired, or does not match the client.
+    remediation: Re-initiate the OAuth flow to obtain a fresh authorization code.
+    retryable: 'no'
+  invalid_client:
+    http_status: 400
+    summary: The OAuth client credentials are invalid.
+    cause: The client_id or client_secret is unrecognized or incorrect.
+    remediation: Verify the client_id and client_secret from the API app settings.
+    retryable: 'no'
+  invalid_request:
+    http_status: 400
+    summary: The OAuth request is malformed or missing required parameters.
+    cause: A required parameter is missing, or the request format is invalid.
+    remediation: Check the request against the OAuth token endpoint documentation.
+    retryable: 'no'
+  unauthorized_client:
+    http_status:
+    - 401
+    - 403
+    summary: The OAuth client is not authorized to perform this action.
+    cause: The app has not been approved, or the action is outside the granted scopes.
+    remediation: Ensure the app is approved and the required scopes are granted.
+    retryable: 'no'
+  unsupported_grant_type:
+    http_status: 400
+    summary: The grant type is not supported.
+    cause: The grant_type parameter value is not recognized.
+    remediation: Use authorization_code or refresh_token as the grant_type.
+    retryable: 'no'
+  payment_required:
+    http_status: 402
+    summary: The account requires a paid plan to use this OAuth app.
+    cause: The authorizing account does not have a plan that supports this integration.
+    remediation: Upgrade the account to a plan that includes OAuth app access.
+    retryable: 'no'
+  addon_required:
+    http_status: 402
+    summary: An add-on is required to use this OAuth app.
+    cause: The account plan does not include the add-on needed for this integration.
+    remediation: Add the required add-on to the account subscription.
+    retryable: 'no'
+  invalid_scope:
+    http_status: 400
+    summary: The requested OAuth scope is invalid.
+    cause: The scope parameter contains values not permitted for the app.
+    remediation: Request only scopes that the app is configured to use.
+    retryable: 'no'
+  quota_reached:
+    http_status: 402
+    summary: The account has reached its usage quota for this OAuth app.
+    cause: The authorizing account has exhausted its quota for the integration.
+    remediation: Contact the app owner or upgrade the account quota.
+    retryable: 'no'
+  server_error:
+    http_status: 500
+    summary: An internal server error occurred during OAuth processing.
+    cause: An unexpected error on the server side while handling the OAuth request.
+    remediation: Retry the request; if it persists, contact support.
+    retryable: 'yes'
+    backoff: Retry with exponential backoff.
+  temporary_unavailable:
+    http_status: 503
+    summary: The OAuth service is temporarily unavailable.
+    cause: The service is under maintenance or experiencing temporary issues.
+    remediation: Retry after a short delay.
+    retryable: 'yes'
+    backoff: Retry with exponential backoff.
+x-error-events:
+  signature_request_invalid:
+    event_type: signature_request_invalid
+    delivery: webhook
+    summary: Asynchronous error while processing a signature request.
+    cause: A signature request could not be processed (e.g. invalid tags, fields, or merge data).
+    remediation: Inspect event.event_metadata.event_message in the callback, correct the request, and resend.
+    retryable: conditional
+  unknown_error:
+    event_type: unknown_error
+    delivery: webhook
+    summary: An unspecified asynchronous processing error occurred.
+    cause: An unexpected error occurred while processing the request asynchronously.
+    remediation: Check the request status in the API dashboard; retry or contact support if it persists.
+    retryable: conditional
+  file_error:
+    event_type: file_error
+    delivery: webhook
+    summary: Asynchronous error while processing an uploaded file.
+    cause: A file attached to a request could not be processed.
+    remediation: Resend the request with a supported, non-corrupt file.
+    retryable: conditional
+  template_error:
+    event_type: template_error
+    delivery: webhook
+    summary: Asynchronous error while creating a template.
+    cause: Template file processing failed (e.g. unsupported or corrupt file).
+    remediation: Recreate the template with a valid file; check status in the API dashboard.
+    retryable: conditional
+  sign_url_invalid:
+    event_type: sign_url_invalid
+    delivery: webhook
+    summary: An embedded signing URL has expired or become invalid.
+    cause: The embedded sign_url is no longer valid (e.g. expired).
+    remediation: Generate a fresh embedded sign_url via the embedded sign URL endpoint.
+    retryable: 'yes'
