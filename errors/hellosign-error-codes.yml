@@ -1,0 +1,143 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/hellosign-openapi-original.yaml (x-error-codes)
+docs: https://developers.hellosign.com/api/reference/warnings-and-errors/
+format: custom
+envelope:
+  container: error
+  fields:
+    error_name: Machine-readable name of the error (matches the codes below).
+    error_msg: Human-readable message describing the error.
+    error_path: Path/parameter at which the error occurred (when applicable).
+  example:
+    error:
+      error_name: bad_request
+      error_msg: Error description
+      error_path: field_name
+error_codes:
+- code: bad_request
+  http_status: 400
+  summary: The request contained invalid or malformed parameters.
+  cause: A parameter failed validation, or the request body was malformed.
+  remediation: Inspect error_msg and error_path, correct the offending parameter, and resend.
+  retryable: 'no'
+- code: unauthorized
+  http_status: 401
+  summary: The credentials supplied are missing or invalid.
+  cause: Missing, malformed, or invalid API key or OAuth access token.
+  remediation: Verify the API key or OAuth token and the Authorization header, then retry.
+  retryable: 'no'
+- code: payment_required
+  http_status: 402
+  summary: The account must be credited or upgraded to perform this action.
+  cause: The action requires a paid plan, additional quota, or API credits.
+  remediation: Upgrade the plan or add the required credits/quota, then retry.
+  retryable: 'no'
+- code: forbidden
+  http_status: 403
+  summary: The action is not allowed for these credentials or in the current context.
+  cause: The authenticated account lacks access to the resource or operation.
+  remediation: Confirm the account has access to the resource and the required permissions.
+  retryable: 'no'
+- code: not_found
+  http_status: 404
+  summary: Nothing matches the requested resource.
+  cause: The resource id does not exist or is not visible to this account.
+  remediation: Verify the id and that the resource belongs to the authenticated account.
+  retryable: 'no'
+- code: conflict
+  http_status: 409
+  summary: The request was well-formed but conflicts with the current state.
+  cause: The target resource is in a state incompatible with the request (e.g. a signature request is
+    still being set up).
+  remediation: Wait briefly and retry, or listen for a callback event confirming the resource is ready.
+  retryable: conditional
+- code: exceeded_rate
+  http_status: 429
+  summary: Your account's API request rate limit has been exceeded.
+  cause: Too many requests were sent within the rate-limit window for this request type.
+  remediation: Pace requests using the X-RateLimit-* response headers and retry after the window resets.
+  retryable: 'yes'
+- code: unknown
+  http_status: 500
+  summary: An unexpected error occurred.
+  cause: An unhandled server-side error, or a status code without a more specific error_name.
+  remediation: Retry transient failures; if it persists, contact support with the request details.
+  retryable: conditional
+- code: team_invite_failed
+  http_status: 403
+  summary: The team invitation could not be completed.
+  cause: The invitee already belongs to a team, or the invite is otherwise not permitted.
+  remediation: Confirm the invitee is not already on a team before inviting.
+  retryable: 'no'
+- code: max_faxes
+  http_status: 429
+  summary: Too many fax transmissions are currently pending or transmitting.
+  cause: The account has reached the limit of concurrent in-flight fax transmissions.
+  remediation: Wait for outstanding transmissions to complete, then retry.
+  retryable: 'yes'
+- code: invalid_recipient
+  http_status: 400
+  summary: The recipient (fax number or email address) is invalid.
+  cause: A recipient value did not pass validation.
+  remediation: Correct the recipient value and resend.
+  retryable: 'no'
+- code: signature_request_cancel_failed
+  http_status: 400
+  summary: The signature request could not be cancelled.
+  cause: The caller is not the requester, or the request is already fully executed/closed.
+  remediation: Only the requester can cancel, and only before the request is fully executed.
+  retryable: 'no'
+- code: signature_request_remove_failed
+  http_status: 400
+  summary: Access to the signature request could not be removed.
+  cause: The signature request has not yet been fully executed, so access cannot be revoked.
+  remediation: Wait until all parties have signed, or call /signature_request/cancel to cancel incomplete
+    requests instead.
+  retryable: 'no'
+- code: maintenance
+  http_status: 503
+  summary: The request could not be completed because the site is under maintenance.
+  cause: The API is in a scheduled maintenance window.
+  remediation: Retry once the maintenance window ends.
+  retryable: 'yes'
+- code: method_not_supported
+  http_status: 405
+  summary: The HTTP method is not supported for this endpoint.
+  cause: The request used a verb the endpoint does not accept.
+  remediation: Use the HTTP method documented for the endpoint.
+  retryable: 'no'
+- code: invalid_reminder
+  http_status: 400
+  summary: The signature request reminder was invalid.
+  cause: A reminder was attempted against an ineligible request (e.g. embedded, closed, or expired).
+  remediation: Only send reminders for eligible (non-embedded, open) signature requests.
+  retryable: 'no'
+- code: unavailable
+  http_status: 503
+  summary: The service is temporarily unavailable.
+  cause: A downstream dependency or the service itself is temporarily unavailable.
+  remediation: Retry later with exponential backoff.
+  retryable: 'yes'
+- code: unprocessable_entity
+  http_status: 422
+  summary: The request was understood but the target entity cannot be processed.
+  cause: The resource is still being processed, or it is in an error state.
+  remediation: If the resource is still processing, wait and retry; if it is in an error state, recreate/resend
+    it instead of retrying.
+  retryable: conditional
+- code: signature_request_expired
+  http_status:
+  - 400
+  - 403
+  summary: The signature request has expired.
+  cause: The operation targets a request whose expiration has passed. Most endpoints return 400; final-copy/download
+    endpoints return 403.
+  remediation: The request can no longer be acted upon; create a new signature request.
+  retryable: 'no'
+- code: deleted
+  http_status: 410
+  summary: The request was cancelled or deleted.
+  cause: The resource has been cancelled or removed and is no longer available.
+  remediation: Do not retry; the resource is permanently gone.
+  retryable: 'no'

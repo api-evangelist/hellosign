@@ -1,0 +1,40 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.hellosign.com/docs/guides/events-and-callbacks/
+spec_type: Webhooks
+note: Dropbox Sign delivers events as multipart/form-data POST requests to a user-defined callback URL.
+  No AsyncAPI document is published; this is the webhook/event catalog from the OpenAPI Callbacks-and-Events
+  surface.
+delivery:
+  transport: multipart/form-data POST
+  field: json (EventCallbackRequest payload)
+  verification: event_hash = HMAC-SHA256 over event_time + event_type, keyed by the API key
+configuration:
+- level: account
+  sets: Account-level callback URL for Signature Request and Template events.
+- level: api_app
+  sets: Per API App callback URL for Signature Request, Template, and Account events.
+event_types:
+- account_confirmed
+- unknown_error
+- file_error
+- sign_url_invalid
+- signature_request_viewed
+- signature_request_signed
+- signature_request_sent
+- signature_request_all_signed
+- signature_request_email_bounce
+- signature_request_remind
+- signature_request_incomplete_qes
+- signature_request_destroyed
+- signature_request_canceled
+- signature_request_downloadable
+- signature_request_declined
+- signature_request_reassigned
+- signature_request_invalid
+- signature_request_prepared
+- signature_request_expired
+- template_created
+- template_error
+- callback_test
+- signature_request_signer_removed

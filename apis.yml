@@ -1,22 +1,245 @@
 aid: hellosign
-name: Hellosign
-description: Hellosign is a company surfaced as a portfolio company of y-combinator and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+name: Dropbox Sign (HelloSign)
+description: >-
+  Dropbox Sign (formerly HelloSign) is an eSignature platform whose v3 REST API
+  lets developers send documents for legally binding electronic signature, build
+  reusable templates, embed signing directly in their own apps, run bulk send
+  jobs, and manage accounts, teams, and API apps. The API exposes 73 operations
+  across 12 product areas (Signature Request, Template, Bulk Send, Embedded,
+  Account, Team, Report, Fax, Fax Line, Unclaimed Draft, API App, OAuth), with
+  API-key and OAuth 2.0 authentication, 23 webhook event types, official SDKs in
+  six languages, and a published hosted documentation MCP server. HelloSign was a
+  Y Combinator company (S11), acquired by Dropbox in 2019 and rebranded to Dropbox
+  Sign in 2022; the API base host remains api.hellosign.com.
 url: https://raw.githubusercontent.com/api-evangelist/hellosign/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://github.com/hellosign.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - y-combinator
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: real-api-enriched
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- eSignature
+- Electronic Signatures
+- Documents
+- Digital Agreements
+- Signature Workflow
+- Embedded Signing
+- Compliance
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: hellosign:hellosign-account-api
+  name: Dropbox Sign (HelloSign) Account API
+  description: '{''$ref'': ''./markdown/en/tags/account-tag-description.md''}'
+  humanURL: https://developers.hellosign.com/
+  baseURL: https://api.hellosign.com/v3
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/hellosign-account-api-openapi.yml
+- aid: hellosign:hellosign-api-app-api
+  name: Dropbox Sign (HelloSign) Api App API
+  description: '{''$ref'': ''./markdown/en/tags/api-app-tag-description.md''}'
+  humanURL: https://developers.hellosign.com/
+  baseURL: https://api.hellosign.com/v3
+  tags:
+  - Api App
+  properties:
+  - type: OpenAPI
+    url: openapi/hellosign-api-app-api-openapi.yml
+- aid: hellosign:hellosign-bulk-send-job-api
+  name: Dropbox Sign (HelloSign) Bulk Send Job API
+  description: '{''$ref'': ''./markdown/en/tags/bulk-send-job-tag-description.md''}'
+  humanURL: https://developers.hellosign.com/
+  baseURL: https://api.hellosign.com/v3
+  tags:
+  - Bulk Send Job
+  properties:
+  - type: OpenAPI
+    url: openapi/hellosign-bulk-send-job-api-openapi.yml
+- aid: hellosign:hellosign-embedded-api
+  name: Dropbox Sign (HelloSign) Embedded API
+  description: '{''$ref'': ''./markdown/en/tags/embedded-tag-description.md''}'
+  humanURL: https://developers.hellosign.com/
+  baseURL: https://api.hellosign.com/v3
+  tags:
+  - Embedded
+  properties:
+  - type: OpenAPI
+    url: openapi/hellosign-embedded-api-openapi.yml
+- aid: hellosign:hellosign-fax-api
+  name: Dropbox Sign (HelloSign) Fax API
+  description: The Fax API from Dropbox Sign (HelloSign) — 4 operation(s) for fax.
+  humanURL: https://developers.hellosign.com/
+  baseURL: https://api.hellosign.com/v3
+  tags:
+  - Fax
+  properties:
+  - type: OpenAPI
+    url: openapi/hellosign-fax-api-openapi.yml
+- aid: hellosign:hellosign-fax-line-api
+  name: Dropbox Sign (HelloSign) Fax Line API
+  description: '{''$ref'': ''./markdown/en/tags/fax-lines-tag-description.md''}'
+  humanURL: https://developers.hellosign.com/
+  baseURL: https://api.hellosign.com/v3
+  tags:
+  - Fax Line
+  properties:
+  - type: OpenAPI
+    url: openapi/hellosign-fax-line-api-openapi.yml
+- aid: hellosign:hellosign-oauth-api
+  name: Dropbox Sign (HelloSign) OAuth API
+  description: '{''$ref'': ''./markdown/en/tags/oauth-tag-description.md''}'
+  humanURL: https://developers.hellosign.com/
+  baseURL: https://api.hellosign.com/v3
+  tags:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/hellosign-oauth-api-openapi.yml
+- aid: hellosign:hellosign-report-api
+  name: Dropbox Sign (HelloSign) Report API
+  description: '{''$ref'': ''./markdown/en/tags/report-tag-description.md''}'
+  humanURL: https://developers.hellosign.com/
+  baseURL: https://api.hellosign.com/v3
+  tags:
+  - Report
+  properties:
+  - type: OpenAPI
+    url: openapi/hellosign-report-api-openapi.yml
+- aid: hellosign:hellosign-signature-request-api
+  name: Dropbox Sign (HelloSign) Signature Request API
+  description: '{''$ref'': ''./markdown/en/tags/signature-request-tag-description.md''}'
+  humanURL: https://developers.hellosign.com/
+  baseURL: https://api.hellosign.com/v3
+  tags:
+  - Signature Request
+  properties:
+  - type: OpenAPI
+    url: openapi/hellosign-signature-request-api-openapi.yml
+- aid: hellosign:hellosign-team-api
+  name: Dropbox Sign (HelloSign) Team API
+  description: '{''$ref'': ''./markdown/en/tags/team-tag-description.md''}'
+  humanURL: https://developers.hellosign.com/
+  baseURL: https://api.hellosign.com/v3
+  tags:
+  - Team
+  properties:
+  - type: OpenAPI
+    url: openapi/hellosign-team-api-openapi.yml
+- aid: hellosign:hellosign-template-api
+  name: Dropbox Sign (HelloSign) Template API
+  description: '{''$ref'': ''./markdown/en/tags/template-tag-description.md''}'
+  humanURL: https://developers.hellosign.com/
+  baseURL: https://api.hellosign.com/v3
+  tags:
+  - Template
+  properties:
+  - type: OpenAPI
+    url: openapi/hellosign-template-api-openapi.yml
+- aid: hellosign:hellosign-unclaimed-draft-api
+  name: Dropbox Sign (HelloSign) Unclaimed Draft API
+  description: '{''$ref'': ''./markdown/en/tags/unclaimed-draft-tag-description.md''}'
+  humanURL: https://developers.hellosign.com/
+  baseURL: https://api.hellosign.com/v3
+  tags:
+  - Unclaimed Draft
+  properties:
+  - type: OpenAPI
+    url: openapi/hellosign-unclaimed-draft-api-openapi.yml
+common:
+- type: AgenticAccess
+  url: agentic-access/hellosign-agentic-access.yml
+- type: DomainSecurity
+  url: security/hellosign-domain-security.yml
+- type: Authentication
+  url: authentication/hellosign-authentication.yml
+- type: OAuthScopes
+  url: scopes/hellosign-scopes.yml
+- type: MCPServer
+  url: mcp/hellosign-mcp.yml
+- type: LLMsTxt
+  url: llms/hellosign-llms.txt
+- type: Packages
+  url: packages/hellosign-packages.yml
+- type: SDKs
+  url: packages/hellosign-packages.yml
+- type: ErrorCatalog
+  url: errors/hellosign-error-codes.yml
+- type: Conventions
+  url: conventions/hellosign-conventions.yml
+- type: Lifecycle
+  url: lifecycle/hellosign-lifecycle.yml
+- type: StatusPage
+  url: https://status.hellosign.com/
+- type: Deprecation
+  url: lifecycle/hellosign-lifecycle.yml
+- type: Conformance
+  url: conformance/hellosign-conformance.yml
+- type: Compliance
+  url: https://sign.dropbox.com/trust
+- type: TrustCenter
+  url: security/hellosign-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/hellosign-vulnerability-disclosure.yml
+- type: Security
+  url: https://app.intigriti.com/programs/dropbox/dropbox-vdp
+- type: Webhooks
+  url: asyncapi/hellosign-events-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Sandbox
+  url: sandbox/hellosign-sandbox.yml
+- type: Components
+  url: components/hellosign-components.yml
+- type: DataModel
+  url: data-model/hellosign-data-model.yml
+- type: ChangeLog
+  url: changelog/hellosign-changelog.yml
+- type: DeveloperPortal
+  url: https://developers.hellosign.com/
+- type: Documentation
+  url: https://developers.hellosign.com/docs/overview/
+- type: APIReference
+  url: https://developers.hellosign.com/api/reference/
+- type: GettingStarted
+  url: https://developers.hellosign.com/api/api-quickstart
+- type: Support
+  url: https://help.dropbox.com/sign
+- type: GitHubOrganization
+  url: https://github.com/hellosign
+- type: Pricing
+  url: https://sign.dropbox.com/products/api
+- type: SignUp
+  url: https://app.hellosign.com/account/signUp
+- type: TermsOfService
+  url: https://www.hellosign.com/terms
+- type: PrivacyPolicy
+  url: https://www.hellosign.com/privacy
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,32 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.hellosign.com/docs/additional-resources/embedded-testing-tool/
+note: >-
+  Dropbox Sign provides a free test mode rather than a separate sandbox host. All
+  requests run against the same api.hellosign.com/v3 base URL; test vs. live is
+  controlled per-request and by API-app mode.
+test_mode:
+  mechanism: test_mode parameter
+  description: >-
+    Setting test_mode=1 on signature-request / unclaimed-draft / template-draft
+    creation flows produces non-legally-binding test documents that are not
+    counted against billing. Test-mode requests can be made with the API key
+    even on free API plans.
+  applies_to:
+    - signatureRequestSend
+    - signatureRequestSendWithTemplate
+    - signatureRequestCreateEmbedded
+    - unclaimedDraftCreate
+    - templateCreateEmbeddedDraft
+api_app_modes:
+  - test: API apps default to test mode until approved for production via the app-approval flow.
+  - production: Requires app approval (submitting / self-publish) for Embedded and OAuth apps.
+tools:
+  - name: Embedded Testing Tool
+    url: https://developers.hellosign.com/docs/additional-resources/embedded-testing-tool/
+    description: Test an embedded eSignature integration without building a full UI.
+  - name: Try it console
+    description: Interactive API console in the reference docs; API-key calls are sent in test_mode only.
+caveats:
+  - No published magic test card / bank values (Dropbox Sign is not a payments API).
+  - OAuth apps and Embedded workflows require app approval before live use.

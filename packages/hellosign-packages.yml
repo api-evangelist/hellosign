@@ -1,0 +1,59 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.hellosign.com/docs/sdks/overview/
+note: >-
+  Official Dropbox Sign (formerly HelloSign) SDKs, all generated from the public
+  OpenAPI specification and MIT-licensed. Legacy hellosign-* libraries are
+  superseded by the dropbox-sign-* generation.
+packages:
+  - language: python
+    registry: pypi
+    name: dropbox-sign
+    url: https://pypi.org/project/dropbox-sign/
+    install: pip install dropbox-sign
+    source: https://github.com/hellosign/dropbox-sign-python
+    official: true
+  - language: javascript
+    registry: npm
+    name: "@dropbox/sign"
+    url: https://www.npmjs.com/package/@dropbox/sign
+    install: npm install @dropbox/sign
+    source: https://github.com/hellosign/dropbox-sign-node
+    official: true
+  - language: php
+    registry: packagist
+    name: dropbox/sign
+    url: https://packagist.org/packages/dropbox/sign
+    install: composer require dropbox/sign
+    source: https://github.com/hellosign/dropbox-sign-php
+    official: true
+  - language: java
+    registry: maven
+    name: com.dropbox.sign:dropbox-sign
+    url: https://central.sonatype.com/artifact/com.dropbox.sign/dropbox-sign
+    install: "<dependency><groupId>com.dropbox.sign</groupId><artifactId>dropbox-sign</artifactId></dependency>"
+    source: https://github.com/hellosign/dropbox-sign-java
+    official: true
+  - language: ruby
+    registry: rubygems
+    name: dropbox-sign
+    url: https://rubygems.org/gems/dropbox-sign
+    install: gem install dropbox-sign
+    source: https://github.com/hellosign/dropbox-sign-ruby
+    official: true
+  - language: dotnet
+    registry: nuget
+    name: Dropbox.Sign
+    url: https://www.nuget.org/packages/Dropbox.Sign
+    install: Install-Package Dropbox.Sign
+    source: https://github.com/hellosign/dropbox-sign-dotnet
+    official: true
+  - language: javascript
+    registry: npm
+    name: hellosign-embedded
+    url: https://www.npmjs.com/package/hellosign-embedded
+    install: npm install hellosign-embedded
+    source: https://github.com/hellosign/hellosign-embedded
+    official: true
+    kind: embedded-ui
+    note: Client-side library for embedding signature requests and templates (see components/).

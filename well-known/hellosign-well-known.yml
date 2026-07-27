@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: searched
+host: https://api.hellosign.com
+note: >-
+  Probed the API host (api.hellosign.com) for the standard /.well-known/ discovery
+  surface on 2026-07-19. None are published on the API host. Dropbox Sign is a
+  Dropbox product; the parent domain dropbox.com publishes a security.txt that
+  points at the Dropbox Intigriti bug-bounty program (captured in
+  security/hellosign-vulnerability-disclosure.yml).
+documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+related_hosts:
+  - host: https://www.dropbox.com
+    path: /.well-known/security.txt
+    status: 200
+    note: Parent-company (Dropbox) security.txt; Intigriti bug bounty + VDP.

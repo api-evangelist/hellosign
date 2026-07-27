@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/hellosign-openapi-original.yaml
+skills:
+  - file: hellosign-send-signature-request.md
+    name: Send a signature request with Dropbox Sign
+    api: openapi/hellosign-openapi-original.yaml
+    operations: [signatureRequestSend, signatureRequestGet, signatureRequestList, signatureRequestFiles, signatureRequestRemind, signatureRequestCancel]
+  - file: hellosign-templates-and-bulk-send.md
+    name: Reuse a template and bulk-send with Dropbox Sign
+    api: openapi/hellosign-openapi-original.yaml
+    operations: [templateCreate, templateGet, templateList, signatureRequestSendWithTemplate, signatureRequestBulkSendWithTemplate, bulkSendJobGet]
+  - file: hellosign-embedded-signing.md
+    name: Embedded signing with Dropbox Sign
+    api: openapi/hellosign-openapi-original.yaml
+    operations: [signatureRequestCreateEmbedded, embeddedSignUrl, signatureRequestGet]

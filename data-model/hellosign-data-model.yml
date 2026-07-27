@@ -1,0 +1,75 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/hellosign-openapi-original.yaml
+docs: https://developers.hellosign.com/api/reference/constants/
+note: >-
+  Entity-relationship graph derived from the Dropbox Sign OpenAPI response
+  schemas and their id-reference fields. Ids are opaque UUID-style strings
+  (no documented type prefixes).
+entities:
+  - name: Account
+    id_field: account_id
+    schema: AccountResponse
+  - name: SignatureRequest
+    id_field: signature_request_id
+    schema: SignatureRequestResponse
+  - name: Signature
+    id_field: signature_id
+    schema: SignatureRequestResponseSignatures
+  - name: Template
+    id_field: template_id
+    schema: TemplateResponse
+  - name: Team
+    id_field: team_id
+    schema: TeamResponse
+  - name: BulkSendJob
+    id_field: bulk_send_job_id
+    schema: BulkSendJobResponse
+  - name: ApiApp
+    id_field: client_id
+    schema: ApiAppResponse
+  - name: Fax
+    id_field: fax_id
+    schema: FaxResponse
+  - name: FaxLine
+    id_field: number
+    schema: FaxLineResponse
+  - name: Report
+    schema: ReportResponse
+relationships:
+  - from: SignatureRequest
+    to: Signature
+    type: has_many
+    via: signatures
+  - from: SignatureRequest
+    to: Template
+    type: has_many
+    via: template_ids
+  - from: SignatureRequest
+    to: Account
+    type: belongs_to
+    via: requester_email_address
+  - from: Template
+    to: Account
+    type: has_many
+    via: accounts
+  - from: BulkSendJob
+    to: SignatureRequest
+    type: has_many
+    via: signature_requests
+  - from: BulkSendJob
+    to: Template
+    type: belongs_to
+    via: template_id
+  - from: Team
+    to: Account
+    type: has_many
+    via: accounts
+  - from: ApiApp
+    to: Account
+    type: belongs_to
+    via: owner_account
+  - from: Fax
+    to: FaxLine
+    type: belongs_to
+    via: sender

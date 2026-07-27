@@ -1,0 +1,56 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.hellosign.com/api/reference/authentication/
+docs: https://developers.hellosign.com/docs/overview/
+base_url: https://api.hellosign.com/v3
+authentication:
+  styles:
+    - type: api_key
+      scheme: http-basic
+      note: API key sent as the HTTP Basic username (empty password). See authentication/.
+    - type: oauth2
+      scheme: bearer
+      note: OAuth 2.0 access token as Bearer. Scopes in scopes/hellosign-scopes.yml.
+  cross_link: authentication/hellosign-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    Dropbox Sign does not document an idempotency-key header. Write operations
+    (e.g. signature_request/send) are not idempotent; guard against duplicate
+    submits client-side.
+pagination:
+  style: page-number
+  request_params:
+    - page
+    - page_size
+  response_container: list_info
+  response_fields:
+    - num_pages
+    - num_results
+    - page
+    - page_size
+  note: List endpoints (signature_request/list, template/list, etc.) return a
+    list_info object alongside the result array.
+rate_limiting:
+  signaling: response-headers
+  headers:
+    - X-RateLimit-Limit
+    - X-RateLimit-Remaining
+    - X-Ratelimit-Reset
+  cross_link: rate-limits/
+error_envelope:
+  container: error
+  fields: [error_name, error_msg, error_path]
+  cross_link: errors/hellosign-error-codes.yml
+versioning:
+  style: uri-path
+  current: v3
+  cross_link: lifecycle/hellosign-lifecycle.yml
+file_handling:
+  note: >-
+    Documents are uploaded as multipart/form-data (file[] or file_url[]) and
+    downloaded via signature_request/files (PDF / ZIP / data_uri / file_url).
+webhooks:
+  transport: multipart/form-data POST to a user-defined callback URL
+  verification: event_hash (HMAC-SHA256 of event_time + event_type keyed by API key)
+  cross_link: asyncapi/hellosign-events-webhooks.yml

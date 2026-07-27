@@ -1,0 +1,19 @@
+generated: '2026-07-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: api.hellosign.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 14 23:59:59 2026 GMT
+  hsts: null
+domains:
+- domain: hellosign.com
+  dnssec: false
+  caa:
+  - 0 issue "amazonaws.com"
+  - 0 issue "digicert.com"
+  - 0 issue "letsencrypt.org;validationmethods=dns-01;accounturi=https://acme-v02.api.letsencrypt.org/acme/acct/2079416047"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

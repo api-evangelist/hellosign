@@ -1,0 +1,37 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.hellosign.com/docs/guides/o-auth/overview/
+docs: https://developers.hellosign.com/docs/guides/o-auth/walkthrough/
+note: >-
+  Dropbox Sign OAuth 2.0 scopes. The OpenAPI spec models the OAuth token only as
+  an http bearer scheme (no flows/scope map), so scopes are captured here from the
+  OAuth guide. Scopes are split by billing model: "app-owner charged" vs
+  "user charged".
+schemes:
+  - name: oauth2
+    type: oauth2
+    flow: authorizationCode
+    authorizationUrl: https://app.hellosign.com/oauth/authorize
+    tokenUrl: https://app.hellosign.com/oauth/token
+scopes:
+  - scope: basic_account_info
+    billing: app-owner-charged
+    description: Access basic account information, such as email address and name.
+  - scope: request_signature
+    billing: app-owner-charged
+    description: Send signature requests, access statuses and document files.
+  - scope: account_access
+    billing: user-charged
+    description: Access to basic account information, such as email address and name.
+  - scope: signature_request_access
+    billing: user-charged
+    description: Access to send, view, and update signature requests and to download document files.
+  - scope: template_access
+    billing: user-charged
+    description: Access to view, create, and modify templates.
+  - scope: team_access
+    billing: user-charged
+    description: Access to view and modify team settings and team members.
+  - scope: api_app_access
+    billing: user-charged
+    description: Access to view, create, and modify embedded API apps.

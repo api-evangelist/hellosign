@@ -1,0 +1,1185 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/hellosign-openapi-original.yaml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 73
+  by_action_class:
+    acting: 46
+    connected: 27
+  by_consequence:
+    write: 38
+    read: 27
+    physical: 8
+  human_in_the_loop_required: 0
+operations:
+- path: /account/create
+  method: post
+  operationId: accountCreate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - account_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /account
+  method: get
+  operationId: accountGet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account_access
+    - basic_account_info
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /account
+  method: put
+  operationId: accountUpdate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - account_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /account/verify
+  method: post
+  operationId: accountVerify
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - account_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api_app
+  method: post
+  operationId: apiAppCreate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - api_app_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api_app/{client_id}
+  method: get
+  operationId: apiAppGet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - api_app_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api_app/{client_id}
+  method: put
+  operationId: apiAppUpdate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - api_app_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api_app/{client_id}
+  method: delete
+  operationId: apiAppDelete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - api_app_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api_app/list
+  method: get
+  operationId: apiAppList
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - api_app_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /bulk_send_job/{bulk_send_job_id}
+  method: get
+  operationId: bulkSendJobGet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - request_signature
+    - signature_request_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /bulk_send_job/list
+  method: get
+  operationId: bulkSendJobList
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - request_signature
+    - signature_request_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /embedded/edit_url/{template_id}
+  method: post
+  operationId: embeddedEditUrl
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - template_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /embedded/sign_url/{signature_id}
+  method: get
+  operationId: embeddedSignUrl
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - signature_request_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /fax/{fax_id}
+  method: get
+  operationId: faxGet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /fax/{fax_id}
+  method: delete
+  operationId: faxDelete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /fax/files/{fax_id}
+  method: get
+  operationId: faxFiles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /fax_line/add_user
+  method: put
+  operationId: faxLineAddUser
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /fax_line/area_codes
+  method: get
+  operationId: faxLineAreaCodeGet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /fax_line/create
+  method: post
+  operationId: faxLineCreate
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /fax_line
+  method: get
+  operationId: faxLineGet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /fax_line
+  method: delete
+  operationId: faxLineDelete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /fax_line/list
+  method: get
+  operationId: faxLineList
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /fax_line/remove_user
+  method: put
+  operationId: faxLineRemoveUser
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /fax/list
+  method: get
+  operationId: faxList
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /fax/send
+  method: post
+  operationId: faxSend
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /oauth/token
+  method: post
+  operationId: oauthTokenGenerate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - account_access
+    - api_app_access
+    - basic_account_info
+    - request_signature
+    - signature_request_access
+    - team_access
+    - template_access
+- path: /oauth/token?refresh
+  method: post
+  operationId: oauthTokenRefresh
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - account_access
+    - api_app_access
+    - basic_account_info
+    - request_signature
+    - signature_request_access
+    - team_access
+    - template_access
+- path: /report/create
+  method: post
+  operationId: reportCreate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/bulk_create_embedded_with_template
+  method: post
+  operationId: signatureRequestBulkCreateEmbeddedWithTemplate
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/bulk_send_with_template
+  method: post
+  operationId: signatureRequestBulkSendWithTemplate
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - request_signature
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/cancel/{signature_request_id}
+  method: post
+  operationId: signatureRequestCancel
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - request_signature
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/create_embedded
+  method: post
+  operationId: signatureRequestCreateEmbedded
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/create_embedded_with_template
+  method: post
+  operationId: signatureRequestCreateEmbeddedWithTemplate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/edit/{signature_request_id}
+  method: put
+  operationId: signatureRequestEdit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - request_signature
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/edit_embedded/{signature_request_id}
+  method: put
+  operationId: signatureRequestEditEmbedded
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/edit_embedded_with_template/{signature_request_id}
+  method: put
+  operationId: signatureRequestEditEmbeddedWithTemplate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/edit_with_template/{signature_request_id}
+  method: put
+  operationId: signatureRequestEditWithTemplate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - request_signature
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/files/{signature_request_id}
+  method: get
+  operationId: signatureRequestFiles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - request_signature
+    - signature_request_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /signature_request/files_as_data_uri/{signature_request_id}
+  method: get
+  operationId: signatureRequestFilesAsDataUri
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - request_signature
+    - signature_request_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /signature_request/files_as_file_url/{signature_request_id}
+  method: get
+  operationId: signatureRequestFilesAsFileUrl
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - request_signature
+    - signature_request_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /signature_request/{signature_request_id}
+  method: get
+  operationId: signatureRequestGet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - request_signature
+    - signature_request_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /signature_request/list
+  method: get
+  operationId: signatureRequestList
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - request_signature
+    - signature_request_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /signature_request/release_hold/{signature_request_id}
+  method: post
+  operationId: signatureRequestReleaseHold
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/remind/{signature_request_id}
+  method: post
+  operationId: signatureRequestRemind
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - request_signature
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/remove/{signature_request_id}
+  method: post
+  operationId: signatureRequestRemove
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/send
+  method: post
+  operationId: signatureRequestSend
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - request_signature
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/send_with_template
+  method: post
+  operationId: signatureRequestSendWithTemplate
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - request_signature
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /signature_request/update/{signature_request_id}
+  method: post
+  operationId: signatureRequestUpdate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /team/add_member
+  method: put
+  operationId: teamAddMember
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - team_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /team/create
+  method: post
+  operationId: teamCreate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - team_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /team/destroy
+  method: delete
+  operationId: teamDelete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - team_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /team
+  method: get
+  operationId: teamGet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - team_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /team
+  method: put
+  operationId: teamUpdate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - team_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /team/info
+  method: get
+  operationId: teamInfo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - team_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /team/invites
+  method: get
+  operationId: teamInvites
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account_access
+    - basic_account_info
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /team/members/{team_id}
+  method: get
+  operationId: teamMembers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - team_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /team/remove_member
+  method: post
+  operationId: teamRemoveMember
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - team_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /team/sub_teams/{team_id}
+  method: get
+  operationId: teamSubTeams
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - team_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /template/add_user/{template_id}
+  method: post
+  operationId: templateAddUser
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - template_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /template/create
+  method: post
+  operationId: templateCreate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - template_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /template/create_embedded_draft
+  method: post
+  operationId: templateCreateEmbeddedDraft
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - template_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /template/delete/{template_id}
+  method: post
+  operationId: templateDelete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - template_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /template/files/{template_id}
+  method: get
+  operationId: templateFiles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - template_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /template/files_as_data_uri/{template_id}
+  method: get
+  operationId: templateFilesAsDataUri
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - template_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /template/files_as_file_url/{template_id}
+  method: get
+  operationId: templateFilesAsFileUrl
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - template_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /template/{template_id}
+  method: get
+  operationId: templateGet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - template_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /template/list
+  method: get
+  operationId: templateList
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - template_access
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /template/remove_user/{template_id}
+  method: post
+  operationId: templateRemoveUser
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - template_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /template/update_files/{template_id}
+  method: post
+  operationId: templateUpdateFiles
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - template_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /unclaimed_draft/create
+  method: post
+  operationId: unclaimedDraftCreate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /unclaimed_draft/create_embedded
+  method: post
+  operationId: unclaimedDraftCreateEmbedded
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - request_signature
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /unclaimed_draft/create_embedded_with_template
+  method: post
+  operationId: unclaimedDraftCreateEmbeddedWithTemplate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /unclaimed_draft/edit_and_resend/{signature_request_id}
+  method: post
+  operationId: unclaimedDraftEditAndResend
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - request_signature
+    - signature_request_access
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required

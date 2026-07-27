@@ -1,0 +1,36 @@
+{
+  "provider": "hellosign",
+  "sources": [
+    "hellosign-account-api-openapi.yml",
+    "hellosign-api-app-api-openapi.yml",
+    "hellosign-bulk-send-job-api-openapi.yml",
+    "hellosign-embedded-api-openapi.yml",
+    "hellosign-fax-api-openapi.yml",
+    "hellosign-fax-line-api-openapi.yml",
+    "hellosign-oauth-api-openapi.yml",
+    "hellosign-report-api-openapi.yml",
+    "hellosign-signature-request-api-openapi.yml",
+    "hellosign-team-api-openapi.yml",
+    "hellosign-template-api-openapi.yml",
+    "hellosign-unclaimed-draft-api-openapi.yml"
+  ],
+  "outputs": [
+    "hellosign-account-api-openapi.yml",
+    "hellosign-api-app-api-openapi.yml",
+    "hellosign-bulk-send-job-api-openapi.yml",
+    "hellosign-embedded-api-openapi.yml",
+    "hellosign-fax-api-openapi.yml",
+    "hellosign-fax-line-api-openapi.yml",
+    "hellosign-oauth-api-openapi.yml",
+    "hellosign-report-api-openapi.yml",
+    "hellosign-signature-request-api-openapi.yml",
+    "hellosign-team-api-openapi.yml",
+    "hellosign-template-api-openapi.yml",
+    "hellosign-unclaimed-draft-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

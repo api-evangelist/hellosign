@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.hellosign.com/docs/sdks/versioning-policy/
+versioning:
+  scheme: uri-path
+  current: v3
+  spec_version: 3.0.0
+  semver: true
+  docs: https://developers.hellosign.com/docs/sdks/versioning-policy/
+deprecation:
+  policy_url: https://developers.hellosign.com/docs/sdks/versioning-policy/
+  summary: >-
+    Semantic Versioning across the API and SDK suite. Prior major releases are
+    supported and patched for up to 12 months following the release of a new
+    major version; after that window previous majors receive no further updates.
+  major_support_window_months: 12
+  sunset_header: false
+sla:
+  note: No public numeric uptime SLA published for the standard API tiers.
+status_page: https://status.hellosign.com/
+deprecated_operations: []

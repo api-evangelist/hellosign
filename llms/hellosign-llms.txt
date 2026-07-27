@@ -1,0 +1,171 @@
+# Dropbox Sign Developer Documentation
+
+> Technical documentation for the Dropbox Sign API.
+
+## Instructions for AI Agents
+
+- For clean Markdown of any page, append `.md` to the page URL
+- For section-specific indexes, append `/llms.txt` to any section URL
+- For AI client integration (Claude Code, Cursor, etc.), connect to the MCP server at https://developers.hellosign.com/_mcp/server
+
+## Docs
+
+- [Dropbox Sign API Documentation](https://developers.hellosign.com/docs/overview.md): The Dropbox Sign API offers a reliable, flexible set of eSignature tools that can be used to power digital agreements and turn slow, outdated business processes into a competitive advantage.
+- [Events and Callbacks](https://developers.hellosign.com/docs/guides/events-and-callbacks.md): The Dropbox Sign API allows you automate your signature flows. To find out how to use Dropbox Sign Events, click here.
+- [Walkthrough](https://developers.hellosign.com/docs/guides/events-and-callbacks/walkthrough.md): Click here to learn about Dropbox Sign Events how to use webhooks to automate your integration with the Dropbox Sign API.
+- [Overview](https://developers.hellosign.com/docs/guides/o-auth/overview.md): Keep your users data safe. Click here to learn about using OAuth in your Dropbox Sign API integrations.
+- [Walkthrough](https://developers.hellosign.com/docs/guides/o-auth/walkthrough.md): OAuth allows you to send signature requests and call the Dropbox Sign API on behalf of your users. Click here to learn about Dropbox Sign's OAuth flows.
+- [Overview](https://developers.hellosign.com/docs/guides/app-approval/overview.md): Customers using advanced features of the Dropbox Sign API need their apps approved for production. To learn about our app approval process, click here.
+- [Self Publish](https://developers.hellosign.com/docs/guides/app-approval/self-publish.md): Overview of new process for Self-Publishing your API Apps.
+- [Submitting](https://developers.hellosign.com/docs/guides/app-approval/submitting.md): App approval is required for Dropbox Sign API customers using Embedded Workflows or OAuth. To learn how to submit your app for approval, click here.
+- [Approved](https://developers.hellosign.com/docs/guides/app-approval/approved.md): After a Dropbox Sign API app is approved, questions arise about best practices for moving into production. To review tips and frequently asked questions, click here.
+- [Signer Auth](https://developers.hellosign.com/docs/guides/app-approval/signer-auth.md): Click here to review our official guidance around signer authentication to ensure your documents and signatures stay legally binding.
+- [API Dashboard](https://developers.hellosign.com/docs/guides/api-dashboard.md): Learn about Dropbox Sign's API Dashboard and how it's used to monitor the health of your integration, troubleshoot, and analyze API activity.
+- [Embedded Saved Signatures](https://developers.hellosign.com/docs/guides/api-settings.md)
+- [Overview](https://developers.hellosign.com/docs/guides/pre-filled-document-data/overview.md): Adding your data to your document for a signature request.
+- [Templates](https://developers.hellosign.com/docs/guides/pre-filled-document-data/templates.md): Adding your data to your document for a signature request using Templates.
+- [Text Tags](https://developers.hellosign.com/docs/guides/pre-filled-document-data/text-tags.md): Adding your data to your document for a signature request using Text Tags.
+- [Form Fields](https://developers.hellosign.com/docs/guides/pre-filled-document-data/form-fields.md): Adding your data to your document for a signature request using Form Fields Per Document.
+- [SMS Tools](https://developers.hellosign.com/docs/guides/sms-tools.md): Find out how to use SMS Tools for both authentication and delivery of signature requests.
+- [Overview](https://developers.hellosign.com/docs/guides/e-id-signing/overview.md): eID allows you to authenticate users with eID processes provided by organizations in the European Union. Click here to learn more about eID.
+- [Adding eID](https://developers.hellosign.com/docs/guides/e-id-signing/adding-e-id.md): eID allows you to authenticate users with eID processes provided by organizations in the European Union. Click here to learn more about how to add eID authentication to your flows.
+- [Using eID](https://developers.hellosign.com/docs/guides/e-id-signing/using-e-id.md): Technical documentation for the Dropbox Sign API.
+- [NOM 151 Overview](https://developers.hellosign.com/docs/guides/signature-types/nom-151-overview.md): Overview of NOM 151 signature type.
+- [Implementation](https://developers.hellosign.com/docs/guides/signature-types/implementation.md): Steps to sign with NOM 151 signature type.
+- [Admin Console Reports](https://developers.hellosign.com/docs/guides/reports.md): Learn about the Reports API and how to use it.
+- [Fax](https://developers.hellosign.com/docs/guides/fax.md): A guide to assist customers migrating from v1 to v3 of the Fax API
+- [Overview](https://developers.hellosign.com/docs/sdks/overview.md): Dropbox Sign maintains official libraries for different programming languages. Click here to find your preferred SDK.
+- [Versioning Policy](https://developers.hellosign.com/docs/sdks/versioning-policy.md): Click here for information on Dropbox Sign's SDK versioning policy, which the API engineering team follows to ensure safety, reliability, and transparency.
+- [Interacting with Files](https://developers.hellosign.com/docs/sdks/open-api/interacting-with-files.md): This page explains how to interact with files using the Dropbox Sign API. Click here to learn about uploading and downloading files using our new SDKs.
+- [Form Fields per Document](https://developers.hellosign.com/docs/sdks/open-api/form-fields-per-document.md): Use form fields per document to place fields programmatically using the Dropbox Sign API. Click here to learn about the data structure used to place fields.
+- [Node](https://developers.hellosign.com/docs/sdks/migration-guides/node.md): Use this guide to migrate to the new Dropbox Sign Node SDK, which is powered by our OpenAPI specification. Contains concepts and examples to help you migrate successfully.
+- [Python](https://developers.hellosign.com/docs/sdks/migration-guides/python.md): Use this guide to migrate to the new Dropbox Sign Python SDK, which is powered by our OpenAPI specification. Contains concepts and examples to help you migrate successfully.
+- [PHP](https://developers.hellosign.com/docs/sdks/migration-guides/php.md): Use this guide to migrate to the new Dropbox Sign PHP SDK, which is powered by our OpenAPI specification. Contains concepts and examples to help you migrate successfully.
+- [.NET](https://developers.hellosign.com/docs/sdks/migration-guides/net.md): Use this guide to migrate to the new Dropbox Sign Dotnet SDK, which is powered by our OpenAPI specification. Contains concepts and examples to help you migrate successfully.
+- [Ruby](https://developers.hellosign.com/docs/sdks/migration-guides/ruby.md): Use this guide to migrate to the new Dropbox Sign Ruby SDK, which is powered by our OpenAPI specification. Contains concepts and examples to help you migrate successfully.
+- [Java](https://developers.hellosign.com/docs/sdks/migration-guides/java.md): Use this guide to migrate to the new Dropbox Sign Java SDK, which is powered by our OpenAPI specification. Contains concepts and examples to help you migrate successfully.
+- [Overview](https://developers.hellosign.com/docs/sdks/python/overview.md): Quick reference for the Dropbox Sign Python SDK — install, authenticate, and find links to docs and examples.
+- [Overview](https://developers.hellosign.com/docs/sdks/node/overview.md): Quick reference for the Dropbox Sign Node SDK — install, authenticate, and find links to docs and examples.
+- [Overview](https://developers.hellosign.com/docs/sdks/php/overview.md): Quick reference for the Dropbox Sign PHP SDK — install, authenticate, and find links to docs and examples.
+- [Overview](https://developers.hellosign.com/docs/sdks/net/overview.md): Quick reference for the Dropbox Sign .NET SDK — install, authenticate, and find links to docs and examples.
+- [Overview](https://developers.hellosign.com/docs/sdks/ruby/overview.md): Quick reference for the Dropbox Sign Ruby SDK — install, authenticate, and find links to docs and examples.
+- [Overview](https://developers.hellosign.com/docs/sdks/java/overview.md): Quick reference for the Dropbox Sign Java SDK — install, authenticate, and find links to docs and examples.
+- [Non-Embedded Signing](https://developers.hellosign.com/docs/walkthroughs/non-embedded-signing.md): Find out how to send and retrieve signature requests, check their status, and download completed documents using the Dropbox Sign API.
+- [Text Tags Walkthrough](https://developers.hellosign.com/docs/walkthroughs/text-tags.md): Learn how to use Text Tags with the Dropbox Sign API.
+- [Templates](https://developers.hellosign.com/docs/walkthroughs/templates.md): Here, we'll walk you through the process of creating templates in the Dropbox Sign web interface to use with the API.
+- [Embedded Signing](https://developers.hellosign.com/docs/walkthroughs/embedded-signing.md): Embedded signing allows you to have users sign signature requests directly on your app or website. Read the setup steps and requirements here.
+- [Embedded Templates](https://developers.hellosign.com/docs/walkthroughs/embedded-templates.md): Allow users to create and edit templates inside your app with Dropbox Sign Embedded Templates. To find out how to build with this feature, click here.
+- [Embedded Requesting](https://developers.hellosign.com/docs/walkthroughs/embedded-requesting.md): Embedded signature requesting allows users to create, edit, and send signature requests on your site. Read the setup steps here.
+- [Embedded Testing Tool](https://developers.hellosign.com/docs/additional-resources/embedded-testing-tool.md): Test your embedded eSignature solution with the Dropbox Sign API Embedded Testing Tool.
+- [Dropbox Sign API Quickstart](https://developers.hellosign.com/api/api-quickstart.md): This quickstart will guide you through your first steps sending signature requests with the Dropbox Sign API.
+- [API Reference](https://developers.hellosign.com/api.md): Click here to learn about managing user accounts with the Dropbox Sign API.
+- [Welcome to Dropbox Sign's API Reference Documentation](https://developers.hellosign.com/api/api-reference-welcome.md): The Dropbox Sign API allows you to build with a wide range of tools. Here you'll find information and examples about the endpoints and features.
+- [Authentication](https://developers.hellosign.com/api/api-reference-authentication.md): Learn about how the Dropbox Sign API implements authentication to protect user data.
+- [Signature Request](https://developers.hellosign.com/api/signature-request.md): Learn how Signature Requests are used in the Dropbox Sign API to power approval workflows by signing, sending, and collecting documents.
+- [Template](https://developers.hellosign.com/api/template.md): Learn about using Templates in the Dropbox Sign API and how they can power approval workflows.
+- [Bulk Send Job](https://developers.hellosign.com/api/bulk-send-job.md): Use the Dropbox Sign API to manage signature requests sent in bulk. Click here to learn how.
+- [Report](https://developers.hellosign.com/api/report.md): Generate reports on your past activity using the Dropbox Sign API.
+- [Team](https://developers.hellosign.com/api/team.md): Find out how to effectively manage teams and team member with the Dropbox Sign API.
+- [Unclaimed Draft](https://developers.hellosign.com/api/unclaimed-draft.md): Create a Draft that allows your users to prepare and send signature requests using the Dropbox Sign API.
+- [Embedded](https://developers.hellosign.com/api/embedded.md): Learn to use the Dropbox Sign API to generate urls that power embedded eSignature experiences.
+- [API App](https://developers.hellosign.com/api/api-app.md): Click here to learn how to manage your Dropbox Sign App using the API.
+- [Fax](https://developers.hellosign.com/api/fax.md): Learn how Dropbox Fax API can be used to send faxes.
+- [Fax Line](https://developers.hellosign.com/api/fax-line.md): Learn how Dropbox Fax API can be used to manage fax lines.
+- [Warnings and Errors](https://developers.hellosign.com/api/manual-reference-pages/warnings-and-errors.md): Technical documentation for the Dropbox Sign API.
+- [Constants](https://developers.hellosign.com/api/manual-reference-pages/constants.md): Technical documentation for the Dropbox Sign API.
+- [Search](https://developers.hellosign.com/api/manual-reference-pages/search.md): Technical documentation for the Dropbox Sign API.
+- [Premium Branding](https://developers.hellosign.com/api/manual-reference-pages/premium-branding.md): Add your brand to Dropbox Sign API App to personalize your embedded eSignature solution.
+- [Expiration](https://developers.hellosign.com/api/manual-reference-pages/expiration.md): Add an expiration to your Signature Request to limit the length of time a document can be signed. Once expired, signers can no longer sign the Signature Request.
+- [Domain Concepts Glossary](https://developers.hellosign.com/api/manual-reference-pages/glossary.md): A comprehensive glossary of Dropbox Sign domain concepts, terminology, and relationships. Designed to help developers and AI agents understand the Dropbox Sign API domain model.
+- [Core Objects](https://developers.hellosign.com/api/manual-reference-pages/glossary/core-objects.md): Definitions of fundamental Dropbox Sign domain objects including Signature Request, Template, Document, Account, Subscription, Team, and API App.
+- [Signers & Roles](https://developers.hellosign.com/api/manual-reference-pages/glossary/signers-roles.md): Understanding signers, senders, CC recipients, signer roles, and signing order in the Dropbox Sign API.
+- [Fields & Templates](https://developers.hellosign.com/api/manual-reference-pages/glossary/fields-templates.md): Form fields, field types, merge fields, text tags, and conditional logic in the Dropbox Sign API.
+- [Workflows](https://developers.hellosign.com/api/manual-reference-pages/glossary/workflows.md): Embedded signing, embedded unclaimed drafts, bulk send, and OAuth flows in the Dropbox Sign API.
+- [Callbacks & Events](https://developers.hellosign.com/api/manual-reference-pages/glossary/callbacks-events.md): Webhook notifications, event types, and callback handling in the Dropbox Sign API.
+- [Features](https://developers.hellosign.com/api/manual-reference-pages/glossary/features.md): Premium features available in Dropbox Sign including Premium Branding, SMS Delivery & Verification, and Signer PIN / Access Code.
+- [Security & Compliance](https://developers.hellosign.com/api/manual-reference-pages/glossary/security-compliance.md): Authentication methods, audit trails, and qualified electronic signatures in the Dropbox Sign API.
+
+## API Docs
+
+- Events and Callbacks Reference > Events [Account Callbacks](https://developers.hellosign.com/docs/guides/events-and-callbacks/events-and-callbacks-reference/events/account-update-event-callback.md)
+- Events and Callbacks Reference > Events [App Callbacks](https://developers.hellosign.com/docs/guides/events-and-callbacks/events-and-callbacks-reference/events/api-app-create-event-callback.md)
+- OAuth [OAuth Token Generate](https://developers.hellosign.com/docs/guides/o-auth/token-generate.md)
+- OAuth [OAuth Token Refresh](https://developers.hellosign.com/docs/guides/o-auth/token-refresh.md)
+- API Reference > Account [Get Account](https://developers.hellosign.com/api/account/get.md)
+- API Reference > Account [Update Account](https://developers.hellosign.com/api/account/update.md)
+- API Reference > Account [Create Account](https://developers.hellosign.com/api/account/create.md)
+- API Reference > Account [Verify Account](https://developers.hellosign.com/api/account/verify.md)
+- API Reference > Signature Request [Get Signature Request](https://developers.hellosign.com/api/signature-request/get.md)
+- API Reference > Signature Request [List Signature Requests](https://developers.hellosign.com/api/signature-request/list.md)
+- API Reference > Signature Request [Download Files](https://developers.hellosign.com/api/signature-request/files.md)
+- API Reference > Signature Request [Download Files as Data Uri](https://developers.hellosign.com/api/signature-request/files-as-data-uri.md)
+- API Reference > Signature Request [Download Files as File Url](https://developers.hellosign.com/api/signature-request/files-as-file-url.md)
+- API Reference > Signature Request [Send Signature Request](https://developers.hellosign.com/api/signature-request/send.md)
+- API Reference > Signature Request [Send with Template](https://developers.hellosign.com/api/signature-request/send-with-template.md)
+- API Reference > Signature Request [Bulk Send with Template](https://developers.hellosign.com/api/signature-request/bulk-send-with-template.md)
+- API Reference > Signature Request [Send Request Reminder](https://developers.hellosign.com/api/signature-request/remind.md)
+- API Reference > Signature Request [Release On-Hold Signature Request](https://developers.hellosign.com/api/signature-request/release-hold.md)
+- API Reference > Signature Request [Update Signature Request](https://developers.hellosign.com/api/signature-request/update.md)
+- API Reference > Signature Request [Cancel Incomplete Signature Request](https://developers.hellosign.com/api/signature-request/cancel.md)
+- API Reference > Signature Request [Remove Signature Request Access](https://developers.hellosign.com/api/signature-request/remove.md)
+- API Reference > Signature Request [Embedded Bulk Send with Template](https://developers.hellosign.com/api/signature-request/bulk-create-embedded-with-template.md)
+- API Reference > Signature Request [Create Embedded Signature Request](https://developers.hellosign.com/api/signature-request/create-embedded.md)
+- API Reference > Signature Request [Create Embedded Signature Request with Template](https://developers.hellosign.com/api/signature-request/create-embedded-with-template.md)
+- API Reference > Signature Request [Edit Signature Request](https://developers.hellosign.com/api/signature-request/edit.md)
+- API Reference > Signature Request [Edit Embedded Signature Request](https://developers.hellosign.com/api/signature-request/edit-embedded.md)
+- API Reference > Signature Request [Edit Embedded Signature Request with Template](https://developers.hellosign.com/api/signature-request/edit-embedded-with-template.md)
+- API Reference > Signature Request [Edit Signature Request With Template](https://developers.hellosign.com/api/signature-request/edit-with-template.md)
+- API Reference > Template [Get Template](https://developers.hellosign.com/api/template/get.md)
+- API Reference > Template [List Templates](https://developers.hellosign.com/api/template/list.md)
+- API Reference > Template [Create Template](https://developers.hellosign.com/api/template/create.md)
+- API Reference > Template [Create Embedded Template Draft](https://developers.hellosign.com/api/template/create-embedded-draft.md)
+- API Reference > Template [Delete Template](https://developers.hellosign.com/api/template/delete.md)
+- API Reference > Template [Get Template Files](https://developers.hellosign.com/api/template/files.md)
+- API Reference > Template [Get Template Files as Data Uri](https://developers.hellosign.com/api/template/files-as-data-uri.md)
+- API Reference > Template [Get Template Files as File Url](https://developers.hellosign.com/api/template/files-as-file-url.md)
+- API Reference > Template [Update Template Files](https://developers.hellosign.com/api/template/update-files.md)
+- API Reference > Template [Add User to Template](https://developers.hellosign.com/api/template/add-user.md)
+- API Reference > Template [Remove User from Template](https://developers.hellosign.com/api/template/remove-user.md)
+- API Reference > Bulk Send Job [Get Bulk Send Job](https://developers.hellosign.com/api/bulk-send-job/get.md)
+- API Reference > Bulk Send Job [List Bulk Send Jobs](https://developers.hellosign.com/api/bulk-send-job/list.md)
+- API Reference > Report [Create Report](https://developers.hellosign.com/api/report/create.md)
+- API Reference > Team [Get Team](https://developers.hellosign.com/api/team/get.md)
+- API Reference > Team [Get Team Info](https://developers.hellosign.com/api/team/info.md)
+- API Reference > Team [List Team Members](https://developers.hellosign.com/api/team/members.md)
+- API Reference > Team [List Sub Teams](https://developers.hellosign.com/api/team/sub-teams.md)
+- API Reference > Team [Create Team](https://developers.hellosign.com/api/team/create.md)
+- API Reference > Team [Update Team](https://developers.hellosign.com/api/team/update.md)
+- API Reference > Team [Delete Team](https://developers.hellosign.com/api/team/delete.md)
+- API Reference > Team [Add User to Team](https://developers.hellosign.com/api/team/add-member.md)
+- API Reference > Team [Remove User from Team](https://developers.hellosign.com/api/team/remove-member.md)
+- API Reference > Unclaimed Draft [Create Unclaimed Draft](https://developers.hellosign.com/api/unclaimed-draft/create.md)
+- API Reference > Unclaimed Draft [Create Embedded Unclaimed Draft](https://developers.hellosign.com/api/unclaimed-draft/create-embedded.md)
+- API Reference > Unclaimed Draft [Create Embedded Unclaimed Draft with Template](https://developers.hellosign.com/api/unclaimed-draft/create-embedded-with-template.md)
+- API Reference > Unclaimed Draft [Edit and Resend Unclaimed Draft](https://developers.hellosign.com/api/unclaimed-draft/edit-and-resend.md)
+- API Reference > Embedded [Get Embedded Sign URL](https://developers.hellosign.com/api/embedded/sign-url.md)
+- API Reference > Embedded [Get Embedded Template Edit URL](https://developers.hellosign.com/api/embedded/edit-url.md)
+- API Reference > API App [Get API App](https://developers.hellosign.com/api/api-app/get.md)
+- API Reference > API App [List API Apps](https://developers.hellosign.com/api/api-app/list.md)
+- API Reference > API App [Create API App](https://developers.hellosign.com/api/api-app/create.md)
+- API Reference > API App [Update API App](https://developers.hellosign.com/api/api-app/update.md)
+- API Reference > API App [Delete API App](https://developers.hellosign.com/api/api-app/delete.md)
+- API Reference > Fax [Get Fax](https://developers.hellosign.com/api/fax/get.md)
+- API Reference > Fax [Lists Faxes](https://developers.hellosign.com/api/fax/list.md)
+- API Reference > Fax [Download Fax Files](https://developers.hellosign.com/api/fax/files.md)
+- API Reference > Fax [Send Fax](https://developers.hellosign.com/api/fax/send.md)
+- API Reference > Fax [Delete Fax](https://developers.hellosign.com/api/fax/delete.md)
+- API Reference > Fax Line [Get Fax Line](https://developers.hellosign.com/api/fax-line/get.md)
+- API Reference > Fax Line [List Fax Lines](https://developers.hellosign.com/api/fax-line/list.md)
+- API Reference > Fax Line [Purchase Fax Line](https://developers.hellosign.com/api/fax-line/create.md)
+- API Reference > Fax Line [Delete Fax Line](https://developers.hellosign.com/api/fax-line/delete.md)
+- API Reference > Fax Line [Add Fax Line User](https://developers.hellosign.com/api/fax-line/add-user.md)
+- API Reference > Fax Line [Remove Fax Line Access](https://developers.hellosign.com/api/fax-line/remove-user.md)
+- API Reference > Fax Line [Get Available Fax Line Area Codes](https://developers.hellosign.com/api/fax-line/area-code-get.md)
+- API Reference > Events [Account Callbacks](https://developers.hellosign.com/api/events/account-update-event-callback.md)
+- API Reference > Events [App Callbacks](https://developers.hellosign.com/api/events/api-app-create-event-callback.md)
+
+## OpenAPI Specification
+
+The raw OpenAPI 3.1 specification for this API is available at:
+- [OpenAPI JSON](https://developers.hellosign.com/openapi.json)
+- [OpenAPI YAML](https://developers.hellosign.com/openapi.yaml)

@@ -1,0 +1,26 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/hellosign/hellosign-embedded
+note: >-
+  Client-side embeddable UI for placing Dropbox Sign signing, requesting, and
+  template-editing flows directly inside a host web application. Distinct from the
+  server-side SDKs in packages/.
+families:
+  - name: HelloSign Embedded (Dropbox Sign Embedded)
+    loader: hellosign-embedded
+    registry: npm
+    package: hellosign-embedded
+    url: https://github.com/hellosign/hellosign-embedded
+    components:
+      - name: Embedded Signing
+        description: Have users sign signature requests directly on your site via an iframe overlay.
+        pairs_with: [signatureRequestCreateEmbedded, embeddedSignUrl]
+      - name: Embedded Requesting
+        description: Let users create, edit, and send signature requests from within your app.
+        pairs_with: [unclaimedDraftCreateEmbedded, embeddedEditUrl]
+      - name: Embedded Templates
+        description: Let users create and edit reusable templates inside your app.
+        pairs_with: [templateCreateEmbeddedDraft, embeddedEditUrl]
+    demos:
+      - https://github.com/hellosign/hellosign-embedded-demo
+      - https://github.com/hellosign/hellosign-embedded-starters

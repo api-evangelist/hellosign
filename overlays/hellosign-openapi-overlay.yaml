@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Dropbox Sign (HelloSign)
+  version: 1.0.0
+extends: openapi/hellosign-openapi-original.yaml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-19'
+      x-apievangelist-provider: hellosign
+      x-apievangelist-artifacts:
+        authentication: authentication/hellosign-authentication.yml
+        scopes: scopes/hellosign-scopes.yml
+        errors: errors/hellosign-error-codes.yml
+        conventions: conventions/hellosign-conventions.yml
+        lifecycle: lifecycle/hellosign-lifecycle.yml
+        webhooks: asyncapi/hellosign-events-webhooks.yml
+        mcp: mcp/hellosign-mcp.yml
+        packages: packages/hellosign-packages.yml
+  - target: $.info
+    update:
+      x-apievangelist-rating-notes: >-
+        Rich e-signature API (73 operations, 12 tags). OAuth2 + API key,
+        documented webhooks (23 event types), official SDKs in 6 languages,
+        a published hosted docs MCP server, and a full x-error-codes registry.

@@ -1,0 +1,18 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.hellosign.com/changelog
+scheme: date-based
+docs: https://developers.hellosign.com/changelog
+note: >-
+  Dropbox Sign publishes a dated developer-docs changelog (per-day entries at
+  /changelog/YYYY/M/D). Entries are largely documentation and integration
+  improvements; the REST API itself remains at v3. Recent window captured below.
+entries:
+  - date: '2025-02-03'
+    type: documentation
+    highlights:
+      - Updated documentation to reflect the API app Self Publish approval flow.
+  - date: '2024-09-04'
+    type: documentation
+    highlights:
+      - Added a warning banner for the HTTPS requirement on the Events walkthrough.
