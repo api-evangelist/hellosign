@@ -1,0 +1,1524 @@
+{
+  "info": {
+    "_postman_id": "41f5ab43-55e9-4bd6-93ba-ded5c70bba8f",
+    "name": "Dropbox Sign Account Fax Line API",
+    "description": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:41.000Z",
+    "updatedAt": "2026-07-28T01:54:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-41f5ab43-55e9-4bd6-93ba-ded5c70bba8f"
+  },
+  "item": [
+    {
+      "name": "fax_line",
+      "item": [
+        {
+          "name": "add_user",
+          "item": [
+            {
+              "name": "Add Fax Line User",
+              "id": "231a4281-e23e-41d6-820e-709761e6f4f9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/fax_line/add_user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fax_line",
+                    "add_user"
+                  ]
+                },
+                "description": "Grants a user access to the specified Fax Line."
+              },
+              "response": [
+                {
+                  "id": "f1e0cb89-8eac-4fe3-90a0-a737583ffc20",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/fax_line/add_user",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax_line",
+                        "add_user"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"fax_line\": {\n    \"number\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ]\n  },\n  \"warnings\": {\n    \"warning_msg\": \"<string>\",\n    \"warning_name\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:42.000Z",
+                  "updatedAt": "2026-07-28T01:54:42.000Z",
+                  "uid": "35240-f1e0cb89-8eac-4fe3-90a0-a737583ffc20"
+                },
+                {
+                  "id": "da7c71c4-efc5-4220-9b40-12ca94eefc3a",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/fax_line/add_user",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax_line",
+                        "add_user"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:42.000Z",
+                  "updatedAt": "2026-07-28T01:54:42.000Z",
+                  "uid": "35240-da7c71c4-efc5-4220-9b40-12ca94eefc3a"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:42.000Z",
+              "updatedAt": "2026-07-28T01:54:42.000Z",
+              "uid": "35240-231a4281-e23e-41d6-820e-709761e6f4f9"
+            }
+          ],
+          "id": "4c0155b7-2c5c-487e-9e92-c43cc6cfaed3",
+          "createdAt": "2026-07-28T01:54:42.000Z",
+          "updatedAt": "2026-07-28T01:54:42.000Z",
+          "uid": "35240-4c0155b7-2c5c-487e-9e92-c43cc6cfaed3"
+        },
+        {
+          "name": "area_codes",
+          "item": [
+            {
+              "name": "Get Available Fax Line Area Codes",
+              "id": "efd04346-298f-4909-9686-9e6ae16dbbec",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/fax_line/area_codes?country=CA&state=HI&province=NL&city=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fax_line",
+                    "area_codes"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Filter area codes by country",
+                      "key": "country",
+                      "value": "CA"
+                    },
+                    {
+                      "description": "Filter area codes by state",
+                      "key": "state",
+                      "value": "HI"
+                    },
+                    {
+                      "description": "Filter area codes by province",
+                      "key": "province",
+                      "value": "NL"
+                    },
+                    {
+                      "description": "Filter area codes by city",
+                      "key": "city",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of available area codes for a given state/province and city"
+              },
+              "response": [
+                {
+                  "id": "004f6932-cb94-4cd5-bf78-111892184162",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fax_line/area_codes?country=CA&state=HI&province=NL&city=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax_line",
+                        "area_codes"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Filter area codes by country",
+                          "key": "country",
+                          "value": "CA"
+                        },
+                        {
+                          "description": "Filter area codes by state",
+                          "key": "state",
+                          "value": "HI"
+                        },
+                        {
+                          "description": "Filter area codes by province",
+                          "key": "province",
+                          "value": "NL"
+                        },
+                        {
+                          "description": "Filter area codes by city",
+                          "key": "city",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"area_codes\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:54:42.000Z",
+                  "updatedAt": "2026-07-28T01:54:42.000Z",
+                  "uid": "35240-004f6932-cb94-4cd5-bf78-111892184162"
+                },
+                {
+                  "id": "83a2782b-083d-4de3-bfb0-77c0e1ae7935",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fax_line/area_codes?country=CA&state=HI&province=NL&city=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax_line",
+                        "area_codes"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Filter area codes by country",
+                          "key": "country",
+                          "value": "CA"
+                        },
+                        {
+                          "description": "Filter area codes by state",
+                          "key": "state",
+                          "value": "HI"
+                        },
+                        {
+                          "description": "Filter area codes by province",
+                          "key": "province",
+                          "value": "NL"
+                        },
+                        {
+                          "description": "Filter area codes by city",
+                          "key": "city",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:42.000Z",
+                  "updatedAt": "2026-07-28T01:54:42.000Z",
+                  "uid": "35240-83a2782b-083d-4de3-bfb0-77c0e1ae7935"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:42.000Z",
+              "updatedAt": "2026-07-28T01:54:42.000Z",
+              "uid": "35240-efd04346-298f-4909-9686-9e6ae16dbbec"
+            }
+          ],
+          "id": "4466b336-8c8a-4445-a59c-f0f9a2df55ff",
+          "createdAt": "2026-07-28T01:54:42.000Z",
+          "updatedAt": "2026-07-28T01:54:42.000Z",
+          "uid": "35240-4466b336-8c8a-4445-a59c-f0f9a2df55ff"
+        },
+        {
+          "name": "create",
+          "item": [
+            {
+              "name": "Purchase Fax Line",
+              "id": "2dddd45f-c705-4b43-9416-81ede6776a1c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"area_code\": \"<integer>\",\n  \"country\": \"US\",\n  \"city\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/fax_line/create",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fax_line",
+                    "create"
+                  ]
+                },
+                "description": "Purchases a new Fax Line"
+              },
+              "response": [
+                {
+                  "id": "30125d1e-7d6f-495a-9c50-6bf0744968e3",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"area_code\": \"<integer>\",\n  \"country\": \"US\",\n  \"city\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/fax_line/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax_line",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"fax_line\": {\n    \"number\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ]\n  },\n  \"warnings\": {\n    \"warning_msg\": \"<string>\",\n    \"warning_name\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:42.000Z",
+                  "updatedAt": "2026-07-28T01:54:42.000Z",
+                  "uid": "35240-30125d1e-7d6f-495a-9c50-6bf0744968e3"
+                },
+                {
+                  "id": "506f48b6-1207-484f-b5db-6a35bc4d81bd",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"area_code\": \"<integer>\",\n  \"country\": \"US\",\n  \"city\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/fax_line/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax_line",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:42.000Z",
+                  "updatedAt": "2026-07-28T01:54:42.000Z",
+                  "uid": "35240-506f48b6-1207-484f-b5db-6a35bc4d81bd"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:42.000Z",
+              "updatedAt": "2026-07-28T01:54:42.000Z",
+              "uid": "35240-2dddd45f-c705-4b43-9416-81ede6776a1c"
+            }
+          ],
+          "id": "8ec4d624-3558-4a1c-8925-48e533244e94",
+          "createdAt": "2026-07-28T01:54:42.000Z",
+          "updatedAt": "2026-07-28T01:54:42.000Z",
+          "uid": "35240-8ec4d624-3558-4a1c-8925-48e533244e94"
+        },
+        {
+          "name": "list",
+          "item": [
+            {
+              "name": "List Fax Lines",
+              "id": "848a1736-448d-401c-86d2-5e144477911e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/fax_line/list?account_id=<string>&page=1&page_size=20&show_team_lines=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fax_line",
+                    "list"
+                  ],
+                  "query": [
+                    {
+                      "description": "Account ID",
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Which page number of the Fax Line List to return. Defaults to `1`.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Include Fax Lines belonging to team members in the list",
+                      "key": "show_team_lines",
+                      "value": "<boolean>"
+                    }
+                  ]
+                },
+                "description": "Returns the properties and settings of multiple Fax Lines."
+              },
+              "response": [
+                {
+                  "id": "1a7f75c1-33ab-4e61-957a-3ab6338fba1a",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fax_line/list?account_id=<string>&page=1&page_size=20&show_team_lines=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax_line",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "Account ID",
+                          "key": "account_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Which page number of the Fax Line List to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                          "key": "page_size",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Include Fax Lines belonging to team members in the list",
+                          "key": "show_team_lines",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"fax_lines\": [\n    {\n      \"number\": \"<string>\",\n      \"created_at\": \"<integer>\",\n      \"updated_at\": \"<integer>\",\n      \"accounts\": [\n        {\n          \"account_id\": \"<string>\",\n          \"email_address\": \"<string>\",\n          \"is_locked\": \"<boolean>\",\n          \"is_paid_hs\": \"<boolean>\",\n          \"is_paid_hf\": \"<boolean>\",\n          \"quotas\": {\n            \"api_signature_requests_left\": \"<integer>\",\n            \"documents_left\": \"<integer>\",\n            \"templates_total\": \"<integer>\",\n            \"templates_left\": \"<integer>\",\n            \"sms_verifications_left\": \"<integer>\",\n            \"num_fax_pages_left\": \"<integer>\"\n          },\n          \"callback_url\": \"<string>\",\n          \"role_code\": \"<string>\",\n          \"team_id\": \"<string>\",\n          \"locale\": \"<string>\",\n          \"usage\": {\n            \"fax_pages_sent\": \"<integer>\"\n          },\n          \"settings\": {\n            \"signer_access_codes\": \"<boolean>\",\n            \"sms_delivery\": \"<boolean>\",\n            \"sms_authentication\": \"<boolean>\"\n          }\n        },\n        {\n          \"account_id\": \"<string>\",\n          \"email_address\": \"<string>\",\n          \"is_locked\": \"<boolean>\",\n          \"is_paid_hs\": \"<boolean>\",\n          \"is_paid_hf\": \"<boolean>\",\n          \"quotas\": {\n            \"api_signature_requests_left\": \"<integer>\",\n            \"documents_left\": \"<integer>\",\n            \"templates_total\": \"<integer>\",\n            \"templates_left\": \"<integer>\",\n            \"sms_verifications_left\": \"<integer>\",\n            \"num_fax_pages_left\": \"<integer>\"\n          },\n          \"callback_url\": \"<string>\",\n          \"role_code\": \"<string>\",\n          \"team_id\": \"<string>\",\n          \"locale\": \"<string>\",\n          \"usage\": {\n            \"fax_pages_sent\": \"<integer>\"\n          },\n          \"settings\": {\n            \"signer_access_codes\": \"<boolean>\",\n            \"sms_delivery\": \"<boolean>\",\n            \"sms_authentication\": \"<boolean>\"\n          }\n        }\n      ]\n    },\n    {\n      \"number\": \"<string>\",\n      \"created_at\": \"<integer>\",\n      \"updated_at\": \"<integer>\",\n      \"accounts\": [\n        {\n          \"account_id\": \"<string>\",\n          \"email_address\": \"<string>\",\n          \"is_locked\": \"<boolean>\",\n          \"is_paid_hs\": \"<boolean>\",\n          \"is_paid_hf\": \"<boolean>\",\n          \"quotas\": {\n            \"api_signature_requests_left\": \"<integer>\",\n            \"documents_left\": \"<integer>\",\n            \"templates_total\": \"<integer>\",\n            \"templates_left\": \"<integer>\",\n            \"sms_verifications_left\": \"<integer>\",\n            \"num_fax_pages_left\": \"<integer>\"\n          },\n          \"callback_url\": \"<string>\",\n          \"role_code\": \"<string>\",\n          \"team_id\": \"<string>\",\n          \"locale\": \"<string>\",\n          \"usage\": {\n            \"fax_pages_sent\": \"<integer>\"\n          },\n          \"settings\": {\n            \"signer_access_codes\": \"<boolean>\",\n            \"sms_delivery\": \"<boolean>\",\n            \"sms_authentication\": \"<boolean>\"\n          }\n        },\n        {\n          \"account_id\": \"<string>\",\n          \"email_address\": \"<string>\",\n          \"is_locked\": \"<boolean>\",\n          \"is_paid_hs\": \"<boolean>\",\n          \"is_paid_hf\": \"<boolean>\",\n          \"quotas\": {\n            \"api_signature_requests_left\": \"<integer>\",\n            \"documents_left\": \"<integer>\",\n            \"templates_total\": \"<integer>\",\n            \"templates_left\": \"<integer>\",\n            \"sms_verifications_left\": \"<integer>\",\n            \"num_fax_pages_left\": \"<integer>\"\n          },\n          \"callback_url\": \"<string>\",\n          \"role_code\": \"<string>\",\n          \"team_id\": \"<string>\",\n          \"locale\": \"<string>\",\n          \"usage\": {\n            \"fax_pages_sent\": \"<integer>\"\n          },\n          \"settings\": {\n            \"signer_access_codes\": \"<boolean>\",\n            \"sms_delivery\": \"<boolean>\",\n            \"sms_authentication\": \"<boolean>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"list_info\": {\n    \"num_pages\": \"<integer>\",\n    \"num_results\": \"<integer>\",\n    \"page\": \"<integer>\",\n    \"page_size\": \"<integer>\"\n  },\n  \"warnings\": {\n    \"warning_msg\": \"<string>\",\n    \"warning_name\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:42.000Z",
+                  "updatedAt": "2026-07-28T01:54:42.000Z",
+                  "uid": "35240-1a7f75c1-33ab-4e61-957a-3ab6338fba1a"
+                },
+                {
+                  "id": "235673e5-3432-406e-9167-1190d4c55052",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fax_line/list?account_id=<string>&page=1&page_size=20&show_team_lines=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax_line",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "Account ID",
+                          "key": "account_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Which page number of the Fax Line List to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                          "key": "page_size",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Include Fax Lines belonging to team members in the list",
+                          "key": "show_team_lines",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:42.000Z",
+                  "updatedAt": "2026-07-28T01:54:42.000Z",
+                  "uid": "35240-235673e5-3432-406e-9167-1190d4c55052"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:42.000Z",
+              "updatedAt": "2026-07-28T01:54:42.000Z",
+              "uid": "35240-848a1736-448d-401c-86d2-5e144477911e"
+            }
+          ],
+          "id": "ee564b02-5cec-4b80-8fef-60200f79bee7",
+          "createdAt": "2026-07-28T01:54:42.000Z",
+          "updatedAt": "2026-07-28T01:54:42.000Z",
+          "uid": "35240-ee564b02-5cec-4b80-8fef-60200f79bee7"
+        },
+        {
+          "name": "remove_user",
+          "item": [
+            {
+              "name": "Remove Fax Line Access",
+              "id": "49c907fb-e003-436b-bea1-2081c1bdd4fe",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/fax_line/remove_user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fax_line",
+                    "remove_user"
+                  ]
+                },
+                "description": "Removes a user's access to the specified Fax Line"
+              },
+              "response": [
+                {
+                  "id": "095fadfc-cf4a-4510-9467-193eadd22248",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/fax_line/remove_user",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax_line",
+                        "remove_user"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"fax_line\": {\n    \"number\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ]\n  },\n  \"warnings\": {\n    \"warning_msg\": \"<string>\",\n    \"warning_name\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:42.000Z",
+                  "updatedAt": "2026-07-28T01:54:42.000Z",
+                  "uid": "35240-095fadfc-cf4a-4510-9467-193eadd22248"
+                },
+                {
+                  "id": "2e0e1010-8869-4152-a9d2-da003d8fedc3",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/fax_line/remove_user",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax_line",
+                        "remove_user"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:42.000Z",
+                  "updatedAt": "2026-07-28T01:54:42.000Z",
+                  "uid": "35240-2e0e1010-8869-4152-a9d2-da003d8fedc3"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:42.000Z",
+              "updatedAt": "2026-07-28T01:54:42.000Z",
+              "uid": "35240-49c907fb-e003-436b-bea1-2081c1bdd4fe"
+            }
+          ],
+          "id": "d164e2cb-d55a-482d-bcf7-0b4b6ce917a5",
+          "createdAt": "2026-07-28T01:54:42.000Z",
+          "updatedAt": "2026-07-28T01:54:42.000Z",
+          "uid": "35240-d164e2cb-d55a-482d-bcf7-0b4b6ce917a5"
+        },
+        {
+          "name": "Get Fax Line",
+          "id": "40e217b2-f8c6-45f6-b8f1-51bcd5965f08",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/fax_line?number=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "fax_line"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The Fax Line number",
+                  "key": "number",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns the properties and settings of a Fax Line."
+          },
+          "response": [
+            {
+              "id": "5cb05265-f51b-4802-b348-0c44cfd2817c",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/fax_line?number=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fax_line"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Fax Line number",
+                      "key": "number",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Limit",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Remaining",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Ratelimit-Reset",
+                  "value": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"fax_line\": {\n    \"number\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ]\n  },\n  \"warnings\": {\n    \"warning_msg\": \"<string>\",\n    \"warning_name\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:54:42.000Z",
+              "updatedAt": "2026-07-28T01:54:42.000Z",
+              "uid": "35240-5cb05265-f51b-4802-b348-0c44cfd2817c"
+            },
+            {
+              "id": "8615e54a-58ee-46c9-9ff0-e4c4dcf9ea1e",
+              "name": "failed_operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/fax_line?number=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fax_line"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Fax Line number",
+                      "key": "number",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:54:42.000Z",
+              "updatedAt": "2026-07-28T01:54:42.000Z",
+              "uid": "35240-8615e54a-58ee-46c9-9ff0-e4c4dcf9ea1e"
+            }
+          ],
+          "createdAt": "2026-07-28T01:54:42.000Z",
+          "updatedAt": "2026-07-28T01:54:42.000Z",
+          "uid": "35240-40e217b2-f8c6-45f6-b8f1-51bcd5965f08"
+        },
+        {
+          "name": "Delete Fax Line",
+          "id": "88a3cae5-101e-476d-83ed-3a27bdd8ec9d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"number\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/fax_line",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "fax_line"
+              ]
+            },
+            "description": "Deletes the specified Fax Line from the subscription."
+          },
+          "response": [
+            {
+              "id": "e23540b1-361e-4a44-ae3e-cf730da81794",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/fax_line",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fax_line"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Limit",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Remaining",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Ratelimit-Reset",
+                  "value": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "",
+              "createdAt": "2026-07-28T01:54:42.000Z",
+              "updatedAt": "2026-07-28T01:54:42.000Z",
+              "uid": "35240-e23540b1-361e-4a44-ae3e-cf730da81794"
+            },
+            {
+              "id": "103ef244-2395-46fb-b99c-3b36de4dee85",
+              "name": "failed_operation",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/fax_line",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fax_line"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:54:42.000Z",
+              "updatedAt": "2026-07-28T01:54:42.000Z",
+              "uid": "35240-103ef244-2395-46fb-b99c-3b36de4dee85"
+            }
+          ],
+          "createdAt": "2026-07-28T01:54:42.000Z",
+          "updatedAt": "2026-07-28T01:54:42.000Z",
+          "uid": "35240-88a3cae5-101e-476d-83ed-3a27bdd8ec9d"
+        }
+      ],
+      "id": "a6f211b9-0850-4354-9e99-ff2d8e4c9b49",
+      "createdAt": "2026-07-28T01:54:42.000Z",
+      "updatedAt": "2026-07-28T01:54:42.000Z",
+      "uid": "35240-a6f211b9-0850-4354-9e99-ff2d8e4c9b49"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hellosign.com/v3"
+    }
+  ]
+}

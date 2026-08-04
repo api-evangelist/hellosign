@@ -1,0 +1,255 @@
+{
+  "info": {
+    "_postman_id": "797446fb-2f78-4ae8-b8f3-2e5482eb0527",
+    "name": "Dropbox Sign Account Report API",
+    "description": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:44.000Z",
+    "updatedAt": "2026-07-28T01:54:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-797446fb-2f78-4ae8-b8f3-2e5482eb0527"
+  },
+  "item": [
+    {
+      "name": "report",
+      "item": [
+        {
+          "name": "create",
+          "item": [
+            {
+              "name": "Create Report",
+              "id": "bcc6cfad-e6ac-4cc4-b5b2-a6229b3fc449",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"report_type\": [\n    \"user_activity\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/report/create",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "report",
+                    "create"
+                  ]
+                },
+                "description": "Request the creation of one or more report(s).\n\nWhen the report(s) have been generated, you will receive an email (one per requested report type) containing a link to download the report as a CSV file. The requested date range may be up to 12 months in duration, and `start_date` must not be more than 10 years in the past."
+              },
+              "response": [
+                {
+                  "id": "049d7f33-8245-4590-b277-9ad743a0cd5e",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"report_type\": [\n    \"user_activity\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/report/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "report",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"report\": {\n    \"success\": \"<string>\",\n    \"start_date\": \"<string>\",\n    \"end_date\": \"<string>\",\n    \"report_type\": [\n      \"user_activity\",\n      \"user_activity\"\n    ]\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:54:44.000Z",
+                  "updatedAt": "2026-07-28T01:54:44.000Z",
+                  "uid": "35240-049d7f33-8245-4590-b277-9ad743a0cd5e"
+                },
+                {
+                  "id": "824fbb2c-cf4f-44cb-9c4a-dbc64cc21544",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"report_type\": [\n    \"user_activity\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/report/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "report",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:44.000Z",
+                  "updatedAt": "2026-07-28T01:54:44.000Z",
+                  "uid": "35240-824fbb2c-cf4f-44cb-9c4a-dbc64cc21544"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:44.000Z",
+              "updatedAt": "2026-07-28T01:54:44.000Z",
+              "uid": "35240-bcc6cfad-e6ac-4cc4-b5b2-a6229b3fc449"
+            }
+          ],
+          "id": "624aea54-3238-4bcb-b295-ba16e7c28b6e",
+          "createdAt": "2026-07-28T01:54:44.000Z",
+          "updatedAt": "2026-07-28T01:54:44.000Z",
+          "uid": "35240-624aea54-3238-4bcb-b295-ba16e7c28b6e"
+        }
+      ],
+      "id": "0f93d366-130e-4653-b449-633a812321c9",
+      "createdAt": "2026-07-28T01:54:44.000Z",
+      "updatedAt": "2026-07-28T01:54:44.000Z",
+      "uid": "35240-0f93d366-130e-4653-b449-633a812321c9"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hellosign.com/v3"
+    }
+  ]
+}

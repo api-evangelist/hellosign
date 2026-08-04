@@ -1,0 +1,472 @@
+{
+  "info": {
+    "_postman_id": "3f24e2e5-a167-4327-b4f0-d02212808566",
+    "name": "Dropbox Sign Account Bulk Send Job API",
+    "description": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:37.000Z",
+    "updatedAt": "2026-07-28T01:54:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3f24e2e5-a167-4327-b4f0-d02212808566"
+  },
+  "item": [
+    {
+      "name": "bulk_send_job",
+      "item": [
+        {
+          "name": "{bulk_send_job_id}",
+          "item": [
+            {
+              "name": "Get Bulk Send Job",
+              "id": "c8c2fceb-3a01-44e9-ad1b-6fcba58af637",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bulk_send_job/:bulk_send_job_id?page=1&page_size=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bulk_send_job",
+                    ":bulk_send_job_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Which page number of the BulkSendJob list to return. Defaults to `1`.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is 20.",
+                      "key": "page_size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "69c0f81e-58a4-4217-845c-255db11b64dc",
+                      "key": "bulk_send_job_id",
+                      "value": "<string>",
+                      "description": "(Required) The id of the BulkSendJob to retrieve."
+                    }
+                  ]
+                },
+                "description": "Returns the status of the BulkSendJob and its SignatureRequests specified by the `bulk_send_job_id` parameter."
+              },
+              "response": [
+                {
+                  "id": "3d46cf91-cc99-48cf-bb3e-d67c91ee9968",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk_send_job/:bulk_send_job_id?page=1&page_size=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk_send_job",
+                        ":bulk_send_job_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Which page number of the BulkSendJob list to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is 20.",
+                          "key": "page_size",
+                          "value": "20"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "bulk_send_job_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"bulk_send_job\": {\n    \"bulk_send_job_id\": \"<string>\",\n    \"total\": \"<integer>\",\n    \"is_creator\": \"<boolean>\",\n    \"created_at\": \"<integer>\"\n  },\n  \"list_info\": {\n    \"num_pages\": \"<integer>\",\n    \"num_results\": \"<integer>\",\n    \"page\": \"<integer>\",\n    \"page_size\": \"<integer>\"\n  },\n  \"signature_requests\": [\n    {\n      \"test_mode\": false,\n      \"signature_request_id\": \"<string>\",\n      \"requester_email_address\": \"<string>\",\n      \"title\": \"<string>\",\n      \"original_title\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\",\n      \"metadata\": {},\n      \"created_at\": \"<integer>\",\n      \"expires_at\": \"<integer>\",\n      \"is_complete\": \"<boolean>\",\n      \"is_declined\": \"<boolean>\",\n      \"has_error\": \"<boolean>\",\n      \"files_url\": \"<string>\",\n      \"signing_url\": \"<string>\",\n      \"details_url\": \"<string>\",\n      \"cc_email_addresses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"signing_redirect_url\": \"<string>\",\n      \"final_copy_uri\": \"<string>\",\n      \"template_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"custom_fields\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"api_id\": \"<string>\",\n          \"editor\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"api_id\": \"<string>\",\n          \"editor\": \"<string>\"\n        }\n      ],\n      \"attachments\": [\n        {\n          \"id\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"name\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"instructions\": \"<string>\",\n          \"uploaded_at\": \"<integer>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"name\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"instructions\": \"<string>\",\n          \"uploaded_at\": \"<integer>\"\n        }\n      ],\n      \"response_data\": [\n        {\n          \"api_id\": \"<string>\",\n          \"signature_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"api_id\": \"<string>\",\n          \"signature_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"signatures\": [\n        {\n          \"signature_id\": \"<string>\",\n          \"signer_group_guid\": \"<string>\",\n          \"signer_email_address\": \"<string>\",\n          \"signer_name\": \"<string>\",\n          \"signer_role\": \"<string>\",\n          \"order\": \"<integer>\",\n          \"status_code\": \"<string>\",\n          \"decline_reason\": \"<string>\",\n          \"signed_at\": \"<integer>\",\n          \"last_viewed_at\": \"<integer>\",\n          \"last_reminded_at\": \"<integer>\",\n          \"has_pin\": \"<boolean>\",\n          \"has_sms_auth\": \"<boolean>\",\n          \"has_sms_delivery\": \"<boolean>\",\n          \"sms_phone_number\": \"<string>\",\n          \"reassigned_by\": \"<string>\",\n          \"reassignment_reason\": \"<string>\",\n          \"reassigned_from\": \"<string>\",\n          \"error\": \"<string>\"\n        },\n        {\n          \"signature_id\": \"<string>\",\n          \"signer_group_guid\": \"<string>\",\n          \"signer_email_address\": \"<string>\",\n          \"signer_name\": \"<string>\",\n          \"signer_role\": \"<string>\",\n          \"order\": \"<integer>\",\n          \"status_code\": \"<string>\",\n          \"decline_reason\": \"<string>\",\n          \"signed_at\": \"<integer>\",\n          \"last_viewed_at\": \"<integer>\",\n          \"last_reminded_at\": \"<integer>\",\n          \"has_pin\": \"<boolean>\",\n          \"has_sms_auth\": \"<boolean>\",\n          \"has_sms_delivery\": \"<boolean>\",\n          \"sms_phone_number\": \"<string>\",\n          \"reassigned_by\": \"<string>\",\n          \"reassignment_reason\": \"<string>\",\n          \"reassigned_from\": \"<string>\",\n          \"error\": \"<string>\"\n        }\n      ],\n      \"bulk_send_job_id\": \"<string>\"\n    },\n    {\n      \"test_mode\": false,\n      \"signature_request_id\": \"<string>\",\n      \"requester_email_address\": \"<string>\",\n      \"title\": \"<string>\",\n      \"original_title\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\",\n      \"metadata\": {},\n      \"created_at\": \"<integer>\",\n      \"expires_at\": \"<integer>\",\n      \"is_complete\": \"<boolean>\",\n      \"is_declined\": \"<boolean>\",\n      \"has_error\": \"<boolean>\",\n      \"files_url\": \"<string>\",\n      \"signing_url\": \"<string>\",\n      \"details_url\": \"<string>\",\n      \"cc_email_addresses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"signing_redirect_url\": \"<string>\",\n      \"final_copy_uri\": \"<string>\",\n      \"template_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"custom_fields\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"api_id\": \"<string>\",\n          \"editor\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"api_id\": \"<string>\",\n          \"editor\": \"<string>\"\n        }\n      ],\n      \"attachments\": [\n        {\n          \"id\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"name\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"instructions\": \"<string>\",\n          \"uploaded_at\": \"<integer>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"name\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"instructions\": \"<string>\",\n          \"uploaded_at\": \"<integer>\"\n        }\n      ],\n      \"response_data\": [\n        {\n          \"api_id\": \"<string>\",\n          \"signature_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"api_id\": \"<string>\",\n          \"signature_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"signatures\": [\n        {\n          \"signature_id\": \"<string>\",\n          \"signer_group_guid\": \"<string>\",\n          \"signer_email_address\": \"<string>\",\n          \"signer_name\": \"<string>\",\n          \"signer_role\": \"<string>\",\n          \"order\": \"<integer>\",\n          \"status_code\": \"<string>\",\n          \"decline_reason\": \"<string>\",\n          \"signed_at\": \"<integer>\",\n          \"last_viewed_at\": \"<integer>\",\n          \"last_reminded_at\": \"<integer>\",\n          \"has_pin\": \"<boolean>\",\n          \"has_sms_auth\": \"<boolean>\",\n          \"has_sms_delivery\": \"<boolean>\",\n          \"sms_phone_number\": \"<string>\",\n          \"reassigned_by\": \"<string>\",\n          \"reassignment_reason\": \"<string>\",\n          \"reassigned_from\": \"<string>\",\n          \"error\": \"<string>\"\n        },\n        {\n          \"signature_id\": \"<string>\",\n          \"signer_group_guid\": \"<string>\",\n          \"signer_email_address\": \"<string>\",\n          \"signer_name\": \"<string>\",\n          \"signer_role\": \"<string>\",\n          \"order\": \"<integer>\",\n          \"status_code\": \"<string>\",\n          \"decline_reason\": \"<string>\",\n          \"signed_at\": \"<integer>\",\n          \"last_viewed_at\": \"<integer>\",\n          \"last_reminded_at\": \"<integer>\",\n          \"has_pin\": \"<boolean>\",\n          \"has_sms_auth\": \"<boolean>\",\n          \"has_sms_delivery\": \"<boolean>\",\n          \"sms_phone_number\": \"<string>\",\n          \"reassigned_by\": \"<string>\",\n          \"reassignment_reason\": \"<string>\",\n          \"reassigned_from\": \"<string>\",\n          \"error\": \"<string>\"\n        }\n      ],\n      \"bulk_send_job_id\": \"<string>\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:54:37.000Z",
+                  "updatedAt": "2026-07-28T01:54:37.000Z",
+                  "uid": "35240-3d46cf91-cc99-48cf-bb3e-d67c91ee9968"
+                },
+                {
+                  "id": "305a1e78-a0ed-446c-8da6-b0a756effe3d",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk_send_job/:bulk_send_job_id?page=1&page_size=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk_send_job",
+                        ":bulk_send_job_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Which page number of the BulkSendJob list to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is 20.",
+                          "key": "page_size",
+                          "value": "20"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "bulk_send_job_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:37.000Z",
+                  "updatedAt": "2026-07-28T01:54:37.000Z",
+                  "uid": "35240-305a1e78-a0ed-446c-8da6-b0a756effe3d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:37.000Z",
+              "updatedAt": "2026-07-28T01:54:37.000Z",
+              "uid": "35240-c8c2fceb-3a01-44e9-ad1b-6fcba58af637"
+            }
+          ],
+          "id": "b3424322-83ee-4767-80e3-b7377f06c8b6",
+          "createdAt": "2026-07-28T01:54:37.000Z",
+          "updatedAt": "2026-07-28T01:54:37.000Z",
+          "uid": "35240-b3424322-83ee-4767-80e3-b7377f06c8b6"
+        },
+        {
+          "name": "list",
+          "item": [
+            {
+              "name": "List Bulk Send Jobs",
+              "id": "2bad6e35-2910-453e-a4dd-ee9082f16893",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bulk_send_job/list?page=1&page_size=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bulk_send_job",
+                    "list"
+                  ],
+                  "query": [
+                    {
+                      "description": "Which page number of the BulkSendJob List to return. Defaults to `1`.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is 20.",
+                      "key": "page_size",
+                      "value": "20"
+                    }
+                  ]
+                },
+                "description": "Returns a list of BulkSendJob that you can access."
+              },
+              "response": [
+                {
+                  "id": "192718f1-e46a-4057-bcdb-58a27de7f0b9",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk_send_job/list?page=1&page_size=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk_send_job",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "Which page number of the BulkSendJob List to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is 20.",
+                          "key": "page_size",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"bulk_send_jobs\": [\n    {\n      \"bulk_send_job_id\": \"<string>\",\n      \"total\": \"<integer>\",\n      \"is_creator\": \"<boolean>\",\n      \"created_at\": \"<integer>\"\n    },\n    {\n      \"bulk_send_job_id\": \"<string>\",\n      \"total\": \"<integer>\",\n      \"is_creator\": \"<boolean>\",\n      \"created_at\": \"<integer>\"\n    }\n  ],\n  \"list_info\": {\n    \"num_pages\": \"<integer>\",\n    \"num_results\": \"<integer>\",\n    \"page\": \"<integer>\",\n    \"page_size\": \"<integer>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:54:37.000Z",
+                  "updatedAt": "2026-07-28T01:54:37.000Z",
+                  "uid": "35240-192718f1-e46a-4057-bcdb-58a27de7f0b9"
+                },
+                {
+                  "id": "da8cce59-cc4b-4605-af94-73018154de90",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bulk_send_job/list?page=1&page_size=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bulk_send_job",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "Which page number of the BulkSendJob List to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is 20.",
+                          "key": "page_size",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:37.000Z",
+                  "updatedAt": "2026-07-28T01:54:37.000Z",
+                  "uid": "35240-da8cce59-cc4b-4605-af94-73018154de90"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:37.000Z",
+              "updatedAt": "2026-07-28T01:54:37.000Z",
+              "uid": "35240-2bad6e35-2910-453e-a4dd-ee9082f16893"
+            }
+          ],
+          "id": "5be37319-1b9e-489c-9dde-43209c2d6b8b",
+          "createdAt": "2026-07-28T01:54:37.000Z",
+          "updatedAt": "2026-07-28T01:54:37.000Z",
+          "uid": "35240-5be37319-1b9e-489c-9dde-43209c2d6b8b"
+        }
+      ],
+      "id": "05bb630b-2e10-4847-b757-45f46ac3605e",
+      "createdAt": "2026-07-28T01:54:37.000Z",
+      "updatedAt": "2026-07-28T01:54:37.000Z",
+      "uid": "35240-05bb630b-2e10-4847-b757-45f46ac3605e"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hellosign.com/v3"
+    }
+  ]
+}

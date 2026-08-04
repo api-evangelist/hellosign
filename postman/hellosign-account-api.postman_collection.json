@@ -1,0 +1,858 @@
+{
+  "info": {
+    "_postman_id": "3d205a7f-dd13-48d9-af12-87ddd9d7eb7f",
+    "name": "Dropbox Sign Account API",
+    "description": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:34.000Z",
+    "updatedAt": "2026-07-28T01:54:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3d205a7f-dd13-48d9-af12-87ddd9d7eb7f"
+  },
+  "item": [
+    {
+      "name": "account",
+      "item": [
+        {
+          "name": "create",
+          "item": [
+            {
+              "name": "Create Account",
+              "id": "84a75893-1c99-4bf1-bcdb-74859f248279",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email_address\": \"<email>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"locale\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/account/create",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account",
+                    "create"
+                  ]
+                },
+                "description": "Creates a new Dropbox Sign Account that is associated with the specified `email_address`."
+              },
+              "response": [
+                {
+                  "id": "a026441e-5e2e-4291-bcbf-7d27dbb9ac9a",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email_address\": \"<email>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"locale\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/account/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"account\": {\n    \"account_id\": \"<string>\",\n    \"email_address\": \"<string>\",\n    \"is_locked\": \"<boolean>\",\n    \"is_paid_hs\": \"<boolean>\",\n    \"is_paid_hf\": \"<boolean>\",\n    \"quotas\": {\n      \"api_signature_requests_left\": \"<integer>\",\n      \"documents_left\": \"<integer>\",\n      \"templates_total\": \"<integer>\",\n      \"templates_left\": \"<integer>\",\n      \"sms_verifications_left\": \"<integer>\",\n      \"num_fax_pages_left\": \"<integer>\"\n    },\n    \"callback_url\": \"<string>\",\n    \"role_code\": \"<string>\",\n    \"team_id\": \"<string>\",\n    \"locale\": \"<string>\",\n    \"usage\": {\n      \"fax_pages_sent\": \"<integer>\"\n    },\n    \"settings\": {\n      \"signer_access_codes\": \"<boolean>\",\n      \"sms_delivery\": \"<boolean>\",\n      \"sms_authentication\": \"<boolean>\"\n    }\n  },\n  \"oauth_data\": {\n    \"access_token\": \"<string>\",\n    \"token_type\": \"<string>\",\n    \"refresh_token\": \"<string>\",\n    \"expires_in\": \"<integer>\",\n    \"state\": \"<string>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:54:35.000Z",
+                  "updatedAt": "2026-07-28T01:54:35.000Z",
+                  "uid": "35240-a026441e-5e2e-4291-bcbf-7d27dbb9ac9a"
+                },
+                {
+                  "id": "06ad1843-3689-4d65-9780-070fbeb72923",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email_address\": \"<email>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"locale\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/account/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:35.000Z",
+                  "updatedAt": "2026-07-28T01:54:35.000Z",
+                  "uid": "35240-06ad1843-3689-4d65-9780-070fbeb72923"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:35.000Z",
+              "updatedAt": "2026-07-28T01:54:35.000Z",
+              "uid": "35240-84a75893-1c99-4bf1-bcdb-74859f248279"
+            }
+          ],
+          "id": "29b2a474-60e1-4449-ad45-9cd29f96376d",
+          "createdAt": "2026-07-28T01:54:35.000Z",
+          "updatedAt": "2026-07-28T01:54:35.000Z",
+          "uid": "35240-29b2a474-60e1-4449-ad45-9cd29f96376d"
+        },
+        {
+          "name": "verify",
+          "item": [
+            {
+              "name": "Verify Account",
+              "id": "23df867a-e59f-4c35-83f4-ef22e45e6a1f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email_address\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/account/verify",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account",
+                    "verify"
+                  ]
+                },
+                "description": "Verifies whether an Dropbox Sign Account exists for the given email address."
+              },
+              "response": [
+                {
+                  "id": "3dcd1580-29ef-4f13-94bf-061eba67a8b0",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email_address\": \"<email>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/account/verify",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        "verify"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"account\": {\n    \"email_address\": \"<string>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:54:35.000Z",
+                  "updatedAt": "2026-07-28T01:54:35.000Z",
+                  "uid": "35240-3dcd1580-29ef-4f13-94bf-061eba67a8b0"
+                },
+                {
+                  "id": "fd7c6d14-2a07-4337-98a9-5e83bc34b380",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email_address\": \"<email>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/account/verify",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        "verify"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:35.000Z",
+                  "updatedAt": "2026-07-28T01:54:35.000Z",
+                  "uid": "35240-fd7c6d14-2a07-4337-98a9-5e83bc34b380"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:35.000Z",
+              "updatedAt": "2026-07-28T01:54:35.000Z",
+              "uid": "35240-23df867a-e59f-4c35-83f4-ef22e45e6a1f"
+            }
+          ],
+          "id": "941be917-7aad-4c30-b5e4-f21899590801",
+          "createdAt": "2026-07-28T01:54:35.000Z",
+          "updatedAt": "2026-07-28T01:54:35.000Z",
+          "uid": "35240-941be917-7aad-4c30-b5e4-f21899590801"
+        },
+        {
+          "name": "Get Account",
+          "id": "98b4d29d-5dff-4785-96db-9261170de77b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/account?account_id=<string>&email_address=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account"
+              ],
+              "query": [
+                {
+                  "description": "`account_id` or `email_address` is required. If both are provided, the account id prevails.\n\nThe ID of the Account.",
+                  "key": "account_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "`account_id` or `email_address` is required, If both are provided, the account id prevails.\n\nThe email address of the Account.",
+                  "key": "email_address",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns the properties and settings of your Account."
+          },
+          "response": [
+            {
+              "id": "0b0e1286-2f24-411b-a696-3287c9f636c9",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/account?account_id=<string>&email_address=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account"
+                  ],
+                  "query": [
+                    {
+                      "description": "`account_id` or `email_address` is required. If both are provided, the account id prevails.\n\nThe ID of the Account.",
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "`account_id` or `email_address` is required, If both are provided, the account id prevails.\n\nThe email address of the Account.",
+                      "key": "email_address",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Limit",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Remaining",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Ratelimit-Reset",
+                  "value": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"account\": {\n    \"account_id\": \"<string>\",\n    \"email_address\": \"<string>\",\n    \"is_locked\": \"<boolean>\",\n    \"is_paid_hs\": \"<boolean>\",\n    \"is_paid_hf\": \"<boolean>\",\n    \"quotas\": {\n      \"api_signature_requests_left\": \"<integer>\",\n      \"documents_left\": \"<integer>\",\n      \"templates_total\": \"<integer>\",\n      \"templates_left\": \"<integer>\",\n      \"sms_verifications_left\": \"<integer>\",\n      \"num_fax_pages_left\": \"<integer>\"\n    },\n    \"callback_url\": \"<string>\",\n    \"role_code\": \"<string>\",\n    \"team_id\": \"<string>\",\n    \"locale\": \"<string>\",\n    \"usage\": {\n      \"fax_pages_sent\": \"<integer>\"\n    },\n    \"settings\": {\n      \"signer_access_codes\": \"<boolean>\",\n      \"sms_delivery\": \"<boolean>\",\n      \"sms_authentication\": \"<boolean>\"\n    }\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:54:35.000Z",
+              "updatedAt": "2026-07-28T01:54:35.000Z",
+              "uid": "35240-0b0e1286-2f24-411b-a696-3287c9f636c9"
+            },
+            {
+              "id": "5e66afce-3747-4a31-922b-790085ad3ef2",
+              "name": "failed_operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/account?account_id=<string>&email_address=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account"
+                  ],
+                  "query": [
+                    {
+                      "description": "`account_id` or `email_address` is required. If both are provided, the account id prevails.\n\nThe ID of the Account.",
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "`account_id` or `email_address` is required, If both are provided, the account id prevails.\n\nThe email address of the Account.",
+                      "key": "email_address",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:54:35.000Z",
+              "updatedAt": "2026-07-28T01:54:35.000Z",
+              "uid": "35240-5e66afce-3747-4a31-922b-790085ad3ef2"
+            }
+          ],
+          "createdAt": "2026-07-28T01:54:35.000Z",
+          "updatedAt": "2026-07-28T01:54:35.000Z",
+          "uid": "35240-98b4d29d-5dff-4785-96db-9261170de77b"
+        },
+        {
+          "name": "Update Account",
+          "id": "40531a2c-b662-414d-8d13-7d11e160f88a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_id\": \"<string>\",\n  \"callback_url\": \"<string>\",\n  \"locale\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/account",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account"
+              ]
+            },
+            "description": "Updates the properties and settings of your Account. Currently only allows for updates to the [Callback URL](/api/reference/tag/Callbacks-and-Events) and locale."
+          },
+          "response": [
+            {
+              "id": "730157d4-e34d-47ae-8852-9ea73017e452",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<string>\",\n  \"callback_url\": \"<string>\",\n  \"locale\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Limit",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Remaining",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Ratelimit-Reset",
+                  "value": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"account\": {\n    \"account_id\": \"<string>\",\n    \"email_address\": \"<string>\",\n    \"is_locked\": \"<boolean>\",\n    \"is_paid_hs\": \"<boolean>\",\n    \"is_paid_hf\": \"<boolean>\",\n    \"quotas\": {\n      \"api_signature_requests_left\": \"<integer>\",\n      \"documents_left\": \"<integer>\",\n      \"templates_total\": \"<integer>\",\n      \"templates_left\": \"<integer>\",\n      \"sms_verifications_left\": \"<integer>\",\n      \"num_fax_pages_left\": \"<integer>\"\n    },\n    \"callback_url\": \"<string>\",\n    \"role_code\": \"<string>\",\n    \"team_id\": \"<string>\",\n    \"locale\": \"<string>\",\n    \"usage\": {\n      \"fax_pages_sent\": \"<integer>\"\n    },\n    \"settings\": {\n      \"signer_access_codes\": \"<boolean>\",\n      \"sms_delivery\": \"<boolean>\",\n      \"sms_authentication\": \"<boolean>\"\n    }\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:54:35.000Z",
+              "updatedAt": "2026-07-28T01:54:35.000Z",
+              "uid": "35240-730157d4-e34d-47ae-8852-9ea73017e452"
+            },
+            {
+              "id": "93b1e680-70fc-44aa-9492-e45c44e7e147",
+              "name": "failed_operation",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<string>\",\n  \"callback_url\": \"<string>\",\n  \"locale\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:54:35.000Z",
+              "updatedAt": "2026-07-28T01:54:35.000Z",
+              "uid": "35240-93b1e680-70fc-44aa-9492-e45c44e7e147"
+            }
+          ],
+          "createdAt": "2026-07-28T01:54:35.000Z",
+          "updatedAt": "2026-07-28T01:54:35.000Z",
+          "uid": "35240-40531a2c-b662-414d-8d13-7d11e160f88a"
+        }
+      ],
+      "id": "ae92b51c-e8ed-4242-82b7-024e1697a227",
+      "createdAt": "2026-07-28T01:54:35.000Z",
+      "updatedAt": "2026-07-28T01:54:35.000Z",
+      "uid": "35240-ae92b51c-e8ed-4242-82b7-024e1697a227"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hellosign.com/v3"
+    }
+  ]
+}

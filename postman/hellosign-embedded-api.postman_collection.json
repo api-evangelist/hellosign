@@ -1,0 +1,484 @@
+{
+  "info": {
+    "_postman_id": "57832a31-0027-4f04-91d9-9f5bb2a3124f",
+    "name": "Dropbox Sign Account Embedded API",
+    "description": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:39.000Z",
+    "updatedAt": "2026-07-28T01:54:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-57832a31-0027-4f04-91d9-9f5bb2a3124f"
+  },
+  "item": [
+    {
+      "name": "embedded",
+      "item": [
+        {
+          "name": "edit_url",
+          "item": [
+            {
+              "name": "{template_id}",
+              "item": [
+                {
+                  "name": "Get Embedded Template Edit URL",
+                  "id": "6285709d-60c2-4f22-99f8-94d60a801197",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"allow_edit_ccs\": false,\n  \"cc_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"force_signer_roles\": false,\n  \"force_subject_message\": false,\n  \"merge_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"checkbox\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"checkbox\"\n    }\n  ],\n  \"preview_only\": false,\n  \"show_preview\": false,\n  \"show_progress_stepper\": true,\n  \"test_mode\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/embedded/edit_url/:template_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "embedded",
+                        "edit_url",
+                        ":template_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "02aba8d1-d17b-4b59-83fe-fcaa909c0a66",
+                          "key": "template_id",
+                          "value": "<string>",
+                          "description": "(Required) The id of the template to edit."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves an embedded object containing a template url that can be opened in an iFrame. Note that only templates created via the embedded template process are available to be edited with this endpoint."
+                  },
+                  "response": [
+                    {
+                      "id": "65af0b23-26fc-42e8-a4c8-61ea9bccca9d",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"allow_edit_ccs\": false,\n  \"cc_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"force_signer_roles\": false,\n  \"force_subject_message\": false,\n  \"merge_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"checkbox\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"checkbox\"\n    }\n  ],\n  \"preview_only\": false,\n  \"show_preview\": false,\n  \"show_progress_stepper\": true,\n  \"test_mode\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/embedded/edit_url/:template_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "embedded",
+                            "edit_url",
+                            ":template_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Ratelimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"embedded\": {\n    \"edit_url\": \"<string>\",\n    \"expires_at\": \"<integer>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:54:39.000Z",
+                      "updatedAt": "2026-07-28T01:54:39.000Z",
+                      "uid": "35240-65af0b23-26fc-42e8-a4c8-61ea9bccca9d"
+                    },
+                    {
+                      "id": "5b2bb1e6-fbfa-42d1-a34f-df75a4e65719",
+                      "name": "failed_operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"allow_edit_ccs\": false,\n  \"cc_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"force_signer_roles\": false,\n  \"force_subject_message\": false,\n  \"merge_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"checkbox\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"checkbox\"\n    }\n  ],\n  \"preview_only\": false,\n  \"show_preview\": false,\n  \"show_progress_stepper\": true,\n  \"test_mode\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/embedded/edit_url/:template_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "embedded",
+                            "edit_url",
+                            ":template_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:54:39.000Z",
+                      "updatedAt": "2026-07-28T01:54:39.000Z",
+                      "uid": "35240-5b2bb1e6-fbfa-42d1-a34f-df75a4e65719"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:54:39.000Z",
+                  "updatedAt": "2026-07-28T01:54:39.000Z",
+                  "uid": "35240-6285709d-60c2-4f22-99f8-94d60a801197"
+                }
+              ],
+              "id": "11908e82-eb1e-4de4-b3c7-5ce8e5197dec",
+              "createdAt": "2026-07-28T01:54:39.000Z",
+              "updatedAt": "2026-07-28T01:54:39.000Z",
+              "uid": "35240-11908e82-eb1e-4de4-b3c7-5ce8e5197dec"
+            }
+          ],
+          "id": "e07e0b6d-0d94-4123-9972-43b975ad0f97",
+          "createdAt": "2026-07-28T01:54:39.000Z",
+          "updatedAt": "2026-07-28T01:54:39.000Z",
+          "uid": "35240-e07e0b6d-0d94-4123-9972-43b975ad0f97"
+        },
+        {
+          "name": "sign_url",
+          "item": [
+            {
+              "name": "{signature_id}",
+              "item": [
+                {
+                  "name": "Get Embedded Sign URL",
+                  "id": "4f0a901e-d3f7-44d0-b1bf-daea20a41fee",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/embedded/sign_url/:signature_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "embedded",
+                        "sign_url",
+                        ":signature_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7c12b313-12d8-46cd-b3ad-45d19f463add",
+                          "key": "signature_id",
+                          "value": "<string>",
+                          "description": "(Required) The id of the signature to get a signature url for."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves an embedded object containing a signature url that can be opened in an iFrame. Note that templates created via the embedded template process will only be accessible through the API."
+                  },
+                  "response": [
+                    {
+                      "id": "c2bb849f-9f99-4182-a7cf-6c66ec9a872c",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/embedded/sign_url/:signature_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "embedded",
+                            "sign_url",
+                            ":signature_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signature_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Ratelimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"embedded\": {\n    \"sign_url\": \"<string>\",\n    \"expires_at\": \"<integer>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:54:39.000Z",
+                      "updatedAt": "2026-07-28T01:54:39.000Z",
+                      "uid": "35240-c2bb849f-9f99-4182-a7cf-6c66ec9a872c"
+                    },
+                    {
+                      "id": "82d89924-9a98-4456-a24b-f7a56c9e6101",
+                      "name": "failed_operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/embedded/sign_url/:signature_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "embedded",
+                            "sign_url",
+                            ":signature_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signature_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:54:39.000Z",
+                      "updatedAt": "2026-07-28T01:54:39.000Z",
+                      "uid": "35240-82d89924-9a98-4456-a24b-f7a56c9e6101"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:54:39.000Z",
+                  "updatedAt": "2026-07-28T01:54:39.000Z",
+                  "uid": "35240-4f0a901e-d3f7-44d0-b1bf-daea20a41fee"
+                }
+              ],
+              "id": "abee1485-5588-4fd9-8051-e643258d2369",
+              "createdAt": "2026-07-28T01:54:39.000Z",
+              "updatedAt": "2026-07-28T01:54:39.000Z",
+              "uid": "35240-abee1485-5588-4fd9-8051-e643258d2369"
+            }
+          ],
+          "id": "981b6fce-383b-4b2b-8b35-4ea34668d8f2",
+          "createdAt": "2026-07-28T01:54:39.000Z",
+          "updatedAt": "2026-07-28T01:54:39.000Z",
+          "uid": "35240-981b6fce-383b-4b2b-8b35-4ea34668d8f2"
+        }
+      ],
+      "id": "6703b963-e37e-4b6d-806e-b9392bc150bd",
+      "createdAt": "2026-07-28T01:54:39.000Z",
+      "updatedAt": "2026-07-28T01:54:39.000Z",
+      "uid": "35240-6703b963-e37e-4b6d-806e-b9392bc150bd"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hellosign.com/v3"
+    }
+  ]
+}

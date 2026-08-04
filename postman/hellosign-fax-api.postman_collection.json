@@ -1,0 +1,1016 @@
+{
+  "info": {
+    "_postman_id": "4339d7c0-c317-4ba0-82ea-e66a5283f5f0",
+    "name": "Dropbox Sign Account Fax API",
+    "description": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:40.000Z",
+    "updatedAt": "2026-07-28T01:54:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4339d7c0-c317-4ba0-82ea-e66a5283f5f0"
+  },
+  "item": [
+    {
+      "name": "fax",
+      "item": [
+        {
+          "name": "{fax_id}",
+          "item": [
+            {
+              "name": "Get Fax",
+              "id": "bd3a2a72-6a93-4360-87e7-4bf7752679be",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/fax/:fax_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fax",
+                    ":fax_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2d9ea918-52ef-40a6-91b7-801b0e978191",
+                      "key": "fax_id",
+                      "value": "<string>",
+                      "description": "(Required) Fax ID"
+                    }
+                  ]
+                },
+                "description": "Returns information about a Fax"
+              },
+              "response": [
+                {
+                  "id": "f7b94b55-4978-45bd-ab1a-7fc81ac3505d",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fax/:fax_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax",
+                        ":fax_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "fax_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"fax\": {\n    \"fax_id\": \"<string>\",\n    \"title\": \"<string>\",\n    \"original_title\": \"<string>\",\n    \"metadata\": {\n      \"irure06d\": {}\n    },\n    \"created_at\": \"<integer>\",\n    \"sender\": \"<string>\",\n    \"files_url\": \"<string>\",\n    \"transmissions\": [\n      {\n        \"recipient\": \"<string>\",\n        \"status_code\": \"transmitting\",\n        \"sent_at\": \"<integer>\"\n      },\n      {\n        \"recipient\": \"<string>\",\n        \"status_code\": \"success\",\n        \"sent_at\": \"<integer>\"\n      }\n    ],\n    \"subject\": \"<string>\",\n    \"message\": \"<string>\",\n    \"final_copy_uri\": \"<string>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:54:40.000Z",
+                  "updatedAt": "2026-07-28T01:54:40.000Z",
+                  "uid": "35240-f7b94b55-4978-45bd-ab1a-7fc81ac3505d"
+                },
+                {
+                  "id": "0e9abba6-caad-4cdf-86a3-ac3f7a5b0805",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fax/:fax_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax",
+                        ":fax_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "fax_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:40.000Z",
+                  "updatedAt": "2026-07-28T01:54:40.000Z",
+                  "uid": "35240-0e9abba6-caad-4cdf-86a3-ac3f7a5b0805"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:40.000Z",
+              "updatedAt": "2026-07-28T01:54:40.000Z",
+              "uid": "35240-bd3a2a72-6a93-4360-87e7-4bf7752679be"
+            },
+            {
+              "name": "Delete Fax",
+              "id": "78378fdb-1b4d-4228-868b-0f8608129168",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/fax/:fax_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fax",
+                    ":fax_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "24655a64-1e8c-4f85-b5c7-ce02b479c608",
+                      "key": "fax_id",
+                      "value": "<string>",
+                      "description": "(Required) Fax ID"
+                    }
+                  ]
+                },
+                "description": "Deletes the specified Fax from the system"
+              },
+              "response": [
+                {
+                  "id": "2cd0f548-3fba-4c5f-9523-bc042a82b8fb",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fax/:fax_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax",
+                        ":fax_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "fax_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:54:40.000Z",
+                  "updatedAt": "2026-07-28T01:54:40.000Z",
+                  "uid": "35240-2cd0f548-3fba-4c5f-9523-bc042a82b8fb"
+                },
+                {
+                  "id": "c35245fb-36ac-4071-86f5-8f86ad80c1fa",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fax/:fax_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax",
+                        ":fax_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "fax_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:40.000Z",
+                  "updatedAt": "2026-07-28T01:54:40.000Z",
+                  "uid": "35240-c35245fb-36ac-4071-86f5-8f86ad80c1fa"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:40.000Z",
+              "updatedAt": "2026-07-28T01:54:40.000Z",
+              "uid": "35240-78378fdb-1b4d-4228-868b-0f8608129168"
+            }
+          ],
+          "id": "cdfb7c2f-342a-4436-bc53-b67eb7aaf368",
+          "createdAt": "2026-07-28T01:54:40.000Z",
+          "updatedAt": "2026-07-28T01:54:40.000Z",
+          "uid": "35240-cdfb7c2f-342a-4436-bc53-b67eb7aaf368"
+        },
+        {
+          "name": "files",
+          "item": [
+            {
+              "name": "{fax_id}",
+              "item": [
+                {
+                  "name": "Download Fax Files",
+                  "id": "daebef61-8276-432f-8da9-a70b7ce564e3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/pdf"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fax/files/:fax_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax",
+                        "files",
+                        ":fax_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a60bb2d2-572d-48e3-8f15-8d99ad3fa5ad",
+                          "key": "fax_id",
+                          "value": "<string>",
+                          "description": "(Required) Fax ID"
+                        }
+                      ]
+                    },
+                    "description": "Downloads files associated with a Fax"
+                  },
+                  "response": [
+                    {
+                      "id": "52ed4507-b050-4b6c-921f-c52bca918434",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/pdf"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fax/files/:fax_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fax",
+                            "files",
+                            ":fax_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "fax_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/pdf"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Ratelimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<binary>",
+                      "createdAt": "2026-07-28T01:54:40.000Z",
+                      "updatedAt": "2026-07-28T01:54:40.000Z",
+                      "uid": "35240-52ed4507-b050-4b6c-921f-c52bca918434"
+                    },
+                    {
+                      "id": "fee7d7fa-12c5-4f18-9bd2-a6e8b15499bc",
+                      "name": "failed_operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fax/files/:fax_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fax",
+                            "files",
+                            ":fax_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "fax_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:54:40.000Z",
+                      "updatedAt": "2026-07-28T01:54:40.000Z",
+                      "uid": "35240-fee7d7fa-12c5-4f18-9bd2-a6e8b15499bc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:54:40.000Z",
+                  "updatedAt": "2026-07-28T01:54:40.000Z",
+                  "uid": "35240-daebef61-8276-432f-8da9-a70b7ce564e3"
+                }
+              ],
+              "id": "52884ed0-c098-461f-a5ff-27363e3e4289",
+              "createdAt": "2026-07-28T01:54:40.000Z",
+              "updatedAt": "2026-07-28T01:54:40.000Z",
+              "uid": "35240-52884ed0-c098-461f-a5ff-27363e3e4289"
+            }
+          ],
+          "id": "9660484b-b45a-488c-83e3-b81f01ede171",
+          "createdAt": "2026-07-28T01:54:40.000Z",
+          "updatedAt": "2026-07-28T01:54:40.000Z",
+          "uid": "35240-9660484b-b45a-488c-83e3-b81f01ede171"
+        },
+        {
+          "name": "list",
+          "item": [
+            {
+              "name": "Lists Faxes",
+              "id": "dc62dd4c-d6d4-46d1-a025-7a906f2fce29",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/fax/list?page=1&page_size=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fax",
+                    "list"
+                  ],
+                  "query": [
+                    {
+                      "description": "Which page number of the Fax List to return. Defaults to `1`.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                      "key": "page_size",
+                      "value": "20"
+                    }
+                  ]
+                },
+                "description": "Returns properties of multiple Faxes"
+              },
+              "response": [
+                {
+                  "id": "bf6cd5cc-5388-451d-99e9-610d1a001b66",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fax/list?page=1&page_size=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "Which page number of the Fax List to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                          "key": "page_size",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"faxes\": [\n    {\n      \"fax_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"original_title\": \"<string>\",\n      \"metadata\": {\n        \"do08\": {}\n      },\n      \"created_at\": \"<integer>\",\n      \"sender\": \"<string>\",\n      \"files_url\": \"<string>\",\n      \"transmissions\": [\n        {\n          \"recipient\": \"<string>\",\n          \"status_code\": \"error_busy\",\n          \"sent_at\": \"<integer>\"\n        },\n        {\n          \"recipient\": \"<string>\",\n          \"status_code\": \"error_no_answer\",\n          \"sent_at\": \"<integer>\"\n        }\n      ],\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\",\n      \"final_copy_uri\": \"<string>\"\n    },\n    {\n      \"fax_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"original_title\": \"<string>\",\n      \"metadata\": {\n        \"deserunt5f7\": {},\n        \"esse_07\": {}\n      },\n      \"created_at\": \"<integer>\",\n      \"sender\": \"<string>\",\n      \"files_url\": \"<string>\",\n      \"transmissions\": [\n        {\n          \"recipient\": \"<string>\",\n          \"status_code\": \"error_bad_destination\",\n          \"sent_at\": \"<integer>\"\n        },\n        {\n          \"recipient\": \"<string>\",\n          \"status_code\": \"error_unknown\",\n          \"sent_at\": \"<integer>\"\n        }\n      ],\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\",\n      \"final_copy_uri\": \"<string>\"\n    }\n  ],\n  \"list_info\": {\n    \"num_pages\": \"<integer>\",\n    \"num_results\": \"<integer>\",\n    \"page\": \"<integer>\",\n    \"page_size\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:40.000Z",
+                  "updatedAt": "2026-07-28T01:54:40.000Z",
+                  "uid": "35240-bf6cd5cc-5388-451d-99e9-610d1a001b66"
+                },
+                {
+                  "id": "accd2363-0fea-47ba-819c-2f754dea81fe",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fax/list?page=1&page_size=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "Which page number of the Fax List to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                          "key": "page_size",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:40.000Z",
+                  "updatedAt": "2026-07-28T01:54:40.000Z",
+                  "uid": "35240-accd2363-0fea-47ba-819c-2f754dea81fe"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:40.000Z",
+              "updatedAt": "2026-07-28T01:54:40.000Z",
+              "uid": "35240-dc62dd4c-d6d4-46d1-a025-7a906f2fce29"
+            }
+          ],
+          "id": "1cb1594d-24f6-4951-b7ea-23d63629bcd8",
+          "createdAt": "2026-07-28T01:54:40.000Z",
+          "updatedAt": "2026-07-28T01:54:40.000Z",
+          "uid": "35240-1cb1594d-24f6-4951-b7ea-23d63629bcd8"
+        },
+        {
+          "name": "send",
+          "item": [
+            {
+              "name": "Send Fax",
+              "id": "99cd2a9a-6517-4fae-b557-df863a540281",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": \"<string>\",\n  \"sender\": \"<string>\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test_mode\": false,\n  \"cover_page_to\": \"<string>\",\n  \"cover_page_from\": \"<string>\",\n  \"cover_page_message\": \"<string>\",\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/fax/send",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fax",
+                    "send"
+                  ]
+                },
+                "description": "Creates and sends a new Fax with the submitted file(s)"
+              },
+              "response": [
+                {
+                  "id": "2b415ebd-21a8-4a85-8be6-c225cb46d7fb",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"recipient\": \"<string>\",\n  \"sender\": \"<string>\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test_mode\": false,\n  \"cover_page_to\": \"<string>\",\n  \"cover_page_from\": \"<string>\",\n  \"cover_page_message\": \"<string>\",\n  \"title\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/fax/send",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax",
+                        "send"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"fax\": {\n    \"fax_id\": \"<string>\",\n    \"title\": \"<string>\",\n    \"original_title\": \"<string>\",\n    \"metadata\": {\n      \"irure06d\": {}\n    },\n    \"created_at\": \"<integer>\",\n    \"sender\": \"<string>\",\n    \"files_url\": \"<string>\",\n    \"transmissions\": [\n      {\n        \"recipient\": \"<string>\",\n        \"status_code\": \"transmitting\",\n        \"sent_at\": \"<integer>\"\n      },\n      {\n        \"recipient\": \"<string>\",\n        \"status_code\": \"success\",\n        \"sent_at\": \"<integer>\"\n      }\n    ],\n    \"subject\": \"<string>\",\n    \"message\": \"<string>\",\n    \"final_copy_uri\": \"<string>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:54:40.000Z",
+                  "updatedAt": "2026-07-28T01:54:40.000Z",
+                  "uid": "35240-2b415ebd-21a8-4a85-8be6-c225cb46d7fb"
+                },
+                {
+                  "id": "df69a87f-987d-46c1-a3be-c664967acdf7",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"recipient\": \"<string>\",\n  \"sender\": \"<string>\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test_mode\": false,\n  \"cover_page_to\": \"<string>\",\n  \"cover_page_from\": \"<string>\",\n  \"cover_page_message\": \"<string>\",\n  \"title\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/fax/send",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fax",
+                        "send"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:40.000Z",
+                  "updatedAt": "2026-07-28T01:54:40.000Z",
+                  "uid": "35240-df69a87f-987d-46c1-a3be-c664967acdf7"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:40.000Z",
+              "updatedAt": "2026-07-28T01:54:40.000Z",
+              "uid": "35240-99cd2a9a-6517-4fae-b557-df863a540281"
+            }
+          ],
+          "id": "5617c68d-0ed9-4aaf-baba-3f5140713acb",
+          "createdAt": "2026-07-28T01:54:40.000Z",
+          "updatedAt": "2026-07-28T01:54:40.000Z",
+          "uid": "35240-5617c68d-0ed9-4aaf-baba-3f5140713acb"
+        }
+      ],
+      "id": "ef10aa74-c116-495c-890a-82fadf24f669",
+      "createdAt": "2026-07-28T01:54:40.000Z",
+      "updatedAt": "2026-07-28T01:54:40.000Z",
+      "uid": "35240-ef10aa74-c116-495c-890a-82fadf24f669"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hellosign.com/v3"
+    }
+  ]
+}

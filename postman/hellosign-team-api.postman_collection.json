@@ -1,0 +1,2065 @@
+{
+  "info": {
+    "_postman_id": "d24c7439-fb55-4bd9-b778-fe2d81284835",
+    "name": "Dropbox Sign Account Team API",
+    "description": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:55:04.000Z",
+    "updatedAt": "2026-07-28T01:55:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d24c7439-fb55-4bd9-b778-fe2d81284835"
+  },
+  "item": [
+    {
+      "name": "team",
+      "item": [
+        {
+          "name": "add_member",
+          "item": [
+            {
+              "name": "Add User to Team",
+              "id": "2b8e8f40-f7fc-422d-b69e-18a4633f1aaa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\",\n  \"role\": \"Member\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/team/add_member?team_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team",
+                    "add_member"
+                  ],
+                  "query": [
+                    {
+                      "description": "The id of the team.",
+                      "key": "team_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Invites a user (specified using the `email_address` parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a `team_invite_failed` error will be returned."
+              },
+              "response": [
+                {
+                  "id": "b0cfd36c-ac99-4095-b994-6468deb9a7e0",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\",\n  \"role\": \"Member\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/add_member?team_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "add_member"
+                      ],
+                      "query": [
+                        {
+                          "description": "The id of the team.",
+                          "key": "team_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"team\": {\n    \"name\": \"<string>\",\n    \"accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ],\n    \"invited_accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ],\n    \"invited_emails\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-b0cfd36c-ac99-4095-b994-6468deb9a7e0"
+                },
+                {
+                  "id": "e7965c1f-b02f-4039-b327-b31b3cad5e9b",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\",\n  \"role\": \"Member\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/add_member?team_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "add_member"
+                      ],
+                      "query": [
+                        {
+                          "description": "The id of the team.",
+                          "key": "team_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-e7965c1f-b02f-4039-b327-b31b3cad5e9b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:55:05.000Z",
+              "updatedAt": "2026-07-28T01:55:05.000Z",
+              "uid": "35240-2b8e8f40-f7fc-422d-b69e-18a4633f1aaa"
+            }
+          ],
+          "id": "e8418f6a-1df2-4671-b414-3b5829c5856b",
+          "createdAt": "2026-07-28T01:55:05.000Z",
+          "updatedAt": "2026-07-28T01:55:05.000Z",
+          "uid": "35240-e8418f6a-1df2-4671-b414-3b5829c5856b"
+        },
+        {
+          "name": "create",
+          "item": [
+            {
+              "name": "Create Team",
+              "id": "9ea36912-5cc8-454c-8c1e-6c220550bb49",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Untitled Team\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/team/create",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team",
+                    "create"
+                  ]
+                },
+                "description": "Creates a new Team and makes you a member. You must not currently belong to a Team to invoke."
+              },
+              "response": [
+                {
+                  "id": "c8bfdb21-4366-4f12-8d38-5dfc3dc3c3a2",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Untitled Team\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"team\": {\n    \"name\": \"<string>\",\n    \"accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ],\n    \"invited_accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ],\n    \"invited_emails\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-c8bfdb21-4366-4f12-8d38-5dfc3dc3c3a2"
+                },
+                {
+                  "id": "4176107b-3a11-4a13-9396-41428dae5b01",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Untitled Team\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-4176107b-3a11-4a13-9396-41428dae5b01"
+                }
+              ],
+              "createdAt": "2026-07-28T01:55:05.000Z",
+              "updatedAt": "2026-07-28T01:55:05.000Z",
+              "uid": "35240-9ea36912-5cc8-454c-8c1e-6c220550bb49"
+            }
+          ],
+          "id": "bc880693-e9c4-4068-8ea2-9e9ae12dc9ae",
+          "createdAt": "2026-07-28T01:55:05.000Z",
+          "updatedAt": "2026-07-28T01:55:05.000Z",
+          "uid": "35240-bc880693-e9c4-4068-8ea2-9e9ae12dc9ae"
+        },
+        {
+          "name": "destroy",
+          "item": [
+            {
+              "name": "Delete Team",
+              "id": "08ee4a75-097e-45bd-961d-e8b1461fa4c9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team/destroy",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team",
+                    "destroy"
+                  ]
+                },
+                "description": "Deletes your Team. Can only be invoked when you have a Team with only one member (yourself)."
+              },
+              "response": [
+                {
+                  "id": "eae11b95-6ed9-4af4-ac99-e0c482eb4f36",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/destroy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "destroy"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-eae11b95-6ed9-4af4-ac99-e0c482eb4f36"
+                },
+                {
+                  "id": "cf49b36f-3e7b-4dfe-9343-0b4f203552a2",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/destroy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "destroy"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-cf49b36f-3e7b-4dfe-9343-0b4f203552a2"
+                }
+              ],
+              "createdAt": "2026-07-28T01:55:05.000Z",
+              "updatedAt": "2026-07-28T01:55:05.000Z",
+              "uid": "35240-08ee4a75-097e-45bd-961d-e8b1461fa4c9"
+            }
+          ],
+          "id": "34fcf9f1-1334-462e-9440-a198ed82c0a5",
+          "createdAt": "2026-07-28T01:55:05.000Z",
+          "updatedAt": "2026-07-28T01:55:05.000Z",
+          "uid": "35240-34fcf9f1-1334-462e-9440-a198ed82c0a5"
+        },
+        {
+          "name": "info",
+          "item": [
+            {
+              "name": "Get Team Info",
+              "id": "f05f1c3a-4c13-4f8f-a1d4-4df2e5116f8f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team/info?team_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team",
+                    "info"
+                  ],
+                  "query": [
+                    {
+                      "description": "The id of the team.",
+                      "key": "team_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Provides information about a team."
+              },
+              "response": [
+                {
+                  "id": "9f2af707-78ab-4be3-be2c-fdbf5c4fc2eb",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/info?team_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "info"
+                      ],
+                      "query": [
+                        {
+                          "description": "The id of the team.",
+                          "key": "team_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"team\": {\n    \"team_id\": \"<string>\",\n    \"team_parent\": {\n      \"team_id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"num_members\": \"<integer>\",\n    \"num_sub_teams\": \"<integer>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-9f2af707-78ab-4be3-be2c-fdbf5c4fc2eb"
+                },
+                {
+                  "id": "7d86e439-01c2-4e17-96f7-74606fd52a7e",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/info?team_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "info"
+                      ],
+                      "query": [
+                        {
+                          "description": "The id of the team.",
+                          "key": "team_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-7d86e439-01c2-4e17-96f7-74606fd52a7e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:55:05.000Z",
+              "updatedAt": "2026-07-28T01:55:05.000Z",
+              "uid": "35240-f05f1c3a-4c13-4f8f-a1d4-4df2e5116f8f"
+            }
+          ],
+          "id": "4ff58ce0-e7f8-4e3e-9ae6-7c212cb1b57b",
+          "createdAt": "2026-07-28T01:55:05.000Z",
+          "updatedAt": "2026-07-28T01:55:05.000Z",
+          "uid": "35240-4ff58ce0-e7f8-4e3e-9ae6-7c212cb1b57b"
+        },
+        {
+          "name": "invites",
+          "item": [
+            {
+              "name": "List Team Invites",
+              "id": "f39c5db9-ea21-4015-983e-beb5707d4d5d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team/invites?email_address=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team",
+                    "invites"
+                  ],
+                  "query": [
+                    {
+                      "description": "The email address for which to display the team invites.",
+                      "key": "email_address",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Provides a list of team invites (and their roles)."
+              },
+              "response": [
+                {
+                  "id": "df3be70d-1115-4a00-9ed0-113992332bd8",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/invites?email_address=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "invites"
+                      ],
+                      "query": [
+                        {
+                          "description": "The email address for which to display the team invites.",
+                          "key": "email_address",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"team_invites\": [\n    {\n      \"email_address\": \"<string>\",\n      \"team_id\": \"<string>\",\n      \"role\": \"<string>\",\n      \"sent_at\": \"<integer>\",\n      \"redeemed_at\": \"<integer>\",\n      \"expires_at\": \"<integer>\"\n    },\n    {\n      \"email_address\": \"<string>\",\n      \"team_id\": \"<string>\",\n      \"role\": \"<string>\",\n      \"sent_at\": \"<integer>\",\n      \"redeemed_at\": \"<integer>\",\n      \"expires_at\": \"<integer>\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-df3be70d-1115-4a00-9ed0-113992332bd8"
+                },
+                {
+                  "id": "a6e2afef-db8a-4c87-a904-98d37075b2fc",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/invites?email_address=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "invites"
+                      ],
+                      "query": [
+                        {
+                          "description": "The email address for which to display the team invites.",
+                          "key": "email_address",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-a6e2afef-db8a-4c87-a904-98d37075b2fc"
+                }
+              ],
+              "createdAt": "2026-07-28T01:55:05.000Z",
+              "updatedAt": "2026-07-28T01:55:05.000Z",
+              "uid": "35240-f39c5db9-ea21-4015-983e-beb5707d4d5d"
+            }
+          ],
+          "id": "26a391e8-189c-4d7c-a218-b77b7058bb03",
+          "createdAt": "2026-07-28T01:55:05.000Z",
+          "updatedAt": "2026-07-28T01:55:05.000Z",
+          "uid": "35240-26a391e8-189c-4d7c-a218-b77b7058bb03"
+        },
+        {
+          "name": "members",
+          "item": [
+            {
+              "name": "{team_id}",
+              "item": [
+                {
+                  "name": "List Team Members",
+                  "id": "12a6ba76-9b05-4f1d-af56-fc881b914334",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/members/:team_id?page=1&page_size=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "members",
+                        ":team_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Which page number of the team member list to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                          "key": "page_size",
+                          "value": "20"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "beab3db4-3970-4c74-b374-dc93fd195a86",
+                          "key": "team_id",
+                          "value": "<string>",
+                          "description": "(Required) The id of the team that a member list is being requested from."
+                        }
+                      ]
+                    },
+                    "description": "Provides a paginated list of members (and their roles) that belong to a given team."
+                  },
+                  "response": [
+                    {
+                      "id": "07995dd2-ddd7-483c-9cca-a2351df6b604",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/members/:team_id?page=1&page_size=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "members",
+                            ":team_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Which page number of the team member list to return. Defaults to `1`.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                              "key": "page_size",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "team_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Ratelimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"team_members\": [\n    {\n      \"account_id\": \"<string>\",\n      \"email_address\": \"<string>\",\n      \"role\": \"<string>\"\n    },\n    {\n      \"account_id\": \"<string>\",\n      \"email_address\": \"<string>\",\n      \"role\": \"<string>\"\n    }\n  ],\n  \"list_info\": {\n    \"num_pages\": \"<integer>\",\n    \"num_results\": \"<integer>\",\n    \"page\": \"<integer>\",\n    \"page_size\": \"<integer>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:55:05.000Z",
+                      "updatedAt": "2026-07-28T01:55:05.000Z",
+                      "uid": "35240-07995dd2-ddd7-483c-9cca-a2351df6b604"
+                    },
+                    {
+                      "id": "896b479c-2fa8-41bf-ab91-903580558255",
+                      "name": "failed_operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/members/:team_id?page=1&page_size=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "members",
+                            ":team_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Which page number of the team member list to return. Defaults to `1`.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                              "key": "page_size",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "team_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:55:05.000Z",
+                      "updatedAt": "2026-07-28T01:55:05.000Z",
+                      "uid": "35240-896b479c-2fa8-41bf-ab91-903580558255"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-12a6ba76-9b05-4f1d-af56-fc881b914334"
+                }
+              ],
+              "id": "701b7b91-9c4c-4ad0-a70f-faaf91ed8e0a",
+              "createdAt": "2026-07-28T01:55:05.000Z",
+              "updatedAt": "2026-07-28T01:55:05.000Z",
+              "uid": "35240-701b7b91-9c4c-4ad0-a70f-faaf91ed8e0a"
+            }
+          ],
+          "id": "5b9a1dbf-710a-4363-8e64-446074e6a0b6",
+          "createdAt": "2026-07-28T01:55:05.000Z",
+          "updatedAt": "2026-07-28T01:55:05.000Z",
+          "uid": "35240-5b9a1dbf-710a-4363-8e64-446074e6a0b6"
+        },
+        {
+          "name": "remove_member",
+          "item": [
+            {
+              "name": "Remove User from Team",
+              "id": "8aa2de14-2fcb-4ef1-b2c2-c140c58e8065",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\",\n  \"new_owner_email_address\": \"<email>\",\n  \"new_team_id\": \"<string>\",\n  \"new_role\": \"Team Manager\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/team/remove_member",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team",
+                    "remove_member"
+                  ]
+                },
+                "description": "Removes the provided user Account from your Team. If the Account had an outstanding invitation to your Team, the invitation will be expired. If you choose to transfer documents from the removed Account to an Account provided in the `new_owner_email_address` parameter (available only for Enterprise plans), the response status code will be 201, which indicates that your request has been queued but not fully executed."
+              },
+              "response": [
+                {
+                  "id": "95e3bc77-8618-4fe0-955b-cf483e5161e0",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\",\n  \"new_owner_email_address\": \"<email>\",\n  \"new_team_id\": \"<string>\",\n  \"new_role\": \"Team Manager\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/remove_member",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "remove_member"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"team\": {\n    \"name\": \"<string>\",\n    \"accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ],\n    \"invited_accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ],\n    \"invited_emails\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-95e3bc77-8618-4fe0-955b-cf483e5161e0"
+                },
+                {
+                  "id": "6258fe4f-fd2c-4409-87b7-c9a980852f1f",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\",\n  \"new_owner_email_address\": \"<email>\",\n  \"new_team_id\": \"<string>\",\n  \"new_role\": \"Team Manager\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/remove_member",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "remove_member"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-6258fe4f-fd2c-4409-87b7-c9a980852f1f"
+                }
+              ],
+              "createdAt": "2026-07-28T01:55:05.000Z",
+              "updatedAt": "2026-07-28T01:55:05.000Z",
+              "uid": "35240-8aa2de14-2fcb-4ef1-b2c2-c140c58e8065"
+            }
+          ],
+          "id": "a508f7d6-8720-4b9a-a4a0-ac9d9dc8c778",
+          "createdAt": "2026-07-28T01:55:05.000Z",
+          "updatedAt": "2026-07-28T01:55:05.000Z",
+          "uid": "35240-a508f7d6-8720-4b9a-a4a0-ac9d9dc8c778"
+        },
+        {
+          "name": "sub_teams",
+          "item": [
+            {
+              "name": "{team_id}",
+              "item": [
+                {
+                  "name": "List Sub Teams",
+                  "id": "e5fb76aa-6933-40c2-a8f3-bd78b97b5fae",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/sub_teams/:team_id?page=1&page_size=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "sub_teams",
+                        ":team_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Which page number of the SubTeam List to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                          "key": "page_size",
+                          "value": "20"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "651633eb-0c86-4fff-8f90-bea7b856c505",
+                          "key": "team_id",
+                          "value": "<string>",
+                          "description": "(Required) The id of the parent Team."
+                        }
+                      ]
+                    },
+                    "description": "Provides a paginated list of sub teams that belong to a given team."
+                  },
+                  "response": [
+                    {
+                      "id": "e7e9033d-dfd9-47df-a6f9-04c32d554b7c",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/sub_teams/:team_id?page=1&page_size=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "sub_teams",
+                            ":team_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Which page number of the SubTeam List to return. Defaults to `1`.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                              "key": "page_size",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "team_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Ratelimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"sub_teams\": [\n    {\n      \"team_id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"team_id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"list_info\": {\n    \"num_pages\": \"<integer>\",\n    \"num_results\": \"<integer>\",\n    \"page\": \"<integer>\",\n    \"page_size\": \"<integer>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:55:05.000Z",
+                      "updatedAt": "2026-07-28T01:55:05.000Z",
+                      "uid": "35240-e7e9033d-dfd9-47df-a6f9-04c32d554b7c"
+                    },
+                    {
+                      "id": "5af08a0f-0c0a-407b-9397-7988ef8e70ca",
+                      "name": "failed_operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/sub_teams/:team_id?page=1&page_size=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "sub_teams",
+                            ":team_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Which page number of the SubTeam List to return. Defaults to `1`.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                              "key": "page_size",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "team_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:55:05.000Z",
+                      "updatedAt": "2026-07-28T01:55:05.000Z",
+                      "uid": "35240-5af08a0f-0c0a-407b-9397-7988ef8e70ca"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:55:05.000Z",
+                  "updatedAt": "2026-07-28T01:55:05.000Z",
+                  "uid": "35240-e5fb76aa-6933-40c2-a8f3-bd78b97b5fae"
+                }
+              ],
+              "id": "344bf435-05c7-4c8c-9539-eed8232e2dba",
+              "createdAt": "2026-07-28T01:55:05.000Z",
+              "updatedAt": "2026-07-28T01:55:05.000Z",
+              "uid": "35240-344bf435-05c7-4c8c-9539-eed8232e2dba"
+            }
+          ],
+          "id": "8f92bd92-dc2c-44dd-bc7f-8b9ccb82d012",
+          "createdAt": "2026-07-28T01:55:05.000Z",
+          "updatedAt": "2026-07-28T01:55:05.000Z",
+          "uid": "35240-8f92bd92-dc2c-44dd-bc7f-8b9ccb82d012"
+        },
+        {
+          "name": "Get Team",
+          "id": "c9d586d4-fcd5-417f-b003-fe4bd456fae6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/team",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "team"
+              ]
+            },
+            "description": "Returns information about your Team as well as a list of its members. If you do not belong to a Team, a 404 error with an error_name of \"not_found\" will be returned."
+          },
+          "response": [
+            {
+              "id": "e1f3aa64-ca27-4b48-af3f-8804ac4c3584",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Limit",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Remaining",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Ratelimit-Reset",
+                  "value": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"team\": {\n    \"name\": \"<string>\",\n    \"accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ],\n    \"invited_accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ],\n    \"invited_emails\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:55:05.000Z",
+              "updatedAt": "2026-07-28T01:55:05.000Z",
+              "uid": "35240-e1f3aa64-ca27-4b48-af3f-8804ac4c3584"
+            },
+            {
+              "id": "11d6548b-bd1b-45ca-8f5a-b2916e3e8b7a",
+              "name": "failed_operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:55:05.000Z",
+              "updatedAt": "2026-07-28T01:55:05.000Z",
+              "uid": "35240-11d6548b-bd1b-45ca-8f5a-b2916e3e8b7a"
+            }
+          ],
+          "createdAt": "2026-07-28T01:55:05.000Z",
+          "updatedAt": "2026-07-28T01:55:05.000Z",
+          "uid": "35240-c9d586d4-fcd5-417f-b003-fe4bd456fae6"
+        },
+        {
+          "name": "Update Team",
+          "id": "e255353e-86b9-4416-9d15-b6c310c0f06a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/team",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "team"
+              ]
+            },
+            "description": "Updates the name of your Team."
+          },
+          "response": [
+            {
+              "id": "127be405-6fc5-4c8a-b3d8-e2ea21db56c1",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/team",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Limit",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Remaining",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Ratelimit-Reset",
+                  "value": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"team\": {\n    \"name\": \"<string>\",\n    \"accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ],\n    \"invited_accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"templates_total\": \"<integer>\",\n          \"templates_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\",\n          \"num_fax_pages_left\": \"<integer>\"\n        },\n        \"callback_url\": \"<string>\",\n        \"role_code\": \"<string>\",\n        \"team_id\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"usage\": {\n          \"fax_pages_sent\": \"<integer>\"\n        },\n        \"settings\": {\n          \"signer_access_codes\": \"<boolean>\",\n          \"sms_delivery\": \"<boolean>\",\n          \"sms_authentication\": \"<boolean>\"\n        }\n      }\n    ],\n    \"invited_emails\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:55:05.000Z",
+              "updatedAt": "2026-07-28T01:55:05.000Z",
+              "uid": "35240-127be405-6fc5-4c8a-b3d8-e2ea21db56c1"
+            },
+            {
+              "id": "a603a6f0-9343-4bb2-a69d-9fa8749d95ef",
+              "name": "failed_operation",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/team",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:55:05.000Z",
+              "updatedAt": "2026-07-28T01:55:05.000Z",
+              "uid": "35240-a603a6f0-9343-4bb2-a69d-9fa8749d95ef"
+            }
+          ],
+          "createdAt": "2026-07-28T01:55:05.000Z",
+          "updatedAt": "2026-07-28T01:55:05.000Z",
+          "uid": "35240-e255353e-86b9-4416-9d15-b6c310c0f06a"
+        }
+      ],
+      "id": "85e3d4ab-abd6-414f-af78-ca56a5ead88a",
+      "createdAt": "2026-07-28T01:55:05.000Z",
+      "updatedAt": "2026-07-28T01:55:05.000Z",
+      "uid": "35240-85e3d4ab-abd6-414f-af78-ca56a5ead88a"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hellosign.com/v3"
+    }
+  ]
+}

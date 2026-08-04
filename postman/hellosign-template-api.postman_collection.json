@@ -1,0 +1,2449 @@
+{
+  "info": {
+    "_postman_id": "be28f04a-2df2-45cb-8ce8-232745a1b3b9",
+    "name": "Dropbox Sign Account Template API",
+    "description": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:55:22.000Z",
+    "updatedAt": "2026-07-28T01:55:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-be28f04a-2df2-45cb-8ce8-232745a1b3b9"
+  },
+  "item": [
+    {
+      "name": "template",
+      "item": [
+        {
+          "name": "add_user",
+          "item": [
+            {
+              "name": "{template_id}",
+              "item": [
+                {
+                  "name": "Add User to Template",
+                  "id": "49baba8b-ddc5-4b62-875c-b251e4c133f3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\",\n  \"skip_notification\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/add_user/:template_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "add_user",
+                        ":template_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5dd662bd-54a7-4576-a43a-1d234db05543",
+                          "key": "template_id",
+                          "value": "<string>",
+                          "description": "(Required) The id of the Template to give the Account access to."
+                        }
+                      ]
+                    },
+                    "description": "Gives the specified Account access to the specified Template. The specified Account must be a part of your Team."
+                  },
+                  "response": [
+                    {
+                      "id": "ab2227c9-a35f-4947-83c1-ee9b25041bb7",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\",\n  \"skip_notification\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/template/add_user/:template_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "add_user",
+                            ":template_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Ratelimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"template\": {\n    \"template_id\": \"<string>\",\n    \"title\": \"<string>\",\n    \"message\": \"<string>\",\n    \"updated_at\": \"<integer>\",\n    \"is_embedded\": \"<boolean>\",\n    \"is_creator\": \"<boolean>\",\n    \"can_edit\": \"<boolean>\",\n    \"is_locked\": \"<boolean>\",\n    \"metadata\": {\n      \"occaecat_d\": {}\n    },\n    \"signer_roles\": [\n      {\n        \"name\": \"<string>\",\n        \"order\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"order\": \"<integer>\"\n      }\n    ],\n    \"cc_roles\": [\n      {\n        \"name\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\"\n      }\n    ],\n    \"documents\": [\n      {\n        \"name\": \"<string>\",\n        \"index\": \"<integer>\",\n        \"field_groups\": [\n          {\n            \"name\": \"<string>\",\n            \"rule\": {\n              \"requirement\": \"<string>\",\n              \"groupLabel\": \"<string>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"rule\": {\n              \"requirement\": \"<string>\",\n              \"groupLabel\": \"<string>\"\n            }\n          }\n        ],\n        \"form_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\"\n          }\n        ],\n        \"custom_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          }\n        ],\n        \"static_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"me_now\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"me_now\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"name\": \"<string>\",\n        \"index\": \"<integer>\",\n        \"field_groups\": [\n          {\n            \"name\": \"<string>\",\n            \"rule\": {\n              \"requirement\": \"<string>\",\n              \"groupLabel\": \"<string>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"rule\": {\n              \"requirement\": \"<string>\",\n              \"groupLabel\": \"<string>\"\n            }\n          }\n        ],\n        \"form_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\"\n          }\n        ],\n        \"custom_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          }\n        ],\n        \"static_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"me_now\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"me_now\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"custom_fields\": [\n      {\n        \"type\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"required\": \"<boolean>\",\n        \"group\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"required\": \"<boolean>\",\n        \"group\": \"<string>\"\n      }\n    ],\n    \"named_form_fields\": [\n      {\n        \"type\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"required\": \"<boolean>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"required\": \"<boolean>\"\n      }\n    ],\n    \"accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"templates_left\": \"<integer>\",\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"templates_left\": \"<integer>\",\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\"\n        }\n      }\n    ],\n    \"attachments\": [\n      {\n        \"id\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"instructions\": \"<string>\",\n        \"uploaded_at\": \"<integer>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"instructions\": \"<string>\",\n        \"uploaded_at\": \"<integer>\"\n      }\n    ]\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-ab2227c9-a35f-4947-83c1-ee9b25041bb7"
+                    },
+                    {
+                      "id": "78015e1f-6eea-4f32-9eab-f0aa4e58c7d3",
+                      "name": "failed_operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\",\n  \"skip_notification\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/template/add_user/:template_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "add_user",
+                            ":template_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-78015e1f-6eea-4f32-9eab-f0aa4e58c7d3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-49baba8b-ddc5-4b62-875c-b251e4c133f3"
+                }
+              ],
+              "id": "391d2985-5a4c-4014-a397-224e97d02e59",
+              "createdAt": "2026-07-28T01:55:22.000Z",
+              "updatedAt": "2026-07-28T01:55:22.000Z",
+              "uid": "35240-391d2985-5a4c-4014-a397-224e97d02e59"
+            }
+          ],
+          "id": "a6612430-8ea5-46d7-b477-180dba976e35",
+          "createdAt": "2026-07-28T01:55:22.000Z",
+          "updatedAt": "2026-07-28T01:55:22.000Z",
+          "uid": "35240-a6612430-8ea5-46d7-b477-180dba976e35"
+        },
+        {
+          "name": "create",
+          "item": [
+            {
+              "name": "Create Template",
+              "id": "8114a9c2-3003-49d6-99e9-380196678539",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_roles\": [\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"form_fields_per_document\": [\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    },\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    }\n  ],\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_reassign\": false,\n  \"attachments\": [\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    }\n  ],\n  \"cc_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"client_id\": \"<string>\",\n  \"field_options\": {\n    \"date_format\": \"MM - DD - YYYY\"\n  },\n  \"form_field_groups\": [\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    },\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    }\n  ],\n  \"form_field_rules\": [\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"not\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"is\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"merge_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"text\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"text\"\n    }\n  ],\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"aliquipae3\": {}\n  },\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"title\": \"<string>\",\n  \"use_preexisting_fields\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/template/create",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "template",
+                    "create"
+                  ]
+                },
+                "description": "Creates a template that can be used in future signature requests.\n\nIf `client_id` is provided, the template will be created as an embedded template. Embedded templates can be used for embedded signature requests and can be edited later by generating a new `edit_url` with [/embedded/edit_url/{template_id}](/api/reference/operation/embeddedEditUrl/).\n\nTemplate creation may complete asynchronously after the initial request is accepted. It is recommended that a callback be implemented to listen for the callback event. A `template_created` event indicates the template is ready to use, while a `template_error` event indicates there was a problem while creating the template. If a callback handler has been configured and the event has not been received within 60 minutes of making the call, check the status of the request in the API dashboard and retry the request if necessary."
+              },
+              "response": [
+                {
+                  "id": "18edff6b-e929-4a97-ad95-8c7b220f9d01",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"signer_roles\": [\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"form_fields_per_document\": [\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    },\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    }\n  ],\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_reassign\": false,\n  \"attachments\": [\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    }\n  ],\n  \"cc_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"client_id\": \"<string>\",\n  \"field_options\": {\n    \"date_format\": \"MM - DD - YYYY\"\n  },\n  \"form_field_groups\": [\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    },\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    }\n  ],\n  \"form_field_rules\": [\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"not\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"is\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"merge_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"text\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"text\"\n    }\n  ],\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"aliquipae3\": {}\n  },\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"title\": \"<string>\",\n  \"use_preexisting_fields\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"template\": {\n    \"template_id\": \"<string>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-18edff6b-e929-4a97-ad95-8c7b220f9d01"
+                },
+                {
+                  "id": "916410f7-2c45-40b4-9141-23e42398f99f",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"signer_roles\": [\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"form_fields_per_document\": [\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    },\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    }\n  ],\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_reassign\": false,\n  \"attachments\": [\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    }\n  ],\n  \"cc_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"client_id\": \"<string>\",\n  \"field_options\": {\n    \"date_format\": \"MM - DD - YYYY\"\n  },\n  \"form_field_groups\": [\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    },\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    }\n  ],\n  \"form_field_rules\": [\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"not\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"is\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"merge_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"text\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"text\"\n    }\n  ],\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"aliquipae3\": {}\n  },\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"title\": \"<string>\",\n  \"use_preexisting_fields\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-916410f7-2c45-40b4-9141-23e42398f99f"
+                }
+              ],
+              "createdAt": "2026-07-28T01:55:22.000Z",
+              "updatedAt": "2026-07-28T01:55:22.000Z",
+              "uid": "35240-8114a9c2-3003-49d6-99e9-380196678539"
+            }
+          ],
+          "id": "7eb5ed0a-6395-4984-aaa4-c6484ebcc6b9",
+          "createdAt": "2026-07-28T01:55:22.000Z",
+          "updatedAt": "2026-07-28T01:55:22.000Z",
+          "uid": "35240-7eb5ed0a-6395-4984-aaa4-c6484ebcc6b9"
+        },
+        {
+          "name": "create_embedded_draft",
+          "item": [
+            {
+              "name": "Create Embedded Template Draft",
+              "id": "a6506da4-501f-4fd3-8f03-1069a301426d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_ccs\": true,\n  \"allow_reassign\": false,\n  \"attachments\": [\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    }\n  ],\n  \"cc_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"field_options\": {\n    \"date_format\": \"MM - DD - YYYY\"\n  },\n  \"force_signer_roles\": false,\n  \"force_subject_message\": false,\n  \"form_field_groups\": [\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    },\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    }\n  ],\n  \"form_field_rules\": [\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"is\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"none\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-group-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"form_fields_per_document\": [\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    },\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    }\n  ],\n  \"merge_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"text\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"checkbox\"\n    }\n  ],\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"esse_cf\": {}\n  },\n  \"show_preview\": false,\n  \"show_progress_stepper\": true,\n  \"signer_roles\": [\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"skip_me_now\": false,\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"title\": \"<string>\",\n  \"use_preexisting_fields\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/template/create_embedded_draft",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "template",
+                    "create_embedded_draft"
+                  ]
+                },
+                "description": "The first step in an embedded template workflow. Creates a draft template that can then be further set up in the template 'edit' stage."
+              },
+              "response": [
+                {
+                  "id": "b2ee5184-1d9e-429a-9967-aacff021b3af",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_ccs\": true,\n  \"allow_reassign\": false,\n  \"attachments\": [\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    }\n  ],\n  \"cc_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"field_options\": {\n    \"date_format\": \"MM - DD - YYYY\"\n  },\n  \"force_signer_roles\": false,\n  \"force_subject_message\": false,\n  \"form_field_groups\": [\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    },\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    }\n  ],\n  \"form_field_rules\": [\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"is\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"none\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-group-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"form_fields_per_document\": [\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    },\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    }\n  ],\n  \"merge_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"text\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"checkbox\"\n    }\n  ],\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"esse_cf\": {}\n  },\n  \"show_preview\": false,\n  \"show_progress_stepper\": true,\n  \"signer_roles\": [\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"skip_me_now\": false,\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"title\": \"<string>\",\n  \"use_preexisting_fields\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/create_embedded_draft",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "create_embedded_draft"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"template\": {\n    \"template_id\": \"<string>\",\n    \"edit_url\": \"<string>\",\n    \"expires_at\": \"<integer>\",\n    \"warnings\": [\n      {\n        \"warning_msg\": \"<string>\",\n        \"warning_name\": \"<string>\"\n      },\n      {\n        \"warning_msg\": \"<string>\",\n        \"warning_name\": \"<string>\"\n      }\n    ]\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-b2ee5184-1d9e-429a-9967-aacff021b3af"
+                },
+                {
+                  "id": "e39966c0-3dd6-4d66-8774-9aa4f87b9967",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_ccs\": true,\n  \"allow_reassign\": false,\n  \"attachments\": [\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    }\n  ],\n  \"cc_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"field_options\": {\n    \"date_format\": \"MM - DD - YYYY\"\n  },\n  \"force_signer_roles\": false,\n  \"force_subject_message\": false,\n  \"form_field_groups\": [\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    },\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    }\n  ],\n  \"form_field_rules\": [\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"is\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"none\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-group-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"form_fields_per_document\": [\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    },\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    }\n  ],\n  \"merge_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"text\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"checkbox\"\n    }\n  ],\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"esse_cf\": {}\n  },\n  \"show_preview\": false,\n  \"show_progress_stepper\": true,\n  \"signer_roles\": [\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"skip_me_now\": false,\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"title\": \"<string>\",\n  \"use_preexisting_fields\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/create_embedded_draft",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "create_embedded_draft"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-e39966c0-3dd6-4d66-8774-9aa4f87b9967"
+                }
+              ],
+              "createdAt": "2026-07-28T01:55:22.000Z",
+              "updatedAt": "2026-07-28T01:55:22.000Z",
+              "uid": "35240-a6506da4-501f-4fd3-8f03-1069a301426d"
+            }
+          ],
+          "id": "9a59ed86-789a-4082-a9a1-9794bb6b2921",
+          "createdAt": "2026-07-28T01:55:22.000Z",
+          "updatedAt": "2026-07-28T01:55:22.000Z",
+          "uid": "35240-9a59ed86-789a-4082-a9a1-9794bb6b2921"
+        },
+        {
+          "name": "delete",
+          "item": [
+            {
+              "name": "{template_id}",
+              "item": [
+                {
+                  "name": "Delete Template",
+                  "id": "859dd6ae-dd01-4059-b44e-388d303718ba",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/template/delete/:template_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "delete",
+                        ":template_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7fcaa4cd-0a12-422c-bae6-4e5b65443265",
+                          "key": "template_id",
+                          "value": "<string>",
+                          "description": "(Required) The id of the Template to delete."
+                        }
+                      ]
+                    },
+                    "description": "Completely deletes the template specified from the account."
+                  },
+                  "response": [
+                    {
+                      "id": "2e3d80cd-25f8-45e2-94df-25c81e92aab6",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/template/delete/:template_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "delete",
+                            ":template_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Ratelimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-2e3d80cd-25f8-45e2-94df-25c81e92aab6"
+                    },
+                    {
+                      "id": "92aac7d3-00f5-4567-b19e-bb3c2233e4a6",
+                      "name": "failed_operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/template/delete/:template_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "delete",
+                            ":template_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-92aac7d3-00f5-4567-b19e-bb3c2233e4a6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-859dd6ae-dd01-4059-b44e-388d303718ba"
+                }
+              ],
+              "id": "c8a908e5-c628-4a9e-aafd-b501d80bf7e0",
+              "createdAt": "2026-07-28T01:55:22.000Z",
+              "updatedAt": "2026-07-28T01:55:22.000Z",
+              "uid": "35240-c8a908e5-c628-4a9e-aafd-b501d80bf7e0"
+            }
+          ],
+          "id": "9a61c298-3a8f-4cea-9a50-6e75b5eaec80",
+          "createdAt": "2026-07-28T01:55:22.000Z",
+          "updatedAt": "2026-07-28T01:55:22.000Z",
+          "uid": "35240-9a61c298-3a8f-4cea-9a50-6e75b5eaec80"
+        },
+        {
+          "name": "files",
+          "item": [
+            {
+              "name": "{template_id}",
+              "item": [
+                {
+                  "name": "Get Template Files",
+                  "id": "35620f43-9fb8-4607-8df6-ba2f122eca4e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/pdf"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/template/files/:template_id?file_type=zip",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "files",
+                        ":template_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Set to `pdf` for a single merged document or `zip` for a collection of individual documents.",
+                          "key": "file_type",
+                          "value": "zip"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "1677dff5-6b81-49f5-b5d8-65be8f5959e6",
+                          "key": "template_id",
+                          "value": "<string>",
+                          "description": "(Required) The id of the template files to retrieve."
+                        }
+                      ]
+                    },
+                    "description": "Obtain a copy of the current documents specified by the `template_id` parameter. Returns a PDF or ZIP file.\n\nIf the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event."
+                  },
+                  "response": [
+                    {
+                      "id": "ff670022-abcd-4b89-aa82-eadcac4dd14a",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/pdf"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/template/files/:template_id?file_type=zip",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "files",
+                            ":template_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Set to `pdf` for a single merged document or `zip` for a collection of individual documents.",
+                              "key": "file_type",
+                              "value": "zip"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/pdf"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Ratelimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<binary>",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-ff670022-abcd-4b89-aa82-eadcac4dd14a"
+                    },
+                    {
+                      "id": "15f63567-82ea-4711-bec9-fe220c24f2cd",
+                      "name": "failed_operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/template/files/:template_id?file_type=zip",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "files",
+                            ":template_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Set to `pdf` for a single merged document or `zip` for a collection of individual documents.",
+                              "key": "file_type",
+                              "value": "zip"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-15f63567-82ea-4711-bec9-fe220c24f2cd"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-35620f43-9fb8-4607-8df6-ba2f122eca4e"
+                }
+              ],
+              "id": "80a86474-d42e-481b-9aab-99270bd583af",
+              "createdAt": "2026-07-28T01:55:22.000Z",
+              "updatedAt": "2026-07-28T01:55:22.000Z",
+              "uid": "35240-80a86474-d42e-481b-9aab-99270bd583af"
+            }
+          ],
+          "id": "f96dfe61-d58d-48af-b1f3-df4779c47872",
+          "createdAt": "2026-07-28T01:55:22.000Z",
+          "updatedAt": "2026-07-28T01:55:22.000Z",
+          "uid": "35240-f96dfe61-d58d-48af-b1f3-df4779c47872"
+        },
+        {
+          "name": "files_as_data_uri",
+          "item": [
+            {
+              "name": "{template_id}",
+              "item": [
+                {
+                  "name": "Get Template Files as Data Uri",
+                  "id": "adeac507-6ad6-4e51-94d5-9d0178696a69",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/template/files_as_data_uri/:template_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "files_as_data_uri",
+                        ":template_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "436dba47-71ab-478e-a7b5-28d0989bb3d3",
+                          "key": "template_id",
+                          "value": "<string>",
+                          "description": "(Required) The id of the template files to retrieve."
+                        }
+                      ]
+                    },
+                    "description": "Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).\n\nIf the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event."
+                  },
+                  "response": [
+                    {
+                      "id": "dcbdf4e1-3d78-4c8d-a9a8-9dd68bb6a656",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/template/files_as_data_uri/:template_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "files_as_data_uri",
+                            ":template_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Ratelimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data_uri\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-dcbdf4e1-3d78-4c8d-a9a8-9dd68bb6a656"
+                    },
+                    {
+                      "id": "9da9589e-2077-4577-84a2-8a867c470d9f",
+                      "name": "failed_operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/template/files_as_data_uri/:template_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "files_as_data_uri",
+                            ":template_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-9da9589e-2077-4577-84a2-8a867c470d9f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-adeac507-6ad6-4e51-94d5-9d0178696a69"
+                }
+              ],
+              "id": "7a0c9cc3-02ae-4135-be06-aabd11fe6a4a",
+              "createdAt": "2026-07-28T01:55:22.000Z",
+              "updatedAt": "2026-07-28T01:55:22.000Z",
+              "uid": "35240-7a0c9cc3-02ae-4135-be06-aabd11fe6a4a"
+            }
+          ],
+          "id": "d38c3aa4-af6d-4189-a6d0-627b865bac02",
+          "createdAt": "2026-07-28T01:55:22.000Z",
+          "updatedAt": "2026-07-28T01:55:22.000Z",
+          "uid": "35240-d38c3aa4-af6d-4189-a6d0-627b865bac02"
+        },
+        {
+          "name": "files_as_file_url",
+          "item": [
+            {
+              "name": "{template_id}",
+              "item": [
+                {
+                  "name": "Get Template Files as File Url",
+                  "id": "f802c79a-d73d-4b7f-9acf-de87378fa52e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/template/files_as_file_url/:template_id?force_download=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "files_as_file_url",
+                        ":template_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "By default when opening the `file_url` a browser will download the PDF and save it locally. When set to `0` the PDF file will be displayed in the browser.",
+                          "key": "force_download",
+                          "value": "1"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "d9073854-6739-44fe-9185-8377b38b9dfb",
+                          "key": "template_id",
+                          "value": "<string>",
+                          "description": "(Required) The id of the template files to retrieve."
+                        }
+                      ]
+                    },
+                    "description": "Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).\n\nIf the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event."
+                  },
+                  "response": [
+                    {
+                      "id": "13466a3b-fbb5-49dd-9261-ef39ddfdfc3c",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/template/files_as_file_url/:template_id?force_download=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "files_as_file_url",
+                            ":template_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "By default when opening the `file_url` a browser will download the PDF and save it locally. When set to `0` the PDF file will be displayed in the browser.",
+                              "key": "force_download",
+                              "value": "1"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Ratelimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"file_url\": \"<string>\",\n  \"expires_at\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-13466a3b-fbb5-49dd-9261-ef39ddfdfc3c"
+                    },
+                    {
+                      "id": "6166b286-0575-49f6-864f-c326248a480f",
+                      "name": "failed_operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/template/files_as_file_url/:template_id?force_download=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "files_as_file_url",
+                            ":template_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "By default when opening the `file_url` a browser will download the PDF and save it locally. When set to `0` the PDF file will be displayed in the browser.",
+                              "key": "force_download",
+                              "value": "1"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-6166b286-0575-49f6-864f-c326248a480f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-f802c79a-d73d-4b7f-9acf-de87378fa52e"
+                }
+              ],
+              "id": "2529eedf-4b76-495c-9709-9db408c9a166",
+              "createdAt": "2026-07-28T01:55:22.000Z",
+              "updatedAt": "2026-07-28T01:55:22.000Z",
+              "uid": "35240-2529eedf-4b76-495c-9709-9db408c9a166"
+            }
+          ],
+          "id": "295ea67b-dd0f-41a6-9da7-ceaecd9e4f36",
+          "createdAt": "2026-07-28T01:55:22.000Z",
+          "updatedAt": "2026-07-28T01:55:22.000Z",
+          "uid": "35240-295ea67b-dd0f-41a6-9da7-ceaecd9e4f36"
+        },
+        {
+          "name": "{template_id}",
+          "item": [
+            {
+              "name": "Get Template",
+              "id": "2f5e1e76-ec96-4dfe-8b6b-1ec57a6501c4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/template/:template_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "template",
+                    ":template_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e7db402f-10e7-40a5-b1dc-832c13e82394",
+                      "key": "template_id",
+                      "value": "<string>",
+                      "description": "(Required) The id of the Template to retrieve."
+                    }
+                  ]
+                },
+                "description": "Returns the Template specified by the `template_id` parameter."
+              },
+              "response": [
+                {
+                  "id": "d37de8bc-2edc-41c6-99c3-fc96539f479f",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/template/:template_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        ":template_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "template_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"template\": {\n    \"template_id\": \"<string>\",\n    \"title\": \"<string>\",\n    \"message\": \"<string>\",\n    \"updated_at\": \"<integer>\",\n    \"is_embedded\": \"<boolean>\",\n    \"is_creator\": \"<boolean>\",\n    \"can_edit\": \"<boolean>\",\n    \"is_locked\": \"<boolean>\",\n    \"metadata\": {\n      \"occaecat_d\": {}\n    },\n    \"signer_roles\": [\n      {\n        \"name\": \"<string>\",\n        \"order\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"order\": \"<integer>\"\n      }\n    ],\n    \"cc_roles\": [\n      {\n        \"name\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\"\n      }\n    ],\n    \"documents\": [\n      {\n        \"name\": \"<string>\",\n        \"index\": \"<integer>\",\n        \"field_groups\": [\n          {\n            \"name\": \"<string>\",\n            \"rule\": {\n              \"requirement\": \"<string>\",\n              \"groupLabel\": \"<string>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"rule\": {\n              \"requirement\": \"<string>\",\n              \"groupLabel\": \"<string>\"\n            }\n          }\n        ],\n        \"form_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\"\n          }\n        ],\n        \"custom_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          }\n        ],\n        \"static_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"me_now\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"me_now\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"name\": \"<string>\",\n        \"index\": \"<integer>\",\n        \"field_groups\": [\n          {\n            \"name\": \"<string>\",\n            \"rule\": {\n              \"requirement\": \"<string>\",\n              \"groupLabel\": \"<string>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"rule\": {\n              \"requirement\": \"<string>\",\n              \"groupLabel\": \"<string>\"\n            }\n          }\n        ],\n        \"form_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\"\n          }\n        ],\n        \"custom_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          }\n        ],\n        \"static_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"me_now\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"me_now\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"custom_fields\": [\n      {\n        \"type\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"required\": \"<boolean>\",\n        \"group\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"required\": \"<boolean>\",\n        \"group\": \"<string>\"\n      }\n    ],\n    \"named_form_fields\": [\n      {\n        \"type\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"required\": \"<boolean>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"required\": \"<boolean>\"\n      }\n    ],\n    \"accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"templates_left\": \"<integer>\",\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"templates_left\": \"<integer>\",\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\"\n        }\n      }\n    ],\n    \"attachments\": [\n      {\n        \"id\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"instructions\": \"<string>\",\n        \"uploaded_at\": \"<integer>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"instructions\": \"<string>\",\n        \"uploaded_at\": \"<integer>\"\n      }\n    ]\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-d37de8bc-2edc-41c6-99c3-fc96539f479f"
+                },
+                {
+                  "id": "0865945e-cebc-4a84-be56-34b0095d63fc",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/template/:template_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        ":template_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "template_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-0865945e-cebc-4a84-be56-34b0095d63fc"
+                }
+              ],
+              "createdAt": "2026-07-28T01:55:22.000Z",
+              "updatedAt": "2026-07-28T01:55:22.000Z",
+              "uid": "35240-2f5e1e76-ec96-4dfe-8b6b-1ec57a6501c4"
+            }
+          ],
+          "id": "4254da46-bf7b-47f6-b3e8-c206b55465c2",
+          "createdAt": "2026-07-28T01:55:22.000Z",
+          "updatedAt": "2026-07-28T01:55:22.000Z",
+          "uid": "35240-4254da46-bf7b-47f6-b3e8-c206b55465c2"
+        },
+        {
+          "name": "list",
+          "item": [
+            {
+              "name": "List Templates",
+              "id": "8e934f36-1e0a-4193-b6f3-f01cb8157b6d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/template/list?account_id=<string>&page=1&page_size=20&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "template",
+                    "list"
+                  ],
+                  "query": [
+                    {
+                      "description": "Which account to return Templates for. Must be a team member. Use `all` to indicate all team members. Defaults to your account.",
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Which page number of the Template List to return. Defaults to `1`.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "description": "String that includes search terms and/or fields to be used to filter the Template objects.",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of the Templates that are accessible by you.\n\nTake a look at our [search guide](/api/reference/search/) to learn more about querying templates."
+              },
+              "response": [
+                {
+                  "id": "90c42a2b-7256-4267-988f-a2c16b0e1cf9",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/template/list?account_id=<string>&page=1&page_size=20&query=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "Which account to return Templates for. Must be a team member. Use `all` to indicate all team members. Defaults to your account.",
+                          "key": "account_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Which page number of the Template List to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                          "key": "page_size",
+                          "value": "20"
+                        },
+                        {
+                          "description": "String that includes search terms and/or fields to be used to filter the Template objects.",
+                          "key": "query",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"templates\": [\n    {\n      \"template_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"message\": \"<string>\",\n      \"updated_at\": \"<integer>\",\n      \"is_embedded\": \"<boolean>\",\n      \"is_creator\": \"<boolean>\",\n      \"can_edit\": \"<boolean>\",\n      \"is_locked\": \"<boolean>\",\n      \"metadata\": {\n        \"aliquip_7\": {},\n        \"sit1c\": {}\n      },\n      \"signer_roles\": [\n        {\n          \"name\": \"<string>\",\n          \"order\": \"<integer>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"order\": \"<integer>\"\n        }\n      ],\n      \"cc_roles\": [\n        {\n          \"name\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"name\": \"<string>\",\n          \"index\": \"<integer>\",\n          \"field_groups\": [\n            {\n              \"name\": \"<string>\",\n              \"rule\": {\n                \"requirement\": \"<string>\",\n                \"groupLabel\": \"<string>\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"rule\": {\n                \"requirement\": \"<string>\",\n                \"groupLabel\": \"<string>\"\n              }\n            }\n          ],\n          \"form_fields\": [\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\"\n            }\n          ],\n          \"custom_fields\": [\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            }\n          ],\n          \"static_fields\": [\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"me_now\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"me_now\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"index\": \"<integer>\",\n          \"field_groups\": [\n            {\n              \"name\": \"<string>\",\n              \"rule\": {\n                \"requirement\": \"<string>\",\n                \"groupLabel\": \"<string>\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"rule\": {\n                \"requirement\": \"<string>\",\n                \"groupLabel\": \"<string>\"\n              }\n            }\n          ],\n          \"form_fields\": [\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\"\n            }\n          ],\n          \"custom_fields\": [\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            }\n          ],\n          \"static_fields\": [\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"me_now\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"me_now\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"custom_fields\": [\n        {\n          \"type\": \"<string>\",\n          \"api_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"x\": \"<integer>\",\n          \"y\": \"<integer>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"required\": \"<boolean>\",\n          \"group\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"api_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"x\": \"<integer>\",\n          \"y\": \"<integer>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"required\": \"<boolean>\",\n          \"group\": \"<string>\"\n        }\n      ],\n      \"named_form_fields\": [\n        {\n          \"type\": \"<string>\",\n          \"api_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"x\": \"<integer>\",\n          \"y\": \"<integer>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"api_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"x\": \"<integer>\",\n          \"y\": \"<integer>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"accounts\": [\n        {\n          \"account_id\": \"<string>\",\n          \"email_address\": \"<string>\",\n          \"is_locked\": \"<boolean>\",\n          \"is_paid_hs\": \"<boolean>\",\n          \"is_paid_hf\": \"<boolean>\",\n          \"quotas\": {\n            \"templates_left\": \"<integer>\",\n            \"api_signature_requests_left\": \"<integer>\",\n            \"documents_left\": \"<integer>\",\n            \"sms_verifications_left\": \"<integer>\"\n          }\n        },\n        {\n          \"account_id\": \"<string>\",\n          \"email_address\": \"<string>\",\n          \"is_locked\": \"<boolean>\",\n          \"is_paid_hs\": \"<boolean>\",\n          \"is_paid_hf\": \"<boolean>\",\n          \"quotas\": {\n            \"templates_left\": \"<integer>\",\n            \"api_signature_requests_left\": \"<integer>\",\n            \"documents_left\": \"<integer>\",\n            \"sms_verifications_left\": \"<integer>\"\n          }\n        }\n      ],\n      \"attachments\": [\n        {\n          \"id\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"name\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"instructions\": \"<string>\",\n          \"uploaded_at\": \"<integer>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"name\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"instructions\": \"<string>\",\n          \"uploaded_at\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"template_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"message\": \"<string>\",\n      \"updated_at\": \"<integer>\",\n      \"is_embedded\": \"<boolean>\",\n      \"is_creator\": \"<boolean>\",\n      \"can_edit\": \"<boolean>\",\n      \"is_locked\": \"<boolean>\",\n      \"metadata\": {\n        \"tempor_56a\": {},\n        \"laborum2c8\": {},\n        \"eiusmod_514\": {}\n      },\n      \"signer_roles\": [\n        {\n          \"name\": \"<string>\",\n          \"order\": \"<integer>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"order\": \"<integer>\"\n        }\n      ],\n      \"cc_roles\": [\n        {\n          \"name\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"name\": \"<string>\",\n          \"index\": \"<integer>\",\n          \"field_groups\": [\n            {\n              \"name\": \"<string>\",\n              \"rule\": {\n                \"requirement\": \"<string>\",\n                \"groupLabel\": \"<string>\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"rule\": {\n                \"requirement\": \"<string>\",\n                \"groupLabel\": \"<string>\"\n              }\n            }\n          ],\n          \"form_fields\": [\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\"\n            }\n          ],\n          \"custom_fields\": [\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            }\n          ],\n          \"static_fields\": [\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"me_now\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"me_now\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"index\": \"<integer>\",\n          \"field_groups\": [\n            {\n              \"name\": \"<string>\",\n              \"rule\": {\n                \"requirement\": \"<string>\",\n                \"groupLabel\": \"<string>\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"rule\": {\n                \"requirement\": \"<string>\",\n                \"groupLabel\": \"<string>\"\n              }\n            }\n          ],\n          \"form_fields\": [\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\"\n            }\n          ],\n          \"custom_fields\": [\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"<string>\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            }\n          ],\n          \"static_fields\": [\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"me_now\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"api_id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"signer\": \"me_now\",\n              \"x\": \"<integer>\",\n              \"y\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"height\": \"<integer>\",\n              \"required\": \"<boolean>\",\n              \"group\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"custom_fields\": [\n        {\n          \"type\": \"<string>\",\n          \"api_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"x\": \"<integer>\",\n          \"y\": \"<integer>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"required\": \"<boolean>\",\n          \"group\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"api_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"x\": \"<integer>\",\n          \"y\": \"<integer>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"required\": \"<boolean>\",\n          \"group\": \"<string>\"\n        }\n      ],\n      \"named_form_fields\": [\n        {\n          \"type\": \"<string>\",\n          \"api_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"x\": \"<integer>\",\n          \"y\": \"<integer>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"api_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"x\": \"<integer>\",\n          \"y\": \"<integer>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"accounts\": [\n        {\n          \"account_id\": \"<string>\",\n          \"email_address\": \"<string>\",\n          \"is_locked\": \"<boolean>\",\n          \"is_paid_hs\": \"<boolean>\",\n          \"is_paid_hf\": \"<boolean>\",\n          \"quotas\": {\n            \"templates_left\": \"<integer>\",\n            \"api_signature_requests_left\": \"<integer>\",\n            \"documents_left\": \"<integer>\",\n            \"sms_verifications_left\": \"<integer>\"\n          }\n        },\n        {\n          \"account_id\": \"<string>\",\n          \"email_address\": \"<string>\",\n          \"is_locked\": \"<boolean>\",\n          \"is_paid_hs\": \"<boolean>\",\n          \"is_paid_hf\": \"<boolean>\",\n          \"quotas\": {\n            \"templates_left\": \"<integer>\",\n            \"api_signature_requests_left\": \"<integer>\",\n            \"documents_left\": \"<integer>\",\n            \"sms_verifications_left\": \"<integer>\"\n          }\n        }\n      ],\n      \"attachments\": [\n        {\n          \"id\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"name\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"instructions\": \"<string>\",\n          \"uploaded_at\": \"<integer>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"signer\": \"<string>\",\n          \"name\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"instructions\": \"<string>\",\n          \"uploaded_at\": \"<integer>\"\n        }\n      ]\n    }\n  ],\n  \"list_info\": {\n    \"num_pages\": \"<integer>\",\n    \"num_results\": \"<integer>\",\n    \"page\": \"<integer>\",\n    \"page_size\": \"<integer>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-90c42a2b-7256-4267-988f-a2c16b0e1cf9"
+                },
+                {
+                  "id": "70f58e72-8669-4c82-b301-7aeae79f10ef",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/template/list?account_id=<string>&page=1&page_size=20&query=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "Which account to return Templates for. Must be a team member. Use `all` to indicate all team members. Defaults to your account.",
+                          "key": "account_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Which page number of the Template List to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                          "key": "page_size",
+                          "value": "20"
+                        },
+                        {
+                          "description": "String that includes search terms and/or fields to be used to filter the Template objects.",
+                          "key": "query",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-70f58e72-8669-4c82-b301-7aeae79f10ef"
+                }
+              ],
+              "createdAt": "2026-07-28T01:55:22.000Z",
+              "updatedAt": "2026-07-28T01:55:22.000Z",
+              "uid": "35240-8e934f36-1e0a-4193-b6f3-f01cb8157b6d"
+            }
+          ],
+          "id": "a06f6b13-2738-4183-b3be-86d404f62685",
+          "createdAt": "2026-07-28T01:55:22.000Z",
+          "updatedAt": "2026-07-28T01:55:22.000Z",
+          "uid": "35240-a06f6b13-2738-4183-b3be-86d404f62685"
+        },
+        {
+          "name": "remove_user",
+          "item": [
+            {
+              "name": "{template_id}",
+              "item": [
+                {
+                  "name": "Remove User from Template",
+                  "id": "0291c94f-c4dd-406f-8adb-51c87301becd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/remove_user/:template_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "remove_user",
+                        ":template_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c5345041-2d93-4f90-a9a8-db7304336a23",
+                          "key": "template_id",
+                          "value": "<string>",
+                          "description": "(Required) The id of the Template to remove the Account's access to."
+                        }
+                      ]
+                    },
+                    "description": "Removes the specified Account's access to the specified Template."
+                  },
+                  "response": [
+                    {
+                      "id": "59d15f06-b4f4-48fe-8f00-3533f404305c",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/template/remove_user/:template_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "remove_user",
+                            ":template_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Ratelimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"template\": {\n    \"template_id\": \"<string>\",\n    \"title\": \"<string>\",\n    \"message\": \"<string>\",\n    \"updated_at\": \"<integer>\",\n    \"is_embedded\": \"<boolean>\",\n    \"is_creator\": \"<boolean>\",\n    \"can_edit\": \"<boolean>\",\n    \"is_locked\": \"<boolean>\",\n    \"metadata\": {\n      \"occaecat_d\": {}\n    },\n    \"signer_roles\": [\n      {\n        \"name\": \"<string>\",\n        \"order\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"order\": \"<integer>\"\n      }\n    ],\n    \"cc_roles\": [\n      {\n        \"name\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\"\n      }\n    ],\n    \"documents\": [\n      {\n        \"name\": \"<string>\",\n        \"index\": \"<integer>\",\n        \"field_groups\": [\n          {\n            \"name\": \"<string>\",\n            \"rule\": {\n              \"requirement\": \"<string>\",\n              \"groupLabel\": \"<string>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"rule\": {\n              \"requirement\": \"<string>\",\n              \"groupLabel\": \"<string>\"\n            }\n          }\n        ],\n        \"form_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\"\n          }\n        ],\n        \"custom_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          }\n        ],\n        \"static_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"me_now\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"me_now\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"name\": \"<string>\",\n        \"index\": \"<integer>\",\n        \"field_groups\": [\n          {\n            \"name\": \"<string>\",\n            \"rule\": {\n              \"requirement\": \"<string>\",\n              \"groupLabel\": \"<string>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"rule\": {\n              \"requirement\": \"<string>\",\n              \"groupLabel\": \"<string>\"\n            }\n          }\n        ],\n        \"form_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\"\n          }\n        ],\n        \"custom_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"<string>\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          }\n        ],\n        \"static_fields\": [\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"me_now\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"api_id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"signer\": \"me_now\",\n            \"x\": \"<integer>\",\n            \"y\": \"<integer>\",\n            \"width\": \"<integer>\",\n            \"height\": \"<integer>\",\n            \"required\": \"<boolean>\",\n            \"group\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"custom_fields\": [\n      {\n        \"type\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"required\": \"<boolean>\",\n        \"group\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"required\": \"<boolean>\",\n        \"group\": \"<string>\"\n      }\n    ],\n    \"named_form_fields\": [\n      {\n        \"type\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"required\": \"<boolean>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"required\": \"<boolean>\"\n      }\n    ],\n    \"accounts\": [\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"templates_left\": \"<integer>\",\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\"\n        }\n      },\n      {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\",\n        \"is_locked\": \"<boolean>\",\n        \"is_paid_hs\": \"<boolean>\",\n        \"is_paid_hf\": \"<boolean>\",\n        \"quotas\": {\n          \"templates_left\": \"<integer>\",\n          \"api_signature_requests_left\": \"<integer>\",\n          \"documents_left\": \"<integer>\",\n          \"sms_verifications_left\": \"<integer>\"\n        }\n      }\n    ],\n    \"attachments\": [\n      {\n        \"id\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"instructions\": \"<string>\",\n        \"uploaded_at\": \"<integer>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"signer\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"instructions\": \"<string>\",\n        \"uploaded_at\": \"<integer>\"\n      }\n    ]\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-59d15f06-b4f4-48fe-8f00-3533f404305c"
+                    },
+                    {
+                      "id": "810a68ab-488b-48ec-9042-5089b0a41a79",
+                      "name": "failed_operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/template/remove_user/:template_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "remove_user",
+                            ":template_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-810a68ab-488b-48ec-9042-5089b0a41a79"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-0291c94f-c4dd-406f-8adb-51c87301becd"
+                }
+              ],
+              "id": "8b330f75-6548-4119-b87f-3a8e7fdff6f2",
+              "createdAt": "2026-07-28T01:55:22.000Z",
+              "updatedAt": "2026-07-28T01:55:22.000Z",
+              "uid": "35240-8b330f75-6548-4119-b87f-3a8e7fdff6f2"
+            }
+          ],
+          "id": "2138fdea-bf1f-4805-8281-f3de4769f1b9",
+          "createdAt": "2026-07-28T01:55:22.000Z",
+          "updatedAt": "2026-07-28T01:55:22.000Z",
+          "uid": "35240-2138fdea-bf1f-4805-8281-f3de4769f1b9"
+        },
+        {
+          "name": "update_files",
+          "item": [
+            {
+              "name": "{template_id}",
+              "item": [
+                {
+                  "name": "Update Template Files",
+                  "id": "64461599-5e2e-47e6-857f-a18509c83050",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"message\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"test_mode\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/update_files/:template_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "update_files",
+                        ":template_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "48171d5c-c8a1-4e3d-a45d-1e3a82143a59",
+                          "key": "template_id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the template whose files to update."
+                        }
+                      ]
+                    },
+                    "description": "Overlays a new file with the overlay of an existing template. The new file(s) must:\n\n1. have the same or higher page count\n2. the same orientation as the file(s) being replaced.\n\nThis will not overwrite or in any way affect the existing template. Both the existing template and new template will be available for use after executing this endpoint. Also note that this will decrement your template quota.\n\nOverlaying new files is asynchronous and a successful call to this endpoint will return 200 OK response if the request passes initial validation checks.\n\nIt is recommended that a callback be implemented to listen for the callback event. A `template_created` event will be sent when the files are updated or a `template_error` event will be sent if there was a problem while updating the files. If a callback handler has been configured and the event has not been received within 60 minutes of making the call, check the status of the request in the API dashboard and retry the request if necessary.\n\nIf the page orientation or page count is different from the original template document, we will notify you with a `template_error` [callback event](https://app.hellosign.com/api/eventsAndCallbacksWalkthrough)."
+                  },
+                  "response": [
+                    {
+                      "id": "b3320108-f390-4142-a4b3-8fe36bfae2be",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"client_id\": \"<string>\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"message\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"test_mode\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/template/update_files/:template_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "update_files",
+                            ":template_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Ratelimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"template\": {\n    \"template_id\": \"<string>\",\n    \"warnings\": [\n      {\n        \"warning_msg\": \"<string>\",\n        \"warning_name\": \"<string>\"\n      },\n      {\n        \"warning_msg\": \"<string>\",\n        \"warning_name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-b3320108-f390-4142-a4b3-8fe36bfae2be"
+                    },
+                    {
+                      "id": "406c0e23-c5a5-481e-b01a-7e717c73141f",
+                      "name": "failed_operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"client_id\": \"<string>\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"message\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"test_mode\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/template/update_files/:template_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            "update_files",
+                            ":template_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:55:22.000Z",
+                      "updatedAt": "2026-07-28T01:55:22.000Z",
+                      "uid": "35240-406c0e23-c5a5-481e-b01a-7e717c73141f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:55:22.000Z",
+                  "updatedAt": "2026-07-28T01:55:22.000Z",
+                  "uid": "35240-64461599-5e2e-47e6-857f-a18509c83050"
+                }
+              ],
+              "id": "afd63359-1a82-4fb7-b08c-f4723f9de6d1",
+              "createdAt": "2026-07-28T01:55:22.000Z",
+              "updatedAt": "2026-07-28T01:55:22.000Z",
+              "uid": "35240-afd63359-1a82-4fb7-b08c-f4723f9de6d1"
+            }
+          ],
+          "id": "b650e7cf-e304-421f-8d12-e41d08c2ddb6",
+          "createdAt": "2026-07-28T01:55:22.000Z",
+          "updatedAt": "2026-07-28T01:55:22.000Z",
+          "uid": "35240-b650e7cf-e304-421f-8d12-e41d08c2ddb6"
+        }
+      ],
+      "id": "3b47d15a-c9e5-426b-b446-542bdf6d0252",
+      "createdAt": "2026-07-28T01:55:22.000Z",
+      "updatedAt": "2026-07-28T01:55:22.000Z",
+      "uid": "35240-3b47d15a-c9e5-426b-b446-542bdf6d0252"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hellosign.com/v3"
+    }
+  ]
+}

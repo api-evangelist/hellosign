@@ -1,0 +1,918 @@
+{
+  "info": {
+    "_postman_id": "3196d0f1-6556-4f73-8a6a-8761f3aec355",
+    "name": "Dropbox Sign Account Unclaimed Draft API",
+    "description": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:55:23.000Z",
+    "updatedAt": "2026-07-28T01:55:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3196d0f1-6556-4f73-8a6a-8761f3aec355"
+  },
+  "item": [
+    {
+      "name": "unclaimed_draft",
+      "item": [
+        {
+          "name": "create",
+          "item": [
+            {
+              "name": "Create Unclaimed Draft",
+              "id": "43dea4fc-e6ba-4730-8854-fea28836e73f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"send_document\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_decline\": false,\n  \"attachments\": [\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    }\n  ],\n  \"cc_email_addresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"client_id\": \"<string>\",\n  \"custom_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    }\n  ],\n  \"field_options\": {\n    \"date_format\": \"YYYY - MM - DD\"\n  },\n  \"form_field_groups\": [\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    },\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    }\n  ],\n  \"form_field_rules\": [\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"none\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-group-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"is\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"form_fields_per_document\": [\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    },\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    }\n  ],\n  \"hide_text_tags\": false,\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"aliquaff\": {}\n  },\n  \"show_progress_stepper\": true,\n  \"signers\": [\n    {\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"signing_options\": {\n    \"default_type\": \"draw\",\n    \"draw\": false,\n    \"phone\": false,\n    \"type\": false,\n    \"upload\": false,\n    \"force_advanced_signature_details\": false\n  },\n  \"signing_redirect_url\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"use_preexisting_fields\": false,\n  \"use_text_tags\": false,\n  \"expires_at\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/unclaimed_draft/create",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "unclaimed_draft",
+                    "create"
+                  ]
+                },
+                "description": "Creates a new Draft that can be claimed using the claim URL. The first authenticated user to access the URL will claim the Draft and will be shown either the \"Sign and send\" or the \"Request signature\" page with the Draft loaded. Subsequent access to the claim URL will result in a 404."
+              },
+              "response": [
+                {
+                  "id": "cf81d121-0ad5-4d46-93d1-ffd3435fb8f1",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"send_document\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_decline\": false,\n  \"attachments\": [\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    }\n  ],\n  \"cc_email_addresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"client_id\": \"<string>\",\n  \"custom_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    }\n  ],\n  \"field_options\": {\n    \"date_format\": \"YYYY - MM - DD\"\n  },\n  \"form_field_groups\": [\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    },\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    }\n  ],\n  \"form_field_rules\": [\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"none\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-group-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"is\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"form_fields_per_document\": [\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    },\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    }\n  ],\n  \"hide_text_tags\": false,\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"aliquaff\": {}\n  },\n  \"show_progress_stepper\": true,\n  \"signers\": [\n    {\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"signing_options\": {\n    \"default_type\": \"draw\",\n    \"draw\": false,\n    \"phone\": false,\n    \"type\": false,\n    \"upload\": false,\n    \"force_advanced_signature_details\": false\n  },\n  \"signing_redirect_url\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"use_preexisting_fields\": false,\n  \"use_text_tags\": false,\n  \"expires_at\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/unclaimed_draft/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "unclaimed_draft",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"unclaimed_draft\": {\n    \"signature_request_id\": \"<string>\",\n    \"claim_url\": \"<string>\",\n    \"signing_redirect_url\": \"<string>\",\n    \"requesting_redirect_url\": \"<string>\",\n    \"expires_at\": \"<integer>\",\n    \"test_mode\": \"<boolean>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:55:24.000Z",
+                  "updatedAt": "2026-07-28T01:55:24.000Z",
+                  "uid": "35240-cf81d121-0ad5-4d46-93d1-ffd3435fb8f1"
+                },
+                {
+                  "id": "05c35c73-d902-4118-ab92-02760dab5af6",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"send_document\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_decline\": false,\n  \"attachments\": [\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    }\n  ],\n  \"cc_email_addresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"client_id\": \"<string>\",\n  \"custom_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    }\n  ],\n  \"field_options\": {\n    \"date_format\": \"YYYY - MM - DD\"\n  },\n  \"form_field_groups\": [\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    },\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    }\n  ],\n  \"form_field_rules\": [\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"none\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-group-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"is\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"form_fields_per_document\": [\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    },\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    }\n  ],\n  \"hide_text_tags\": false,\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"aliquaff\": {}\n  },\n  \"show_progress_stepper\": true,\n  \"signers\": [\n    {\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"signing_options\": {\n    \"default_type\": \"draw\",\n    \"draw\": false,\n    \"phone\": false,\n    \"type\": false,\n    \"upload\": false,\n    \"force_advanced_signature_details\": false\n  },\n  \"signing_redirect_url\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"use_preexisting_fields\": false,\n  \"use_text_tags\": false,\n  \"expires_at\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/unclaimed_draft/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "unclaimed_draft",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:55:24.000Z",
+                  "updatedAt": "2026-07-28T01:55:24.000Z",
+                  "uid": "35240-05c35c73-d902-4118-ab92-02760dab5af6"
+                }
+              ],
+              "createdAt": "2026-07-28T01:55:24.000Z",
+              "updatedAt": "2026-07-28T01:55:24.000Z",
+              "uid": "35240-43dea4fc-e6ba-4730-8854-fea28836e73f"
+            }
+          ],
+          "id": "d6c443ff-ba52-4bb1-a968-aefd16961b1e",
+          "createdAt": "2026-07-28T01:55:24.000Z",
+          "updatedAt": "2026-07-28T01:55:24.000Z",
+          "uid": "35240-d6c443ff-ba52-4bb1-a968-aefd16961b1e"
+        },
+        {
+          "name": "create_embedded",
+          "item": [
+            {
+              "name": "Create Embedded Unclaimed Draft",
+              "id": "fac964a8-ad2b-438b-816c-d6c474d102be",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"requester_email_address\": \"<email>\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_ccs\": true,\n  \"allow_decline\": false,\n  \"allow_reassign\": false,\n  \"attachments\": [\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    }\n  ],\n  \"cc_email_addresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"custom_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    }\n  ],\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"field_options\": {\n    \"date_format\": \"DD - MM - YYYY\"\n  },\n  \"force_signer_page\": false,\n  \"force_subject_message\": false,\n  \"form_field_groups\": [\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    },\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    }\n  ],\n  \"form_field_rules\": [\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"match\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"not\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"form_fields_per_document\": [\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    },\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    }\n  ],\n  \"hide_text_tags\": false,\n  \"hold_request\": false,\n  \"is_for_embedded_signing\": false,\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"dolore_4\": {},\n    \"elitde1\": {}\n  },\n  \"requesting_redirect_url\": \"<string>\",\n  \"show_preview\": \"<boolean>\",\n  \"show_progress_stepper\": true,\n  \"signers\": [\n    {\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"signing_options\": {\n    \"default_type\": \"draw\",\n    \"draw\": false,\n    \"phone\": false,\n    \"type\": false,\n    \"upload\": false,\n    \"force_advanced_signature_details\": false\n  },\n  \"signing_redirect_url\": \"<string>\",\n  \"skip_me_now\": false,\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"type\": \"request_signature\",\n  \"use_preexisting_fields\": false,\n  \"use_text_tags\": false,\n  \"populate_auto_fill_fields\": false,\n  \"expires_at\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/unclaimed_draft/create_embedded",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "unclaimed_draft",
+                    "create_embedded"
+                  ]
+                },
+                "description": "Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \"Request signature\" page with the Draft loaded. Subsequent access to the claim URL will result in a `404`. For this embedded endpoint the `requester_email_address` parameter is required.\n\n**NOTE:** Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign."
+              },
+              "response": [
+                {
+                  "id": "67fcbc51-4ee6-42b9-a109-546e4d1ad916",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"requester_email_address\": \"<email>\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_ccs\": true,\n  \"allow_decline\": false,\n  \"allow_reassign\": false,\n  \"attachments\": [\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    }\n  ],\n  \"cc_email_addresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"custom_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    }\n  ],\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"field_options\": {\n    \"date_format\": \"DD - MM - YYYY\"\n  },\n  \"force_signer_page\": false,\n  \"force_subject_message\": false,\n  \"form_field_groups\": [\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    },\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    }\n  ],\n  \"form_field_rules\": [\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"match\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"not\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"form_fields_per_document\": [\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    },\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    }\n  ],\n  \"hide_text_tags\": false,\n  \"hold_request\": false,\n  \"is_for_embedded_signing\": false,\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"dolore_4\": {},\n    \"elitde1\": {}\n  },\n  \"requesting_redirect_url\": \"<string>\",\n  \"show_preview\": \"<boolean>\",\n  \"show_progress_stepper\": true,\n  \"signers\": [\n    {\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"signing_options\": {\n    \"default_type\": \"draw\",\n    \"draw\": false,\n    \"phone\": false,\n    \"type\": false,\n    \"upload\": false,\n    \"force_advanced_signature_details\": false\n  },\n  \"signing_redirect_url\": \"<string>\",\n  \"skip_me_now\": false,\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"type\": \"request_signature\",\n  \"use_preexisting_fields\": false,\n  \"use_text_tags\": false,\n  \"populate_auto_fill_fields\": false,\n  \"expires_at\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/unclaimed_draft/create_embedded",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "unclaimed_draft",
+                        "create_embedded"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"unclaimed_draft\": {\n    \"signature_request_id\": \"<string>\",\n    \"claim_url\": \"<string>\",\n    \"signing_redirect_url\": \"<string>\",\n    \"requesting_redirect_url\": \"<string>\",\n    \"expires_at\": \"<integer>\",\n    \"test_mode\": \"<boolean>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:55:24.000Z",
+                  "updatedAt": "2026-07-28T01:55:24.000Z",
+                  "uid": "35240-67fcbc51-4ee6-42b9-a109-546e4d1ad916"
+                },
+                {
+                  "id": "596156cc-f7a8-4326-bc07-58936294b822",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"requester_email_address\": \"<email>\",\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_ccs\": true,\n  \"allow_decline\": false,\n  \"allow_reassign\": false,\n  \"attachments\": [\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"signer_index\": \"<integer>\",\n      \"instructions\": \"<string>\",\n      \"required\": false\n    }\n  ],\n  \"cc_email_addresses\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"custom_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    }\n  ],\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"field_options\": {\n    \"date_format\": \"DD - MM - YYYY\"\n  },\n  \"force_signer_page\": false,\n  \"force_subject_message\": false,\n  \"form_field_groups\": [\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    },\n    {\n      \"group_id\": \"<string>\",\n      \"group_label\": \"<string>\",\n      \"requirement\": \"<string>\"\n    }\n  ],\n  \"form_field_rules\": [\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"match\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"trigger_operator\": \"AND\",\n      \"triggers\": [\n        {\n          \"id\": \"<string>\",\n          \"operator\": \"not\",\n          \"value\": \"<string>\",\n          \"values\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"actions\": [\n        {\n          \"hidden\": \"<boolean>\",\n          \"type\": \"change-field-visibility\",\n          \"field_id\": \"<string>\",\n          \"group_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"form_fields_per_document\": [\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    },\n    {\n      \"document_index\": \"<integer>\",\n      \"api_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"signer\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"page\": \"<integer>\"\n    }\n  ],\n  \"hide_text_tags\": false,\n  \"hold_request\": false,\n  \"is_for_embedded_signing\": false,\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"dolore_4\": {},\n    \"elitde1\": {}\n  },\n  \"requesting_redirect_url\": \"<string>\",\n  \"show_preview\": \"<boolean>\",\n  \"show_progress_stepper\": true,\n  \"signers\": [\n    {\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"signing_options\": {\n    \"default_type\": \"draw\",\n    \"draw\": false,\n    \"phone\": false,\n    \"type\": false,\n    \"upload\": false,\n    \"force_advanced_signature_details\": false\n  },\n  \"signing_redirect_url\": \"<string>\",\n  \"skip_me_now\": false,\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"type\": \"request_signature\",\n  \"use_preexisting_fields\": false,\n  \"use_text_tags\": false,\n  \"populate_auto_fill_fields\": false,\n  \"expires_at\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/unclaimed_draft/create_embedded",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "unclaimed_draft",
+                        "create_embedded"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:55:24.000Z",
+                  "updatedAt": "2026-07-28T01:55:24.000Z",
+                  "uid": "35240-596156cc-f7a8-4326-bc07-58936294b822"
+                }
+              ],
+              "createdAt": "2026-07-28T01:55:24.000Z",
+              "updatedAt": "2026-07-28T01:55:24.000Z",
+              "uid": "35240-fac964a8-ad2b-438b-816c-d6c474d102be"
+            }
+          ],
+          "id": "6b37272f-8e6a-4902-9c13-efe5218f0828",
+          "createdAt": "2026-07-28T01:55:24.000Z",
+          "updatedAt": "2026-07-28T01:55:24.000Z",
+          "uid": "35240-6b37272f-8e6a-4902-9c13-efe5218f0828"
+        },
+        {
+          "name": "create_embedded_with_template",
+          "item": [
+            {
+              "name": "Create Embedded Unclaimed Draft with Template",
+              "id": "155c33e3-f0da-4dfe-b3db-aba4cdbc4d13",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"requester_email_address\": \"<email>\",\n  \"template_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_decline\": false,\n  \"allow_reassign\": false,\n  \"ccs\": [\n    {\n      \"role\": \"<string>\",\n      \"email_address\": \"<email>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"email_address\": \"<email>\"\n    }\n  ],\n  \"custom_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    }\n  ],\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"field_options\": {\n    \"date_format\": \"YYYY / MM / DD\"\n  },\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"force_signer_roles\": false,\n  \"force_subject_message\": false,\n  \"hold_request\": false,\n  \"is_for_embedded_signing\": false,\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"cillum_470\": {},\n    \"esse_a_7\": {},\n    \"sed_5\": {},\n    \"do_190\": {}\n  },\n  \"preview_only\": false,\n  \"requesting_redirect_url\": \"<string>\",\n  \"show_preview\": false,\n  \"show_progress_stepper\": true,\n  \"signers\": [\n    {\n      \"role\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\"\n    }\n  ],\n  \"signing_options\": {\n    \"default_type\": \"upload\",\n    \"draw\": false,\n    \"phone\": false,\n    \"type\": false,\n    \"upload\": false,\n    \"force_advanced_signature_details\": false\n  },\n  \"signing_redirect_url\": \"<string>\",\n  \"skip_me_now\": false,\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"title\": \"<string>\",\n  \"populate_auto_fill_fields\": false,\n  \"allow_ccs\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/unclaimed_draft/create_embedded_with_template",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "unclaimed_draft",
+                    "create_embedded_with_template"
+                  ]
+                },
+                "description": "Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \"Request signature\" page with the Draft loaded. Subsequent access to the claim URL will result in a `404`. For this embedded endpoint the `requester_email_address` parameter is required.\n\n**NOTE:** Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign."
+              },
+              "response": [
+                {
+                  "id": "043ee33e-7704-4581-a0c3-b3c502c92278",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"requester_email_address\": \"<email>\",\n  \"template_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_decline\": false,\n  \"allow_reassign\": false,\n  \"ccs\": [\n    {\n      \"role\": \"<string>\",\n      \"email_address\": \"<email>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"email_address\": \"<email>\"\n    }\n  ],\n  \"custom_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    }\n  ],\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"field_options\": {\n    \"date_format\": \"YYYY / MM / DD\"\n  },\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"force_signer_roles\": false,\n  \"force_subject_message\": false,\n  \"hold_request\": false,\n  \"is_for_embedded_signing\": false,\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"cillum_470\": {},\n    \"esse_a_7\": {},\n    \"sed_5\": {},\n    \"do_190\": {}\n  },\n  \"preview_only\": false,\n  \"requesting_redirect_url\": \"<string>\",\n  \"show_preview\": false,\n  \"show_progress_stepper\": true,\n  \"signers\": [\n    {\n      \"role\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\"\n    }\n  ],\n  \"signing_options\": {\n    \"default_type\": \"upload\",\n    \"draw\": false,\n    \"phone\": false,\n    \"type\": false,\n    \"upload\": false,\n    \"force_advanced_signature_details\": false\n  },\n  \"signing_redirect_url\": \"<string>\",\n  \"skip_me_now\": false,\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"title\": \"<string>\",\n  \"populate_auto_fill_fields\": false,\n  \"allow_ccs\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/unclaimed_draft/create_embedded_with_template",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "unclaimed_draft",
+                        "create_embedded_with_template"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"unclaimed_draft\": {\n    \"signature_request_id\": \"<string>\",\n    \"claim_url\": \"<string>\",\n    \"signing_redirect_url\": \"<string>\",\n    \"requesting_redirect_url\": \"<string>\",\n    \"expires_at\": \"<integer>\",\n    \"test_mode\": \"<boolean>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:55:24.000Z",
+                  "updatedAt": "2026-07-28T01:55:24.000Z",
+                  "uid": "35240-043ee33e-7704-4581-a0c3-b3c502c92278"
+                },
+                {
+                  "id": "a4dcf01e-15a9-4b19-8bdf-1128d5981d45",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"requester_email_address\": \"<email>\",\n  \"template_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allow_decline\": false,\n  \"allow_reassign\": false,\n  \"ccs\": [\n    {\n      \"role\": \"<string>\",\n      \"email_address\": \"<email>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"email_address\": \"<email>\"\n    }\n  ],\n  \"custom_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"editor\": \"<string>\",\n      \"required\": false,\n      \"value\": \"<string>\"\n    }\n  ],\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"field_options\": {\n    \"date_format\": \"YYYY / MM / DD\"\n  },\n  \"files\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"file_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"force_signer_roles\": false,\n  \"force_subject_message\": false,\n  \"hold_request\": false,\n  \"is_for_embedded_signing\": false,\n  \"message\": \"<string>\",\n  \"metadata\": {\n    \"cillum_470\": {},\n    \"esse_a_7\": {},\n    \"sed_5\": {},\n    \"do_190\": {}\n  },\n  \"preview_only\": false,\n  \"requesting_redirect_url\": \"<string>\",\n  \"show_preview\": false,\n  \"show_progress_stepper\": true,\n  \"signers\": [\n    {\n      \"role\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email_address\": \"<email>\"\n    }\n  ],\n  \"signing_options\": {\n    \"default_type\": \"upload\",\n    \"draw\": false,\n    \"phone\": false,\n    \"type\": false,\n    \"upload\": false,\n    \"force_advanced_signature_details\": false\n  },\n  \"signing_redirect_url\": \"<string>\",\n  \"skip_me_now\": false,\n  \"subject\": \"<string>\",\n  \"test_mode\": false,\n  \"title\": \"<string>\",\n  \"populate_auto_fill_fields\": false,\n  \"allow_ccs\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/unclaimed_draft/create_embedded_with_template",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "unclaimed_draft",
+                        "create_embedded_with_template"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:55:24.000Z",
+                  "updatedAt": "2026-07-28T01:55:24.000Z",
+                  "uid": "35240-a4dcf01e-15a9-4b19-8bdf-1128d5981d45"
+                }
+              ],
+              "createdAt": "2026-07-28T01:55:24.000Z",
+              "updatedAt": "2026-07-28T01:55:24.000Z",
+              "uid": "35240-155c33e3-f0da-4dfe-b3db-aba4cdbc4d13"
+            }
+          ],
+          "id": "19dbcd25-a498-4c95-80c3-303b9c7443e0",
+          "createdAt": "2026-07-28T01:55:24.000Z",
+          "updatedAt": "2026-07-28T01:55:24.000Z",
+          "uid": "35240-19dbcd25-a498-4c95-80c3-303b9c7443e0"
+        },
+        {
+          "name": "edit_and_resend",
+          "item": [
+            {
+              "name": "{signature_request_id}",
+              "item": [
+                {
+                  "name": "Edit and Resend Unclaimed Draft",
+                  "id": "22d208ba-b970-4118-94ae-192b8c1ba261",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"is_for_embedded_signing\": \"<boolean>\",\n  \"requester_email_address\": \"<email>\",\n  \"requesting_redirect_url\": \"<string>\",\n  \"show_progress_stepper\": true,\n  \"signing_redirect_url\": \"<string>\",\n  \"test_mode\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/unclaimed_draft/edit_and_resend/:signature_request_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "unclaimed_draft",
+                        "edit_and_resend",
+                        ":signature_request_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4307a96c-93b4-444b-a118-ca87e9693f7a",
+                          "key": "signature_request_id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the signature request to edit and resend."
+                        }
+                      ]
+                    },
+                    "description": "Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter `test_mode` can be edited prior to request. Signers can be edited in embedded editor. Requester's email address will remain unchanged if `requester_email_address` parameter is not set.\n\n**NOTE:** Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign."
+                  },
+                  "response": [
+                    {
+                      "id": "9eb36f5f-af43-4155-86b5-2814c07ab6ba",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"client_id\": \"<string>\",\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"is_for_embedded_signing\": \"<boolean>\",\n  \"requester_email_address\": \"<email>\",\n  \"requesting_redirect_url\": \"<string>\",\n  \"show_progress_stepper\": true,\n  \"signing_redirect_url\": \"<string>\",\n  \"test_mode\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/unclaimed_draft/edit_and_resend/:signature_request_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "unclaimed_draft",
+                            "edit_and_resend",
+                            ":signature_request_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signature_request_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Ratelimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"unclaimed_draft\": {\n    \"signature_request_id\": \"<string>\",\n    \"claim_url\": \"<string>\",\n    \"signing_redirect_url\": \"<string>\",\n    \"requesting_redirect_url\": \"<string>\",\n    \"expires_at\": \"<integer>\",\n    \"test_mode\": \"<boolean>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:55:24.000Z",
+                      "updatedAt": "2026-07-28T01:55:24.000Z",
+                      "uid": "35240-9eb36f5f-af43-4155-86b5-2814c07ab6ba"
+                    },
+                    {
+                      "id": "5624db5c-1326-416b-9713-9507d08a62e9",
+                      "name": "failed_operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"client_id\": \"<string>\",\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"is_for_embedded_signing\": \"<boolean>\",\n  \"requester_email_address\": \"<email>\",\n  \"requesting_redirect_url\": \"<string>\",\n  \"show_progress_stepper\": true,\n  \"signing_redirect_url\": \"<string>\",\n  \"test_mode\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/unclaimed_draft/edit_and_resend/:signature_request_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "unclaimed_draft",
+                            "edit_and_resend",
+                            ":signature_request_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signature_request_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:55:24.000Z",
+                      "updatedAt": "2026-07-28T01:55:24.000Z",
+                      "uid": "35240-5624db5c-1326-416b-9713-9507d08a62e9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:55:24.000Z",
+                  "updatedAt": "2026-07-28T01:55:24.000Z",
+                  "uid": "35240-22d208ba-b970-4118-94ae-192b8c1ba261"
+                }
+              ],
+              "id": "9c33e5e2-de71-4792-b6b1-7e1c0523f890",
+              "createdAt": "2026-07-28T01:55:24.000Z",
+              "updatedAt": "2026-07-28T01:55:24.000Z",
+              "uid": "35240-9c33e5e2-de71-4792-b6b1-7e1c0523f890"
+            }
+          ],
+          "id": "9450a8cc-4b77-4c06-a326-1b9b6da34c99",
+          "createdAt": "2026-07-28T01:55:24.000Z",
+          "updatedAt": "2026-07-28T01:55:24.000Z",
+          "uid": "35240-9450a8cc-4b77-4c06-a326-1b9b6da34c99"
+        }
+      ],
+      "id": "f0cd1405-7213-4c1d-a8d8-3c6180aaa183",
+      "createdAt": "2026-07-28T01:55:24.000Z",
+      "updatedAt": "2026-07-28T01:55:24.000Z",
+      "uid": "35240-f0cd1405-7213-4c1d-a8d8-3c6180aaa183"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hellosign.com/v3"
+    }
+  ]
+}

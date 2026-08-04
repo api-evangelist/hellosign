@@ -1,0 +1,460 @@
+{
+  "info": {
+    "_postman_id": "aec742ba-cdaf-4bc7-891b-b49cce71369e",
+    "name": "Dropbox Sign Account OAuth API",
+    "description": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:43.000Z",
+    "updatedAt": "2026-07-28T01:54:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-aec742ba-cdaf-4bc7-891b-b49cce71369e"
+  },
+  "item": [
+    {
+      "name": "oauth",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "OAuth Token Generate",
+              "id": "c43fc269-237b-4102-a6e0-2ba0819776b8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"code\": \"<string>\",\n  \"state\": \"<string>\",\n  \"grant_type\": \"authorization_code\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://app.hellosign.com/oauth/token",
+                  "protocol": "https",
+                  "host": [
+                    "app",
+                    "hellosign",
+                    "com"
+                  ],
+                  "path": [
+                    "oauth",
+                    "token"
+                  ]
+                },
+                "description": "Once you have retrieved the code from the user callback, you will need to exchange it for an access token via a backend call."
+              },
+              "response": [
+                {
+                  "id": "a6603f40-075e-47ed-affe-4f7a20cc52c2",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"code\": \"<string>\",\n  \"state\": \"<string>\",\n  \"grant_type\": \"authorization_code\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://app.hellosign.com/oauth/token",
+                      "protocol": "https",
+                      "host": [
+                        "app",
+                        "hellosign",
+                        "com"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"refresh_token\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"state\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:54:43.000Z",
+                  "updatedAt": "2026-07-28T01:54:43.000Z",
+                  "uid": "35240-a6603f40-075e-47ed-affe-4f7a20cc52c2"
+                },
+                {
+                  "id": "7cc24ced-a2fe-4796-acf3-bd4a283251de",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"code\": \"<string>\",\n  \"state\": \"<string>\",\n  \"grant_type\": \"authorization_code\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://app.hellosign.com/oauth/token",
+                      "protocol": "https",
+                      "host": [
+                        "app",
+                        "hellosign",
+                        "com"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:43.000Z",
+                  "updatedAt": "2026-07-28T01:54:43.000Z",
+                  "uid": "35240-7cc24ced-a2fe-4796-acf3-bd4a283251de"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:43.000Z",
+              "updatedAt": "2026-07-28T01:54:43.000Z",
+              "uid": "35240-c43fc269-237b-4102-a6e0-2ba0819776b8"
+            }
+          ],
+          "id": "df9531af-204f-4a6a-bf5f-63d7b8f42c7e",
+          "createdAt": "2026-07-28T01:54:43.000Z",
+          "updatedAt": "2026-07-28T01:54:43.000Z",
+          "uid": "35240-df9531af-204f-4a6a-bf5f-63d7b8f42c7e"
+        },
+        {
+          "name": "token?refresh",
+          "item": [
+            {
+              "name": "OAuth Token Refresh",
+              "id": "78aa64e1-675b-4c93-979e-8b2bb35ed476",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"grant_type\": \"refresh_token\",\n  \"refresh_token\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://app.hellosign.com/oauth/token?refresh",
+                  "protocol": "https",
+                  "host": [
+                    "app",
+                    "hellosign",
+                    "com"
+                  ],
+                  "path": [
+                    "oauth",
+                    "token"
+                  ],
+                  "query": [
+                    {
+                      "key": "refresh",
+                      "value": ""
+                    }
+                  ]
+                },
+                "description": "Access tokens are only valid for a given period of time (typically one hour) for security reasons. Whenever acquiring an new access token its TTL is also given (see `expires_in`), along with a refresh token that can be used to acquire a new access token after the current one has expired."
+              },
+              "response": [
+                {
+                  "id": "c3650527-99fc-4183-b8d9-e1bf2221f79f",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"grant_type\": \"refresh_token\",\n  \"refresh_token\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://app.hellosign.com/oauth/token",
+                      "protocol": "https",
+                      "host": [
+                        "app",
+                        "hellosign",
+                        "com"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"refresh_token\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"state\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:54:43.000Z",
+                  "updatedAt": "2026-07-28T01:54:43.000Z",
+                  "uid": "35240-c3650527-99fc-4183-b8d9-e1bf2221f79f"
+                },
+                {
+                  "id": "af6f1d02-b65c-479a-a097-2bd5fa22d0a8",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"grant_type\": \"refresh_token\",\n  \"refresh_token\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://app.hellosign.com/oauth/token",
+                      "protocol": "https",
+                      "host": [
+                        "app",
+                        "hellosign",
+                        "com"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:43.000Z",
+                  "updatedAt": "2026-07-28T01:54:43.000Z",
+                  "uid": "35240-af6f1d02-b65c-479a-a097-2bd5fa22d0a8"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:43.000Z",
+              "updatedAt": "2026-07-28T01:54:43.000Z",
+              "uid": "35240-78aa64e1-675b-4c93-979e-8b2bb35ed476"
+            }
+          ],
+          "id": "50bd00f5-d971-488c-835a-2db064f218e7",
+          "createdAt": "2026-07-28T01:54:43.000Z",
+          "updatedAt": "2026-07-28T01:54:43.000Z",
+          "uid": "35240-50bd00f5-d971-488c-835a-2db064f218e7"
+        }
+      ],
+      "id": "5a00a6c5-6e8b-4cde-9986-710ce46050b2",
+      "createdAt": "2026-07-28T01:54:43.000Z",
+      "updatedAt": "2026-07-28T01:54:43.000Z",
+      "uid": "35240-5a00a6c5-6e8b-4cde-9986-710ce46050b2"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hellosign.com/v3"
+    }
+  ]
+}

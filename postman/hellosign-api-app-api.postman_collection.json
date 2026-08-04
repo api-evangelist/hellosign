@@ -1,0 +1,1025 @@
+{
+  "info": {
+    "_postman_id": "b9766e2f-6c6e-47a7-9704-66f9bc9a7c9e",
+    "name": "Dropbox Sign Account Api App API",
+    "description": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:35.000Z",
+    "updatedAt": "2026-07-28T01:54:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b9766e2f-6c6e-47a7-9704-66f9bc9a7c9e"
+  },
+  "item": [
+    {
+      "name": "api_app",
+      "item": [
+        {
+          "name": "{client_id}",
+          "item": [
+            {
+              "name": "Get API App",
+              "id": "a70a6826-698a-495d-8be6-81bb0c072d93",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api_app/:client_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api_app",
+                    ":client_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9974afde-8f0d-42c9-93d1-943bd49c2500",
+                      "key": "client_id",
+                      "value": "<string>",
+                      "description": "(Required) The client id of the API App to retrieve."
+                    }
+                  ]
+                },
+                "description": "Returns an object with information about an API App."
+              },
+              "response": [
+                {
+                  "id": "60d77213-7da5-4594-bbcc-dafac26cf376",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api_app/:client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_app",
+                        ":client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"api_app\": {\n    \"callback_url\": \"<string>\",\n    \"client_id\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"domains\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"name\": \"<string>\",\n    \"is_approved\": \"<boolean>\",\n    \"oauth\": {\n      \"callback_url\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"charges_users\": \"<boolean>\"\n    },\n    \"options\": {\n      \"can_insert_everywhere\": \"<boolean>\"\n    },\n    \"owner_account\": {\n      \"account_id\": \"<string>\",\n      \"email_address\": \"<string>\"\n    },\n    \"white_labeling_options\": {\n      \"header_background_color\": \"<string>\",\n      \"legal_version\": \"<string>\",\n      \"link_color\": \"<string>\",\n      \"page_background_color\": \"<string>\",\n      \"primary_button_color\": \"<string>\",\n      \"primary_button_color_hover\": \"<string>\",\n      \"primary_button_text_color\": \"<string>\",\n      \"primary_button_text_color_hover\": \"<string>\",\n      \"secondary_button_color\": \"<string>\",\n      \"secondary_button_color_hover\": \"<string>\",\n      \"secondary_button_text_color\": \"<string>\",\n      \"secondary_button_text_color_hover\": \"<string>\",\n      \"text_color1\": \"<string>\",\n      \"text_color2\": \"<string>\"\n    }\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:54:36.000Z",
+                  "updatedAt": "2026-07-28T01:54:36.000Z",
+                  "uid": "35240-60d77213-7da5-4594-bbcc-dafac26cf376"
+                },
+                {
+                  "id": "67e9989b-cee4-4655-b6b7-0a2a7dca77ea",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api_app/:client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_app",
+                        ":client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:36.000Z",
+                  "updatedAt": "2026-07-28T01:54:36.000Z",
+                  "uid": "35240-67e9989b-cee4-4655-b6b7-0a2a7dca77ea"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:36.000Z",
+              "updatedAt": "2026-07-28T01:54:36.000Z",
+              "uid": "35240-a70a6826-698a-495d-8be6-81bb0c072d93"
+            },
+            {
+              "name": "Update API App",
+              "id": "60f45164-426d-46cb-90b5-cbcb8aa23269",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callback_url\": \"<string>\",\n  \"custom_logo_file\": \"<binary>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"oauth\": {\n    \"callback_url\": \"<string>\",\n    \"scopes\": [\n      \"signature_request_access\",\n      \"\"\n    ]\n  },\n  \"options\": {\n    \"can_insert_everywhere\": false\n  },\n  \"white_labeling_options\": {\n    \"header_background_color\": \"#1a1a1a\",\n    \"legal_version\": \"terms1\",\n    \"link_color\": \"#0061FE\",\n    \"page_background_color\": \"#f7f8f9\",\n    \"primary_button_color\": \"#0061FE\",\n    \"primary_button_color_hover\": \"#0061FE\",\n    \"primary_button_text_color\": \"#ffffff\",\n    \"primary_button_text_color_hover\": \"#ffffff\",\n    \"secondary_button_color\": \"#ffffff\",\n    \"secondary_button_color_hover\": \"#ffffff\",\n    \"secondary_button_text_color\": \"#0061FE\",\n    \"secondary_button_text_color_hover\": \"#0061FE\",\n    \"text_color1\": \"#808080\",\n    \"text_color2\": \"#ffffff\",\n    \"reset_to_default\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api_app/:client_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api_app",
+                    ":client_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "6ae1b452-9169-420b-804d-04f79ca303d3",
+                      "key": "client_id",
+                      "value": "<string>",
+                      "description": "(Required) The client id of the API App to update."
+                    }
+                  ]
+                },
+                "description": "Updates an existing API App. Can only be invoked for apps you own. Only the fields you provide will be updated. If you wish to clear an existing optional field, provide an empty string."
+              },
+              "response": [
+                {
+                  "id": "1bd388b9-057c-4bae-ba7f-d6696eb9cce3",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"callback_url\": \"<string>\",\n  \"custom_logo_file\": \"<binary>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"oauth\": {\n    \"callback_url\": \"<string>\",\n    \"scopes\": [\n      \"signature_request_access\",\n      \"\"\n    ]\n  },\n  \"options\": {\n    \"can_insert_everywhere\": false\n  },\n  \"white_labeling_options\": {\n    \"header_background_color\": \"#1a1a1a\",\n    \"legal_version\": \"terms1\",\n    \"link_color\": \"#0061FE\",\n    \"page_background_color\": \"#f7f8f9\",\n    \"primary_button_color\": \"#0061FE\",\n    \"primary_button_color_hover\": \"#0061FE\",\n    \"primary_button_text_color\": \"#ffffff\",\n    \"primary_button_text_color_hover\": \"#ffffff\",\n    \"secondary_button_color\": \"#ffffff\",\n    \"secondary_button_color_hover\": \"#ffffff\",\n    \"secondary_button_text_color\": \"#0061FE\",\n    \"secondary_button_text_color_hover\": \"#0061FE\",\n    \"text_color1\": \"#808080\",\n    \"text_color2\": \"#ffffff\",\n    \"reset_to_default\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_app/:client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_app",
+                        ":client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"api_app\": {\n    \"callback_url\": \"<string>\",\n    \"client_id\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"domains\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"name\": \"<string>\",\n    \"is_approved\": \"<boolean>\",\n    \"oauth\": {\n      \"callback_url\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"charges_users\": \"<boolean>\"\n    },\n    \"options\": {\n      \"can_insert_everywhere\": \"<boolean>\"\n    },\n    \"owner_account\": {\n      \"account_id\": \"<string>\",\n      \"email_address\": \"<string>\"\n    },\n    \"white_labeling_options\": {\n      \"header_background_color\": \"<string>\",\n      \"legal_version\": \"<string>\",\n      \"link_color\": \"<string>\",\n      \"page_background_color\": \"<string>\",\n      \"primary_button_color\": \"<string>\",\n      \"primary_button_color_hover\": \"<string>\",\n      \"primary_button_text_color\": \"<string>\",\n      \"primary_button_text_color_hover\": \"<string>\",\n      \"secondary_button_color\": \"<string>\",\n      \"secondary_button_color_hover\": \"<string>\",\n      \"secondary_button_text_color\": \"<string>\",\n      \"secondary_button_text_color_hover\": \"<string>\",\n      \"text_color1\": \"<string>\",\n      \"text_color2\": \"<string>\"\n    }\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:54:36.000Z",
+                  "updatedAt": "2026-07-28T01:54:36.000Z",
+                  "uid": "35240-1bd388b9-057c-4bae-ba7f-d6696eb9cce3"
+                },
+                {
+                  "id": "76e67244-dcea-4778-93e4-25d4ec7902f0",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"callback_url\": \"<string>\",\n  \"custom_logo_file\": \"<binary>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"oauth\": {\n    \"callback_url\": \"<string>\",\n    \"scopes\": [\n      \"signature_request_access\",\n      \"\"\n    ]\n  },\n  \"options\": {\n    \"can_insert_everywhere\": false\n  },\n  \"white_labeling_options\": {\n    \"header_background_color\": \"#1a1a1a\",\n    \"legal_version\": \"terms1\",\n    \"link_color\": \"#0061FE\",\n    \"page_background_color\": \"#f7f8f9\",\n    \"primary_button_color\": \"#0061FE\",\n    \"primary_button_color_hover\": \"#0061FE\",\n    \"primary_button_text_color\": \"#ffffff\",\n    \"primary_button_text_color_hover\": \"#ffffff\",\n    \"secondary_button_color\": \"#ffffff\",\n    \"secondary_button_color_hover\": \"#ffffff\",\n    \"secondary_button_text_color\": \"#0061FE\",\n    \"secondary_button_text_color_hover\": \"#0061FE\",\n    \"text_color1\": \"#808080\",\n    \"text_color2\": \"#ffffff\",\n    \"reset_to_default\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_app/:client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_app",
+                        ":client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:36.000Z",
+                  "updatedAt": "2026-07-28T01:54:36.000Z",
+                  "uid": "35240-76e67244-dcea-4778-93e4-25d4ec7902f0"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:36.000Z",
+              "updatedAt": "2026-07-28T01:54:36.000Z",
+              "uid": "35240-60f45164-426d-46cb-90b5-cbcb8aa23269"
+            },
+            {
+              "name": "Delete API App",
+              "id": "86bd47ac-8fc3-44c5-880e-6fe5990ae9af",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api_app/:client_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api_app",
+                    ":client_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "875c66b5-d847-4f4c-888b-531f1ef534f2",
+                      "key": "client_id",
+                      "value": "<string>",
+                      "description": "(Required) The client id of the API App to delete."
+                    }
+                  ]
+                },
+                "description": "Deletes an API App. Can only be invoked for apps you own."
+              },
+              "response": [
+                {
+                  "id": "a3fd62fc-e211-4351-84e8-d8e1f7cc31e8",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api_app/:client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_app",
+                        ":client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:54:36.000Z",
+                  "updatedAt": "2026-07-28T01:54:36.000Z",
+                  "uid": "35240-a3fd62fc-e211-4351-84e8-d8e1f7cc31e8"
+                },
+                {
+                  "id": "683b9d17-571f-42e3-bdd7-639239ba827e",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api_app/:client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_app",
+                        ":client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:36.000Z",
+                  "updatedAt": "2026-07-28T01:54:36.000Z",
+                  "uid": "35240-683b9d17-571f-42e3-bdd7-639239ba827e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:36.000Z",
+              "updatedAt": "2026-07-28T01:54:36.000Z",
+              "uid": "35240-86bd47ac-8fc3-44c5-880e-6fe5990ae9af"
+            }
+          ],
+          "id": "5988c380-4170-4f77-8791-482e07675ec8",
+          "createdAt": "2026-07-28T01:54:36.000Z",
+          "updatedAt": "2026-07-28T01:54:36.000Z",
+          "uid": "35240-5988c380-4170-4f77-8791-482e07675ec8"
+        },
+        {
+          "name": "list",
+          "item": [
+            {
+              "name": "List API Apps",
+              "id": "42799986-9b69-492f-be20-ce91b1d84e8e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api_app/list?page=1&page_size=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api_app",
+                    "list"
+                  ],
+                  "query": [
+                    {
+                      "description": "Which page number of the API App List to return. Defaults to `1`.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                      "key": "page_size",
+                      "value": "20"
+                    }
+                  ]
+                },
+                "description": "Returns a list of API Apps that are accessible by you. If you are on a team with an Admin or Developer role, this list will include apps owned by teammates."
+              },
+              "response": [
+                {
+                  "id": "480c3650-08e5-4d73-af59-36a90fc0c017",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api_app/list?page=1&page_size=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_app",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "Which page number of the API App List to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                          "key": "page_size",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Ratelimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"api_apps\": [\n    {\n      \"callback_url\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"created_at\": \"<integer>\",\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"is_approved\": \"<boolean>\",\n      \"oauth\": {\n        \"callback_url\": \"<string>\",\n        \"secret\": \"<string>\",\n        \"scopes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"charges_users\": \"<boolean>\"\n      },\n      \"options\": {\n        \"can_insert_everywhere\": \"<boolean>\"\n      },\n      \"owner_account\": {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\"\n      },\n      \"white_labeling_options\": {\n        \"header_background_color\": \"<string>\",\n        \"legal_version\": \"<string>\",\n        \"link_color\": \"<string>\",\n        \"page_background_color\": \"<string>\",\n        \"primary_button_color\": \"<string>\",\n        \"primary_button_color_hover\": \"<string>\",\n        \"primary_button_text_color\": \"<string>\",\n        \"primary_button_text_color_hover\": \"<string>\",\n        \"secondary_button_color\": \"<string>\",\n        \"secondary_button_color_hover\": \"<string>\",\n        \"secondary_button_text_color\": \"<string>\",\n        \"secondary_button_text_color_hover\": \"<string>\",\n        \"text_color1\": \"<string>\",\n        \"text_color2\": \"<string>\"\n      }\n    },\n    {\n      \"callback_url\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"created_at\": \"<integer>\",\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"is_approved\": \"<boolean>\",\n      \"oauth\": {\n        \"callback_url\": \"<string>\",\n        \"secret\": \"<string>\",\n        \"scopes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"charges_users\": \"<boolean>\"\n      },\n      \"options\": {\n        \"can_insert_everywhere\": \"<boolean>\"\n      },\n      \"owner_account\": {\n        \"account_id\": \"<string>\",\n        \"email_address\": \"<string>\"\n      },\n      \"white_labeling_options\": {\n        \"header_background_color\": \"<string>\",\n        \"legal_version\": \"<string>\",\n        \"link_color\": \"<string>\",\n        \"page_background_color\": \"<string>\",\n        \"primary_button_color\": \"<string>\",\n        \"primary_button_color_hover\": \"<string>\",\n        \"primary_button_text_color\": \"<string>\",\n        \"primary_button_text_color_hover\": \"<string>\",\n        \"secondary_button_color\": \"<string>\",\n        \"secondary_button_color_hover\": \"<string>\",\n        \"secondary_button_text_color\": \"<string>\",\n        \"secondary_button_text_color_hover\": \"<string>\",\n        \"text_color1\": \"<string>\",\n        \"text_color2\": \"<string>\"\n      }\n    }\n  ],\n  \"list_info\": {\n    \"num_pages\": \"<integer>\",\n    \"num_results\": \"<integer>\",\n    \"page\": \"<integer>\",\n    \"page_size\": \"<integer>\"\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:54:36.000Z",
+                  "updatedAt": "2026-07-28T01:54:36.000Z",
+                  "uid": "35240-480c3650-08e5-4d73-af59-36a90fc0c017"
+                },
+                {
+                  "id": "d90e3e78-2955-4373-8ef1-eee11ff3af22",
+                  "name": "failed_operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api_app/list?page=1&page_size=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_app",
+                        "list"
+                      ],
+                      "query": [
+                        {
+                          "description": "Which page number of the API App List to return. Defaults to `1`.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`.",
+                          "key": "page_size",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:54:36.000Z",
+                  "updatedAt": "2026-07-28T01:54:36.000Z",
+                  "uid": "35240-d90e3e78-2955-4373-8ef1-eee11ff3af22"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:36.000Z",
+              "updatedAt": "2026-07-28T01:54:36.000Z",
+              "uid": "35240-42799986-9b69-492f-be20-ce91b1d84e8e"
+            }
+          ],
+          "id": "a2f546ba-4984-4b53-9992-d910969f008d",
+          "createdAt": "2026-07-28T01:54:36.000Z",
+          "updatedAt": "2026-07-28T01:54:36.000Z",
+          "uid": "35240-a2f546ba-4984-4b53-9992-d910969f008d"
+        },
+        {
+          "name": "Create API App",
+          "id": "2bf80504-33d6-4416-a2f1-f339d3d1dfab",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"domains\": [\n    \"<string>\"\n  ],\n  \"callback_url\": \"<string>\",\n  \"custom_logo_file\": \"<binary>\",\n  \"oauth\": {\n    \"callback_url\": \"<string>\",\n    \"scopes\": [\n      \"\",\n      \"api_app_access\"\n    ]\n  },\n  \"options\": {\n    \"can_insert_everywhere\": false\n  },\n  \"white_labeling_options\": {\n    \"header_background_color\": \"#1a1a1a\",\n    \"legal_version\": \"terms1\",\n    \"link_color\": \"#0061FE\",\n    \"page_background_color\": \"#f7f8f9\",\n    \"primary_button_color\": \"#0061FE\",\n    \"primary_button_color_hover\": \"#0061FE\",\n    \"primary_button_text_color\": \"#ffffff\",\n    \"primary_button_text_color_hover\": \"#ffffff\",\n    \"secondary_button_color\": \"#ffffff\",\n    \"secondary_button_color_hover\": \"#ffffff\",\n    \"secondary_button_text_color\": \"#0061FE\",\n    \"secondary_button_text_color_hover\": \"#0061FE\",\n    \"text_color1\": \"#808080\",\n    \"text_color2\": \"#ffffff\",\n    \"reset_to_default\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api_app",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api_app"
+              ]
+            },
+            "description": "Creates a new API App."
+          },
+          "response": [
+            {
+              "id": "c81454bc-069d-490c-8b0d-b2bd195ca361",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"domains\": [\n    \"<string>\"\n  ],\n  \"callback_url\": \"<string>\",\n  \"custom_logo_file\": \"<binary>\",\n  \"oauth\": {\n    \"callback_url\": \"<string>\",\n    \"scopes\": [\n      \"\",\n      \"api_app_access\"\n    ]\n  },\n  \"options\": {\n    \"can_insert_everywhere\": false\n  },\n  \"white_labeling_options\": {\n    \"header_background_color\": \"#1a1a1a\",\n    \"legal_version\": \"terms1\",\n    \"link_color\": \"#0061FE\",\n    \"page_background_color\": \"#f7f8f9\",\n    \"primary_button_color\": \"#0061FE\",\n    \"primary_button_color_hover\": \"#0061FE\",\n    \"primary_button_text_color\": \"#ffffff\",\n    \"primary_button_text_color_hover\": \"#ffffff\",\n    \"secondary_button_color\": \"#ffffff\",\n    \"secondary_button_color_hover\": \"#ffffff\",\n    \"secondary_button_text_color\": \"#0061FE\",\n    \"secondary_button_text_color_hover\": \"#0061FE\",\n    \"text_color1\": \"#808080\",\n    \"text_color2\": \"#ffffff\",\n    \"reset_to_default\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api_app",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api_app"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Limit",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Remaining",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Ratelimit-Reset",
+                  "value": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"api_app\": {\n    \"callback_url\": \"<string>\",\n    \"client_id\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"domains\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"name\": \"<string>\",\n    \"is_approved\": \"<boolean>\",\n    \"oauth\": {\n      \"callback_url\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"charges_users\": \"<boolean>\"\n    },\n    \"options\": {\n      \"can_insert_everywhere\": \"<boolean>\"\n    },\n    \"owner_account\": {\n      \"account_id\": \"<string>\",\n      \"email_address\": \"<string>\"\n    },\n    \"white_labeling_options\": {\n      \"header_background_color\": \"<string>\",\n      \"legal_version\": \"<string>\",\n      \"link_color\": \"<string>\",\n      \"page_background_color\": \"<string>\",\n      \"primary_button_color\": \"<string>\",\n      \"primary_button_color_hover\": \"<string>\",\n      \"primary_button_text_color\": \"<string>\",\n      \"primary_button_text_color_hover\": \"<string>\",\n      \"secondary_button_color\": \"<string>\",\n      \"secondary_button_color_hover\": \"<string>\",\n      \"secondary_button_text_color\": \"<string>\",\n      \"secondary_button_text_color_hover\": \"<string>\",\n      \"text_color1\": \"<string>\",\n      \"text_color2\": \"<string>\"\n    }\n  },\n  \"warnings\": [\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    },\n    {\n      \"warning_msg\": \"<string>\",\n      \"warning_name\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:54:36.000Z",
+              "updatedAt": "2026-07-28T01:54:36.000Z",
+              "uid": "35240-c81454bc-069d-490c-8b0d-b2bd195ca361"
+            },
+            {
+              "id": "06cfc989-117e-4c33-90ca-25cceb1194f4",
+              "name": "failed_operation",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"domains\": [\n    \"<string>\"\n  ],\n  \"callback_url\": \"<string>\",\n  \"custom_logo_file\": \"<binary>\",\n  \"oauth\": {\n    \"callback_url\": \"<string>\",\n    \"scopes\": [\n      \"\",\n      \"api_app_access\"\n    ]\n  },\n  \"options\": {\n    \"can_insert_everywhere\": false\n  },\n  \"white_labeling_options\": {\n    \"header_background_color\": \"#1a1a1a\",\n    \"legal_version\": \"terms1\",\n    \"link_color\": \"#0061FE\",\n    \"page_background_color\": \"#f7f8f9\",\n    \"primary_button_color\": \"#0061FE\",\n    \"primary_button_color_hover\": \"#0061FE\",\n    \"primary_button_text_color\": \"#ffffff\",\n    \"primary_button_text_color_hover\": \"#ffffff\",\n    \"secondary_button_color\": \"#ffffff\",\n    \"secondary_button_color_hover\": \"#ffffff\",\n    \"secondary_button_text_color\": \"#0061FE\",\n    \"secondary_button_text_color_hover\": \"#0061FE\",\n    \"text_color1\": \"#808080\",\n    \"text_color2\": \"#ffffff\",\n    \"reset_to_default\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api_app",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api_app"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"error_msg\": \"<string>\",\n    \"error_name\": \"<string>\",\n    \"error_path\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:54:36.000Z",
+              "updatedAt": "2026-07-28T01:54:36.000Z",
+              "uid": "35240-06cfc989-117e-4c33-90ca-25cceb1194f4"
+            }
+          ],
+          "createdAt": "2026-07-28T01:54:36.000Z",
+          "updatedAt": "2026-07-28T01:54:36.000Z",
+          "uid": "35240-2bf80504-33d6-4416-a2f1-f339d3d1dfab"
+        }
+      ],
+      "id": "1d682d3a-04a4-4bdc-b8d5-0f9906ea02d3",
+      "createdAt": "2026-07-28T01:54:36.000Z",
+      "updatedAt": "2026-07-28T01:54:36.000Z",
+      "uid": "35240-1d682d3a-04a4-4bdc-b8d5-0f9906ea02d3"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hellosign.com/v3"
+    }
+  ]
+}
