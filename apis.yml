@@ -170,6 +170,8 @@ apis:
   - type: OpenAPI
     url: openapi/hellosign-unclaimed-draft-api-openapi.yml
 common:
+- type: Overlay
+  url: overlays/hellosign-openapi-overlay.yaml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/dropbox-sign-hellosign/overview
 - type: AgenticAccess
