@@ -1,0 +1,265 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dropbox Sign Account Team API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Team",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add User to Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hellosign.com/v3/team/add_member",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c",
+                "type": "query",
+                "description": "The id of the team."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Invites a user (specified using the `email_address` parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a `team_invite_failed` error will be returned."
+        },
+        {
+          "info": {
+            "name": "Create Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/team/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a new Team and makes you a member. You must not currently belong to a Team to invoke."
+        },
+        {
+          "info": {
+            "name": "Delete Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hellosign.com/v3/team/destroy",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Deletes your Team. Can only be invoked when you have a Team with only one member (yourself)."
+        },
+        {
+          "info": {
+            "name": "Get Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/team",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns information about your Team as well as a list of its members. If you do not belong to a Team, a 404 error with an error_name of \"not_found\" will be returned."
+        },
+        {
+          "info": {
+            "name": "Update Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hellosign.com/v3/team",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Updates the name of your Team."
+        },
+        {
+          "info": {
+            "name": "Get Team Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/team/info",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c",
+                "type": "query",
+                "description": "The id of the team."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Provides information about a team."
+        },
+        {
+          "info": {
+            "name": "List Team Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/team/invites",
+            "params": [
+              {
+                "name": "email_address",
+                "value": "",
+                "type": "query",
+                "description": "The email address for which to display the team invites."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Provides a list of team invites (and their roles)."
+        },
+        {
+          "info": {
+            "name": "List Team Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/team/members/:team_id",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c",
+                "type": "path",
+                "description": "The id of the team that a member list is being requested from."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Which page number of the team member list to return. Defaults to `1`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Provides a paginated list of members (and their roles) that belong to a given team."
+        },
+        {
+          "info": {
+            "name": "Remove User from Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/team/remove_member",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Removes the provided user Account from your Team. If the Account had an outstanding invitation to your Team, the invitation will be expired. If you choose to transfer documents from the removed Account to an Account provided in the `new_owner_email_address` parameter (available only for Enterprise plans), the response status code will be 201, which indicates that your request has been queued but not fully executed."
+        },
+        {
+          "info": {
+            "name": "List Sub Teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/team/sub_teams/:team_id",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c",
+                "type": "path",
+                "description": "The id of the parent Team."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Which page number of the SubTeam List to return. Defaults to `1`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Provides a paginated list of sub teams that belong to a given team."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

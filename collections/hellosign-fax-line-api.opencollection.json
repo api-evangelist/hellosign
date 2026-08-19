@@ -1,0 +1,213 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dropbox Sign Account Fax Line API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fax Line",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add Fax Line User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hellosign.com/v3/fax_line/add_user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Grants a user access to the specified Fax Line."
+        },
+        {
+          "info": {
+            "name": "Get Available Fax Line Area Codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/fax_line/area_codes",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter area codes by country"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter area codes by state"
+              },
+              {
+                "name": "province",
+                "value": "",
+                "type": "query",
+                "description": "Filter area codes by province"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query",
+                "description": "Filter area codes by city"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a list of available area codes for a given state/province and city"
+        },
+        {
+          "info": {
+            "name": "Purchase Fax Line",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/fax_line/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Purchases a new Fax Line"
+        },
+        {
+          "info": {
+            "name": "Get Fax Line",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/fax_line",
+            "params": [
+              {
+                "name": "number",
+                "value": "",
+                "type": "query",
+                "description": "The Fax Line number"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the properties and settings of a Fax Line."
+        },
+        {
+          "info": {
+            "name": "Delete Fax Line",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hellosign.com/v3/fax_line",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Deletes the specified Fax Line from the subscription."
+        },
+        {
+          "info": {
+            "name": "List Fax Lines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/fax_line/list",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Account ID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Which page number of the Fax Line List to return. Defaults to `1`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`."
+              },
+              {
+                "name": "show_team_lines",
+                "value": "",
+                "type": "query",
+                "description": "Include Fax Lines belonging to team members in the list"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the properties and settings of multiple Fax Lines."
+        },
+        {
+          "info": {
+            "name": "Remove Fax Line Access",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hellosign.com/v3/fax_line/remove_user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Removes a user's access to the specified Fax Line"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

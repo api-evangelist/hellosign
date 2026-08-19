@@ -1,0 +1,438 @@
+{
+  "item": [
+    {
+      "id": "e35ba3c1-0ee8-450e-8202-c7335c2c235a",
+      "name": "Bulk Send Job",
+      "description": {
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ae052887-6761-42bc-852f-8d6c5a6e7654",
+          "name": "Get Bulk Send Job",
+          "request": {
+            "name": "Get Bulk Send Job",
+            "description": {
+              "content": "Returns the status of the BulkSendJob and its SignatureRequests specified by the `bulk_send_job_id` parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bulk_send_job",
+                ":bulk_send_job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Which page number of the BulkSendJob list to return. Defaults to `1`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "20",
+                  "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is 20."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bulk_send_job_id",
+                  "description": "(Required) The id of the BulkSendJob to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e02650f8-39a1-4f54-b4b5-ce2a9925e799",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bulk_send_job",
+                    ":bulk_send_job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bulk_send_job_id",
+                      "description": "(Required) The id of the BulkSendJob to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/BulkSendJobGetResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "812cd7ac-86c5-4dc0-a28c-e54e07b18979",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bulk_send_job",
+                    ":bulk_send_job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bulk_send_job_id",
+                      "description": "(Required) The id of the BulkSendJob to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6d8ffbd-0e6e-4343-9078-890a60b3a76e",
+          "name": "List Bulk Send Jobs",
+          "request": {
+            "name": "List Bulk Send Jobs",
+            "description": {
+              "content": "Returns a list of BulkSendJob that you can access.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bulk_send_job",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Which page number of the BulkSendJob List to return. Defaults to `1`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "20",
+                  "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is 20."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bd5eca71-24a7-4291-8d1c-5b28cf7d4338",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bulk_send_job",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/BulkSendJobListResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "faf126e0-b445-463a-b6a5-652344019d71",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bulk_send_job",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hellosign.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "435e3218-b6dd-419c-9885-1641f1e7184c",
+    "name": "Dropbox Sign Account Bulk Send Job API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+      "type": "text/plain"
+    }
+  }
+}

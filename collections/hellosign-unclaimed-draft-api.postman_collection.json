@@ -1,0 +1,2927 @@
+{
+  "item": [
+    {
+      "id": "51ff1309-a1e9-494d-84f4-07d0000575e9",
+      "name": "Unclaimed Draft",
+      "description": {
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c7079187-c490-4409-982f-757d04aae7af",
+          "name": "Create Unclaimed Draft",
+          "request": {
+            "name": "Create Unclaimed Draft",
+            "description": {
+              "content": "Creates a new Draft that can be claimed using the claim URL. The first authenticated user to access the URL will claim the Draft and will be shown either the \"Sign and send\" or the \"Request signature\" page with the Draft loaded. Subsequent access to the claim URL will result in a 404.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unclaimed_draft",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "type",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The type of unclaimed draft to create. Use `send_document` to create a claimable file, and `request_signature` for a claimable signature request. If the type is `request_signature` then signers name and email_address are not optional. (This can only be one of send_document,request_signature)"
+                },
+                {
+                  "key": "files",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": "Use `files[]` to indicate the uploaded file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both."
+                },
+                {
+                  "key": "file_urls",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both."
+                },
+                {
+                  "key": "allow_decline",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Allows signers to decline to sign a document if `true`. Defaults to `false`."
+                },
+                {
+                  "key": "attachments",
+                  "value": "[{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false},{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false}]",
+                  "type": "text",
+                  "description": "A list describing the attachments"
+                },
+                {
+                  "key": "cc_email_addresses",
+                  "value": "[\"<email>\",\"<email>\"]",
+                  "type": "text",
+                  "description": "The email addresses that should be CCed."
+                },
+                {
+                  "key": "client_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app."
+                },
+                {
+                  "key": "custom_fields",
+                  "value": "[{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"},{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"}]",
+                  "type": "text",
+                  "description": "When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.\n\nPre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.\n\nFor using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template."
+                },
+                {
+                  "key": "field_options",
+                  "value": "{\"date_format\":\"<string>\"}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "form_field_groups",
+                  "value": "[{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"},{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"}]",
+                  "type": "text",
+                  "description": "Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`."
+                },
+                {
+                  "key": "form_field_rules",
+                  "value": "[{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]},{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]}]",
+                  "type": "text",
+                  "description": "Conditional Logic rules for fields defined in `form_fields_per_document`."
+                },
+                {
+                  "key": "form_fields_per_document",
+                  "value": "[{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"},{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"}]",
+                  "type": "text",
+                  "description": "The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)\n\n**NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.\n\n* Text Field use `SubFormFieldsPerDocumentText`\n* Dropdown Field use `SubFormFieldsPerDocumentDropdown`\n* Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`\n* Checkbox Field use `SubFormFieldsPerDocumentCheckbox`\n* Radio Field use `SubFormFieldsPerDocumentRadio`\n* Signature Field use `SubFormFieldsPerDocumentSignature`\n* Date Signed Field use `SubFormFieldsPerDocumentDateSigned`\n* Initials Field use `SubFormFieldsPerDocumentInitials`\n* Text Merge Field use `SubFormFieldsPerDocumentTextMerge`\n* Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`"
+                },
+                {
+                  "key": "hide_text_tags",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Send with a value of `true` if you wish to enable automatic Text Tag removal. Defaults to `false`. When using Text Tags it is preferred that you set this to `false` and hide your tags with white text or something similar because the automatic removal system can cause unwanted clipping. See the [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) walkthrough for more details."
+                },
+                {
+                  "key": "message",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The custom message in the email that will be sent to the signers."
+                },
+                {
+                  "key": "metadata",
+                  "value": "{\"key_0\":{}}",
+                  "type": "text",
+                  "description": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long."
+                },
+                {
+                  "key": "show_progress_stepper",
+                  "value": "true",
+                  "type": "text",
+                  "description": "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden."
+                },
+                {
+                  "key": "signers",
+                  "value": "[{\"name\":\"<string>\",\"email_address\":\"<email>\",\"order\":\"<integer>\"},{\"name\":\"<string>\",\"email_address\":\"<email>\",\"order\":\"<integer>\"}]",
+                  "type": "text",
+                  "description": "Add Signers to your Unclaimed Draft Signature Request."
+                },
+                {
+                  "key": "signing_options",
+                  "value": "{\"default_type\":\"<string>\",\"draw\":false,\"phone\":false,\"type\":false,\"upload\":false,\"force_advanced_signature_details\":false}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "signing_redirect_url",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The URL you want signers redirected to after they successfully sign."
+                },
+                {
+                  "key": "subject",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The subject in the email that will be sent to the signers."
+                },
+                {
+                  "key": "test_mode",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`."
+                },
+                {
+                  "key": "use_preexisting_fields",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both."
+                },
+                {
+                  "key": "use_text_tags",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both."
+                },
+                {
+                  "key": "expires_at",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details.\n\n**NOTE:** This does not correspond to the **expires_at** returned in the response."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4aad4af4-af84-46d6-99f8-f71769e016da",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unclaimed_draft",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The type of unclaimed draft to create. Use `send_document` to create a claimable file, and `request_signature` for a claimable signature request. If the type is `request_signature` then signers name and email_address are not optional. (This can only be one of send_document,request_signature)",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `files[]` to indicate the uploaded file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to decline to sign a document if `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_decline",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A list describing the attachments",
+                        "type": "text/plain"
+                      },
+                      "key": "attachments",
+                      "value": "[{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false},{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The email addresses that should be CCed.",
+                        "type": "text/plain"
+                      },
+                      "key": "cc_email_addresses",
+                      "value": "[\"<email>\",\"<email>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.\n\nPre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.\n\nFor using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.",
+                        "type": "text/plain"
+                      },
+                      "key": "custom_fields",
+                      "value": "[{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"},{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "field_options",
+                      "value": "{\"date_format\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_groups",
+                      "value": "[{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"},{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conditional Logic rules for fields defined in `form_fields_per_document`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_rules",
+                      "value": "[{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]},{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)\n\n**NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.\n\n* Text Field use `SubFormFieldsPerDocumentText`\n* Dropdown Field use `SubFormFieldsPerDocumentDropdown`\n* Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`\n* Checkbox Field use `SubFormFieldsPerDocumentCheckbox`\n* Radio Field use `SubFormFieldsPerDocumentRadio`\n* Signature Field use `SubFormFieldsPerDocumentSignature`\n* Date Signed Field use `SubFormFieldsPerDocumentDateSigned`\n* Initials Field use `SubFormFieldsPerDocumentInitials`\n* Text Merge Field use `SubFormFieldsPerDocumentTextMerge`\n* Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`",
+                        "type": "text/plain"
+                      },
+                      "key": "form_fields_per_document",
+                      "value": "[{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"},{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Send with a value of `true` if you wish to enable automatic Text Tag removal. Defaults to `false`. When using Text Tags it is preferred that you set this to `false` and hide your tags with white text or something similar because the automatic removal system can cause unwanted clipping. See the [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) walkthrough for more details.",
+                        "type": "text/plain"
+                      },
+                      "key": "hide_text_tags",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The custom message in the email that will be sent to the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.",
+                        "type": "text/plain"
+                      },
+                      "key": "metadata",
+                      "value": "{\"key_0\":{},\"key_1\":{}}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_progress_stepper",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Add Signers to your Unclaimed Draft Signature Request.",
+                        "type": "text/plain"
+                      },
+                      "key": "signers",
+                      "value": "[{\"name\":\"<string>\",\"email_address\":\"<email>\",\"order\":\"<integer>\"},{\"name\":\"<string>\",\"email_address\":\"<email>\",\"order\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "signing_options",
+                      "value": "{\"default_type\":\"<string>\",\"draw\":false,\"phone\":false,\"type\":false,\"upload\":false,\"force_advanced_signature_details\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The URL you want signers redirected to after they successfully sign.",
+                        "type": "text/plain"
+                      },
+                      "key": "signing_redirect_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The subject in the email that will be sent to the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "test_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "use_preexisting_fields",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "use_text_tags",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details.\n\n**NOTE:** This does not correspond to the **expires_at** returned in the response.",
+                        "type": "text/plain"
+                      },
+                      "key": "expires_at",
+                      "value": "<integer>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/UnclaimedDraftCreateResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5884bb48-e3ab-4794-9b6b-c99d9d58af7e",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unclaimed_draft",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The type of unclaimed draft to create. Use `send_document` to create a claimable file, and `request_signature` for a claimable signature request. If the type is `request_signature` then signers name and email_address are not optional. (This can only be one of send_document,request_signature)",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `files[]` to indicate the uploaded file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to decline to sign a document if `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_decline",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A list describing the attachments",
+                        "type": "text/plain"
+                      },
+                      "key": "attachments",
+                      "value": "[{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false},{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The email addresses that should be CCed.",
+                        "type": "text/plain"
+                      },
+                      "key": "cc_email_addresses",
+                      "value": "[\"<email>\",\"<email>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.\n\nPre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.\n\nFor using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.",
+                        "type": "text/plain"
+                      },
+                      "key": "custom_fields",
+                      "value": "[{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"},{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "field_options",
+                      "value": "{\"date_format\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_groups",
+                      "value": "[{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"},{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conditional Logic rules for fields defined in `form_fields_per_document`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_rules",
+                      "value": "[{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]},{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)\n\n**NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.\n\n* Text Field use `SubFormFieldsPerDocumentText`\n* Dropdown Field use `SubFormFieldsPerDocumentDropdown`\n* Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`\n* Checkbox Field use `SubFormFieldsPerDocumentCheckbox`\n* Radio Field use `SubFormFieldsPerDocumentRadio`\n* Signature Field use `SubFormFieldsPerDocumentSignature`\n* Date Signed Field use `SubFormFieldsPerDocumentDateSigned`\n* Initials Field use `SubFormFieldsPerDocumentInitials`\n* Text Merge Field use `SubFormFieldsPerDocumentTextMerge`\n* Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`",
+                        "type": "text/plain"
+                      },
+                      "key": "form_fields_per_document",
+                      "value": "[{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"},{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Send with a value of `true` if you wish to enable automatic Text Tag removal. Defaults to `false`. When using Text Tags it is preferred that you set this to `false` and hide your tags with white text or something similar because the automatic removal system can cause unwanted clipping. See the [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) walkthrough for more details.",
+                        "type": "text/plain"
+                      },
+                      "key": "hide_text_tags",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The custom message in the email that will be sent to the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.",
+                        "type": "text/plain"
+                      },
+                      "key": "metadata",
+                      "value": "{\"key_0\":{},\"key_1\":{}}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_progress_stepper",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Add Signers to your Unclaimed Draft Signature Request.",
+                        "type": "text/plain"
+                      },
+                      "key": "signers",
+                      "value": "[{\"name\":\"<string>\",\"email_address\":\"<email>\",\"order\":\"<integer>\"},{\"name\":\"<string>\",\"email_address\":\"<email>\",\"order\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "signing_options",
+                      "value": "{\"default_type\":\"<string>\",\"draw\":false,\"phone\":false,\"type\":false,\"upload\":false,\"force_advanced_signature_details\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The URL you want signers redirected to after they successfully sign.",
+                        "type": "text/plain"
+                      },
+                      "key": "signing_redirect_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The subject in the email that will be sent to the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "test_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "use_preexisting_fields",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "use_text_tags",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details.\n\n**NOTE:** This does not correspond to the **expires_at** returned in the response.",
+                        "type": "text/plain"
+                      },
+                      "key": "expires_at",
+                      "value": "<integer>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bc3b5ca-bc62-469b-b150-2a182f122a88",
+          "name": "Create Embedded Unclaimed Draft",
+          "request": {
+            "name": "Create Embedded Unclaimed Draft",
+            "description": {
+              "content": "Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \"Request signature\" page with the Draft loaded. Subsequent access to the claim URL will result in a `404`. For this embedded endpoint the `requester_email_address` parameter is required.\n\n**NOTE:** Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unclaimed_draft",
+                "create_embedded"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "client_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app."
+                },
+                {
+                  "key": "requester_email_address",
+                  "value": "<email>",
+                  "type": "text",
+                  "description": "(Required) The email address of the user that should be designated as the requester of this draft, if the draft type is `request_signature`."
+                },
+                {
+                  "key": "files",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": "Use `files[]` to indicate the uploaded file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both."
+                },
+                {
+                  "key": "file_urls",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both."
+                },
+                {
+                  "key": "allow_ccs",
+                  "value": "true",
+                  "type": "text",
+                  "description": "This allows the requester to specify whether the user is allowed to provide email addresses to CC when claiming the draft."
+                },
+                {
+                  "key": "allow_decline",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Allows signers to decline to sign a document if `true`. Defaults to `false`."
+                },
+                {
+                  "key": "allow_reassign",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.\n\n**NOTE:** Only available for Premium plan and higher."
+                },
+                {
+                  "key": "attachments",
+                  "value": "[{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false},{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false}]",
+                  "type": "text",
+                  "description": "A list describing the attachments"
+                },
+                {
+                  "key": "cc_email_addresses",
+                  "value": "[\"<email>\",\"<email>\"]",
+                  "type": "text",
+                  "description": "The email addresses that should be CCed."
+                },
+                {
+                  "key": "custom_fields",
+                  "value": "[{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"},{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"}]",
+                  "type": "text",
+                  "description": "When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.\n\nPre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.\n\nFor using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template."
+                },
+                {
+                  "key": "editor_options",
+                  "value": "{\"allow_edit_signers\":false,\"allow_edit_documents\":false}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "field_options",
+                  "value": "{\"date_format\":\"<string>\"}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "force_signer_page",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Provide users the ability to review/edit the signers."
+                },
+                {
+                  "key": "force_subject_message",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Provide users the ability to review/edit the subject and message."
+                },
+                {
+                  "key": "form_field_groups",
+                  "value": "[{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"},{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"}]",
+                  "type": "text",
+                  "description": "Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`."
+                },
+                {
+                  "key": "form_field_rules",
+                  "value": "[{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]},{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]}]",
+                  "type": "text",
+                  "description": "Conditional Logic rules for fields defined in `form_fields_per_document`."
+                },
+                {
+                  "key": "form_fields_per_document",
+                  "value": "[{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"},{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"}]",
+                  "type": "text",
+                  "description": "The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)\n\n**NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.\n\n* Text Field use `SubFormFieldsPerDocumentText`\n* Dropdown Field use `SubFormFieldsPerDocumentDropdown`\n* Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`\n* Checkbox Field use `SubFormFieldsPerDocumentCheckbox`\n* Radio Field use `SubFormFieldsPerDocumentRadio`\n* Signature Field use `SubFormFieldsPerDocumentSignature`\n* Date Signed Field use `SubFormFieldsPerDocumentDateSigned`\n* Initials Field use `SubFormFieldsPerDocumentInitials`\n* Text Merge Field use `SubFormFieldsPerDocumentTextMerge`\n* Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`"
+                },
+                {
+                  "key": "hide_text_tags",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Send with a value of `true` if you wish to enable automatic Text Tag removal. Defaults to `false`. When using Text Tags it is preferred that you set this to `false` and hide your tags with white text or something similar because the automatic removal system can cause unwanted clipping. See the [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) walkthrough for more details."
+                },
+                {
+                  "key": "hold_request",
+                  "value": "false",
+                  "type": "text",
+                  "description": "The request from this draft will not automatically send to signers post-claim if set to `true`. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`."
+                },
+                {
+                  "key": "is_for_embedded_signing",
+                  "value": "false",
+                  "type": "text",
+                  "description": "The request created from this draft will also be signable in embedded mode if set to `true`. Defaults to `false`."
+                },
+                {
+                  "key": "message",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The custom message in the email that will be sent to the signers."
+                },
+                {
+                  "key": "metadata",
+                  "value": "{\"key_0\":{},\"key_1\":{}}",
+                  "type": "text",
+                  "description": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long."
+                },
+                {
+                  "key": "requesting_redirect_url",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The URL you want signers redirected to after they successfully request a signature."
+                },
+                {
+                  "key": "show_preview",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": "This allows the requester to enable the editor/preview experience.\n\n- `show_preview=true`: Allows requesters to enable the editor/preview experience.\n- `show_preview=false`: Allows requesters to disable the editor/preview experience."
+                },
+                {
+                  "key": "show_progress_stepper",
+                  "value": "true",
+                  "type": "text",
+                  "description": "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden."
+                },
+                {
+                  "key": "signers",
+                  "value": "[{\"name\":\"<string>\",\"email_address\":\"<email>\",\"order\":\"<integer>\"},{\"name\":\"<string>\",\"email_address\":\"<email>\",\"order\":\"<integer>\"}]",
+                  "type": "text",
+                  "description": "Add Signers to your Unclaimed Draft Signature Request."
+                },
+                {
+                  "key": "signing_options",
+                  "value": "{\"default_type\":\"<string>\",\"draw\":false,\"phone\":false,\"type\":false,\"upload\":false,\"force_advanced_signature_details\":false}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "signing_redirect_url",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The URL you want signers redirected to after they successfully sign."
+                },
+                {
+                  "key": "skip_me_now",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Disables the \"Me (Now)\" option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`."
+                },
+                {
+                  "key": "subject",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The subject in the email that will be sent to the signers."
+                },
+                {
+                  "key": "test_mode",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`."
+                },
+                {
+                  "key": "type",
+                  "value": "request_signature",
+                  "type": "text",
+                  "description": "The type of the draft. By default this is `request_signature`, but you can set it to `send_document` if you want to self sign a document and download it. (This can only be one of send_document,request_signature)"
+                },
+                {
+                  "key": "use_preexisting_fields",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both."
+                },
+                {
+                  "key": "use_text_tags",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both."
+                },
+                {
+                  "key": "populate_auto_fill_fields",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.\n\n**NOTE:** Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature."
+                },
+                {
+                  "key": "expires_at",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details.\n\n**NOTE:** This does not correspond to the **expires_at** returned in the response."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "96dd9ddf-78b1-4169-91d5-2650fca9acc6",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unclaimed_draft",
+                    "create_embedded"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The email address of the user that should be designated as the requester of this draft, if the draft type is `request_signature`.",
+                        "type": "text/plain"
+                      },
+                      "key": "requester_email_address",
+                      "value": "<email>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `files[]` to indicate the uploaded file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to specify whether the user is allowed to provide email addresses to CC when claiming the draft.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_ccs",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to decline to sign a document if `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_decline",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.\n\n**NOTE:** Only available for Premium plan and higher.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_reassign",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A list describing the attachments",
+                        "type": "text/plain"
+                      },
+                      "key": "attachments",
+                      "value": "[{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false},{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The email addresses that should be CCed.",
+                        "type": "text/plain"
+                      },
+                      "key": "cc_email_addresses",
+                      "value": "[\"<email>\",\"<email>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.\n\nPre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.\n\nFor using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.",
+                        "type": "text/plain"
+                      },
+                      "key": "custom_fields",
+                      "value": "[{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"},{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "editor_options",
+                      "value": "{\"allow_edit_signers\":false,\"allow_edit_documents\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "field_options",
+                      "value": "{\"date_format\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Provide users the ability to review/edit the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "force_signer_page",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Provide users the ability to review/edit the subject and message.",
+                        "type": "text/plain"
+                      },
+                      "key": "force_subject_message",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_groups",
+                      "value": "[{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"},{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conditional Logic rules for fields defined in `form_fields_per_document`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_rules",
+                      "value": "[{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]},{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)\n\n**NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.\n\n* Text Field use `SubFormFieldsPerDocumentText`\n* Dropdown Field use `SubFormFieldsPerDocumentDropdown`\n* Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`\n* Checkbox Field use `SubFormFieldsPerDocumentCheckbox`\n* Radio Field use `SubFormFieldsPerDocumentRadio`\n* Signature Field use `SubFormFieldsPerDocumentSignature`\n* Date Signed Field use `SubFormFieldsPerDocumentDateSigned`\n* Initials Field use `SubFormFieldsPerDocumentInitials`\n* Text Merge Field use `SubFormFieldsPerDocumentTextMerge`\n* Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`",
+                        "type": "text/plain"
+                      },
+                      "key": "form_fields_per_document",
+                      "value": "[{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"},{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Send with a value of `true` if you wish to enable automatic Text Tag removal. Defaults to `false`. When using Text Tags it is preferred that you set this to `false` and hide your tags with white text or something similar because the automatic removal system can cause unwanted clipping. See the [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) walkthrough for more details.",
+                        "type": "text/plain"
+                      },
+                      "key": "hide_text_tags",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The request from this draft will not automatically send to signers post-claim if set to `true`. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "hold_request",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The request created from this draft will also be signable in embedded mode if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "is_for_embedded_signing",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The custom message in the email that will be sent to the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.",
+                        "type": "text/plain"
+                      },
+                      "key": "metadata",
+                      "value": "{\"key_0\":{},\"key_1\":{}}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The URL you want signers redirected to after they successfully request a signature.",
+                        "type": "text/plain"
+                      },
+                      "key": "requesting_redirect_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to enable the editor/preview experience.\n\n- `show_preview=true`: Allows requesters to enable the editor/preview experience.\n- `show_preview=false`: Allows requesters to disable the editor/preview experience.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_preview",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_progress_stepper",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Add Signers to your Unclaimed Draft Signature Request.",
+                        "type": "text/plain"
+                      },
+                      "key": "signers",
+                      "value": "[{\"name\":\"<string>\",\"email_address\":\"<email>\",\"order\":\"<integer>\"},{\"name\":\"<string>\",\"email_address\":\"<email>\",\"order\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "signing_options",
+                      "value": "{\"default_type\":\"<string>\",\"draw\":false,\"phone\":false,\"type\":false,\"upload\":false,\"force_advanced_signature_details\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The URL you want signers redirected to after they successfully sign.",
+                        "type": "text/plain"
+                      },
+                      "key": "signing_redirect_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Disables the \"Me (Now)\" option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "skip_me_now",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The subject in the email that will be sent to the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "test_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The type of the draft. By default this is `request_signature`, but you can set it to `send_document` if you want to self sign a document and download it. (This can only be one of send_document,request_signature)",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "request_signature",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "use_preexisting_fields",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "use_text_tags",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.\n\n**NOTE:** Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.",
+                        "type": "text/plain"
+                      },
+                      "key": "populate_auto_fill_fields",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details.\n\n**NOTE:** This does not correspond to the **expires_at** returned in the response.",
+                        "type": "text/plain"
+                      },
+                      "key": "expires_at",
+                      "value": "<integer>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/UnclaimedDraftCreateEmbeddedResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c888482-47b0-4dbb-b820-cc3eda63ea24",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unclaimed_draft",
+                    "create_embedded"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The email address of the user that should be designated as the requester of this draft, if the draft type is `request_signature`.",
+                        "type": "text/plain"
+                      },
+                      "key": "requester_email_address",
+                      "value": "<email>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `files[]` to indicate the uploaded file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to specify whether the user is allowed to provide email addresses to CC when claiming the draft.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_ccs",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to decline to sign a document if `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_decline",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.\n\n**NOTE:** Only available for Premium plan and higher.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_reassign",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A list describing the attachments",
+                        "type": "text/plain"
+                      },
+                      "key": "attachments",
+                      "value": "[{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false},{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The email addresses that should be CCed.",
+                        "type": "text/plain"
+                      },
+                      "key": "cc_email_addresses",
+                      "value": "[\"<email>\",\"<email>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.\n\nPre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.\n\nFor using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.",
+                        "type": "text/plain"
+                      },
+                      "key": "custom_fields",
+                      "value": "[{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"},{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "editor_options",
+                      "value": "{\"allow_edit_signers\":false,\"allow_edit_documents\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "field_options",
+                      "value": "{\"date_format\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Provide users the ability to review/edit the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "force_signer_page",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Provide users the ability to review/edit the subject and message.",
+                        "type": "text/plain"
+                      },
+                      "key": "force_subject_message",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_groups",
+                      "value": "[{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"},{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conditional Logic rules for fields defined in `form_fields_per_document`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_rules",
+                      "value": "[{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]},{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)\n\n**NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.\n\n* Text Field use `SubFormFieldsPerDocumentText`\n* Dropdown Field use `SubFormFieldsPerDocumentDropdown`\n* Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`\n* Checkbox Field use `SubFormFieldsPerDocumentCheckbox`\n* Radio Field use `SubFormFieldsPerDocumentRadio`\n* Signature Field use `SubFormFieldsPerDocumentSignature`\n* Date Signed Field use `SubFormFieldsPerDocumentDateSigned`\n* Initials Field use `SubFormFieldsPerDocumentInitials`\n* Text Merge Field use `SubFormFieldsPerDocumentTextMerge`\n* Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`",
+                        "type": "text/plain"
+                      },
+                      "key": "form_fields_per_document",
+                      "value": "[{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"},{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Send with a value of `true` if you wish to enable automatic Text Tag removal. Defaults to `false`. When using Text Tags it is preferred that you set this to `false` and hide your tags with white text or something similar because the automatic removal system can cause unwanted clipping. See the [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) walkthrough for more details.",
+                        "type": "text/plain"
+                      },
+                      "key": "hide_text_tags",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The request from this draft will not automatically send to signers post-claim if set to `true`. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "hold_request",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The request created from this draft will also be signable in embedded mode if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "is_for_embedded_signing",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The custom message in the email that will be sent to the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.",
+                        "type": "text/plain"
+                      },
+                      "key": "metadata",
+                      "value": "{\"key_0\":{},\"key_1\":{}}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The URL you want signers redirected to after they successfully request a signature.",
+                        "type": "text/plain"
+                      },
+                      "key": "requesting_redirect_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to enable the editor/preview experience.\n\n- `show_preview=true`: Allows requesters to enable the editor/preview experience.\n- `show_preview=false`: Allows requesters to disable the editor/preview experience.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_preview",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_progress_stepper",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Add Signers to your Unclaimed Draft Signature Request.",
+                        "type": "text/plain"
+                      },
+                      "key": "signers",
+                      "value": "[{\"name\":\"<string>\",\"email_address\":\"<email>\",\"order\":\"<integer>\"},{\"name\":\"<string>\",\"email_address\":\"<email>\",\"order\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "signing_options",
+                      "value": "{\"default_type\":\"<string>\",\"draw\":false,\"phone\":false,\"type\":false,\"upload\":false,\"force_advanced_signature_details\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The URL you want signers redirected to after they successfully sign.",
+                        "type": "text/plain"
+                      },
+                      "key": "signing_redirect_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Disables the \"Me (Now)\" option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "skip_me_now",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The subject in the email that will be sent to the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "test_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The type of the draft. By default this is `request_signature`, but you can set it to `send_document` if you want to self sign a document and download it. (This can only be one of send_document,request_signature)",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "request_signature",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "use_preexisting_fields",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set `use_text_tags` to `true` to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or `false`). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`). Currently we only support use of either `use_text_tags` or `use_preexisting_fields` parameter, not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "use_text_tags",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.\n\n**NOTE:** Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.",
+                        "type": "text/plain"
+                      },
+                      "key": "populate_auto_fill_fields",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details.\n\n**NOTE:** This does not correspond to the **expires_at** returned in the response.",
+                        "type": "text/plain"
+                      },
+                      "key": "expires_at",
+                      "value": "<integer>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a757272f-e0e4-4718-b861-eaf4f88e3d8e",
+          "name": "Create Embedded Unclaimed Draft with Template",
+          "request": {
+            "name": "Create Embedded Unclaimed Draft with Template",
+            "description": {
+              "content": "Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \"Request signature\" page with the Draft loaded. Subsequent access to the claim URL will result in a `404`. For this embedded endpoint the `requester_email_address` parameter is required.\n\n**NOTE:** Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unclaimed_draft",
+                "create_embedded_with_template"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "client_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app."
+                },
+                {
+                  "key": "requester_email_address",
+                  "value": "<email>",
+                  "type": "text",
+                  "description": "(Required) The email address of the user that should be designated as the requester of this draft."
+                },
+                {
+                  "key": "template_ids",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "(Required) Use `template_ids` to create a SignatureRequest from one or more templates, in the order in which the templates will be used."
+                },
+                {
+                  "key": "allow_decline",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Allows signers to decline to sign a document if `true`. Defaults to `false`."
+                },
+                {
+                  "key": "allow_reassign",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.\n\n**NOTE:** Only available for Premium plan and higher."
+                },
+                {
+                  "key": "ccs",
+                  "value": "[{\"role\":\"<string>\",\"email_address\":\"<email>\"},{\"role\":\"<string>\",\"email_address\":\"<email>\"}]",
+                  "type": "text",
+                  "description": "Add CC email recipients. Required when a CC role exists for the Template."
+                },
+                {
+                  "key": "custom_fields",
+                  "value": "[{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"},{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"}]",
+                  "type": "text",
+                  "description": "An array defining values and options for custom fields. Required when a custom field exists in the Template."
+                },
+                {
+                  "key": "editor_options",
+                  "value": "{\"allow_edit_signers\":false,\"allow_edit_documents\":false}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "field_options",
+                  "value": "{\"date_format\":\"<string>\"}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "files",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": "Use `files[]` to append additional files to the signature request being created from the template. Dropbox Sign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.\n\n**files** or **file_urls[]** is required, but not both."
+                },
+                {
+                  "key": "file_urls",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "Use file_urls[] to append additional files to the signature request being created from the template. Dropbox Sign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.\n\n**files** or **file_urls[]** is required, but not both."
+                },
+                {
+                  "key": "force_signer_roles",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Provide users the ability to review/edit the template signer roles."
+                },
+                {
+                  "key": "force_subject_message",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Provide users the ability to review/edit the template subject and message."
+                },
+                {
+                  "key": "hold_request",
+                  "value": "false",
+                  "type": "text",
+                  "description": "The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`."
+                },
+                {
+                  "key": "is_for_embedded_signing",
+                  "value": "false",
+                  "type": "text",
+                  "description": "The request created from this draft will also be signable in embedded mode if set to `true`. Defaults to `false`."
+                },
+                {
+                  "key": "message",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The custom message in the email that will be sent to the signers."
+                },
+                {
+                  "key": "metadata",
+                  "value": "{\"key_0\":{}}",
+                  "type": "text",
+                  "description": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long."
+                },
+                {
+                  "key": "preview_only",
+                  "value": "false",
+                  "type": "text",
+                  "description": "This allows the requester to enable the preview experience (i.e. does not allow the requester's end user to add any additional fields via the editor).\n\n- `preview_only=true`: Allows requesters to enable the preview only experience.\n- `preview_only=false`: Allows requesters to disable the preview only experience.\n\n**NOTE:** This parameter overwrites `show_preview=1` (if set)."
+                },
+                {
+                  "key": "requesting_redirect_url",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The URL you want signers redirected to after they successfully request a signature."
+                },
+                {
+                  "key": "show_preview",
+                  "value": "false",
+                  "type": "text",
+                  "description": "This allows the requester to enable the editor/preview experience.\n\n- `show_preview=true`: Allows requesters to enable the editor/preview experience.\n- `show_preview=false`: Allows requesters to disable the editor/preview experience."
+                },
+                {
+                  "key": "show_progress_stepper",
+                  "value": "true",
+                  "type": "text",
+                  "description": "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden."
+                },
+                {
+                  "key": "signers",
+                  "value": "[{\"role\":\"<string>\",\"name\":\"<string>\",\"email_address\":\"<email>\"},{\"role\":\"<string>\",\"name\":\"<string>\",\"email_address\":\"<email>\"}]",
+                  "type": "text",
+                  "description": "Add Signers to your Templated-based Signature Request."
+                },
+                {
+                  "key": "signing_options",
+                  "value": "{\"default_type\":\"<string>\",\"draw\":false,\"phone\":false,\"type\":false,\"upload\":false,\"force_advanced_signature_details\":false}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "signing_redirect_url",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The URL you want signers redirected to after they successfully sign."
+                },
+                {
+                  "key": "skip_me_now",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Disables the \"Me (Now)\" option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`."
+                },
+                {
+                  "key": "subject",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The subject in the email that will be sent to the signers."
+                },
+                {
+                  "key": "test_mode",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`."
+                },
+                {
+                  "key": "title",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The title you want to assign to the SignatureRequest."
+                },
+                {
+                  "key": "populate_auto_fill_fields",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.\n\n**NOTE:** Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature."
+                },
+                {
+                  "key": "allow_ccs",
+                  "value": "false",
+                  "type": "text",
+                  "description": "This allows the requester to specify whether the user is allowed to provide email addresses to CC when claiming the draft."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2424c952-49cd-46a9-b9d0-6e963b1445c9",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unclaimed_draft",
+                    "create_embedded_with_template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The email address of the user that should be designated as the requester of this draft.",
+                        "type": "text/plain"
+                      },
+                      "key": "requester_email_address",
+                      "value": "<email>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Use `template_ids` to create a SignatureRequest from one or more templates, in the order in which the templates will be used.",
+                        "type": "text/plain"
+                      },
+                      "key": "template_ids",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to decline to sign a document if `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_decline",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.\n\n**NOTE:** Only available for Premium plan and higher.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_reassign",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Add CC email recipients. Required when a CC role exists for the Template.",
+                        "type": "text/plain"
+                      },
+                      "key": "ccs",
+                      "value": "[{\"role\":\"<string>\",\"email_address\":\"<email>\"},{\"role\":\"<string>\",\"email_address\":\"<email>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "An array defining values and options for custom fields. Required when a custom field exists in the Template.",
+                        "type": "text/plain"
+                      },
+                      "key": "custom_fields",
+                      "value": "[{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"},{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "editor_options",
+                      "value": "{\"allow_edit_signers\":false,\"allow_edit_documents\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "field_options",
+                      "value": "{\"date_format\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `files[]` to append additional files to the signature request being created from the template. Dropbox Sign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.\n\n**files** or **file_urls[]** is required, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use file_urls[] to append additional files to the signature request being created from the template. Dropbox Sign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.\n\n**files** or **file_urls[]** is required, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Provide users the ability to review/edit the template signer roles.",
+                        "type": "text/plain"
+                      },
+                      "key": "force_signer_roles",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Provide users the ability to review/edit the template subject and message.",
+                        "type": "text/plain"
+                      },
+                      "key": "force_subject_message",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "hold_request",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The request created from this draft will also be signable in embedded mode if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "is_for_embedded_signing",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The custom message in the email that will be sent to the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.",
+                        "type": "text/plain"
+                      },
+                      "key": "metadata",
+                      "value": "{\"key_0\":{}}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to enable the preview experience (i.e. does not allow the requester's end user to add any additional fields via the editor).\n\n- `preview_only=true`: Allows requesters to enable the preview only experience.\n- `preview_only=false`: Allows requesters to disable the preview only experience.\n\n**NOTE:** This parameter overwrites `show_preview=1` (if set).",
+                        "type": "text/plain"
+                      },
+                      "key": "preview_only",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The URL you want signers redirected to after they successfully request a signature.",
+                        "type": "text/plain"
+                      },
+                      "key": "requesting_redirect_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to enable the editor/preview experience.\n\n- `show_preview=true`: Allows requesters to enable the editor/preview experience.\n- `show_preview=false`: Allows requesters to disable the editor/preview experience.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_preview",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_progress_stepper",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Add Signers to your Templated-based Signature Request.",
+                        "type": "text/plain"
+                      },
+                      "key": "signers",
+                      "value": "[{\"role\":\"<string>\",\"name\":\"<string>\",\"email_address\":\"<email>\"},{\"role\":\"<string>\",\"name\":\"<string>\",\"email_address\":\"<email>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "signing_options",
+                      "value": "{\"default_type\":\"<string>\",\"draw\":false,\"phone\":false,\"type\":false,\"upload\":false,\"force_advanced_signature_details\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The URL you want signers redirected to after they successfully sign.",
+                        "type": "text/plain"
+                      },
+                      "key": "signing_redirect_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Disables the \"Me (Now)\" option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "skip_me_now",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The subject in the email that will be sent to the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "test_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The title you want to assign to the SignatureRequest.",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.\n\n**NOTE:** Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.",
+                        "type": "text/plain"
+                      },
+                      "key": "populate_auto_fill_fields",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to specify whether the user is allowed to provide email addresses to CC when claiming the draft.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_ccs",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/UnclaimedDraftCreateEmbeddedWithTemplateResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "246d73f7-952d-40a7-811d-a3fd1a1e0424",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unclaimed_draft",
+                    "create_embedded_with_template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The email address of the user that should be designated as the requester of this draft.",
+                        "type": "text/plain"
+                      },
+                      "key": "requester_email_address",
+                      "value": "<email>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Use `template_ids` to create a SignatureRequest from one or more templates, in the order in which the templates will be used.",
+                        "type": "text/plain"
+                      },
+                      "key": "template_ids",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to decline to sign a document if `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_decline",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.\n\n**NOTE:** Only available for Premium plan and higher.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_reassign",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Add CC email recipients. Required when a CC role exists for the Template.",
+                        "type": "text/plain"
+                      },
+                      "key": "ccs",
+                      "value": "[{\"role\":\"<string>\",\"email_address\":\"<email>\"},{\"role\":\"<string>\",\"email_address\":\"<email>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "An array defining values and options for custom fields. Required when a custom field exists in the Template.",
+                        "type": "text/plain"
+                      },
+                      "key": "custom_fields",
+                      "value": "[{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"},{\"name\":\"<string>\",\"editor\":\"<string>\",\"required\":false,\"value\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "editor_options",
+                      "value": "{\"allow_edit_signers\":false,\"allow_edit_documents\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "field_options",
+                      "value": "{\"date_format\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `files[]` to append additional files to the signature request being created from the template. Dropbox Sign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.\n\n**files** or **file_urls[]** is required, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use file_urls[] to append additional files to the signature request being created from the template. Dropbox Sign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.\n\n**files** or **file_urls[]** is required, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Provide users the ability to review/edit the template signer roles.",
+                        "type": "text/plain"
+                      },
+                      "key": "force_signer_roles",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Provide users the ability to review/edit the template subject and message.",
+                        "type": "text/plain"
+                      },
+                      "key": "force_subject_message",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "hold_request",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The request created from this draft will also be signable in embedded mode if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "is_for_embedded_signing",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The custom message in the email that will be sent to the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.",
+                        "type": "text/plain"
+                      },
+                      "key": "metadata",
+                      "value": "{\"key_0\":{}}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to enable the preview experience (i.e. does not allow the requester's end user to add any additional fields via the editor).\n\n- `preview_only=true`: Allows requesters to enable the preview only experience.\n- `preview_only=false`: Allows requesters to disable the preview only experience.\n\n**NOTE:** This parameter overwrites `show_preview=1` (if set).",
+                        "type": "text/plain"
+                      },
+                      "key": "preview_only",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The URL you want signers redirected to after they successfully request a signature.",
+                        "type": "text/plain"
+                      },
+                      "key": "requesting_redirect_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to enable the editor/preview experience.\n\n- `show_preview=true`: Allows requesters to enable the editor/preview experience.\n- `show_preview=false`: Allows requesters to disable the editor/preview experience.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_preview",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_progress_stepper",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Add Signers to your Templated-based Signature Request.",
+                        "type": "text/plain"
+                      },
+                      "key": "signers",
+                      "value": "[{\"role\":\"<string>\",\"name\":\"<string>\",\"email_address\":\"<email>\"},{\"role\":\"<string>\",\"name\":\"<string>\",\"email_address\":\"<email>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "signing_options",
+                      "value": "{\"default_type\":\"<string>\",\"draw\":false,\"phone\":false,\"type\":false,\"upload\":false,\"force_advanced_signature_details\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The URL you want signers redirected to after they successfully sign.",
+                        "type": "text/plain"
+                      },
+                      "key": "signing_redirect_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Disables the \"Me (Now)\" option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "skip_me_now",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The subject in the email that will be sent to the signers.",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "test_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The title you want to assign to the SignatureRequest.",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.\n\n**NOTE:** Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.",
+                        "type": "text/plain"
+                      },
+                      "key": "populate_auto_fill_fields",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to specify whether the user is allowed to provide email addresses to CC when claiming the draft.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_ccs",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d963da4-f001-4bb8-8007-18756998456f",
+          "name": "Edit and Resend Unclaimed Draft",
+          "request": {
+            "name": "Edit and Resend Unclaimed Draft",
+            "description": {
+              "content": "Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter `test_mode` can be edited prior to request. Signers can be edited in embedded editor. Requester's email address will remain unchanged if `requester_email_address` parameter is not set.\n\n**NOTE:** Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unclaimed_draft",
+                "edit_and_resend",
+                ":signature_request_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "signature_request_id",
+                  "description": "(Required) The ID of the signature request to edit and resend."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_id\": \"<string>\",\n  \"editor_options\": {\n    \"allow_edit_signers\": false,\n    \"allow_edit_documents\": false\n  },\n  \"is_for_embedded_signing\": \"<boolean>\",\n  \"requester_email_address\": \"<email>\",\n  \"requesting_redirect_url\": \"<string>\",\n  \"show_progress_stepper\": true,\n  \"signing_redirect_url\": \"<string>\",\n  \"test_mode\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd16dd34-dde1-4b19-a464-476d3ff47e54",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unclaimed_draft",
+                    "edit_and_resend",
+                    ":signature_request_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signature_request_id",
+                      "description": "(Required) The ID of the signature request to edit and resend."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$ref\": \"examples/json/UnclaimedDraftEditAndResendRequest.json\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/UnclaimedDraftEditAndResend.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed42b651-e550-41b6-9fbe-9ba6711a15f6",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unclaimed_draft",
+                    "edit_and_resend",
+                    ":signature_request_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signature_request_id",
+                      "description": "(Required) The ID of the signature request to edit and resend."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$ref\": \"examples/json/UnclaimedDraftEditAndResendRequest.json\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hellosign.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6f043c68-dbcf-4692-b82b-22088ce81804",
+    "name": "Dropbox Sign Account Unclaimed Draft API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+      "type": "text/plain"
+    }
+  }
+}

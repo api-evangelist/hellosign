@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dropbox Sign Account OAuth API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OAuth Token Generate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/oauth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Once you have retrieved the code from the user callback, you will need to exchange it for an access token via a backend call."
+        },
+        {
+          "info": {
+            "name": "OAuth Token Refresh",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/oauth/token?refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Access tokens are only valid for a given period of time (typically one hour) for security reasons. Whenever acquiring an new access token its TTL is also given (see `expires_in`), along with a refresh token that can be used to acquire a new access token after the current one has expired."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

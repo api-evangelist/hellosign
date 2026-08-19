@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dropbox Sign Account Report API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/report/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Request the creation of one or more report(s).\n\nWhen the report(s) have been generated, you will receive an email (one per requested report type) containing a link to download the report as a CSV file. The requested date range may be up to 12 months in duration, and `start_date` must not be more than 10 years in the past."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

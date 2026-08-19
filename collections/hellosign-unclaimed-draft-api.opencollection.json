@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dropbox Sign Account Unclaimed Draft API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Unclaimed Draft",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Unclaimed Draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/unclaimed_draft/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a new Draft that can be claimed using the claim URL. The first authenticated user to access the URL will claim the Draft and will be shown either the \"Sign and send\" or the \"Request signature\" page with the Draft loaded. Subsequent access to the claim URL will result in a 404."
+        },
+        {
+          "info": {
+            "name": "Create Embedded Unclaimed Draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/unclaimed_draft/create_embedded",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \"Request signature\" page with the Draft loaded. Subsequent access to the claim URL will result in a `404`. For this embedded endpoint the `requester_email_address` parameter is required.\n\n**NOTE:** Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign."
+        },
+        {
+          "info": {
+            "name": "Create Embedded Unclaimed Draft with Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/unclaimed_draft/create_embedded_with_template",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \"Request signature\" page with the Draft loaded. Subsequent access to the claim URL will result in a `404`. For this embedded endpoint the `requester_email_address` parameter is required.\n\n**NOTE:** Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and"
+        },
+        {
+          "info": {
+            "name": "Edit and Resend Unclaimed Draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/unclaimed_draft/edit_and_resend/:signature_request_id",
+            "params": [
+              {
+                "name": "signature_request_id",
+                "value": "fa5c8a0b0f492d768749333ad6fcc214c111e967",
+                "type": "path",
+                "description": "The ID of the signature request to edit and resend."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter `test_mode` can be edited prior to request. Signers can be edited in embedded editor. Requester's email address will remain unchanged if `requester_email_address` parameter is not set.\n\n**NOTE:** Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dropbox Sign Account Api App API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Api App",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create API App",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/api_app",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a new API App."
+        },
+        {
+          "info": {
+            "name": "Get API App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/api_app/:client_id",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "0dd3b823a682527788c4e40cb7b6f7e9",
+                "type": "path",
+                "description": "The client id of the API App to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns an object with information about an API App."
+        },
+        {
+          "info": {
+            "name": "Update API App",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hellosign.com/v3/api_app/:client_id",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "0dd3b823a682527788c4e40cb7b6f7e9",
+                "type": "path",
+                "description": "The client id of the API App to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Updates an existing API App. Can only be invoked for apps you own. Only the fields you provide will be updated. If you wish to clear an existing optional field, provide an empty string."
+        },
+        {
+          "info": {
+            "name": "Delete API App",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hellosign.com/v3/api_app/:client_id",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "0dd3b823a682527788c4e40cb7b6f7e9",
+                "type": "path",
+                "description": "The client id of the API App to delete."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Deletes an API App. Can only be invoked for apps you own."
+        },
+        {
+          "info": {
+            "name": "List API Apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/api_app/list",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Which page number of the API App List to return. Defaults to `1`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a list of API Apps that are accessible by you. If you are on a team with an Admin or Developer role, this list will include apps owned by teammates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

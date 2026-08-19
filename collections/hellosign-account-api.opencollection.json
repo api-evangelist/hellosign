@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dropbox Sign Account API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/account/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a new Dropbox Sign Account that is associated with the specified `email_address`."
+        },
+        {
+          "info": {
+            "name": "Get Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/account",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "`account_id` or `email_address` is required. If both are provided, the account id prevails.\n\nThe ID of the Account."
+              },
+              {
+                "name": "email_address",
+                "value": "",
+                "type": "query",
+                "description": "`account_id` or `email_address` is required, If both are provided, the account id prevails.\n\nThe email address of the Account."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the properties and settings of your Account."
+        },
+        {
+          "info": {
+            "name": "Update Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hellosign.com/v3/account",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Updates the properties and settings of your Account. Currently only allows for updates to the [Callback URL](/api/reference/tag/Callbacks-and-Events) and locale."
+        },
+        {
+          "info": {
+            "name": "Verify Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/account/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Verifies whether an Dropbox Sign Account exists for the given email address."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

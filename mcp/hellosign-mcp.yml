@@ -6,23 +6,44 @@ server:
   name: dropbox-sign-docs
   transport: http
   url: https://developers.hellosign.com/_mcp/server
-  description: >-
-    Official hosted MCP server published by Dropbox Sign (formerly HelloSign) for
-    AI client integration (Claude Code, Cursor, etc.), advertised in the docs
-    llms.txt. Serves the Dropbox Sign developer documentation to agents. Verified
-    reachable (HTTP 200) on 2026-07-19.
+  description: Official hosted MCP server published by Dropbox Sign (formerly HelloSign) for AI client
+    integration (Claude Code, Cursor, etc.), advertised in the docs llms.txt. Serves the Dropbox Sign
+    developer documentation to agents. Verified reachable (HTTP 200) on 2026-07-19.
   scope: documentation
-notes: >-
-  This is a documentation MCP server (docs retrieval), not a full API-execution
-  server. The Dropbox Sign REST API itself (openapi/hellosign-openapi-original.yaml,
-  73 operations) can be exposed as executable MCP tools; see the derived candidate
-  tool families below for a starting map.
+notes: This is a documentation MCP server (docs retrieval), not a full API-execution server. The Dropbox
+  Sign REST API itself (openapi/hellosign-openapi-original.yaml, 73 operations) can be exposed as executable
+  MCP tools; see the derived candidate tool families below for a starting map.
 tool_families:
-  - name: signature_request
-    operations: [signatureRequestSend, signatureRequestSendWithTemplate, signatureRequestGet, signatureRequestList, signatureRequestCancel, signatureRequestRemind]
-  - name: template
-    operations: [templateCreate, templateGet, templateList, templateDelete]
-  - name: account
-    operations: [accountCreate, accountGet, accountUpdate, accountVerify]
-  - name: embedded
-    operations: [signatureRequestCreateEmbedded, embeddedSignUrl, embeddedEditUrl]
+- name: signature_request
+  operations:
+  - signatureRequestSend
+  - signatureRequestSendWithTemplate
+  - signatureRequestGet
+  - signatureRequestList
+  - signatureRequestCancel
+  - signatureRequestRemind
+- name: template
+  operations:
+  - templateCreate
+  - templateGet
+  - templateList
+  - templateDelete
+- name: account
+  operations:
+  - accountCreate
+  - accountGet
+  - accountUpdate
+  - accountVerify
+- name: embedded
+  operations:
+  - signatureRequestCreateEmbedded
+  - embeddedSignUrl
+  - embeddedEditUrl
+deployment:
+  mode: remote
+  endpoint: https://developers.hellosign.com/_mcp/server
+  verified: probed
+  probe: live
+  tools: 1
+  checked: '2026-08-12'
+  source: catalog MCP census

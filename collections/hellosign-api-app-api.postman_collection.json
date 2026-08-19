@@ -1,0 +1,1278 @@
+{
+  "item": [
+    {
+      "id": "a4fd34f0-b755-4c7f-b7a4-4b5711421a95",
+      "name": "Api App",
+      "description": {
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "71386122-d2ab-49ad-8ce7-5cd486ad099a",
+          "name": "Create API App",
+          "request": {
+            "name": "Create API App",
+            "description": {
+              "content": "Creates a new API App.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api_app"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The name you want to assign to the ApiApp."
+                },
+                {
+                  "key": "domains",
+                  "value": "[\"<string>\"]",
+                  "type": "text",
+                  "description": "(Required) The domain names the ApiApp will be associated with."
+                },
+                {
+                  "key": "callback_url",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The URL at which the ApiApp should receive event callbacks."
+                },
+                {
+                  "key": "custom_logo_file",
+                  "type": "file",
+                  "description": "An image file to use as a custom logo in embedded contexts. (Only applies to some API plans)"
+                },
+                {
+                  "key": "oauth",
+                  "value": "{\"callback_url\":\"<string>\",\"scopes\":[\"<string>\",\"<string>\"]}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "options",
+                  "value": "{\"can_insert_everywhere\":false}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "white_labeling_options",
+                  "value": "{\"header_background_color\":\"#1a1a1a\",\"legal_version\":\"terms1\",\"link_color\":\"#0061FE\",\"page_background_color\":\"#f7f8f9\",\"primary_button_color\":\"#0061FE\",\"primary_button_color_hover\":\"#0061FE\",\"primary_button_text_color\":\"#ffffff\",\"primary_button_text_color_hover\":\"#ffffff\",\"secondary_button_color\":\"#ffffff\",\"secondary_button_color_hover\":\"#ffffff\",\"secondary_button_text_color\":\"#0061FE\",\"secondary_button_text_color_hover\":\"#0061FE\",\"text_color1\":\"#808080\",\"text_color2\":\"#ffffff\",\"reset_to_default\":\"<boolean>\"}",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "48e8fbfe-90b1-45ba-9c13-5d70d79d091e",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api_app"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The name you want to assign to the ApiApp.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The domain names the ApiApp will be associated with.",
+                        "type": "text/plain"
+                      },
+                      "key": "domains",
+                      "value": "[\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The URL at which the ApiApp should receive event callbacks.",
+                        "type": "text/plain"
+                      },
+                      "key": "callback_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "An image file to use as a custom logo in embedded contexts. (Only applies to some API plans)",
+                        "type": "text/plain"
+                      },
+                      "key": "custom_logo_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "oauth",
+                      "value": "{\"callback_url\":\"<string>\",\"scopes\":[\"<string>\",\"<string>\"]}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "options",
+                      "value": "{\"can_insert_everywhere\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "white_labeling_options",
+                      "value": "{\"header_background_color\":\"#1a1a1a\",\"legal_version\":\"terms1\",\"link_color\":\"#0061FE\",\"page_background_color\":\"#f7f8f9\",\"primary_button_color\":\"#0061FE\",\"primary_button_color_hover\":\"#0061FE\",\"primary_button_text_color\":\"#ffffff\",\"primary_button_text_color_hover\":\"#ffffff\",\"secondary_button_color\":\"#ffffff\",\"secondary_button_color_hover\":\"#ffffff\",\"secondary_button_text_color\":\"#0061FE\",\"secondary_button_text_color_hover\":\"#0061FE\",\"text_color1\":\"#808080\",\"text_color2\":\"#ffffff\",\"reset_to_default\":\"<boolean>\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/ApiAppCreateResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e84b82d-f746-49f2-8541-f1e65d1e194e",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api_app"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The name you want to assign to the ApiApp.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The domain names the ApiApp will be associated with.",
+                        "type": "text/plain"
+                      },
+                      "key": "domains",
+                      "value": "[\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The URL at which the ApiApp should receive event callbacks.",
+                        "type": "text/plain"
+                      },
+                      "key": "callback_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "An image file to use as a custom logo in embedded contexts. (Only applies to some API plans)",
+                        "type": "text/plain"
+                      },
+                      "key": "custom_logo_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "oauth",
+                      "value": "{\"callback_url\":\"<string>\",\"scopes\":[\"<string>\",\"<string>\"]}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "options",
+                      "value": "{\"can_insert_everywhere\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "white_labeling_options",
+                      "value": "{\"header_background_color\":\"#1a1a1a\",\"legal_version\":\"terms1\",\"link_color\":\"#0061FE\",\"page_background_color\":\"#f7f8f9\",\"primary_button_color\":\"#0061FE\",\"primary_button_color_hover\":\"#0061FE\",\"primary_button_text_color\":\"#ffffff\",\"primary_button_text_color_hover\":\"#ffffff\",\"secondary_button_color\":\"#ffffff\",\"secondary_button_color_hover\":\"#ffffff\",\"secondary_button_text_color\":\"#0061FE\",\"secondary_button_text_color_hover\":\"#0061FE\",\"text_color1\":\"#808080\",\"text_color2\":\"#ffffff\",\"reset_to_default\":\"<boolean>\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1abbec1-cf88-4f54-8a4c-c7dd3acfdbd8",
+          "name": "Get API App",
+          "request": {
+            "name": "Get API App",
+            "description": {
+              "content": "Returns an object with information about an API App.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api_app",
+                ":client_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "client_id",
+                  "description": "(Required) The client id of the API App to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0b796e71-ea9b-487f-8d06-3cf7b163768d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api_app",
+                    ":client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "client_id",
+                      "description": "(Required) The client id of the API App to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/ApiAppGetResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38e73a6f-db5c-4cc7-a06d-5e59d7eac56d",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api_app",
+                    ":client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "client_id",
+                      "description": "(Required) The client id of the API App to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5a88740-bf84-486f-be88-13cedba7ab7b",
+          "name": "Update API App",
+          "request": {
+            "name": "Update API App",
+            "description": {
+              "content": "Updates an existing API App. Can only be invoked for apps you own. Only the fields you provide will be updated. If you wish to clear an existing optional field, provide an empty string.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api_app",
+                ":client_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "client_id",
+                  "description": "(Required) The client id of the API App to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "callback_url",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The URL at which the API App should receive event callbacks."
+                },
+                {
+                  "key": "custom_logo_file",
+                  "type": "file",
+                  "description": "An image file to use as a custom logo in embedded contexts. (Only applies to some API plans)"
+                },
+                {
+                  "key": "domains",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "The domain names the ApiApp will be associated with."
+                },
+                {
+                  "key": "name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The name you want to assign to the ApiApp."
+                },
+                {
+                  "key": "oauth",
+                  "value": "{\"callback_url\":\"<string>\",\"scopes\":[\"<string>\",\"<string>\"]}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "options",
+                  "value": "{\"can_insert_everywhere\":false}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "white_labeling_options",
+                  "value": "{\"header_background_color\":\"#1a1a1a\",\"legal_version\":\"terms1\",\"link_color\":\"#0061FE\",\"page_background_color\":\"#f7f8f9\",\"primary_button_color\":\"#0061FE\",\"primary_button_color_hover\":\"#0061FE\",\"primary_button_text_color\":\"#ffffff\",\"primary_button_text_color_hover\":\"#ffffff\",\"secondary_button_color\":\"#ffffff\",\"secondary_button_color_hover\":\"#ffffff\",\"secondary_button_text_color\":\"#0061FE\",\"secondary_button_text_color_hover\":\"#0061FE\",\"text_color1\":\"#808080\",\"text_color2\":\"#ffffff\",\"reset_to_default\":\"<boolean>\"}",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "89090cab-0097-4ff1-9a63-1fbb86c07bfe",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api_app",
+                    ":client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "client_id",
+                      "description": "(Required) The client id of the API App to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The URL at which the API App should receive event callbacks.",
+                        "type": "text/plain"
+                      },
+                      "key": "callback_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "An image file to use as a custom logo in embedded contexts. (Only applies to some API plans)",
+                        "type": "text/plain"
+                      },
+                      "key": "custom_logo_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The domain names the ApiApp will be associated with.",
+                        "type": "text/plain"
+                      },
+                      "key": "domains",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The name you want to assign to the ApiApp.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "oauth",
+                      "value": "{\"callback_url\":\"<string>\",\"scopes\":[\"<string>\",\"<string>\"]}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "options",
+                      "value": "{\"can_insert_everywhere\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "white_labeling_options",
+                      "value": "{\"header_background_color\":\"#1a1a1a\",\"legal_version\":\"terms1\",\"link_color\":\"#0061FE\",\"page_background_color\":\"#f7f8f9\",\"primary_button_color\":\"#0061FE\",\"primary_button_color_hover\":\"#0061FE\",\"primary_button_text_color\":\"#ffffff\",\"primary_button_text_color_hover\":\"#ffffff\",\"secondary_button_color\":\"#ffffff\",\"secondary_button_color_hover\":\"#ffffff\",\"secondary_button_text_color\":\"#0061FE\",\"secondary_button_text_color_hover\":\"#0061FE\",\"text_color1\":\"#808080\",\"text_color2\":\"#ffffff\",\"reset_to_default\":\"<boolean>\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/ApiAppUpdateResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45b0d16b-b1f8-45ef-b3e5-2415ea0f6f24",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api_app",
+                    ":client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "client_id",
+                      "description": "(Required) The client id of the API App to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The URL at which the API App should receive event callbacks.",
+                        "type": "text/plain"
+                      },
+                      "key": "callback_url",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "An image file to use as a custom logo in embedded contexts. (Only applies to some API plans)",
+                        "type": "text/plain"
+                      },
+                      "key": "custom_logo_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The domain names the ApiApp will be associated with.",
+                        "type": "text/plain"
+                      },
+                      "key": "domains",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The name you want to assign to the ApiApp.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "oauth",
+                      "value": "{\"callback_url\":\"<string>\",\"scopes\":[\"<string>\",\"<string>\"]}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "options",
+                      "value": "{\"can_insert_everywhere\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "white_labeling_options",
+                      "value": "{\"header_background_color\":\"#1a1a1a\",\"legal_version\":\"terms1\",\"link_color\":\"#0061FE\",\"page_background_color\":\"#f7f8f9\",\"primary_button_color\":\"#0061FE\",\"primary_button_color_hover\":\"#0061FE\",\"primary_button_text_color\":\"#ffffff\",\"primary_button_text_color_hover\":\"#ffffff\",\"secondary_button_color\":\"#ffffff\",\"secondary_button_color_hover\":\"#ffffff\",\"secondary_button_text_color\":\"#0061FE\",\"secondary_button_text_color_hover\":\"#0061FE\",\"text_color1\":\"#808080\",\"text_color2\":\"#ffffff\",\"reset_to_default\":\"<boolean>\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce1b5e88-cd35-47e4-949c-60326ad0ee43",
+          "name": "Delete API App",
+          "request": {
+            "name": "Delete API App",
+            "description": {
+              "content": "Deletes an API App. Can only be invoked for apps you own.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api_app",
+                ":client_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "client_id",
+                  "description": "(Required) The client id of the API App to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b91e9b8b-77c1-441a-9685-79603b12a005",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api_app",
+                    ":client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "client_id",
+                      "description": "(Required) The client id of the API App to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dfcaf5a4-4275-46c2-b84f-1c45facd86b5",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api_app",
+                    ":client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "client_id",
+                      "description": "(Required) The client id of the API App to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f361535b-90b1-4ce3-b1d2-ce14724b2e64",
+          "name": "List API Apps",
+          "request": {
+            "name": "List API Apps",
+            "description": {
+              "content": "Returns a list of API Apps that are accessible by you. If you are on a team with an Admin or Developer role, this list will include apps owned by teammates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api_app",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Which page number of the API App List to return. Defaults to `1`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "20",
+                  "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6a5b2f9d-fe70-477e-b992-25ae431cac5f",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api_app",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/ApiAppListResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4aeabbdd-0a27-4bbb-b7be-4e1dd08b4253",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api_app",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hellosign.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9917814c-4555-4b35-94c4-ab2115085432",
+    "name": "Dropbox Sign Account Api App API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+      "type": "text/plain"
+    }
+  }
+}

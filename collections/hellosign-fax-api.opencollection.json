@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dropbox Sign Account Fax API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fax",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Fax",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/fax/:fax_id",
+            "params": [
+              {
+                "name": "fax_id",
+                "value": "fa5c8a0b0f492d768749333ad6fcc214c111e967",
+                "type": "path",
+                "description": "Fax ID"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns information about a Fax"
+        },
+        {
+          "info": {
+            "name": "Delete Fax",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hellosign.com/v3/fax/:fax_id",
+            "params": [
+              {
+                "name": "fax_id",
+                "value": "fa5c8a0b0f492d768749333ad6fcc214c111e967",
+                "type": "path",
+                "description": "Fax ID"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Deletes the specified Fax from the system"
+        },
+        {
+          "info": {
+            "name": "Download Fax Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/fax/files/:fax_id",
+            "params": [
+              {
+                "name": "fax_id",
+                "value": "fa5c8a0b0f492d768749333ad6fcc214c111e967",
+                "type": "path",
+                "description": "Fax ID"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Downloads files associated with a Fax"
+        },
+        {
+          "info": {
+            "name": "Lists Faxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hellosign.com/v3/fax/list",
+            "params": [
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Which page number of the Fax List to return. Defaults to `1`."
+              },
+              {
+                "name": "page_size",
+                "value": "20",
+                "type": "query",
+                "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns properties of multiple Faxes"
+        },
+        {
+          "info": {
+            "name": "Send Fax",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hellosign.com/v3/fax/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates and sends a new Fax with the submitted file(s)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

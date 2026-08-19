@@ -1,0 +1,3329 @@
+{
+  "item": [
+    {
+      "id": "93fd1d4c-9f06-4398-b23e-b40002916232",
+      "name": "Template",
+      "description": {
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "415c19f4-b98c-46fd-a637-861209604757",
+          "name": "Add User to Template",
+          "request": {
+            "name": "Add User to Template",
+            "description": {
+              "content": "Gives the specified Account access to the specified Template. The specified Account must be a part of your Team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                "add_user",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) The id of the Template to give the Account access to."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\",\n  \"skip_notification\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "10129de0-9950-4d7c-b86f-e97c938929b8",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "add_user",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the Template to give the Account access to."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$ref\": \"examples/json/TemplateAddUserRequest.json\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/TemplateAddUserResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24e3944e-5f3f-4579-a9f1-bb5dedb68d9c",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "add_user",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the Template to give the Account access to."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$ref\": \"examples/json/TemplateAddUserRequest.json\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c72bdb29-1557-4139-91d5-1f02985aac0e",
+          "name": "Create Template",
+          "request": {
+            "name": "Create Template",
+            "description": {
+              "content": "Creates a template that can be used in future signature requests.\n\nIf `client_id` is provided, the template will be created as an embedded template. Embedded templates can be used for embedded signature requests and can be edited later by generating a new `edit_url` with [/embedded/edit_url/{template_id}](/api/reference/operation/embeddedEditUrl/).\n\nTemplate creation may complete asynchronously after the initial request is accepted. It is recommended that a callback be implemented to listen for the callback event. A `template_created` event indicates the template is ready to use, while a `template_error` event indicates there was a problem while creating the template. If a callback handler has been configured and the event has not been received within 60 minutes of making the call, check the status of the request in the API dashboard and retry the request if necessary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "signer_roles",
+                  "value": "[{\"name\":\"<string>\",\"order\":\"<integer>\"},{\"name\":\"<string>\",\"order\":\"<integer>\"}]",
+                  "type": "text",
+                  "description": "(Required) An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template."
+                },
+                {
+                  "key": "form_fields_per_document",
+                  "value": "[{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"},{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"}]",
+                  "type": "text",
+                  "description": "(Required) The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)\n\n**NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.\n\n* Text Field use `SubFormFieldsPerDocumentText`\n* Dropdown Field use `SubFormFieldsPerDocumentDropdown`\n* Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`\n* Checkbox Field use `SubFormFieldsPerDocumentCheckbox`\n* Radio Field use `SubFormFieldsPerDocumentRadio`\n* Signature Field use `SubFormFieldsPerDocumentSignature`\n* Date Signed Field use `SubFormFieldsPerDocumentDateSigned`\n* Initials Field use `SubFormFieldsPerDocumentInitials`\n* Text Merge Field use `SubFormFieldsPerDocumentTextMerge`\n* Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`"
+                },
+                {
+                  "key": "files",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": "Use `files[]` to indicate the uploaded file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both."
+                },
+                {
+                  "key": "file_urls",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both."
+                },
+                {
+                  "key": "allow_reassign",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.\n\n**NOTE:** Only available for Premium plan and higher."
+                },
+                {
+                  "key": "attachments",
+                  "value": "[{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false},{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false}]",
+                  "type": "text",
+                  "description": "A list describing the attachments"
+                },
+                {
+                  "key": "cc_roles",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "The CC roles that must be assigned when using the template to send a signature request"
+                },
+                {
+                  "key": "client_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Client id of the app you're using to create this draft. Used to apply the branding and callback url defined for the app."
+                },
+                {
+                  "key": "field_options",
+                  "value": "{\"date_format\":\"<string>\"}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "form_field_groups",
+                  "value": "[{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"},{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"}]",
+                  "type": "text",
+                  "description": "Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`."
+                },
+                {
+                  "key": "form_field_rules",
+                  "value": "[{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]},{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]}]",
+                  "type": "text",
+                  "description": "Conditional Logic rules for fields defined in `form_fields_per_document`."
+                },
+                {
+                  "key": "merge_fields",
+                  "value": "[{\"name\":\"<string>\",\"type\":\"<string>\"},{\"name\":\"<string>\",\"type\":\"<string>\"}]",
+                  "type": "text",
+                  "description": "Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.\nIf the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document."
+                },
+                {
+                  "key": "message",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The default template email message."
+                },
+                {
+                  "key": "metadata",
+                  "value": "{\"key_0\":{},\"key_1\":{}}",
+                  "type": "text",
+                  "description": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long."
+                },
+                {
+                  "key": "subject",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The template title (alias)."
+                },
+                {
+                  "key": "test_mode",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`."
+                },
+                {
+                  "key": "title",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The title you want to assign to the SignatureRequest."
+                },
+                {
+                  "key": "use_preexisting_fields",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Enable the detection of predefined PDF fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`)."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cf0c73ad-9070-4949-bec1-4b542fee3ec1",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.",
+                        "type": "text/plain"
+                      },
+                      "key": "signer_roles",
+                      "value": "[{\"name\":\"<string>\",\"order\":\"<integer>\"},{\"name\":\"<string>\",\"order\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)\n\n**NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.\n\n* Text Field use `SubFormFieldsPerDocumentText`\n* Dropdown Field use `SubFormFieldsPerDocumentDropdown`\n* Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`\n* Checkbox Field use `SubFormFieldsPerDocumentCheckbox`\n* Radio Field use `SubFormFieldsPerDocumentRadio`\n* Signature Field use `SubFormFieldsPerDocumentSignature`\n* Date Signed Field use `SubFormFieldsPerDocumentDateSigned`\n* Initials Field use `SubFormFieldsPerDocumentInitials`\n* Text Merge Field use `SubFormFieldsPerDocumentTextMerge`\n* Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`",
+                        "type": "text/plain"
+                      },
+                      "key": "form_fields_per_document",
+                      "value": "[{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"},{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `files[]` to indicate the uploaded file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.\n\n**NOTE:** Only available for Premium plan and higher.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_reassign",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A list describing the attachments",
+                        "type": "text/plain"
+                      },
+                      "key": "attachments",
+                      "value": "[{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false},{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The CC roles that must be assigned when using the template to send a signature request",
+                        "type": "text/plain"
+                      },
+                      "key": "cc_roles",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Client id of the app you're using to create this draft. Used to apply the branding and callback url defined for the app.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "field_options",
+                      "value": "{\"date_format\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_groups",
+                      "value": "[{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"},{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conditional Logic rules for fields defined in `form_fields_per_document`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_rules",
+                      "value": "[{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]},{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.\nIf the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document.",
+                        "type": "text/plain"
+                      },
+                      "key": "merge_fields",
+                      "value": "[{\"name\":\"<string>\",\"type\":\"<string>\"},{\"name\":\"<string>\",\"type\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The default template email message.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.",
+                        "type": "text/plain"
+                      },
+                      "key": "metadata",
+                      "value": "{\"key_0\":{}}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The template title (alias).",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "test_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The title you want to assign to the SignatureRequest.",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable the detection of predefined PDF fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`).",
+                        "type": "text/plain"
+                      },
+                      "key": "use_preexisting_fields",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/TemplateCreateResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f48b7dc-5c4f-4c17-9748-680a8eaabe8c",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.",
+                        "type": "text/plain"
+                      },
+                      "key": "signer_roles",
+                      "value": "[{\"name\":\"<string>\",\"order\":\"<integer>\"},{\"name\":\"<string>\",\"order\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)\n\n**NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.\n\n* Text Field use `SubFormFieldsPerDocumentText`\n* Dropdown Field use `SubFormFieldsPerDocumentDropdown`\n* Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`\n* Checkbox Field use `SubFormFieldsPerDocumentCheckbox`\n* Radio Field use `SubFormFieldsPerDocumentRadio`\n* Signature Field use `SubFormFieldsPerDocumentSignature`\n* Date Signed Field use `SubFormFieldsPerDocumentDateSigned`\n* Initials Field use `SubFormFieldsPerDocumentInitials`\n* Text Merge Field use `SubFormFieldsPerDocumentTextMerge`\n* Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`",
+                        "type": "text/plain"
+                      },
+                      "key": "form_fields_per_document",
+                      "value": "[{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"},{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `files[]` to indicate the uploaded file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.\n\n**NOTE:** Only available for Premium plan and higher.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_reassign",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A list describing the attachments",
+                        "type": "text/plain"
+                      },
+                      "key": "attachments",
+                      "value": "[{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false},{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The CC roles that must be assigned when using the template to send a signature request",
+                        "type": "text/plain"
+                      },
+                      "key": "cc_roles",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Client id of the app you're using to create this draft. Used to apply the branding and callback url defined for the app.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "field_options",
+                      "value": "{\"date_format\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_groups",
+                      "value": "[{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"},{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conditional Logic rules for fields defined in `form_fields_per_document`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_rules",
+                      "value": "[{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]},{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.\nIf the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document.",
+                        "type": "text/plain"
+                      },
+                      "key": "merge_fields",
+                      "value": "[{\"name\":\"<string>\",\"type\":\"<string>\"},{\"name\":\"<string>\",\"type\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The default template email message.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.",
+                        "type": "text/plain"
+                      },
+                      "key": "metadata",
+                      "value": "{\"key_0\":{}}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The template title (alias).",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "test_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The title you want to assign to the SignatureRequest.",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable the detection of predefined PDF fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`).",
+                        "type": "text/plain"
+                      },
+                      "key": "use_preexisting_fields",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d61b81df-8566-4f94-a744-472b6d9e5395",
+          "name": "Create Embedded Template Draft",
+          "request": {
+            "name": "Create Embedded Template Draft",
+            "description": {
+              "content": "The first step in an embedded template workflow. Creates a draft template that can then be further set up in the template 'edit' stage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                "create_embedded_draft"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "client_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Client id of the app you're using to create this draft. Used to apply the branding and callback url defined for the app."
+                },
+                {
+                  "key": "files",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": "Use `files[]` to indicate the uploaded file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both."
+                },
+                {
+                  "key": "file_urls",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both."
+                },
+                {
+                  "key": "allow_ccs",
+                  "value": "true",
+                  "type": "text",
+                  "description": "This allows the requester to specify whether the user is allowed to provide email addresses to CC when creating a template."
+                },
+                {
+                  "key": "allow_reassign",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.\n\n**NOTE:** Only available for Premium plan and higher."
+                },
+                {
+                  "key": "attachments",
+                  "value": "[{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false},{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false}]",
+                  "type": "text",
+                  "description": "A list describing the attachments"
+                },
+                {
+                  "key": "cc_roles",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "The CC roles that must be assigned when using the template to send a signature request"
+                },
+                {
+                  "key": "editor_options",
+                  "value": "{\"allow_edit_signers\":false,\"allow_edit_documents\":false}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "field_options",
+                  "value": "{\"date_format\":\"<string>\"}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "force_signer_roles",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Provide users the ability to review/edit the template signer roles."
+                },
+                {
+                  "key": "force_subject_message",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Provide users the ability to review/edit the template subject and message."
+                },
+                {
+                  "key": "form_field_groups",
+                  "value": "[{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"},{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"}]",
+                  "type": "text",
+                  "description": "Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`."
+                },
+                {
+                  "key": "form_field_rules",
+                  "value": "[{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]},{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]}]",
+                  "type": "text",
+                  "description": "Conditional Logic rules for fields defined in `form_fields_per_document`."
+                },
+                {
+                  "key": "form_fields_per_document",
+                  "value": "[{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"},{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"}]",
+                  "type": "text",
+                  "description": "The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)\n\n**NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.\n\n* Text Field use `SubFormFieldsPerDocumentText`\n* Dropdown Field use `SubFormFieldsPerDocumentDropdown`\n* Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`\n* Checkbox Field use `SubFormFieldsPerDocumentCheckbox`\n* Radio Field use `SubFormFieldsPerDocumentRadio`\n* Signature Field use `SubFormFieldsPerDocumentSignature`\n* Date Signed Field use `SubFormFieldsPerDocumentDateSigned`\n* Initials Field use `SubFormFieldsPerDocumentInitials`\n* Text Merge Field use `SubFormFieldsPerDocumentTextMerge`\n* Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`"
+                },
+                {
+                  "key": "merge_fields",
+                  "value": "[{\"name\":\"<string>\",\"type\":\"<string>\"},{\"name\":\"<string>\",\"type\":\"<string>\"}]",
+                  "type": "text",
+                  "description": "Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.\nIf the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document."
+                },
+                {
+                  "key": "message",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The default template email message."
+                },
+                {
+                  "key": "metadata",
+                  "value": "{\"key_0\":{}}",
+                  "type": "text",
+                  "description": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long."
+                },
+                {
+                  "key": "show_preview",
+                  "value": "false",
+                  "type": "text",
+                  "description": "This allows the requester to enable the editor/preview experience.\n\n- `show_preview=true`: Allows requesters to enable the editor/preview experience.\n- `show_preview=false`: Allows requesters to disable the editor/preview experience."
+                },
+                {
+                  "key": "show_progress_stepper",
+                  "value": "true",
+                  "type": "text",
+                  "description": "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden."
+                },
+                {
+                  "key": "signer_roles",
+                  "value": "[{\"name\":\"<string>\",\"order\":\"<integer>\"},{\"name\":\"<string>\",\"order\":\"<integer>\"}]",
+                  "type": "text",
+                  "description": "An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template."
+                },
+                {
+                  "key": "skip_me_now",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Disables the \"Me (Now)\" option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`."
+                },
+                {
+                  "key": "subject",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The template title (alias)."
+                },
+                {
+                  "key": "test_mode",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`."
+                },
+                {
+                  "key": "title",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The title you want to assign to the SignatureRequest."
+                },
+                {
+                  "key": "use_preexisting_fields",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Enable the detection of predefined PDF fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`)."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b2ac4352-db0a-41fc-b4df-46ed9969ff36",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "create_embedded_draft"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Client id of the app you're using to create this draft. Used to apply the branding and callback url defined for the app.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `files[]` to indicate the uploaded file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to specify whether the user is allowed to provide email addresses to CC when creating a template.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_ccs",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.\n\n**NOTE:** Only available for Premium plan and higher.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_reassign",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A list describing the attachments",
+                        "type": "text/plain"
+                      },
+                      "key": "attachments",
+                      "value": "[{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false},{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The CC roles that must be assigned when using the template to send a signature request",
+                        "type": "text/plain"
+                      },
+                      "key": "cc_roles",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "editor_options",
+                      "value": "{\"allow_edit_signers\":false,\"allow_edit_documents\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "field_options",
+                      "value": "{\"date_format\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Provide users the ability to review/edit the template signer roles.",
+                        "type": "text/plain"
+                      },
+                      "key": "force_signer_roles",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Provide users the ability to review/edit the template subject and message.",
+                        "type": "text/plain"
+                      },
+                      "key": "force_subject_message",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_groups",
+                      "value": "[{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"},{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conditional Logic rules for fields defined in `form_fields_per_document`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_rules",
+                      "value": "[{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]},{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)\n\n**NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.\n\n* Text Field use `SubFormFieldsPerDocumentText`\n* Dropdown Field use `SubFormFieldsPerDocumentDropdown`\n* Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`\n* Checkbox Field use `SubFormFieldsPerDocumentCheckbox`\n* Radio Field use `SubFormFieldsPerDocumentRadio`\n* Signature Field use `SubFormFieldsPerDocumentSignature`\n* Date Signed Field use `SubFormFieldsPerDocumentDateSigned`\n* Initials Field use `SubFormFieldsPerDocumentInitials`\n* Text Merge Field use `SubFormFieldsPerDocumentTextMerge`\n* Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`",
+                        "type": "text/plain"
+                      },
+                      "key": "form_fields_per_document",
+                      "value": "[{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"},{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.\nIf the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document.",
+                        "type": "text/plain"
+                      },
+                      "key": "merge_fields",
+                      "value": "[{\"name\":\"<string>\",\"type\":\"<string>\"},{\"name\":\"<string>\",\"type\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The default template email message.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.",
+                        "type": "text/plain"
+                      },
+                      "key": "metadata",
+                      "value": "{\"key_0\":{},\"key_1\":{},\"key_2\":{}}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to enable the editor/preview experience.\n\n- `show_preview=true`: Allows requesters to enable the editor/preview experience.\n- `show_preview=false`: Allows requesters to disable the editor/preview experience.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_preview",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_progress_stepper",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.",
+                        "type": "text/plain"
+                      },
+                      "key": "signer_roles",
+                      "value": "[{\"name\":\"<string>\",\"order\":\"<integer>\"},{\"name\":\"<string>\",\"order\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Disables the \"Me (Now)\" option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "skip_me_now",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The template title (alias).",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "test_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The title you want to assign to the SignatureRequest.",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable the detection of predefined PDF fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`).",
+                        "type": "text/plain"
+                      },
+                      "key": "use_preexisting_fields",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/TemplateCreateEmbeddedDraftResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "500e9714-c2b4-4ea1-9181-7d7df992e979",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "create_embedded_draft"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Client id of the app you're using to create this draft. Used to apply the branding and callback url defined for the app.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `files[]` to indicate the uploaded file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to specify whether the user is allowed to provide email addresses to CC when creating a template.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_ccs",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.\n\n**NOTE:** Only available for Premium plan and higher.",
+                        "type": "text/plain"
+                      },
+                      "key": "allow_reassign",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A list describing the attachments",
+                        "type": "text/plain"
+                      },
+                      "key": "attachments",
+                      "value": "[{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false},{\"name\":\"<string>\",\"signer_index\":\"<integer>\",\"instructions\":\"<string>\",\"required\":false}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The CC roles that must be assigned when using the template to send a signature request",
+                        "type": "text/plain"
+                      },
+                      "key": "cc_roles",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "editor_options",
+                      "value": "{\"allow_edit_signers\":false,\"allow_edit_documents\":false}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "field_options",
+                      "value": "{\"date_format\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Provide users the ability to review/edit the template signer roles.",
+                        "type": "text/plain"
+                      },
+                      "key": "force_signer_roles",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Provide users the ability to review/edit the template subject and message.",
+                        "type": "text/plain"
+                      },
+                      "key": "force_subject_message",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_groups",
+                      "value": "[{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"},{\"group_id\":\"<string>\",\"group_label\":\"<string>\",\"requirement\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conditional Logic rules for fields defined in `form_fields_per_document`.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_field_rules",
+                      "value": "[{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]},{\"id\":\"<string>\",\"trigger_operator\":\"AND\",\"triggers\":[{\"id\":\"<string>\",\"operator\":\"<string>\",\"value\":\"<string>\",\"values\":[\"<string>\",\"<string>\"]}],\"actions\":[{\"hidden\":\"<boolean>\",\"type\":\"<string>\",\"field_id\":\"<string>\",\"group_id\":\"<string>\"}]}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)\n\n**NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.\n\n* Text Field use `SubFormFieldsPerDocumentText`\n* Dropdown Field use `SubFormFieldsPerDocumentDropdown`\n* Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`\n* Checkbox Field use `SubFormFieldsPerDocumentCheckbox`\n* Radio Field use `SubFormFieldsPerDocumentRadio`\n* Signature Field use `SubFormFieldsPerDocumentSignature`\n* Date Signed Field use `SubFormFieldsPerDocumentDateSigned`\n* Initials Field use `SubFormFieldsPerDocumentInitials`\n* Text Merge Field use `SubFormFieldsPerDocumentTextMerge`\n* Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`",
+                        "type": "text/plain"
+                      },
+                      "key": "form_fields_per_document",
+                      "value": "[{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"},{\"document_index\":\"<integer>\",\"api_id\":\"<string>\",\"type\":\"<string>\",\"required\":\"<boolean>\",\"signer\":\"<string>\",\"width\":\"<integer>\",\"height\":\"<integer>\",\"x\":\"<integer>\",\"y\":\"<integer>\",\"name\":\"<string>\",\"page\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.\nIf the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document.",
+                        "type": "text/plain"
+                      },
+                      "key": "merge_fields",
+                      "value": "[{\"name\":\"<string>\",\"type\":\"<string>\"},{\"name\":\"<string>\",\"type\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The default template email message.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.\n\nEach request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.",
+                        "type": "text/plain"
+                      },
+                      "key": "metadata",
+                      "value": "{\"key_0\":{},\"key_1\":{},\"key_2\":{}}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "This allows the requester to enable the editor/preview experience.\n\n- `show_preview=true`: Allows requesters to enable the editor/preview experience.\n- `show_preview=false`: Allows requesters to disable the editor/preview experience.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_preview",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.",
+                        "type": "text/plain"
+                      },
+                      "key": "show_progress_stepper",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.",
+                        "type": "text/plain"
+                      },
+                      "key": "signer_roles",
+                      "value": "[{\"name\":\"<string>\",\"order\":\"<integer>\"},{\"name\":\"<string>\",\"order\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Disables the \"Me (Now)\" option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "skip_me_now",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The template title (alias).",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "test_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The title you want to assign to the SignatureRequest.",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable the detection of predefined PDF fields by setting the `use_preexisting_fields` to `true` (defaults to disabled, or `false`).",
+                        "type": "text/plain"
+                      },
+                      "key": "use_preexisting_fields",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58817146-3f0f-495a-b028-da4ab470a111",
+          "name": "Delete Template",
+          "request": {
+            "name": "Delete Template",
+            "description": {
+              "content": "Completely deletes the template specified from the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                "delete",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) The id of the Template to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "38e7590d-fc75-40dd-9faf-67d539ad5e6c",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "delete",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the Template to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68aec124-74be-4e39-a9c3-929a4461f7cc",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "delete",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the Template to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76a9f43e-55d6-41bb-a863-bf5e763acd0d",
+          "name": "Get Template Files",
+          "request": {
+            "name": "Get Template Files",
+            "description": {
+              "content": "Obtain a copy of the current documents specified by the `template_id` parameter. Returns a PDF or ZIP file.\n\nIf the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                "files",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "file_type",
+                  "value": "<string>",
+                  "description": "Set to `pdf` for a single merged document or `zip` for a collection of individual documents."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) The id of the template files to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "68707bf9-5a45-4254-aa48-aaa597c1de3a",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "files",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the template files to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d130dc5-d8da-4ce8-bda5-90e66a63ebb8",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "files",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the template files to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62ceb405-e39b-4bc9-b013-72574a1e9888",
+          "name": "Get Template Files as Data Uri",
+          "request": {
+            "name": "Get Template Files as Data Uri",
+            "description": {
+              "content": "Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).\n\nIf the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                "files_as_data_uri",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) The id of the template files to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "302dc261-3564-428e-94df-b0b6acfc5066",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "files_as_data_uri",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the template files to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/TemplateFilesResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da0db99a-a29f-4a8f-941b-88758d6caadd",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "files_as_data_uri",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the template files to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ede4a0c-d57a-4ec9-b8a4-70d057193fc6",
+          "name": "Get Template Files as File Url",
+          "request": {
+            "name": "Get Template Files as File Url",
+            "description": {
+              "content": "Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).\n\nIf the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                "files_as_file_url",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force_download",
+                  "value": "1",
+                  "description": "By default when opening the `file_url` a browser will download the PDF and save it locally. When set to `0` the PDF file will be displayed in the browser."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) The id of the template files to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6d20827d-f2bb-4068-a3ea-a9e1a41773b1",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "files_as_file_url",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force_download",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the template files to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/TemplateFilesResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5cc34c7-a7b7-4d27-bc58-6d8236e8953f",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "files_as_file_url",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force_download",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the template files to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "278998c6-dc19-4dc6-9a36-6603710f1f8a",
+          "name": "Get Template",
+          "request": {
+            "name": "Get Template",
+            "description": {
+              "content": "Returns the Template specified by the `template_id` parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) The id of the Template to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2bd7c10b-16c9-4b6d-9220-faf26c25b7f2",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the Template to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/TemplateGetResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73af31c2-803b-4d7e-a019-38cd33216152",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the Template to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "daf6cb10-1db8-46f0-b69b-c8362ec27ecb",
+          "name": "List Templates",
+          "request": {
+            "name": "List Templates",
+            "description": {
+              "content": "Returns a list of the Templates that are accessible by you.\n\nTake a look at our [search guide](/api/reference/search/) to learn more about querying templates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Which account to return Templates for. Must be a team member. Use `all` to indicate all team members. Defaults to your account."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Which page number of the Template List to return. Defaults to `1`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "20",
+                  "description": "Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`."
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "String that includes search terms and/or fields to be used to filter the Template objects."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2170365d-9366-4267-8d8e-1034ffcb0adf",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/TemplateListResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06808dcb-01a3-45d2-8961-e995e8857d3f",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03e1abe1-ad5e-4858-9a8a-eaa5def20999",
+          "name": "Remove User from Template",
+          "request": {
+            "name": "Remove User from Template",
+            "description": {
+              "content": "Removes the specified Account's access to the specified Template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                "remove_user",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) The id of the Template to remove the Account's access to."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_id\": \"<string>\",\n  \"email_address\": \"<email>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c80753b9-bca4-48ea-8fd3-2b1db106c096",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "remove_user",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the Template to remove the Account's access to."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$ref\": \"examples/json/TemplateRemoveUserRequest.json\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/TemplateRemoveUserResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "570de3e4-58aa-4d42-9662-a576ddb9e8ed",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "remove_user",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The id of the Template to remove the Account's access to."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"$ref\": \"examples/json/TemplateRemoveUserRequest.json\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "942c81cf-b0f9-4de6-be62-cf8090043cda",
+          "name": "Update Template Files",
+          "request": {
+            "name": "Update Template Files",
+            "description": {
+              "content": "Overlays a new file with the overlay of an existing template. The new file(s) must:\n\n1. have the same or higher page count\n2. the same orientation as the file(s) being replaced.\n\nThis will not overwrite or in any way affect the existing template. Both the existing template and new template will be available for use after executing this endpoint. Also note that this will decrement your template quota.\n\nOverlaying new files is asynchronous and a successful call to this endpoint will return 200 OK response if the request passes initial validation checks.\n\nIt is recommended that a callback be implemented to listen for the callback event. A `template_created` event will be sent when the files are updated or a `template_error` event will be sent if there was a problem while updating the files. If a callback handler has been configured and the event has not been received within 60 minutes of making the call, check the status of the request in the API dashboard and retry the request if necessary.\n\nIf the page orientation or page count is different from the original template document, we will notify you with a `template_error` [callback event](https://app.hellosign.com/api/eventsAndCallbacksWalkthrough).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                "update_files",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) The ID of the template whose files to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "client_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Client id of the app you're using to update this template."
+                },
+                {
+                  "key": "files",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": "Use `files[]` to indicate the uploaded file(s) to use for the template.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both."
+                },
+                {
+                  "key": "file_urls",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "Use `file_urls[]` to have Dropbox Sign download the file(s) to use for the template.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both."
+                },
+                {
+                  "key": "message",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The new default template email message."
+                },
+                {
+                  "key": "subject",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The new default template email subject."
+                },
+                {
+                  "key": "test_mode",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dfca42d4-862a-4780-8f51-c0f0aef1e50a",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "update_files",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The ID of the template whose files to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Client id of the app you're using to update this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `files[]` to indicate the uploaded file(s) to use for the template.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `file_urls[]` to have Dropbox Sign download the file(s) to use for the template.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The new default template email message.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The new default template email subject.",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "test_mode",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests per hour that you can make.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Unix time at which the rate limit will reset to its maximum.",
+                  "key": "X-Ratelimit-Reset",
+                  "value": "1430170900"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/TemplateUpdateFilesResponse.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b87d8e4-582d-47e3-bd6f-4208275b99fd",
+              "name": "failed_operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    "update_files",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The ID of the template whose files to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Client id of the app you're using to update this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `files[]` to indicate the uploaded file(s) to use for the template.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use `file_urls[]` to have Dropbox Sign download the file(s) to use for the template.\n\nThis endpoint requires either **files** or **file_urls[]**, but not both.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The new default template email message.",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The new default template email subject.",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.",
+                        "type": "text/plain"
+                      },
+                      "key": "test_mode",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$ref\": \"examples/json/Error400Response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hellosign.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "729b43fc-e061-4434-9bcc-c44739e88717",
+    "name": "Dropbox Sign Account Template API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Dropbox Sign v3 API\n\nContact Support:\n Email: apisupport@hellosign.com",
+      "type": "text/plain"
+    }
+  }
+}
