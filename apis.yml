@@ -12,6 +12,18 @@ description: >-
   Y Combinator company (S11), acquired by Dropbox in 2019 and rebranded to Dropbox
   Sign in 2022; the API base host remains api.hellosign.com.
 url: https://raw.githubusercontent.com/api-evangelist/hellosign/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
