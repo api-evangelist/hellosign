@@ -48,7 +48,7 @@ created: '2026-07-17'
 modified: '2026-07-19'
 tags:
 - Company
-- eSignature
+- E-Signature
 - Electronic Signatures
 - Documents
 - Digital Agreements
@@ -86,7 +86,7 @@ apis:
   humanURL: https://developers.hellosign.com/
   baseURL: https://api.hellosign.com/v3
   tags:
-  - Api App
+  - API App
   tags_raw:
   - Api App
   properties:
