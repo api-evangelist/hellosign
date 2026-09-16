@@ -1,16 +1,13 @@
 aid: hellosign
 name: Dropbox Sign (HelloSign)
-description: >-
-  Dropbox Sign (formerly HelloSign) is an eSignature platform whose v3 REST API
-  lets developers send documents for legally binding electronic signature, build
-  reusable templates, embed signing directly in their own apps, run bulk send
-  jobs, and manage accounts, teams, and API apps. The API exposes 73 operations
-  across 12 product areas (Signature Request, Template, Bulk Send, Embedded,
-  Account, Team, Report, Fax, Fax Line, Unclaimed Draft, API App, OAuth), with
-  API-key and OAuth 2.0 authentication, 23 webhook event types, official SDKs in
-  six languages, and a published hosted documentation MCP server. HelloSign was a
-  Y Combinator company (S11), acquired by Dropbox in 2019 and rebranded to Dropbox
-  Sign in 2022; the API base host remains api.hellosign.com.
+description: Dropbox Sign (formerly HelloSign) is an eSignature platform whose v3 REST API lets developers
+  send documents for legally binding electronic signature, build reusable templates, embed signing directly
+  in their own apps, run bulk send jobs, and manage accounts, teams, and API apps. The API exposes 73
+  operations across 12 product areas (Signature Request, Template, Bulk Send, Embedded, Account, Team,
+  Report, Fax, Fax Line, Unclaimed Draft, API App, OAuth), with API-key and OAuth 2.0 authentication,
+  23 webhook event types, official SDKs in six languages, and a published hosted documentation MCP server.
+  HelloSign was a Y Combinator company (S11), acquired by Dropbox in 2019 and rebranded to Dropbox Sign
+  in 2022; the API base host remains api.hellosign.com.
 url: https://raw.githubusercontent.com/api-evangelist/hellosign/refs/heads/main/apis.yml
 deliveryModel:
   model: saas
@@ -48,7 +45,7 @@ x-tier: enriched
 x-tier-reason: real-api-enriched
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-09-16'
 tags:
 - Company
 - E-Signature
@@ -199,8 +196,8 @@ apis:
     url: openapi/hellosign-unclaimed-draft-api-openapi.yml
 - aid: hellosign:hellosign-callbacks-and-events-api
   name: Dropbox Sign (HelloSign) Callbacks and Events API
-  description: >-
-    The Callbacks and Events API from Dropbox Sign (HelloSign) — 0 operation(s) for callbacks and events.
+  description: The Callbacks and Events API from Dropbox Sign (HelloSign) — 0 operation(s) for callbacks
+    and events.
   humanURL: https://developers.hellosign.com/
   baseURL: https://api.hellosign.com/v3
   tags:
@@ -209,11 +206,14 @@ apis:
   - type: OpenAPI
     url: openapi/hellosign-callbacks-and-events-api-openapi.yml
 common:
+- type: Website
+  url: https://hellosign.com
 - type: ParentCompany
   url: https://apis.io/providers/dropbox/
   name: Dropbox
   x-relationship: acquired
-  x-evidence: "HelloSign was a Y Combinator company (S11), acquired by Dropbox in 2019 and rebranded to Dropbox Sign in 2022; the API base host remains api."
+  x-evidence: HelloSign was a Y Combinator company (S11), acquired by Dropbox in 2019 and rebranded to
+    Dropbox Sign in 2022; the API base host remains api.
 - type: Overlay
   url: overlays/hellosign-openapi-overlay.yaml
 - type: PostmanWorkspace
