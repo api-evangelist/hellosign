@@ -132,18 +132,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/hellosign-fax-line-api-openapi.yml
-- aid: hellosign:hellosign-oauth-api
-  name: Dropbox Sign (HelloSign) OAuth API
-  description: '{''$ref'': ''./markdown/en/tags/oauth-tag-description.md''}'
-  humanURL: https://developers.hellosign.com/
-  baseURL: https://api.hellosign.com/v3
-  tags:
-  - Authentication
-  tags_raw:
-  - OAuth
-  properties:
-  - type: OpenAPI
-    url: openapi/hellosign-oauth-api-openapi.yml
 - aid: hellosign:hellosign-report-api
   name: Dropbox Sign (HelloSign) Report API
   description: '{''$ref'': ''./markdown/en/tags/report-tag-description.md''}'
@@ -196,8 +184,8 @@ apis:
     url: openapi/hellosign-unclaimed-draft-api-openapi.yml
 - aid: hellosign:hellosign-callbacks-and-events-api
   name: Dropbox Sign (HelloSign) Callbacks and Events API
-  description: The Callbacks and Events API from Dropbox Sign (HelloSign) — 0 operation(s) for callbacks
-    and events.
+  description: >-
+    The Callbacks and Events API from Dropbox Sign (HelloSign) — 0 operation(s) for callbacks and events.
   humanURL: https://developers.hellosign.com/
   baseURL: https://api.hellosign.com/v3
   tags:
@@ -205,6 +193,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/hellosign-callbacks-and-events-api-openapi.yml
+- aid: hellosign:hellosign-oauth-api
+  name: Dropbox Sign (HelloSign) O Auth API
+  description: '{''$ref'': ''./markdown/en/tags/oauth-tag-description.md''}'
+  humanURL: https://developers.hellosign.com/
+  baseURL: https://api.hellosign.com/v3
+  tags:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/hellosign-oauth-api-openapi.yml
 common:
 - type: Website
   url: https://hellosign.com
