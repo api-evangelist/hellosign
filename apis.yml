@@ -49,7 +49,7 @@ modified: '2026-09-16'
 tags:
 - Company
 - E-Signature
-- Electronic Signatures
+- Electronic Signature
 - Documents
 - Digital Agreements
 - Signature Workflow
@@ -168,6 +168,8 @@ apis:
   humanURL: https://developers.hellosign.com/
   baseURL: https://api.hellosign.com/v3
   tags:
+  - Templates
+  tags_raw:
   - Template
   properties:
   - type: OpenAPI
@@ -199,6 +201,8 @@ apis:
   humanURL: https://developers.hellosign.com/
   baseURL: https://api.hellosign.com/v3
   tags:
+  - Authentication
+  tags_raw:
   - OAuth
   properties:
   - type: OpenAPI
