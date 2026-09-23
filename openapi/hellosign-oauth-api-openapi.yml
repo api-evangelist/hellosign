@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dropbox Sign Account OAuth API
+  title: Dropbox Sign O Auth API
   description: Dropbox Sign v3 API
   termsOfService: https://www.hellosign.com/terms
   contact:
@@ -206,66 +206,47 @@ paths:
       x-hideTryItPanel: true
 components:
   examples:
-    OAuthTokenRefreshResponse:
-      summary: Refresh an existing OAuth token
-      value:
-        $ref: examples/json/OAuthTokenRefreshResponse.json
-    OAuthTokenRefreshRequest:
-      summary: OAuth Token Refresh Example
-      value:
-        $ref: examples/json/OAuthTokenRefreshRequest.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    OAuthTokenGenerateResponse:
-      summary: Retrieving the OAuth token
-      value:
-        $ref: examples/json/OAuthTokenGenerateResponse.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
     Error401Response:
       summary: Error 401 unauthorized
       value:
         $ref: examples/json/Error401Response.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    OAuthTokenRefreshResponse:
+      summary: Refresh an existing OAuth token
+      value:
+        $ref: examples/json/OAuthTokenRefreshResponse.json
     Error4XXResponse:
       summary: Error 4XX failed_operation
       value:
         $ref: examples/json/Error4XXResponse.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
     OAuthTokenGenerateRequest:
       summary: OAuth Token Generate Example
       value:
         $ref: examples/json/OAuthTokenGenerateRequest.json
-  schemas:
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    OAuthTokenGenerateResponse:
+      summary: Retrieving the OAuth token
+      value:
+        $ref: examples/json/OAuthTokenGenerateResponse.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
     OAuthTokenRefreshRequest:
-      required:
-      - grant_type
-      - refresh_token
-      properties:
-        grant_type:
-          description: When refreshing an existing token use `refresh_token`.
-          type: string
-          default: refresh_token
-        refresh_token:
-          description: The token provided when you got the expired access token.
-          type: string
-        client_id:
-          description: The client ID for your API app. Required for new API apps. To enhance security, we recommend making it required for existing apps in your app settings.
-          type: string
-        client_secret:
-          description: The client secret for your API app. Required for new API apps. To enhance security, we recommend making it required for existing apps in your app settings.
-          type: string
-      type: object
+      summary: OAuth Token Refresh Example
+      value:
+        $ref: examples/json/OAuthTokenRefreshRequest.json
+  schemas:
     OAuthTokenGenerateRequest:
       required:
       - client_id
@@ -291,29 +272,6 @@ components:
           description: Same as the state you specified earlier.
           type: string
       type: object
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-    OAuthTokenResponse:
-      properties:
-        access_token:
-          type: string
-        token_type:
-          type: string
-        refresh_token:
-          type: string
-        expires_in:
-          description: Number of seconds until the `access_token` expires. Uses epoch time.
-          type: integer
-        state:
-          type: string
-          nullable: true
-      type: object
-      x-internal-class: true
     ErrorResponseError:
       description: Contains information about an error that occurred.
       required:
@@ -330,19 +288,62 @@ components:
           description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
           type: string
       type: object
+    OAuthTokenResponse:
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        refresh_token:
+          type: string
+        expires_in:
+          description: Number of seconds until the `access_token` expires. Uses epoch time.
+          type: integer
+        state:
+          type:
+          - string
+          - 'null'
+      type: object
+      x-internal-class: true
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    OAuthTokenRefreshRequest:
+      required:
+      - grant_type
+      - refresh_token
+      properties:
+        grant_type:
+          description: When refreshing an existing token use `refresh_token`.
+          type: string
+          default: refresh_token
+        refresh_token:
+          description: The token provided when you got the expired access token.
+          type: string
+        client_id:
+          description: The client ID for your API app. Required for new API apps. To enhance security, we recommend making it required for existing apps in your app settings.
+          type: string
+        client_secret:
+          description: The client secret for your API app. Required for new API apps. To enhance security, we recommend making it required for existing apps in your app settings.
+          type: string
+      type: object
   headers:
-    X-RateLimit-Limit:
-      description: The maximum number of requests per hour that you can make.
-      schema:
-        type: integer
-        format: int32
-        example: 100
     X-Ratelimit-Reset:
       description: The Unix time at which the rate limit will reset to its maximum.
       schema:
         type: integer
         format: int64
         example: 1430170900
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
     X-RateLimit-Remaining:
       description: The number of requests remaining in the current rate limit window.
       schema:
@@ -366,149 +367,6 @@ components:
 externalDocs:
   description: Legacy API Reference
   url: https://app.hellosign.com/api/reference
-x-webhooks:
-  accountCallback:
-    post:
-      summary: Account Callbacks
-      operationId: accountUpdateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/account-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: Account Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the account level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: "**Account Callback Payloads --**\n      Events that are reported at the Account level through the the *Account callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api). The *Account callback URL* can also be updated by calling [Update Account](/api/reference/operation/accountUpdate) and passing a `callback_url`."
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
-  appCallback:
-    post:
-      summary: App Callbacks
-      operationId: apiAppCreateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/api-app-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: App Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the App level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: '**API App Callback Payloads --**
-
-          Events that are reported at the API App level through the *Event callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api) for a specific app. The *Event callback URL* can also be updated by calling [Update API App](/api/reference/operation/apiAppUpdate) and passing a `callback_url`.'
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
 x-error-codes:
   bad_request:
     http_status: 400

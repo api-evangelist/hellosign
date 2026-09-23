@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Dropbox Sign Account API
   description: Dropbox Sign v3 API
@@ -223,7 +223,7 @@ paths:
       tags:
       - Account
       summary: Update Account
-      description: Updates the properties and settings of your Account. Currently only allows for updates to the [Callback URL](/api/reference/tag/Callbacks-and-Events) and locale.
+      description: Updates the properties and settings of your Account. Currently only allows for updates to the Callback URL and locale.
       operationId: accountUpdate
       requestBody:
         required: true
@@ -402,14 +402,14 @@ paths:
           description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to verify whether an Account exists, click here.
 components:
   examples:
-    AccountVerifyNotFoundResponse:
-      summary: Account Not Found
+    Error401Response:
+      summary: Error 401 unauthorized
       value:
-        $ref: examples/json/AccountVerifyNotFoundResponse.json
-    AccountGetResponse:
-      summary: Account Get
+        $ref: examples/json/Error401Response.json
+    Error400Response:
+      summary: Error 400 bad_request
       value:
-        $ref: examples/json/AccountGetResponse.json
+        $ref: examples/json/Error400Response.json
     AccountVerifyRequest:
       summary: Default Example
       value:
@@ -418,82 +418,100 @@ components:
       summary: Account Update
       value:
         $ref: examples/json/AccountUpdateResponse.json
-    Error401Response:
-      summary: Error 401 unauthorized
-      value:
-        $ref: examples/json/Error401Response.json
-    AccountUpdateRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/AccountUpdateRequest.json
-    Error409Response:
-      summary: Error 409 conflict
-      value:
-        $ref: examples/json/Error409Response.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
     Error4XXResponse:
       summary: Error 4XX failed_operation
       value:
         $ref: examples/json/Error4XXResponse.json
-    AccountCreateRequest:
-      summary: Default Example
+    AccountGetResponse:
+      summary: Account Get
       value:
-        $ref: examples/json/AccountCreateRequest.json
+        $ref: examples/json/AccountGetResponse.json
     AccountCreateResponse:
       summary: Account Create
       value:
         $ref: examples/json/AccountCreateResponse.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    AccountVerifyFoundResponse:
-      summary: Account Found
-      value:
-        $ref: examples/json/AccountVerifyFoundResponse.json
-    AccountCreateOAuthResponse:
-      summary: Account Create with OAuth Authorization
-      value:
-        $ref: examples/json/AccountCreateOAuthResponse.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
     AccountCreateRequestOAuth:
       summary: OAuth Example
       value:
         $ref: examples/json/AccountCreateRequestOAuth.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    AccountUpdateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/AccountUpdateRequest.json
+    AccountVerifyFoundResponse:
+      summary: Account Found
+      value:
+        $ref: examples/json/AccountVerifyFoundResponse.json
+    Error409Response:
+      summary: Error 409 conflict
+      value:
+        $ref: examples/json/Error409Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    AccountCreateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/AccountCreateRequest.json
+    AccountCreateOAuthResponse:
+      summary: Account Create with OAuth Authorization
+      value:
+        $ref: examples/json/AccountCreateOAuthResponse.json
+    AccountVerifyNotFoundResponse:
+      summary: Account Not Found
+      value:
+        $ref: examples/json/AccountVerifyNotFoundResponse.json
   schemas:
-    AccountVerifyRequest:
-      required:
-      - email_address
+    AccountVerifyResponse:
       properties:
-        email_address:
-          description: Email address to run the verification for.
-          type: string
-          format: email
-      type: object
-    AccountVerifyResponseAccount:
-      properties:
-        email_address:
-          description: The email address associated with the Account.
-          type: string
+        account:
+          $ref: '#/components/schemas/AccountVerifyResponseAccount'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
       type: object
       x-internal-class: true
-    AccountResponseUsage:
-      description: Details concerning monthly usage
+    AccountCreateResponse:
+      required:
+      - account
       properties:
-        fax_pages_sent:
-          description: Number of fax pages sent
+        account:
+          $ref: '#/components/schemas/AccountResponse'
+        oauth_data:
+          $ref: '#/components/schemas/OAuthTokenResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    OAuthTokenResponse:
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        refresh_token:
+          type: string
+        expires_in:
+          description: Number of seconds until the `access_token` expires. Uses epoch time.
           type: integer
-          nullable: true
+        state:
+          type:
+          - string
+          - 'null'
       type: object
       x-internal-class: true
     AccountCreateRequest:
@@ -520,6 +538,144 @@ components:
           description: The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
           type: string
       type: object
+    AccountResponseUsage:
+      description: Details concerning monthly usage
+      properties:
+        fax_pages_sent:
+          description: Number of fax pages sent
+          type:
+          - integer
+          - 'null'
+      type: object
+      x-internal-class: true
+    AccountUpdateRequest:
+      properties:
+        account_id:
+          description: The ID of the Account
+          type:
+          - string
+          - 'null'
+        callback_url:
+          description: The URL that Dropbox Sign should POST events to.
+          type: string
+        locale:
+          description: The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
+          type: string
+      type: object
+    AccountVerifyRequest:
+      required:
+      - email_address
+      properties:
+        email_address:
+          description: Email address to run the verification for.
+          type: string
+          format: email
+      type: object
+    AccountVerifyResponseAccount:
+      properties:
+        email_address:
+          description: The email address associated with the Account.
+          type: string
+      type: object
+      x-internal-class: true
+    AccountGetResponse:
+      required:
+      - account
+      properties:
+        account:
+          $ref: '#/components/schemas/AccountResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    AccountResponseSettings:
+      description: Subset of configured settings
+      properties:
+        signer_access_codes:
+          description: Returns `true` if _Custom access codes_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_delivery:
+          description: Returns `true` if _Text message_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_authentication:
+          description: Returns `true` if _Signer authentication_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+      type: object
+      x-internal-class: true
+    AccountResponseQuotas:
+      description: Details concerning remaining monthly quotas.
+      properties:
+        api_signature_requests_left:
+          description: API signature requests remaining.
+          type:
+          - integer
+          - 'null'
+        documents_left:
+          description: Signature requests remaining.
+          type:
+          - integer
+          - 'null'
+        templates_total:
+          description: Total API templates allowed.
+          type:
+          - integer
+          - 'null'
+        templates_left:
+          description: API templates remaining.
+          type:
+          - integer
+          - 'null'
+        sms_verifications_left:
+          description: SMS verifications remaining.
+          type:
+          - integer
+          - 'null'
+        num_fax_pages_left:
+          description: Number of fax pages left
+          type:
+          - integer
+          - 'null'
+      type: object
+      x-internal-class: true
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
+      type: object
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
+      type: object
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
     AccountResponse:
       properties:
         account_id:
@@ -541,171 +697,28 @@ components:
           $ref: '#/components/schemas/AccountResponseQuotas'
         callback_url:
           description: The URL that Dropbox Sign events will `POST` to.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         role_code:
           description: The membership role for the team.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         team_id:
           description: The id of the team account belongs to.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         locale:
           description: The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         usage:
           $ref: '#/components/schemas/AccountResponseUsage'
         settings:
           $ref: '#/components/schemas/AccountResponseSettings'
-      type: object
-      x-internal-class: true
-    ErrorResponseError:
-      description: Contains information about an error that occurred.
-      required:
-      - error_msg
-      - error_name
-      properties:
-        error_msg:
-          description: Message describing an error.
-          type: string
-        error_path:
-          description: Path at which an error occurred.
-          type: string
-        error_name:
-          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
-          type: string
-      type: object
-    AccountGetResponse:
-      required:
-      - account
-      properties:
-        account:
-          $ref: '#/components/schemas/AccountResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    AccountResponseQuotas:
-      description: Details concerning remaining monthly quotas.
-      properties:
-        api_signature_requests_left:
-          description: API signature requests remaining.
-          type: integer
-          nullable: true
-        documents_left:
-          description: Signature requests remaining.
-          type: integer
-          nullable: true
-        templates_total:
-          description: Total API templates allowed.
-          type: integer
-          nullable: true
-        templates_left:
-          description: API templates remaining.
-          type: integer
-          nullable: true
-        sms_verifications_left:
-          description: SMS verifications remaining.
-          type: integer
-          nullable: true
-        num_fax_pages_left:
-          description: Number of fax pages left
-          type: integer
-          nullable: true
-      type: object
-      x-internal-class: true
-    AccountResponseSettings:
-      description: Subset of configured settings
-      properties:
-        signer_access_codes:
-          description: Returns `true` if _Custom access codes_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
-          type: boolean
-        sms_delivery:
-          description: Returns `true` if _Text message_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
-          type: boolean
-        sms_authentication:
-          description: Returns `true` if _Signer authentication_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
-          type: boolean
-      type: object
-      x-internal-class: true
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-    OAuthTokenResponse:
-      properties:
-        access_token:
-          type: string
-        token_type:
-          type: string
-        refresh_token:
-          type: string
-        expires_in:
-          description: Number of seconds until the `access_token` expires. Uses epoch time.
-          type: integer
-        state:
-          type: string
-          nullable: true
-      type: object
-      x-internal-class: true
-    AccountCreateResponse:
-      required:
-      - account
-      properties:
-        account:
-          $ref: '#/components/schemas/AccountResponse'
-        oauth_data:
-          $ref: '#/components/schemas/OAuthTokenResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    WarningResponse:
-      description: A list of warnings.
-      required:
-      - warning_msg
-      - warning_name
-      properties:
-        warning_msg:
-          description: Warning message
-          type: string
-        warning_name:
-          description: Warning name
-          type: string
-      type: object
-    AccountUpdateRequest:
-      properties:
-        account_id:
-          description: The ID of the Account
-          type: string
-          nullable: true
-        callback_url:
-          description: The URL that Dropbox Sign should POST events to.
-          type: string
-        locale:
-          description: The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
-          type: string
-      type: object
-    AccountVerifyResponse:
-      properties:
-        account:
-          $ref: '#/components/schemas/AccountVerifyResponseAccount'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
       type: object
       x-internal-class: true
   headers:
@@ -715,18 +728,18 @@ components:
         type: integer
         format: int64
         example: 1430170900
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
     X-RateLimit-Limit:
       description: The maximum number of requests per hour that you can make.
       schema:
         type: integer
         format: int32
         example: 100
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
   securitySchemes:
     api_key:
       type: http
@@ -744,149 +757,6 @@ components:
 externalDocs:
   description: Legacy API Reference
   url: https://app.hellosign.com/api/reference
-x-webhooks:
-  accountCallback:
-    post:
-      summary: Account Callbacks
-      operationId: accountUpdateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/account-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: Account Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the account level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: "**Account Callback Payloads --**\n      Events that are reported at the Account level through the the *Account callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api). The *Account callback URL* can also be updated by calling [Update Account](/api/reference/operation/accountUpdate) and passing a `callback_url`."
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
-  appCallback:
-    post:
-      summary: App Callbacks
-      operationId: apiAppCreateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/api-app-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: App Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the App level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: '**API App Callback Payloads --**
-
-          Events that are reported at the API App level through the *Event callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api) for a specific app. The *Event callback URL* can also be updated by calling [Update API App](/api/reference/operation/apiAppUpdate) and passing a `callback_url`.'
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
 x-error-codes:
   bad_request:
     http_status: 400

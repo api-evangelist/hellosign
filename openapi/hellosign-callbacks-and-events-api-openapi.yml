@@ -8,7 +8,7 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
   termsOfService: https://www.hellosign.com/terms
-  description: 'Operations tagged Callbacks and Events across 12 of this provider''s published API definitions: hellosign-account-api-openapi.yml, hellosign-api-app-api-openapi.yml, hellosign-bulk-send-job-api-openapi.yml, hellosign-embedded-api-openapi.yml, hellosign-fax-api-openapi.yml, hellosign-fax-line-api-openapi.yml, hellosign-oauth-api-openapi.yml, hellosign-report-api-openapi.yml, hellosign-signature-request-api-openapi.yml, hellosign-team-api-openapi.yml, hellosign-template-api-openapi.yml, hellosign-unclaimed-draft-api-openapi.yml. Each path carries the servers of the definition it was published in.'
+  description: 'Operations tagged Callbacks and Events across 2 of this provider''s published API definitions: hellosign-openapi-original.yaml, hellosign-callbacks-and-events-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.hellosign.com/v3
 security:
@@ -23,6 +23,8 @@ security:
   - request_signature
 tags:
 - name: Callbacks and Events
+  description:
+    $ref: ./markdown/en/tags/callbacks-tag-description.md
 paths: {}
 webhooks:
   accountCallback:
@@ -172,6 +174,1447 @@ webhooks:
     servers:
     - url: https://api.hellosign.com/v3
 components:
+  schemas:
+    EventCallbackTemplateCreated:
+      title: Template Created Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - template_created
+            type: object
+        template:
+          $ref: '#/components/schemas/TemplateResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestExpired:
+      title: Signature Request Expired Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_expired
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    TemplateResponseAccount:
+      properties:
+        account_id:
+          description: The id of the Account.
+          type: string
+        email_address:
+          description: The email address associated with the Account.
+          type: string
+        is_locked:
+          description: Returns `true` if the user has been locked out of their account by a team admin.
+          type: boolean
+        is_paid_hs:
+          description: Returns `true` if the user has a paid Dropbox Sign account.
+          type: boolean
+        is_paid_hf:
+          description: Returns `true` if the user has a paid HelloFax account.
+          type: boolean
+        quotas:
+          $ref: '#/components/schemas/TemplateResponseAccountQuota'
+      type: object
+      x-internal-class: true
+    TemplateResponseSignerRole:
+      properties:
+        name:
+          description: The name of the Role.
+          type: string
+        order:
+          description: If signer order is assigned this is the 0-based index for this role.
+          type: integer
+      type: object
+      x-internal-class: true
+    EventCallbackSignatureRequestCanceled:
+      title: Signature Request Canceled Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_canceled
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackPayload:
+      title: Event Callback Payload
+      description: JSON payload delivered for a webhook event. The concrete shape is selected by `event.event_type`.
+      oneOf:
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestViewed'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestSigned'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestSignerRemoved'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestDownloadable'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestSent'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestAllSigned'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestInvalid'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestEmailBounce'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestRemind'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestIncompleteQes'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestDestroyed'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestCanceled'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestDeclined'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestExpired'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestReassigned'
+      - $ref: '#/components/schemas/EventCallbackSignatureRequestPrepared'
+      - $ref: '#/components/schemas/EventCallbackAccountConfirmed'
+      - $ref: '#/components/schemas/EventCallbackUnknownError'
+      - $ref: '#/components/schemas/EventCallbackFileError'
+      - $ref: '#/components/schemas/EventCallbackTemplateCreated'
+      - $ref: '#/components/schemas/EventCallbackTemplateError'
+      - $ref: '#/components/schemas/EventCallbackSignUrlInvalid'
+      - $ref: '#/components/schemas/EventCallbackCallbackTest'
+      x-fern-audiences:
+      - events
+    TemplateResponseDocumentFormFieldBase:
+      description: An array of Form Field objects containing the name and type of each named field.
+      required:
+      - type
+      properties:
+        api_id:
+          description: A unique id for the form field.
+          type: string
+        name:
+          description: The name of the form field.
+          type: string
+        type:
+          type: string
+        signer:
+          description: The signer of the Form Field.
+          type: string
+          x-int-or-string: true
+        x:
+          description: The horizontal offset in pixels for this form field.
+          type: integer
+        y:
+          description: The vertical offset in pixels for this form field.
+          type: integer
+        width:
+          description: The width in pixels of this form field.
+          type: integer
+        height:
+          description: The height in pixels of this form field.
+          type: integer
+        required:
+          description: Boolean showing whether or not this field is required.
+          type: boolean
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/TemplateResponseDocumentFormFieldText'
+          dropdown: '#/components/schemas/TemplateResponseDocumentFormFieldDropdown'
+          hyperlink: '#/components/schemas/TemplateResponseDocumentFormFieldHyperlink'
+          checkbox: '#/components/schemas/TemplateResponseDocumentFormFieldCheckbox'
+          radio: '#/components/schemas/TemplateResponseDocumentFormFieldRadio'
+          signature: '#/components/schemas/TemplateResponseDocumentFormFieldSignature'
+          date_signed: '#/components/schemas/TemplateResponseDocumentFormFieldDateSigned'
+          initials: '#/components/schemas/TemplateResponseDocumentFormFieldInitials'
+      x-internal-class: true
+      x-base-class: true
+    EventCallbackSignatureRequestSigned:
+      title: Signature Request Signed Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_signed
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestPrepared:
+      title: Signature Request Prepared Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_prepared
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestAllSigned:
+      title: Signature Request All Signed Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_all_signed
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    SignatureRequestResponseAttachment:
+      description: Signer attachments.
+      required:
+      - id
+      - signer
+      - name
+      - required
+      properties:
+        id:
+          description: The unique ID for this attachment.
+          type: string
+        signer:
+          description: The Signer this attachment is assigned to.
+          type: string
+          x-int-or-string: true
+        name:
+          description: The name of this attachment.
+          type: string
+        required:
+          description: A boolean value denoting if this attachment is required.
+          type: boolean
+        instructions:
+          description: Instructions for Signer.
+          type:
+          - string
+          - 'null'
+        uploaded_at:
+          description: Timestamp when attachment was uploaded by Signer.
+          type:
+          - integer
+          - 'null'
+      type: object
+      x-internal-class: true
+    TemplateResponse:
+      description: Contains information about the templates you and your team have created.
+      properties:
+        template_id:
+          description: The id of the Template.
+          type: string
+        title:
+          description: The title of the Template. This will also be the default subject of the message sent to signers when using this Template to send a SignatureRequest. This can be overridden when sending the SignatureRequest.
+          type: string
+        message:
+          description: The default message that will be sent to signers when using this Template to send a SignatureRequest. This can be overridden when sending the SignatureRequest.
+          type: string
+        updated_at:
+          description: Time the template was last updated.
+          type: integer
+        is_embedded:
+          description: '`true` if this template was created using an embedded flow, `false` if it was created on our website. Will be `null` when you are not the creator of the Template.'
+          type:
+          - boolean
+          - 'null'
+        is_creator:
+          description: '`true` if you are the owner of this template, `false` if it''s been shared with you by a team member.'
+          type: boolean
+        can_edit:
+          description: Indicates whether edit rights have been granted to you by the owner (always `true` if that's you).
+          type: boolean
+        is_locked:
+          description: 'Indicates whether the template is locked.
+
+            If `true`, then the template was created outside your quota and can only be used in `test_mode`.
+
+            If `false`, then the template is within your quota and can be used to create signature requests.'
+          type: boolean
+        metadata:
+          description: The metadata attached to the template.
+          type: object
+          additionalProperties: {}
+        signer_roles:
+          description: An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseSignerRole'
+        cc_roles:
+          description: An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseCCRole'
+        documents:
+          description: An array describing each document associated with this Template. Includes form field data for each document.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocument'
+        custom_fields:
+          description: Deprecated. Use `custom_fields` inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c=200&path=template/documents&t=response) array instead.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocumentCustomFieldBase'
+          deprecated: true
+        named_form_fields:
+          description: Deprecated. Use `form_fields` inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c=200&path=template/documents&t=response) array instead.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocumentFormFieldBase'
+          deprecated: true
+        accounts:
+          description: An array of the Accounts that can use this Template.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseAccount'
+        attachments:
+          description: Signer attachments.
+          type: array
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseAttachment'
+      type: object
+      x-internal-class: true
+    SignatureRequestResponseSignatures:
+      description: An array of signature objects, 1 for each signer.
+      properties:
+        signature_id:
+          description: Signature identifier.
+          type: string
+        signer_group_guid:
+          description: Signer Group GUID
+          type:
+          - string
+          - 'null'
+        signer_email_address:
+          description: The email address of the signer.
+          type: string
+        signer_name:
+          description: The name of the signer.
+          type:
+          - string
+          - 'null'
+        signer_role:
+          description: The role of the signer.
+          type:
+          - string
+          - 'null'
+        order:
+          description: If signer order is assigned this is the 0-based index for this signer.
+          type:
+          - integer
+          - 'null'
+        status_code:
+          description: 'The current status of the signature. eg: awaiting_signature, signed, declined.'
+          type: string
+        decline_reason:
+          description: The reason provided by the signer for declining the request.
+          type:
+          - string
+          - 'null'
+        signed_at:
+          description: Time that the document was signed or null.
+          type:
+          - integer
+          - 'null'
+        last_viewed_at:
+          description: The time that the document was last viewed by this signer or null.
+          type:
+          - integer
+          - 'null'
+        last_reminded_at:
+          description: The time the last reminder email was sent to the signer or null.
+          type:
+          - integer
+          - 'null'
+        has_pin:
+          description: Boolean to indicate whether this signature requires a PIN to access.
+          type: boolean
+        has_sms_auth:
+          description: Boolean to indicate whether this signature has SMS authentication enabled.
+          type:
+          - boolean
+          - 'null'
+        has_sms_delivery:
+          description: Boolean to indicate whether this signature has SMS delivery enabled.
+          type:
+          - boolean
+          - 'null'
+        sms_phone_number:
+          description: The SMS phone number used for authentication or signature request delivery.
+          type:
+          - string
+          - 'null'
+        reassigned_by:
+          description: Email address of original signer who reassigned to this signer.
+          type:
+          - string
+          - 'null'
+        reassignment_reason:
+          description: Reason provided by original signer who reassigned to this signer.
+          type:
+          - string
+          - 'null'
+        reassigned_from:
+          description: Previous signature identifier.
+          type:
+          - string
+          - 'null'
+        error:
+          description: Error message pertaining to this signer, or null.
+          type:
+          - string
+          - 'null'
+      type: object
+      x-internal-class: true
+    SignatureRequestResponse:
+      description: Contains information about a signature request.
+      properties:
+        test_mode:
+          description: Whether this is a test signature request. Test requests have no legal value. Defaults to `false`.
+          type: boolean
+          default: false
+        signature_request_id:
+          description: The id of the SignatureRequest.
+          type: string
+        requester_email_address:
+          description: The email address of the initiator of the SignatureRequest.
+          type:
+          - string
+          - 'null'
+        title:
+          description: The title the specified Account uses for the SignatureRequest.
+          type: string
+        original_title:
+          description: Default Label for account.
+          type: string
+        subject:
+          description: The subject in the email that was initially sent to the signers.
+          type:
+          - string
+          - 'null'
+        message:
+          description: The custom message in the email that was initially sent to the signers.
+          type:
+          - string
+          - 'null'
+        metadata:
+          description: The metadata attached to the signature request.
+          type: object
+          additionalProperties: {}
+        created_at:
+          description: Time the signature request was created.
+          type: integer
+        expires_at:
+          description: The time when the signature request will expire unsigned signatures. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details.
+          type:
+          - integer
+          - 'null'
+        is_complete:
+          description: Whether or not the SignatureRequest has been fully executed by all signers.
+          type: boolean
+        is_declined:
+          description: Whether or not the SignatureRequest has been declined by a signer.
+          type: boolean
+        has_error:
+          description: Whether or not an error occurred (either during the creation of the SignatureRequest or during one of the signings).
+          type: boolean
+        files_url:
+          description: The URL where a copy of the request's documents can be downloaded.
+          type: string
+        signing_url:
+          description: The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing Dropbox Sign accounts as they will be required to log in before signing.
+          type:
+          - string
+          - 'null'
+        details_url:
+          description: The URL where the requester and the signers can view the current status of the SignatureRequest.
+          type: string
+        cc_email_addresses:
+          description: A list of email addresses that were CCed on the SignatureRequest. They will receive a copy of the final PDF once all the signers have signed.
+          type: array
+          items:
+            type: string
+        signing_redirect_url:
+          description: The URL you want the signer redirected to after they successfully sign.
+          type:
+          - string
+          - 'null'
+        final_copy_uri:
+          description: The path where the completed document can be downloaded
+          type:
+          - string
+          - 'null'
+        template_ids:
+          description: Templates IDs used in this SignatureRequest (if any).
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        custom_fields:
+          description: 'An array of Custom Field objects containing the name and type of each custom field.
+
+
+            * Text Field uses `SignatureRequestResponseCustomFieldText`
+
+            * Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`'
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseCustomFieldBase'
+        attachments:
+          description: Signer attachments.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseAttachment'
+        response_data:
+          description: An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseDataBase'
+        signatures:
+          description: An array of signature objects, 1 for each signer.
+          type: array
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseSignatures'
+        bulk_send_job_id:
+          description: The ID of the Bulk Send job which sent the signature request, if applicable.
+          type:
+          - string
+          - 'null'
+      type: object
+      x-internal-class: true
+    TemplateResponseAccountQuota:
+      description: An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.
+      properties:
+        templates_left:
+          description: API templates remaining.
+          type: integer
+        api_signature_requests_left:
+          description: API signature requests remaining.
+          type: integer
+        documents_left:
+          description: Signature requests remaining.
+          type: integer
+        sms_verifications_left:
+          description: SMS verifications remaining.
+          type: integer
+      type: object
+      x-internal-class: true
+    EventCallbackSignatureRequestViewed:
+      title: Signature Request Viewed Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_viewed
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackFileError:
+      title: File Error Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - file_error
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackRequestEvent:
+      description: Basic information about the event that occurred.
+      required:
+      - event_time
+      - event_type
+      - event_hash
+      properties:
+        event_time:
+          description: Time the event was created (using Unix time).
+          type: string
+        event_type:
+          description: Type of callback event that was triggered.
+          type: string
+          enum:
+          - account_confirmed
+          - unknown_error
+          - file_error
+          - sign_url_invalid
+          - signature_request_viewed
+          - signature_request_signed
+          - signature_request_sent
+          - signature_request_all_signed
+          - signature_request_email_bounce
+          - signature_request_remind
+          - signature_request_incomplete_qes
+          - signature_request_destroyed
+          - signature_request_canceled
+          - signature_request_downloadable
+          - signature_request_declined
+          - signature_request_reassigned
+          - signature_request_invalid
+          - signature_request_prepared
+          - signature_request_expired
+          - template_created
+          - template_error
+          - callback_test
+          - signature_request_signer_removed
+        event_hash:
+          description: Generated hash used to verify source of event data.
+          type: string
+        event_metadata:
+          $ref: '#/components/schemas/EventCallbackRequestEventMetadata'
+      type: object
+      x-fern-audiences:
+      - events
+    AccountResponse:
+      properties:
+        account_id:
+          description: The ID of the Account
+          type: string
+        email_address:
+          description: The email address associated with the Account.
+          type: string
+        is_locked:
+          description: Returns `true` if the user has been locked out of their account by a team admin.
+          type: boolean
+        is_paid_hs:
+          description: Returns `true` if the user has a paid Dropbox Sign account.
+          type: boolean
+        is_paid_hf:
+          description: Returns `true` if the user has a paid HelloFax account.
+          type: boolean
+        quotas:
+          $ref: '#/components/schemas/AccountResponseQuotas'
+        callback_url:
+          description: The URL that Dropbox Sign events will `POST` to.
+          type:
+          - string
+          - 'null'
+        role_code:
+          description: The membership role for the team.
+          type:
+          - string
+          - 'null'
+        team_id:
+          description: The id of the team account belongs to.
+          type:
+          - string
+          - 'null'
+        locale:
+          description: The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
+          type:
+          - string
+          - 'null'
+        usage:
+          $ref: '#/components/schemas/AccountResponseUsage'
+        settings:
+          $ref: '#/components/schemas/AccountResponseSettings'
+      type: object
+      x-internal-class: true
+    TemplateResponseDocumentCustomFieldBase:
+      description: An array of Form Field objects containing the name and type of each named field.
+      required:
+      - type
+      properties:
+        api_id:
+          description: The unique ID for this field.
+          type: string
+        name:
+          description: The name of the Custom Field.
+          type: string
+        type:
+          type: string
+        signer:
+          description: The signer of the Custom Field. Can be `null` if field is a merge field (assigned to Sender).
+          type:
+          - string
+          - 'null'
+          x-int-or-string: true
+        x:
+          description: The horizontal offset in pixels for this form field.
+          type: integer
+        y:
+          description: The vertical offset in pixels for this form field.
+          type: integer
+        width:
+          description: The width in pixels of this form field.
+          type: integer
+        height:
+          description: The height in pixels of this form field.
+          type: integer
+        required:
+          description: Boolean showing whether or not this field is required.
+          type: boolean
+        group:
+          description: The name of the group this field is in. If this field is not a group, this defaults to `null`.
+          type:
+          - string
+          - 'null'
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/TemplateResponseDocumentCustomFieldText'
+          checkbox: '#/components/schemas/TemplateResponseDocumentCustomFieldCheckbox'
+      x-internal-class: true
+      x-base-class: true
+    AccountResponseUsage:
+      description: Details concerning monthly usage
+      properties:
+        fax_pages_sent:
+          description: Number of fax pages sent
+          type:
+          - integer
+          - 'null'
+      type: object
+      x-internal-class: true
+    TemplateResponseCCRole:
+      properties:
+        name:
+          description: The name of the Role.
+          type: string
+      type: object
+      x-internal-class: true
+    EventCallbackSignatureRequestEmailBounce:
+      title: Signature Request Email Bounce Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_email_bounce
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestDestroyed:
+      title: Signature Request Destroyed Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_destroyed
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    TemplateResponseDocumentStaticFieldBase:
+      description: An array describing static overlay fields. **NOTE:** Only available for certain subscriptions.
+      required:
+      - type
+      properties:
+        api_id:
+          description: A unique id for the static field.
+          type: string
+        name:
+          description: The name of the static field.
+          type: string
+        type:
+          type: string
+        signer:
+          description: The signer of the Static Field.
+          type: string
+          default: me_now
+        x:
+          description: The horizontal offset in pixels for this static field.
+          type: integer
+        y:
+          description: The vertical offset in pixels for this static field.
+          type: integer
+        width:
+          description: The width in pixels of this static field.
+          type: integer
+        height:
+          description: The height in pixels of this static field.
+          type: integer
+        required:
+          description: Boolean showing whether or not this field is required.
+          type: boolean
+        group:
+          description: The name of the group this field is in. If this field is not a group, this defaults to `null`.
+          type:
+          - string
+          - 'null'
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/TemplateResponseDocumentStaticFieldText'
+          dropdown: '#/components/schemas/TemplateResponseDocumentStaticFieldDropdown'
+          hyperlink: '#/components/schemas/TemplateResponseDocumentStaticFieldHyperlink'
+          checkbox: '#/components/schemas/TemplateResponseDocumentStaticFieldCheckbox'
+          radio: '#/components/schemas/TemplateResponseDocumentStaticFieldRadio'
+          signature: '#/components/schemas/TemplateResponseDocumentStaticFieldSignature'
+          date_signed: '#/components/schemas/TemplateResponseDocumentStaticFieldDateSigned'
+          initials: '#/components/schemas/TemplateResponseDocumentStaticFieldInitials'
+      x-internal-class: true
+      x-base-class: true
+    EventCallbackRequestEventMetadata:
+      description: Specific metadata about the event.
+      properties:
+        related_signature_id:
+          description: Signature ID for a specific signer. Applicable to `signature_request_signed` and `signature_request_viewed` events.
+          type:
+          - string
+          - 'null'
+        reported_for_account_id:
+          description: Account ID the event was reported for.
+          type:
+          - string
+          - 'null'
+        reported_for_app_id:
+          description: App ID the event was reported for.
+          type:
+          - string
+          - 'null'
+        event_message:
+          description: Message about a declined or failed (due to error) signature flow.
+          type:
+          - string
+          - 'null'
+      type: object
+      x-fern-audiences:
+      - events
+    TemplateResponseDocument:
+      properties:
+        name:
+          description: Name of the associated file.
+          type: string
+        index:
+          description: Document ordering, the lowest index is displayed first and the highest last (0-based indexing).
+          type: integer
+        field_groups:
+          description: An array of Form Field Group objects.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocumentFieldGroup'
+        form_fields:
+          description: An array of Form Field objects containing the name and type of each named field.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocumentFormFieldBase'
+        custom_fields:
+          description: An array of Form Field objects containing the name and type of each named field.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocumentCustomFieldBase'
+        static_fields:
+          description: An array describing static overlay fields. **NOTE:** Only available for certain subscriptions.
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateResponseDocumentStaticFieldBase'
+      type: object
+      x-internal-class: true
+    EventCallbackTemplateError:
+      title: Template Error Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - template_error
+            type: object
+        template:
+          $ref: '#/components/schemas/TemplateResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestDownloadable:
+      title: Signature Request Downloadable Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_downloadable
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestIncompleteQes:
+      title: Signature Request Incomplete QES Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_incomplete_qes
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    AccountResponseSettings:
+      description: Subset of configured settings
+      properties:
+        signer_access_codes:
+          description: Returns `true` if _Custom access codes_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_delivery:
+          description: Returns `true` if _Text message_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_authentication:
+          description: Returns `true` if _Signer authentication_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+      type: object
+      x-internal-class: true
+    SignatureRequestResponseCustomFieldBase:
+      description: 'An array of Custom Field objects containing the name and type of each custom field.
+
+
+        * Text Field uses `SignatureRequestResponseCustomFieldText`
+
+        * Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`'
+      required:
+      - name
+      - type
+      properties:
+        type:
+          description: The type of this Custom Field. Only 'text' and 'checkbox' are currently supported.
+          type: string
+        name:
+          description: The name of the Custom Field.
+          type: string
+        required:
+          description: A boolean value denoting if this field is required.
+          type: boolean
+        api_id:
+          description: The unique ID for this field.
+          type: string
+        editor:
+          description: The name of the Role that is able to edit this field.
+          type:
+          - string
+          - 'null'
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/SignatureRequestResponseCustomFieldText'
+          checkbox: '#/components/schemas/SignatureRequestResponseCustomFieldCheckbox'
+      x-internal-class: true
+      x-base-class: true
+    EventCallbackSignatureRequestSignerRemoved:
+      title: Signature Request Signer Removed Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_signer_removed
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    TemplateResponseDocumentFieldGroupRule:
+      description: The rule used to validate checkboxes in the form field group. See [checkbox field grouping](/api/reference/constants/#checkbox-field-grouping).
+      properties:
+        requirement:
+          description: 'Examples: `require_0-1` `require_1` `require_1-ormore`
+
+
+            - Check out the list of [acceptable `requirement` checkbox type values](/api/reference/constants/#checkbox-field-grouping).
+
+            - Check out the list of [acceptable `requirement` radio type fields](/api/reference/constants/#radio-field-grouping).
+
+            - Radio groups require **at least** two fields per group.'
+          type: string
+        groupLabel:
+          description: Name of the group
+          type: string
+      type: object
+      x-internal-class: true
+    TemplateResponseDocumentFieldGroup:
+      properties:
+        name:
+          description: The name of the form field group.
+          type: string
+        rule:
+          $ref: '#/components/schemas/TemplateResponseDocumentFieldGroupRule'
+      type: object
+      x-internal-class: true
+    SignatureRequestResponseDataBase:
+      description: An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
+      properties:
+        api_id:
+          description: The unique ID for this field.
+          type: string
+        signature_id:
+          description: The ID of the signature to which this response is linked.
+          type: string
+        name:
+          description: The name of the form field.
+          type: string
+        required:
+          description: A boolean value denoting if this field is required.
+          type: boolean
+        type:
+          type: string
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/SignatureRequestResponseDataValueText'
+          checkbox: '#/components/schemas/SignatureRequestResponseDataValueCheckbox'
+          dropdown: '#/components/schemas/SignatureRequestResponseDataValueDropdown'
+          radio: '#/components/schemas/SignatureRequestResponseDataValueRadio'
+          signature: '#/components/schemas/SignatureRequestResponseDataValueSignature'
+          date_signed: '#/components/schemas/SignatureRequestResponseDataValueDateSigned'
+          initials: '#/components/schemas/SignatureRequestResponseDataValueInitials'
+          text-merge: '#/components/schemas/SignatureRequestResponseDataValueTextMerge'
+          checkbox-merge: '#/components/schemas/SignatureRequestResponseDataValueCheckboxMerge'
+      x-internal-class: true
+      x-base-class: true
+    EventCallbackCallbackTest:
+      title: Callback Test Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - callback_test
+            type: object
+      type: object
+      x-fern-audiences:
+      - events
+    AccountResponseQuotas:
+      description: Details concerning remaining monthly quotas.
+      properties:
+        api_signature_requests_left:
+          description: API signature requests remaining.
+          type:
+          - integer
+          - 'null'
+        documents_left:
+          description: Signature requests remaining.
+          type:
+          - integer
+          - 'null'
+        templates_total:
+          description: Total API templates allowed.
+          type:
+          - integer
+          - 'null'
+        templates_left:
+          description: API templates remaining.
+          type:
+          - integer
+          - 'null'
+        sms_verifications_left:
+          description: SMS verifications remaining.
+          type:
+          - integer
+          - 'null'
+        num_fax_pages_left:
+          description: Number of fax pages left
+          type:
+          - integer
+          - 'null'
+      type: object
+      x-internal-class: true
+    EventCallbackSignatureRequestInvalid:
+      title: Signature Request Invalid Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_invalid
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackUnknownError:
+      title: Unknown Error Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - unknown_error
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestRemind:
+      title: Signature Request Remind Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_remind
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestSent:
+      title: Signature Request Sent Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_sent
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackSignUrlInvalid:
+      title: Sign URL Invalid Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - sign_url_invalid
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestDeclined:
+      title: Signature Request Declined Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_declined
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestReassigned:
+      title: Signature Request Reassigned Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - signature_request_reassigned
+            type: object
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+      type: object
+      x-fern-audiences:
+      - events
+    EventCallbackAccountConfirmed:
+      title: Account Confirmed Event
+      required:
+      - event
+      properties:
+        event:
+          allOf:
+          - $ref: '#/components/schemas/EventCallbackRequestEvent'
+          - properties:
+              event_type:
+                type: string
+                enum:
+                - account_confirmed
+            type: object
+        account:
+          $ref: '#/components/schemas/AccountResponse'
+      type: object
+      x-fern-audiences:
+      - events
+  examples:
+    EventCallbackSignUrlInvalid:
+      summary: Sign URL Invalid Event Example
+      value:
+        $ref: examples/json/EventCallbackSignUrlInvalid.json
+      x-fern-audiences:
+      - events
+    EventCallbackCallbackTest:
+      summary: Callback Test Event Example
+      value:
+        $ref: examples/json/EventCallbackCallbackTest.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestSent:
+      summary: Signature Request Sent Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestSent.json
+      x-fern-audiences:
+      - events
+    EventCallbackTemplateCreated:
+      summary: Template Created Event Example
+      value:
+        $ref: examples/json/EventCallbackTemplateCreated.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestDownloadable:
+      summary: Signature Request Downloadable Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestDownloadable.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestIncompleteQes:
+      summary: Signature Request Incomplete QES Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestIncompleteQes.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestRemind:
+      summary: Signature Request Remind Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestRemind.json
+      x-fern-audiences:
+      - events
+    EventCallbackAccountConfirmed:
+      summary: Account Confirmed Event Example
+      value:
+        $ref: examples/json/EventCallbackAccountConfirmed.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestReassigned:
+      summary: Signature Request Reassigned Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestReassigned.json
+      x-fern-audiences:
+      - events
+    EventCallbackTemplateError:
+      summary: Template Error Event Example
+      value:
+        $ref: examples/json/EventCallbackTemplateError.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestDeclined:
+      summary: Signature Request Declined Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestDeclined.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestEmailBounce:
+      summary: Signature Request Email Bounce Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestEmailBounce.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestAllSigned:
+      summary: Signature Request All Signed Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestAllSigned.json
+      x-fern-audiences:
+      - events
+    EventCallbackFileError:
+      summary: File Error Event Example
+      value:
+        $ref: examples/json/EventCallbackFileError.json
+      x-fern-audiences:
+      - events
+    EventCallbackUnknownError:
+      summary: Unknown Error Event Example
+      value:
+        $ref: examples/json/EventCallbackUnknownError.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestInvalid:
+      summary: Signature Request Invalid Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestInvalid.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestExpired:
+      summary: Signature Request Expired Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestExpired.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestCanceled:
+      summary: Signature Request Canceled Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestCanceled.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestSignerRemoved:
+      summary: Signature Request Signer Removed Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestSignerRemoved.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestSigned:
+      summary: Signature Request Signed Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestSigned.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestDestroyed:
+      summary: Signature Request Destroyed Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestDestroyed.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestViewed:
+      summary: Signature Request Viewed Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestViewed.json
+      x-fern-audiences:
+      - events
+    EventCallbackSignatureRequestPrepared:
+      summary: Signature Request Prepared Event Example
+      value:
+        $ref: examples/json/EventCallbackSignatureRequestPrepared.json
+      x-fern-audiences:
+      - events
+  responses:
+    EventCallbackResponse:
+      description: successful operation
+      content:
+        text/plain:
+          schema:
+            type: string
+            default: Hello API Event Received
+      x-fern-audiences:
+      - events
   securitySchemes:
     api_key:
       type: http
@@ -190,18 +1633,8 @@ externalDocs:
   description: Legacy API Reference
   url: https://app.hellosign.com/api/reference
 x-refined-from:
-- hellosign-account-api-openapi.yml
-- hellosign-api-app-api-openapi.yml
-- hellosign-bulk-send-job-api-openapi.yml
-- hellosign-embedded-api-openapi.yml
-- hellosign-fax-api-openapi.yml
-- hellosign-fax-line-api-openapi.yml
-- hellosign-oauth-api-openapi.yml
-- hellosign-report-api-openapi.yml
-- hellosign-signature-request-api-openapi.yml
-- hellosign-team-api-openapi.yml
-- hellosign-template-api-openapi.yml
-- hellosign-unclaimed-draft-api-openapi.yml
+- hellosign-openapi-original.yaml
+- hellosign-callbacks-and-events-api-openapi.yml
 x-error-codes:
   bad_request:
     http_status: 400

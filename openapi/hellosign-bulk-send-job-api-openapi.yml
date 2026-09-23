@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dropbox Sign Account Bulk Send Job API
+  title: Dropbox Sign Bulk Send Job API
   description: Dropbox Sign v3 API
   termsOfService: https://www.hellosign.com/terms
   contact:
@@ -227,35 +227,76 @@ components:
       summary: Error 401 unauthorized
       value:
         $ref: examples/json/Error401Response.json
-    BulkSendJobGetResponse:
-      summary: Bulk Send Job
-      value:
-        $ref: examples/json/BulkSendJobGetResponse.json
-    BulkSendJobListResponse:
-      summary: Bulk Send Job List
-      value:
-        $ref: examples/json/BulkSendJobListResponse.json
     Error400Response:
       summary: Error 400 bad_request
       value:
         $ref: examples/json/Error400Response.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
     Error4XXResponse:
       summary: Error 4XX failed_operation
       value:
         $ref: examples/json/Error4XXResponse.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
     Error429Response:
       summary: Error 429 exceeded_rate
       value:
         $ref: examples/json/Error429Response.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    BulkSendJobGetResponse:
+      summary: Bulk Send Job
+      value:
+        $ref: examples/json/BulkSendJobGetResponse.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    BulkSendJobListResponse:
+      summary: Bulk Send Job List
+      value:
+        $ref: examples/json/BulkSendJobListResponse.json
   schemas:
+    BulkSendJobGetResponse:
+      required:
+      - bulk_send_job
+      - list_info
+      - signature_requests
+      properties:
+        bulk_send_job:
+          $ref: '#/components/schemas/BulkSendJobResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        signature_requests:
+          description: Contains information about the Signature Requests sent in bulk.
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkSendJobGetResponseSignatureRequests'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    BulkSendJobResponse:
+      description: Contains information about the BulkSendJob such as when it was created and how many signature requests are queued.
+      properties:
+        bulk_send_job_id:
+          description: The id of the BulkSendJob.
+          type:
+          - string
+          - 'null'
+        total:
+          description: The total amount of Signature Requests queued for sending.
+          type: integer
+        is_creator:
+          description: True if you are the owner of this BulkSendJob, false if it's been shared with you by a team member.
+          type: boolean
+        created_at:
+          description: Time that the BulkSendJob was created.
+          type: integer
+      type: object
+      x-internal-class: true
     SignatureRequestResponseAttachment:
       description: Signer attachments.
       required:
@@ -279,29 +320,247 @@ components:
           type: boolean
         instructions:
           description: Instructions for Signer.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         uploaded_at:
           description: Timestamp when attachment was uploaded by Signer.
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
       type: object
       x-internal-class: true
-    BulkSendJobResponse:
-      description: Contains information about the BulkSendJob such as when it was created and how many signature requests are queued.
+    SignatureRequestResponseSignatures:
+      description: An array of signature objects, 1 for each signer.
       properties:
-        bulk_send_job_id:
-          description: The id of the BulkSendJob.
+        signature_id:
+          description: Signature identifier.
           type: string
-          nullable: true
-        total:
-          description: The total amount of Signature Requests queued for sending.
-          type: integer
-        is_creator:
-          description: True if you are the owner of this BulkSendJob, false if it's been shared with you by a team member.
+        signer_group_guid:
+          description: Signer Group GUID
+          type:
+          - string
+          - 'null'
+        signer_email_address:
+          description: The email address of the signer.
+          type: string
+        signer_name:
+          description: The name of the signer.
+          type:
+          - string
+          - 'null'
+        signer_role:
+          description: The role of the signer.
+          type:
+          - string
+          - 'null'
+        order:
+          description: If signer order is assigned this is the 0-based index for this signer.
+          type:
+          - integer
+          - 'null'
+        status_code:
+          description: 'The current status of the signature. eg: awaiting_signature, signed, declined.'
+          type: string
+        decline_reason:
+          description: The reason provided by the signer for declining the request.
+          type:
+          - string
+          - 'null'
+        signed_at:
+          description: Time that the document was signed or null.
+          type:
+          - integer
+          - 'null'
+        last_viewed_at:
+          description: The time that the document was last viewed by this signer or null.
+          type:
+          - integer
+          - 'null'
+        last_reminded_at:
+          description: The time the last reminder email was sent to the signer or null.
+          type:
+          - integer
+          - 'null'
+        has_pin:
+          description: Boolean to indicate whether this signature requires a PIN to access.
           type: boolean
+        has_sms_auth:
+          description: Boolean to indicate whether this signature has SMS authentication enabled.
+          type:
+          - boolean
+          - 'null'
+        has_sms_delivery:
+          description: Boolean to indicate whether this signature has SMS delivery enabled.
+          type:
+          - boolean
+          - 'null'
+        sms_phone_number:
+          description: The SMS phone number used for authentication or signature request delivery.
+          type:
+          - string
+          - 'null'
+        reassigned_by:
+          description: Email address of original signer who reassigned to this signer.
+          type:
+          - string
+          - 'null'
+        reassignment_reason:
+          description: Reason provided by original signer who reassigned to this signer.
+          type:
+          - string
+          - 'null'
+        reassigned_from:
+          description: Previous signature identifier.
+          type:
+          - string
+          - 'null'
+        error:
+          description: Error message pertaining to this signer, or null.
+          type:
+          - string
+          - 'null'
+      type: object
+      x-internal-class: true
+    SignatureRequestResponse:
+      description: Contains information about a signature request.
+      properties:
+        test_mode:
+          description: Whether this is a test signature request. Test requests have no legal value. Defaults to `false`.
+          type: boolean
+          default: false
+        signature_request_id:
+          description: The id of the SignatureRequest.
+          type: string
+        requester_email_address:
+          description: The email address of the initiator of the SignatureRequest.
+          type:
+          - string
+          - 'null'
+        title:
+          description: The title the specified Account uses for the SignatureRequest.
+          type: string
+        original_title:
+          description: Default Label for account.
+          type: string
+        subject:
+          description: The subject in the email that was initially sent to the signers.
+          type:
+          - string
+          - 'null'
+        message:
+          description: The custom message in the email that was initially sent to the signers.
+          type:
+          - string
+          - 'null'
+        metadata:
+          description: The metadata attached to the signature request.
+          type: object
+          additionalProperties: {}
         created_at:
-          description: Time that the BulkSendJob was created.
+          description: Time the signature request was created.
+          type: integer
+        expires_at:
+          description: The time when the signature request will expire unsigned signatures. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details.
+          type:
+          - integer
+          - 'null'
+        is_complete:
+          description: Whether or not the SignatureRequest has been fully executed by all signers.
+          type: boolean
+        is_declined:
+          description: Whether or not the SignatureRequest has been declined by a signer.
+          type: boolean
+        has_error:
+          description: Whether or not an error occurred (either during the creation of the SignatureRequest or during one of the signings).
+          type: boolean
+        files_url:
+          description: The URL where a copy of the request's documents can be downloaded.
+          type: string
+        signing_url:
+          description: The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing Dropbox Sign accounts as they will be required to log in before signing.
+          type:
+          - string
+          - 'null'
+        details_url:
+          description: The URL where the requester and the signers can view the current status of the SignatureRequest.
+          type: string
+        cc_email_addresses:
+          description: A list of email addresses that were CCed on the SignatureRequest. They will receive a copy of the final PDF once all the signers have signed.
+          type: array
+          items:
+            type: string
+        signing_redirect_url:
+          description: The URL you want the signer redirected to after they successfully sign.
+          type:
+          - string
+          - 'null'
+        final_copy_uri:
+          description: The path where the completed document can be downloaded
+          type:
+          - string
+          - 'null'
+        template_ids:
+          description: Templates IDs used in this SignatureRequest (if any).
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        custom_fields:
+          description: 'An array of Custom Field objects containing the name and type of each custom field.
+
+
+            * Text Field uses `SignatureRequestResponseCustomFieldText`
+
+            * Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`'
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseCustomFieldBase'
+        attachments:
+          description: Signer attachments.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseAttachment'
+        response_data:
+          description: An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseDataBase'
+        signatures:
+          description: An array of signature objects, 1 for each signer.
+          type: array
+          items:
+            $ref: '#/components/schemas/SignatureRequestResponseSignatures'
+        bulk_send_job_id:
+          description: The ID of the Bulk Send job which sent the signature request, if applicable.
+          type:
+          - string
+          - 'null'
+      type: object
+      x-internal-class: true
+    ListInfoResponse:
+      description: Contains pagination information about the data returned.
+      properties:
+        num_pages:
+          description: Total number of pages available.
+          type: integer
+        num_results:
+          description: Total number of objects available.
+          type:
+          - integer
+          - 'null'
+        page:
+          description: Number of the page being returned.
+          type: integer
+        page_size:
+          description: Objects returned per page.
           type: integer
       type: object
       x-internal-class: true
@@ -330,8 +589,9 @@ components:
           type: string
         editor:
           description: The name of the Role that is able to edit this field.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       type: object
       discriminator:
         propertyName: type
@@ -340,25 +600,6 @@ components:
           checkbox: '#/components/schemas/SignatureRequestResponseCustomFieldCheckbox'
       x-internal-class: true
       x-base-class: true
-    BulkSendJobListResponse:
-      required:
-      - bulk_send_jobs
-      - list_info
-      properties:
-        bulk_send_jobs:
-          description: Contains a list of BulkSendJobs that the API caller has access to.
-          type: array
-          items:
-            $ref: '#/components/schemas/BulkSendJobResponse'
-        list_info:
-          $ref: '#/components/schemas/ListInfoResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
     BulkSendJobGetResponseSignatureRequests:
       title: BulkSendJobGetResponseSignatureRequests
       type: object
@@ -372,270 +613,6 @@ components:
             description: The metadata attached to the signature request.
             type: object
             additionalProperties: {}
-      x-internal-class: true
-    ErrorResponseError:
-      description: Contains information about an error that occurred.
-      required:
-      - error_msg
-      - error_name
-      properties:
-        error_msg:
-          description: Message describing an error.
-          type: string
-        error_path:
-          description: Path at which an error occurred.
-          type: string
-        error_name:
-          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
-          type: string
-      type: object
-    BulkSendJobGetResponse:
-      required:
-      - bulk_send_job
-      - list_info
-      - signature_requests
-      properties:
-        bulk_send_job:
-          $ref: '#/components/schemas/BulkSendJobResponse'
-        list_info:
-          $ref: '#/components/schemas/ListInfoResponse'
-        signature_requests:
-          description: Contains information about the Signature Requests sent in bulk.
-          type: array
-          items:
-            $ref: '#/components/schemas/BulkSendJobGetResponseSignatureRequests'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    SignatureRequestResponse:
-      description: Contains information about a signature request.
-      properties:
-        test_mode:
-          description: Whether this is a test signature request. Test requests have no legal value. Defaults to `false`.
-          type: boolean
-          default: false
-        signature_request_id:
-          description: The id of the SignatureRequest.
-          type: string
-        requester_email_address:
-          description: The email address of the initiator of the SignatureRequest.
-          type: string
-          nullable: true
-        title:
-          description: The title the specified Account uses for the SignatureRequest.
-          type: string
-        original_title:
-          description: Default Label for account.
-          type: string
-        subject:
-          description: The subject in the email that was initially sent to the signers.
-          type: string
-          nullable: true
-        message:
-          description: The custom message in the email that was initially sent to the signers.
-          type: string
-          nullable: true
-        metadata:
-          description: The metadata attached to the signature request.
-          type: object
-          additionalProperties: {}
-        created_at:
-          description: Time the signature request was created.
-          type: integer
-        expires_at:
-          description: The time when the signature request will expire unsigned signatures. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details.
-          type: integer
-          nullable: true
-        is_complete:
-          description: Whether or not the SignatureRequest has been fully executed by all signers.
-          type: boolean
-        is_declined:
-          description: Whether or not the SignatureRequest has been declined by a signer.
-          type: boolean
-        has_error:
-          description: Whether or not an error occurred (either during the creation of the SignatureRequest or during one of the signings).
-          type: boolean
-        files_url:
-          description: The URL where a copy of the request's documents can be downloaded.
-          type: string
-        signing_url:
-          description: The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing Dropbox Sign accounts as they will be required to log in before signing.
-          type: string
-          nullable: true
-        details_url:
-          description: The URL where the requester and the signers can view the current status of the SignatureRequest.
-          type: string
-        cc_email_addresses:
-          description: A list of email addresses that were CCed on the SignatureRequest. They will receive a copy of the final PDF once all the signers have signed.
-          type: array
-          items:
-            type: string
-        signing_redirect_url:
-          description: The URL you want the signer redirected to after they successfully sign.
-          type: string
-          nullable: true
-        final_copy_uri:
-          description: The path where the completed document can be downloaded
-          type: string
-          nullable: true
-        template_ids:
-          description: Templates IDs used in this SignatureRequest (if any).
-          type: array
-          items:
-            type: string
-          nullable: true
-        custom_fields:
-          description: 'An array of Custom Field objects containing the name and type of each custom field.
-
-
-            * Text Field uses `SignatureRequestResponseCustomFieldText`
-
-            * Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`'
-          type: array
-          items:
-            $ref: '#/components/schemas/SignatureRequestResponseCustomFieldBase'
-          nullable: true
-        attachments:
-          description: Signer attachments.
-          type: array
-          items:
-            $ref: '#/components/schemas/SignatureRequestResponseAttachment'
-          nullable: true
-        response_data:
-          description: An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
-          type: array
-          items:
-            $ref: '#/components/schemas/SignatureRequestResponseDataBase'
-          nullable: true
-        signatures:
-          description: An array of signature objects, 1 for each signer.
-          type: array
-          items:
-            $ref: '#/components/schemas/SignatureRequestResponseSignatures'
-        bulk_send_job_id:
-          description: The ID of the Bulk Send job which sent the signature request, if applicable.
-          type: string
-          nullable: true
-      type: object
-      x-internal-class: true
-    SignatureRequestResponseSignatures:
-      description: An array of signature objects, 1 for each signer.
-      properties:
-        signature_id:
-          description: Signature identifier.
-          type: string
-        signer_group_guid:
-          description: Signer Group GUID
-          type: string
-          nullable: true
-        signer_email_address:
-          description: The email address of the signer.
-          type: string
-        signer_name:
-          description: The name of the signer.
-          type: string
-          nullable: true
-        signer_role:
-          description: The role of the signer.
-          type: string
-          nullable: true
-        order:
-          description: If signer order is assigned this is the 0-based index for this signer.
-          type: integer
-          nullable: true
-        status_code:
-          description: 'The current status of the signature. eg: awaiting_signature, signed, declined.'
-          type: string
-        decline_reason:
-          description: The reason provided by the signer for declining the request.
-          type: string
-          nullable: true
-        signed_at:
-          description: Time that the document was signed or null.
-          type: integer
-          nullable: true
-        last_viewed_at:
-          description: The time that the document was last viewed by this signer or null.
-          type: integer
-          nullable: true
-        last_reminded_at:
-          description: The time the last reminder email was sent to the signer or null.
-          type: integer
-          nullable: true
-        has_pin:
-          description: Boolean to indicate whether this signature requires a PIN to access.
-          type: boolean
-        has_sms_auth:
-          description: Boolean to indicate whether this signature has SMS authentication enabled.
-          type: boolean
-          nullable: true
-        has_sms_delivery:
-          description: Boolean to indicate whether this signature has SMS delivery enabled.
-          type: boolean
-          nullable: true
-        sms_phone_number:
-          description: The SMS phone number used for authentication or signature request delivery.
-          type: string
-          nullable: true
-        reassigned_by:
-          description: Email address of original signer who reassigned to this signer.
-          type: string
-          nullable: true
-        reassignment_reason:
-          description: Reason provided by original signer who reassigned to this signer.
-          type: string
-          nullable: true
-        reassigned_from:
-          description: Previous signature identifier.
-          type: string
-          nullable: true
-        error:
-          description: Error message pertaining to this signer, or null.
-          type: string
-          nullable: true
-      type: object
-      x-internal-class: true
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-    WarningResponse:
-      description: A list of warnings.
-      required:
-      - warning_msg
-      - warning_name
-      properties:
-        warning_msg:
-          description: Warning message
-          type: string
-        warning_name:
-          description: Warning name
-          type: string
-      type: object
-    ListInfoResponse:
-      description: Contains pagination information about the data returned.
-      properties:
-        num_pages:
-          description: Total number of pages available.
-          type: integer
-        num_results:
-          description: Total number of objects available.
-          type: integer
-          nullable: true
-        page:
-          description: Number of the page being returned.
-          type: integer
-        page_size:
-          description: Objects returned per page.
-          type: integer
-      type: object
       x-internal-class: true
     SignatureRequestResponseDataBase:
       description: An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
@@ -669,6 +646,61 @@ components:
           checkbox-merge: '#/components/schemas/SignatureRequestResponseDataValueCheckboxMerge'
       x-internal-class: true
       x-base-class: true
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
+      type: object
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
+      type: object
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    BulkSendJobListResponse:
+      required:
+      - bulk_send_jobs
+      - list_info
+      properties:
+        bulk_send_jobs:
+          description: Contains a list of BulkSendJobs that the API caller has access to.
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkSendJobResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
   headers:
     X-Ratelimit-Reset:
       description: The Unix time at which the rate limit will reset to its maximum.
@@ -676,18 +708,18 @@ components:
         type: integer
         format: int64
         example: 1430170900
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
     X-RateLimit-Limit:
       description: The maximum number of requests per hour that you can make.
       schema:
         type: integer
         format: int32
         example: 100
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
   securitySchemes:
     api_key:
       type: http
@@ -705,149 +737,6 @@ components:
 externalDocs:
   description: Legacy API Reference
   url: https://app.hellosign.com/api/reference
-x-webhooks:
-  accountCallback:
-    post:
-      summary: Account Callbacks
-      operationId: accountUpdateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/account-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: Account Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the account level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: "**Account Callback Payloads --**\n      Events that are reported at the Account level through the the *Account callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api). The *Account callback URL* can also be updated by calling [Update Account](/api/reference/operation/accountUpdate) and passing a `callback_url`."
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
-  appCallback:
-    post:
-      summary: App Callbacks
-      operationId: apiAppCreateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/api-app-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: App Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the App level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: '**API App Callback Payloads --**
-
-          Events that are reported at the API App level through the *Event callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api) for a specific app. The *Event callback URL* can also be updated by calling [Update API App](/api/reference/operation/apiAppUpdate) and passing a `callback_url`.'
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
 x-error-codes:
   bad_request:
     http_status: 400

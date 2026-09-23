@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dropbox Sign Account Unclaimed Draft API
+  title: Dropbox Sign Unclaimed Draft API
   description: Dropbox Sign v3 API
   termsOfService: https://www.hellosign.com/terms
   contact:
@@ -437,100 +437,35 @@ paths:
           title: Edit and Resend Unclaimed Draft | Dropbox Sign for Developers
           description: The Dropbox Sign API easily allows you to build custom integrations. To find out how to create a new signature request from an embedded request, click here.
 components:
-  examples:
-    Error410Response:
-      summary: Error 410 deleted
-      value:
-        $ref: examples/json/Error410Response.json
-    UnclaimedDraftCreateEmbeddedRequestFormFieldGroups:
-      summary: Form Fields Per Document and Groups Example
-      value:
-        $ref: examples/json/UnclaimedDraftCreateEmbeddedRequestFormFieldGroups.json
-    UnclaimedDraftEditAndResend:
-      summary: Unclaimed Draft Edit and Resend
-      value:
-        $ref: examples/json/UnclaimedDraftEditAndResend.json
-    UnclaimedDraftCreateEmbeddedRequestFormFieldRules:
-      summary: Form Fields Per Document and Rules Example
-      value:
-        $ref: examples/json/UnclaimedDraftCreateEmbeddedRequestFormFieldRules.json
-    Error401Response:
-      summary: Error 401 unauthorized
-      value:
-        $ref: examples/json/Error401Response.json
-    UnclaimedDraftCreateEmbeddedRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/UnclaimedDraftCreateEmbeddedRequest.json
-    UnclaimedDraftCreateEmbeddedWithTemplateResponse:
-      summary: Unclaimed Draft Create Embedded With Template
-      value:
-        $ref: examples/json/UnclaimedDraftCreateEmbeddedWithTemplateResponse.json
-    UnclaimedDraftCreateRequestFormFieldsPerDocument:
-      summary: Form Fields Per Document Example
-      value:
-        $ref: examples/json/UnclaimedDraftCreateRequestFormFieldsPerDocument.json
-    UnclaimedDraftCreateEmbeddedWithTemplateRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/UnclaimedDraftCreateEmbeddedWithTemplateRequest.json
-    UnclaimedDraftCreateRequestFormFieldGroups:
-      summary: Form Fields Per Document and Groups Example
-      value:
-        $ref: examples/json/UnclaimedDraftCreateRequestFormFieldGroups.json
-    UnclaimedDraftCreateResponse:
-      summary: Unclaimed Draft Create
-      value:
-        $ref: examples/json/UnclaimedDraftCreateResponse.json
-    UnclaimedDraftCreateRequestFormFieldRules:
-      summary: Form Fields Per Document and Rules Example
-      value:
-        $ref: examples/json/UnclaimedDraftCreateRequestFormFieldRules.json
-    Error409Response:
-      summary: Error 409 conflict
-      value:
-        $ref: examples/json/Error409Response.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
-    UnclaimedDraftCreateEmbeddedResponse:
-      summary: Unclaimed Draft Create Embedded
-      value:
-        $ref: examples/json/UnclaimedDraftCreateEmbeddedResponse.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
-      value:
-        $ref: examples/json/Error4XXResponse.json
-    Error404Response:
-      summary: Error 404 not_found
-      value:
-        $ref: examples/json/Error404Response.json
-    UnclaimedDraftEditAndResendRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/UnclaimedDraftEditAndResendRequest.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    UnclaimedDraftCreateEmbeddedRequestFormFieldsPerDocument:
-      summary: Form Fields Per Document Example
-      value:
-        $ref: examples/json/UnclaimedDraftCreateEmbeddedRequestFormFieldsPerDocument.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
-    UnclaimedDraftCreateRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/UnclaimedDraftCreateRequest.json
   schemas:
+    SubFormFieldRule:
+      required:
+      - id
+      - trigger_operator
+      - triggers
+      - actions
+      properties:
+        id:
+          description: Must be unique across all defined rules.
+          type: string
+        trigger_operator:
+          description: Currently only `AND` is supported. Support for `OR` is being worked on.
+          type: string
+          default: AND
+        triggers:
+          description: An array of trigger definitions, the "if this" part of "**if this**, then that". Currently only a single trigger per rule is allowed.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubFormFieldRuleTrigger'
+          maxItems: 1
+          minItems: 1
+        actions:
+          description: An array of action definitions, the "then that" part of "if this, **then that**". Any number of actions may be attached to a single rule.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubFormFieldRuleAction'
+          minItems: 1
+      type: object
     SubFormFieldRuleTrigger:
       required:
       - id
@@ -565,34 +500,183 @@ components:
           items:
             type: string
       type: object
-    UnclaimedDraftEditAndResendRequest:
+    SubFieldOptions:
+      description: This allows the requester to specify field options for a signature request.
+      required:
+      - date_format
+      properties:
+        date_format:
+          description: 'Allows requester to specify the date format (see list of allowed [formats](/api/reference/constants/#date-formats))
+
+
+            **NOTE:** Only available for Premium and higher.'
+          type: string
+          enum:
+          - MM / DD / YYYY
+          - MM - DD - YYYY
+          - DD / MM / YYYY
+          - DD - MM - YYYY
+          - YYYY / MM / DD
+          - YYYY - MM - DD
+          x-enum-varnames:
+          - MMDDYYYY
+          - MM_DD_YYYY
+          - DDMMYYYY
+          - DD_MM_YYYY
+          - YYYYMMDD
+          - YYYY_MM_DD
+      type: object
+    UnclaimedDraftCreateEmbeddedWithTemplateRequest:
       required:
       - client_id
+      - requester_email_address
+      - template_ids
       properties:
+        allow_decline:
+          description: Allows signers to decline to sign a document if `true`. Defaults to `false`.
+          type: boolean
+          default: false
+        allow_reassign:
+          description: 'Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.
+
+
+            **NOTE:** Only available for Premium plan and higher.'
+          type: boolean
+          default: false
+        ccs:
+          description: Add CC email recipients. Required when a CC role exists for the Template.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubCC'
         client_id:
           description: Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.
           type: string
+        custom_fields:
+          description: An array defining values and options for custom fields. Required when a custom field exists in the Template.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubCustomField'
         editor_options:
           $ref: '#/components/schemas/SubEditorOptions'
-        is_for_embedded_signing:
-          description: The request created from this draft will also be signable in embedded mode if set to `true`.
+        field_options:
+          $ref: '#/components/schemas/SubFieldOptions'
+        files:
+          description: 'Use `files[]` to append additional files to the signature request being created from the template. Dropbox Sign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.
+
+
+            **files** or **file_urls[]** is required, but not both.'
+          type: array
+          items:
+            type: string
+            format: binary
+        file_urls:
+          description: 'Use file_urls[] to append additional files to the signature request being created from the template. Dropbox Sign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.
+
+
+            **files** or **file_urls[]** is required, but not both.'
+          type: array
+          items:
+            type: string
+        force_signer_roles:
+          description: Provide users the ability to review/edit the template signer roles.
           type: boolean
+          default: false
+        force_subject_message:
+          description: Provide users the ability to review/edit the template subject and message.
+          type: boolean
+          default: false
+        hold_request:
+          description: The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`.
+          type: boolean
+          default: false
+        is_for_embedded_signing:
+          description: The request created from this draft will also be signable in embedded mode if set to `true`. Defaults to `false`.
+          type: boolean
+          default: false
+        message:
+          description: The custom message in the email that will be sent to the signers.
+          type: string
+          maxLength: 5000
+        metadata:
+          description: 'Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer''s order number for look up when receiving events for the signature request.
+
+
+            Each request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.'
+          type: object
+          maxItems: 10
+          additionalProperties: {}
+        preview_only:
+          description: 'This allows the requester to enable the preview experience (i.e. does not allow the requester''s end user to add any additional fields via the editor).
+
+
+            - `preview_only=true`: Allows requesters to enable the preview only experience.
+
+            - `preview_only=false`: Allows requesters to disable the preview only experience.
+
+
+            **NOTE:** This parameter overwrites `show_preview=1` (if set).'
+          type: boolean
+          default: false
         requester_email_address:
-          description: The email address of the user that should be designated as the requester of this draft. If not set, original requester's email address will be used.
+          description: The email address of the user that should be designated as the requester of this draft.
           type: string
           format: email
         requesting_redirect_url:
           description: The URL you want signers redirected to after they successfully request a signature.
           type: string
+        show_preview:
+          description: 'This allows the requester to enable the editor/preview experience.
+
+
+            - `show_preview=true`: Allows requesters to enable the editor/preview experience.
+
+            - `show_preview=false`: Allows requesters to disable the editor/preview experience.'
+          type: boolean
+          default: false
         show_progress_stepper:
           description: When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.
           type: boolean
           default: true
+        signers:
+          description: Add Signers to your Templated-based Signature Request.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubUnclaimedDraftTemplateSigner'
+        signing_options:
+          $ref: '#/components/schemas/SubSigningOptions'
         signing_redirect_url:
           description: The URL you want signers redirected to after they successfully sign.
           type: string
+        skip_me_now:
+          description: Disables the "Me (Now)" option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`.
+          type: boolean
+          default: false
+        subject:
+          description: The subject in the email that will be sent to the signers.
+          type: string
+          maxLength: 255
+        template_ids:
+          description: Use `template_ids` to create a SignatureRequest from one or more templates, in the order in which the templates will be used.
+          type: array
+          items:
+            type: string
         test_mode:
           description: Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.
+          type: boolean
+          default: false
+        title:
+          description: The title you want to assign to the SignatureRequest.
+          type: string
+          maxLength: 255
+        populate_auto_fill_fields:
+          description: 'Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer''s information during signing.
+
+
+            **NOTE:** Keep your signer''s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.'
+          type: boolean
+          default: false
+        allow_ccs:
+          description: This allows the requester to specify whether the user is allowed to provide email addresses to CC when claiming the draft.
           type: boolean
           default: false
       type: object
@@ -624,104 +708,37 @@ components:
           description: The string that resolves (aka "pre-fills") to the merge field on the final document(s) used for signing.
           type: string
       type: object
-    SubFormFieldsPerDocumentBase:
-      description: 'The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)
-
-
-        **NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.
-
-
-        * Text Field use `SubFormFieldsPerDocumentText`
-
-        * Dropdown Field use `SubFormFieldsPerDocumentDropdown`
-
-        * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`
-
-        * Checkbox Field use `SubFormFieldsPerDocumentCheckbox`
-
-        * Radio Field use `SubFormFieldsPerDocumentRadio`
-
-        * Signature Field use `SubFormFieldsPerDocumentSignature`
-
-        * Date Signed Field use `SubFormFieldsPerDocumentDateSigned`
-
-        * Initials Field use `SubFormFieldsPerDocumentInitials`
-
-        * Text Merge Field use `SubFormFieldsPerDocumentTextMerge`
-
-        * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`'
+    UnclaimedDraftEditAndResendRequest:
       required:
-      - document_index
-      - api_id
-      - type
-      - required
-      - signer
-      - width
-      - height
-      - x
-      - y
+      - client_id
       properties:
-        document_index:
-          description: Represents the integer index of the `file` or `file_url` document the field should be attached to.
-          type: integer
-        api_id:
-          description: An identifier for the field that is unique across all documents in the request.
+        client_id:
+          description: Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.
           type: string
-        height:
-          description: Size of the field in pixels.
-          type: integer
-        name:
-          description: Display name for the field.
-          type: string
-        page:
-          description: 'Page in the document where the field should be placed (requires documents be PDF files).
-
-
-            - When the page number parameter is supplied, the API will use the new coordinate system.
-
-            - Check out the differences between both [coordinate systems](https://faq.hellosign.com/hc/en-us/articles/217115577) and how to use them.'
-          type: integer
-          nullable: true
-        required:
-          description: Whether this field is required.
+        editor_options:
+          $ref: '#/components/schemas/SubEditorOptions'
+        is_for_embedded_signing:
+          description: The request created from this draft will also be signable in embedded mode if set to `true`.
           type: boolean
-        signer:
-          description: 'Signer index identified by the offset in the signers parameter (0-based indexing), indicating which signer should fill out the field.
-
-
-            **NOTE:** To set the value of the field as the preparer you must set this to `me_now`
-
-
-            **NOTE:** If type is `text-merge` or `checkbox-merge`, you must set this to sender in order to use pre-filled data.'
+        requester_email_address:
+          description: The email address of the user that should be designated as the requester of this draft. If not set, original requester's email address will be used.
           type: string
-          x-int-or-string: true
-        type:
+          format: email
+        requesting_redirect_url:
+          description: The URL you want signers redirected to after they successfully request a signature.
           type: string
-        width:
-          description: Size of the field in pixels.
-          type: integer
-        x:
-          description: Location coordinates of the field in pixels.
-          type: integer
-        y:
-          description: Location coordinates of the field in pixels.
-          type: integer
+        show_progress_stepper:
+          description: When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.
+          type: boolean
+          default: true
+        signing_redirect_url:
+          description: The URL you want signers redirected to after they successfully sign.
+          type: string
+        test_mode:
+          description: Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.
+          type: boolean
+          default: false
       type: object
-      discriminator:
-        propertyName: type
-        mapping:
-          text: '#/components/schemas/SubFormFieldsPerDocumentText'
-          dropdown: '#/components/schemas/SubFormFieldsPerDocumentDropdown'
-          hyperlink: '#/components/schemas/SubFormFieldsPerDocumentHyperlink'
-          checkbox: '#/components/schemas/SubFormFieldsPerDocumentCheckbox'
-          radio: '#/components/schemas/SubFormFieldsPerDocumentRadio'
-          signature: '#/components/schemas/SubFormFieldsPerDocumentSignature'
-          date_signed: '#/components/schemas/SubFormFieldsPerDocumentDateSigned'
-          initials: '#/components/schemas/SubFormFieldsPerDocumentInitials'
-          text-merge: '#/components/schemas/SubFormFieldsPerDocumentTextMerge'
-          checkbox-merge: '#/components/schemas/SubFormFieldsPerDocumentCheckboxMerge'
-      x-internal-class: true
-      x-base-class: true
     UnclaimedDraftCreateRequest:
       description: ''
       required:
@@ -871,8 +888,9 @@ components:
 
 
             **NOTE:** This does not correspond to the **expires_at** returned in the response.'
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
       type: object
     SubFormFieldGroup:
       required:
@@ -897,54 +915,120 @@ components:
             - Radio groups require **at least** two fields per group.'
           type: string
       type: object
-    SubUnclaimedDraftTemplateSigner:
+    SubUnclaimedDraftSigner:
       required:
-      - role
       - name
       - email_address
       properties:
-        role:
-          description: Must match an existing role in chosen Template(s).
+        email_address:
+          description: The email address of the signer.
           type: string
+          format: email
         name:
-          description: The name of the signer filling the role of `role`.
+          description: The name of the signer.
+          type: string
+        order:
+          description: The order the signer is required to sign in.
+          type:
+          - integer
+          - 'null'
+      type: object
+    UnclaimedDraftResponse:
+      description: A group of documents that a user can take ownership of via the claim URL.
+      properties:
+        signature_request_id:
+          description: The ID of the signature request that is represented by this UnclaimedDraft.
+          type:
+          - string
+          - 'null'
+        claim_url:
+          description: The URL to be used to claim this UnclaimedDraft.
+          type: string
+        signing_redirect_url:
+          description: The URL you want signers redirected to after they successfully sign.
+          type:
+          - string
+          - 'null'
+        requesting_redirect_url:
+          description: The URL you want signers redirected to after they successfully request a signature (Will only be returned in the response if it is applicable to the request.).
+          type:
+          - string
+          - 'null'
+        expires_at:
+          description: When the link expires.
+          type:
+          - integer
+          - 'null'
+        test_mode:
+          description: Whether this is a test draft. Signature requests made from test drafts have no legal value.
+          type: boolean
+      type: object
+      x-internal-class: true
+    UnclaimedDraftCreateResponse:
+      required:
+      - unclaimed_draft
+      properties:
+        unclaimed_draft:
+          $ref: '#/components/schemas/UnclaimedDraftResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    SubCC:
+      required:
+      - role
+      - email_address
+      properties:
+        role:
+          description: Must match an existing CC role in chosen Template(s). Multiple CC recipients cannot share the same CC role.
           type: string
         email_address:
-          description: The email address of the signer filling the role of `role`.
+          description: The email address of the CC recipient.
           type: string
           format: email
       type: object
-    SubFormFieldRuleAction:
+    SubSigningOptions:
+      description: 'This allows the requester to specify the types allowed for creating a signature and specify another signing options.
+
+
+        **NOTE:** If `signing_options` are not defined in the request, the allowed types will default to those specified in the account settings.
+
+
+        **NOTE:** If `force_advanced_signature_details` is set, allowed types has to be defined too.'
       required:
-      - hidden
-      - type
+      - default_type
       properties:
-        field_id:
-          description: '**field_id** or **group_id** is required, but not both.
-
-
-            Must reference the `api_id` of an existing field defined within `form_fields_per_document`.
-
-
-            Cannot use with `group_id`. Trigger and action fields must belong to the same signer.'
-          type: string
-        group_id:
-          description: '**group_id** or **field_id** is required, but not both.
-
-
-            Must reference the ID of an existing group defined within `form_field_groups`.
-
-
-            Cannot use with `field_id`. Trigger and action fields and groups must belong to the same signer.'
-          type: string
-        hidden:
-          description: '`true` to hide the target field when rule is satisfied, otherwise `false`.'
-          type: boolean
-        type:
+        default_type:
+          description: The default type shown (limited to the listed types)
           type: string
           enum:
-          - change-field-visibility
-          - change-group-visibility
+          - draw
+          - phone
+          - type
+          - upload
+        draw:
+          description: Allows drawing the signature
+          type: boolean
+          default: false
+        phone:
+          description: Allows using a smartphone to email the signature
+          type: boolean
+          default: false
+        type:
+          description: Allows typing the signature
+          type: boolean
+          default: false
+        upload:
+          description: Allows uploading the signature
+          type: boolean
+          default: false
+        force_advanced_signature_details:
+          description: Turning on advanced signature details for the signature request
+          type: boolean
+          default: false
       type: object
     ErrorResponseError:
       description: Contains information about an error that occurred.
@@ -961,23 +1045,6 @@ components:
         error_name:
           description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
           type: string
-      type: object
-    SubUnclaimedDraftSigner:
-      required:
-      - name
-      - email_address
-      properties:
-        email_address:
-          description: The email address of the signer.
-          type: string
-          format: email
-        name:
-          description: The name of the signer.
-          type: string
-        order:
-          description: The order the signer is required to sign in.
-          type: integer
-          nullable: true
       type: object
     UnclaimedDraftCreateEmbeddedRequest:
       description: ''
@@ -1185,260 +1252,41 @@ components:
 
 
             **NOTE:** This does not correspond to the **expires_at** returned in the response.'
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
       type: object
-    SubCC:
+    SubFormFieldRuleAction:
       required:
-      - role
-      - email_address
+      - hidden
+      - type
       properties:
-        role:
-          description: Must match an existing CC role in chosen Template(s). Multiple CC recipients cannot share the same CC role.
-          type: string
-        email_address:
-          description: The email address of the CC recipient.
-          type: string
-          format: email
-      type: object
-    UnclaimedDraftResponse:
-      description: A group of documents that a user can take ownership of via the claim URL.
-      properties:
-        signature_request_id:
-          description: The ID of the signature request that is represented by this UnclaimedDraft.
-          type: string
-          nullable: true
-        claim_url:
-          description: The URL to be used to claim this UnclaimedDraft.
-          type: string
-        signing_redirect_url:
-          description: The URL you want signers redirected to after they successfully sign.
-          type: string
-          nullable: true
-        requesting_redirect_url:
-          description: The URL you want signers redirected to after they successfully request a signature (Will only be returned in the response if it is applicable to the request.).
-          type: string
-          nullable: true
-        expires_at:
-          description: When the link expires.
-          type: integer
-          nullable: true
-        test_mode:
-          description: Whether this is a test draft. Signature requests made from test drafts have no legal value.
-          type: boolean
-      type: object
-      x-internal-class: true
-    SubEditorOptions:
-      description: This allows the requester to specify editor options when a preparing a document
-      properties:
-        allow_edit_signers:
-          description: Allows requesters to edit the list of signers
-          type: boolean
-          default: false
-        allow_edit_documents:
-          description: Allows requesters to edit documents, including delete and add
-          type: boolean
-          default: false
-      type: object
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-    SubFieldOptions:
-      description: This allows the requester to specify field options for a signature request.
-      required:
-      - date_format
-      properties:
-        date_format:
-          description: 'Allows requester to specify the date format (see list of allowed [formats](/api/reference/constants/#date-formats))
+        field_id:
+          description: '**field_id** or **group_id** is required, but not both.
 
 
-            **NOTE:** Only available for Premium and higher.'
+            Must reference the `api_id` of an existing field defined within `form_fields_per_document`.
+
+
+            Cannot use with `group_id`. Trigger and action fields must belong to the same signer.'
+          type: string
+        group_id:
+          description: '**group_id** or **field_id** is required, but not both.
+
+
+            Must reference the ID of an existing group defined within `form_field_groups`.
+
+
+            Cannot use with `field_id`. Trigger and action fields and groups must belong to the same signer.'
+          type: string
+        hidden:
+          description: '`true` to hide the target field when rule is satisfied, otherwise `false`.'
+          type: boolean
+        type:
           type: string
           enum:
-          - MM / DD / YYYY
-          - MM - DD - YYYY
-          - DD / MM / YYYY
-          - DD - MM - YYYY
-          - YYYY / MM / DD
-          - YYYY - MM - DD
-          x-enum-varnames:
-          - MMDDYYYY
-          - MM_DD_YYYY
-          - DDMMYYYY
-          - DD_MM_YYYY
-          - YYYYMMDD
-          - YYYY_MM_DD
-      type: object
-    UnclaimedDraftCreateResponse:
-      required:
-      - unclaimed_draft
-      properties:
-        unclaimed_draft:
-          $ref: '#/components/schemas/UnclaimedDraftResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    UnclaimedDraftCreateEmbeddedWithTemplateRequest:
-      required:
-      - client_id
-      - requester_email_address
-      - template_ids
-      properties:
-        allow_decline:
-          description: Allows signers to decline to sign a document if `true`. Defaults to `false`.
-          type: boolean
-          default: false
-        allow_reassign:
-          description: 'Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.
-
-
-            **NOTE:** Only available for Premium plan and higher.'
-          type: boolean
-          default: false
-        ccs:
-          description: Add CC email recipients. Required when a CC role exists for the Template.
-          type: array
-          items:
-            $ref: '#/components/schemas/SubCC'
-        client_id:
-          description: Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.
-          type: string
-        custom_fields:
-          description: An array defining values and options for custom fields. Required when a custom field exists in the Template.
-          type: array
-          items:
-            $ref: '#/components/schemas/SubCustomField'
-        editor_options:
-          $ref: '#/components/schemas/SubEditorOptions'
-        field_options:
-          $ref: '#/components/schemas/SubFieldOptions'
-        files:
-          description: 'Use `files[]` to append additional files to the signature request being created from the template. Dropbox Sign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.
-
-
-            **files** or **file_urls[]** is required, but not both.'
-          type: array
-          items:
-            type: string
-            format: binary
-        file_urls:
-          description: 'Use file_urls[] to append additional files to the signature request being created from the template. Dropbox Sign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.
-
-
-            **files** or **file_urls[]** is required, but not both.'
-          type: array
-          items:
-            type: string
-        force_signer_roles:
-          description: Provide users the ability to review/edit the template signer roles.
-          type: boolean
-          default: false
-        force_subject_message:
-          description: Provide users the ability to review/edit the template subject and message.
-          type: boolean
-          default: false
-        hold_request:
-          description: The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`.
-          type: boolean
-          default: false
-        is_for_embedded_signing:
-          description: The request created from this draft will also be signable in embedded mode if set to `true`. Defaults to `false`.
-          type: boolean
-          default: false
-        message:
-          description: The custom message in the email that will be sent to the signers.
-          type: string
-          maxLength: 5000
-        metadata:
-          description: 'Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer''s order number for look up when receiving events for the signature request.
-
-
-            Each request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.'
-          type: object
-          maxItems: 10
-          additionalProperties: {}
-        preview_only:
-          description: 'This allows the requester to enable the preview experience (i.e. does not allow the requester''s end user to add any additional fields via the editor).
-
-
-            - `preview_only=true`: Allows requesters to enable the preview only experience.
-
-            - `preview_only=false`: Allows requesters to disable the preview only experience.
-
-
-            **NOTE:** This parameter overwrites `show_preview=1` (if set).'
-          type: boolean
-          default: false
-        requester_email_address:
-          description: The email address of the user that should be designated as the requester of this draft.
-          type: string
-          format: email
-        requesting_redirect_url:
-          description: The URL you want signers redirected to after they successfully request a signature.
-          type: string
-        show_preview:
-          description: 'This allows the requester to enable the editor/preview experience.
-
-
-            - `show_preview=true`: Allows requesters to enable the editor/preview experience.
-
-            - `show_preview=false`: Allows requesters to disable the editor/preview experience.'
-          type: boolean
-          default: false
-        show_progress_stepper:
-          description: When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.
-          type: boolean
-          default: true
-        signers:
-          description: Add Signers to your Templated-based Signature Request.
-          type: array
-          items:
-            $ref: '#/components/schemas/SubUnclaimedDraftTemplateSigner'
-        signing_options:
-          $ref: '#/components/schemas/SubSigningOptions'
-        signing_redirect_url:
-          description: The URL you want signers redirected to after they successfully sign.
-          type: string
-        skip_me_now:
-          description: Disables the "Me (Now)" option for the person preparing the document. Does not work with type `send_document`. Defaults to `false`.
-          type: boolean
-          default: false
-        subject:
-          description: The subject in the email that will be sent to the signers.
-          type: string
-          maxLength: 255
-        template_ids:
-          description: Use `template_ids` to create a SignatureRequest from one or more templates, in the order in which the templates will be used.
-          type: array
-          items:
-            type: string
-        test_mode:
-          description: Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.
-          type: boolean
-          default: false
-        title:
-          description: The title you want to assign to the SignatureRequest.
-          type: string
-          maxLength: 255
-        populate_auto_fill_fields:
-          description: 'Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer''s information during signing.
-
-
-            **NOTE:** Keep your signer''s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.'
-          type: boolean
-          default: false
-        allow_ccs:
-          description: This allows the requester to specify whether the user is allowed to provide email addresses to CC when claiming the draft.
-          type: boolean
-          default: false
+          - change-field-visibility
+          - change-group-visibility
       type: object
     WarningResponse:
       description: A list of warnings.
@@ -1453,6 +1301,141 @@ components:
           description: Warning name
           type: string
       type: object
+    SubUnclaimedDraftTemplateSigner:
+      required:
+      - role
+      - name
+      - email_address
+      properties:
+        role:
+          description: Must match an existing role in chosen Template(s).
+          type: string
+        name:
+          description: The name of the signer filling the role of `role`.
+          type: string
+        email_address:
+          description: The email address of the signer filling the role of `role`.
+          type: string
+          format: email
+      type: object
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    SubEditorOptions:
+      description: This allows the requester to specify editor options when a preparing a document
+      properties:
+        allow_edit_signers:
+          description: Allows requesters to edit the list of signers
+          type: boolean
+          default: false
+        allow_edit_documents:
+          description: Allows requesters to edit documents, including delete and add
+          type: boolean
+          default: false
+      type: object
+    SubFormFieldsPerDocumentBase:
+      description: 'The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)
+
+
+        **NOTE:** Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.
+
+
+        * Text Field use `SubFormFieldsPerDocumentText`
+
+        * Dropdown Field use `SubFormFieldsPerDocumentDropdown`
+
+        * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink`
+
+        * Checkbox Field use `SubFormFieldsPerDocumentCheckbox`
+
+        * Radio Field use `SubFormFieldsPerDocumentRadio`
+
+        * Signature Field use `SubFormFieldsPerDocumentSignature`
+
+        * Date Signed Field use `SubFormFieldsPerDocumentDateSigned`
+
+        * Initials Field use `SubFormFieldsPerDocumentInitials`
+
+        * Text Merge Field use `SubFormFieldsPerDocumentTextMerge`
+
+        * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`'
+      required:
+      - document_index
+      - api_id
+      - type
+      - required
+      - signer
+      - width
+      - height
+      - x
+      - y
+      properties:
+        document_index:
+          description: Represents the integer index of the `file` or `file_url` document the field should be attached to.
+          type: integer
+        api_id:
+          description: An identifier for the field that is unique across all documents in the request.
+          type: string
+        height:
+          description: Size of the field in pixels.
+          type: integer
+        name:
+          description: Display name for the field.
+          type: string
+        page:
+          description: 'Page in the document where the field should be placed (requires documents be PDF files).
+
+
+            - When the page number parameter is supplied, the API will use the new coordinate system.
+
+            - Check out the differences between both [coordinate systems](https://faq.hellosign.com/hc/en-us/articles/217115577) and how to use them.'
+          type:
+          - integer
+          - 'null'
+        required:
+          description: Whether this field is required.
+          type: boolean
+        signer:
+          description: 'Signer index identified by the offset in the signers parameter (0-based indexing), indicating which signer should fill out the field.
+
+
+            **NOTE:** To set the value of the field as the preparer you must set this to `me_now`
+
+
+            **NOTE:** If type is `text-merge` or `checkbox-merge`, you must set this to sender in order to use pre-filled data.'
+          type: string
+          x-int-or-string: true
+        type:
+          type: string
+        width:
+          description: Size of the field in pixels.
+          type: integer
+        x:
+          description: Location coordinates of the field in pixels.
+          type: integer
+        y:
+          description: Location coordinates of the field in pixels.
+          type: integer
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/SubFormFieldsPerDocumentText'
+          dropdown: '#/components/schemas/SubFormFieldsPerDocumentDropdown'
+          hyperlink: '#/components/schemas/SubFormFieldsPerDocumentHyperlink'
+          checkbox: '#/components/schemas/SubFormFieldsPerDocumentCheckbox'
+          radio: '#/components/schemas/SubFormFieldsPerDocumentRadio'
+          signature: '#/components/schemas/SubFormFieldsPerDocumentSignature'
+          date_signed: '#/components/schemas/SubFormFieldsPerDocumentDateSigned'
+          initials: '#/components/schemas/SubFormFieldsPerDocumentInitials'
+          text-merge: '#/components/schemas/SubFormFieldsPerDocumentTextMerge'
+          checkbox-merge: '#/components/schemas/SubFormFieldsPerDocumentCheckboxMerge'
+      x-internal-class: true
+      x-base-class: true
     SubAttachment:
       required:
       - name
@@ -1475,74 +1458,99 @@ components:
             **NOTE:** Only one signer can be assigned per attachment.'
           type: integer
       type: object
-    SubSigningOptions:
-      description: 'This allows the requester to specify the types allowed for creating a signature and specify another signing options.
-
-
-        **NOTE:** If `signing_options` are not defined in the request, the allowed types will default to those specified in the account settings.
-
-
-        **NOTE:** If `force_advanced_signature_details` is set, allowed types has to be defined too.'
-      required:
-      - default_type
-      properties:
-        default_type:
-          description: The default type shown (limited to the listed types)
-          type: string
-          enum:
-          - draw
-          - phone
-          - type
-          - upload
-        draw:
-          description: Allows drawing the signature
-          type: boolean
-          default: false
-        phone:
-          description: Allows using a smartphone to email the signature
-          type: boolean
-          default: false
-        type:
-          description: Allows typing the signature
-          type: boolean
-          default: false
-        upload:
-          description: Allows uploading the signature
-          type: boolean
-          default: false
-        force_advanced_signature_details:
-          description: Turning on advanced signature details for the signature request
-          type: boolean
-          default: false
-      type: object
-    SubFormFieldRule:
-      required:
-      - id
-      - trigger_operator
-      - triggers
-      - actions
-      properties:
-        id:
-          description: Must be unique across all defined rules.
-          type: string
-        trigger_operator:
-          description: Currently only `AND` is supported. Support for `OR` is being worked on.
-          type: string
-          default: AND
-        triggers:
-          description: An array of trigger definitions, the "if this" part of "**if this**, then that". Currently only a single trigger per rule is allowed.
-          type: array
-          items:
-            $ref: '#/components/schemas/SubFormFieldRuleTrigger'
-          maxItems: 1
-          minItems: 1
-        actions:
-          description: An array of action definitions, the "then that" part of "if this, **then that**". Any number of actions may be attached to a single rule.
-          type: array
-          items:
-            $ref: '#/components/schemas/SubFormFieldRuleAction'
-          minItems: 1
-      type: object
+  examples:
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    UnclaimedDraftCreateEmbeddedWithTemplateResponse:
+      summary: Unclaimed Draft Create Embedded With Template
+      value:
+        $ref: examples/json/UnclaimedDraftCreateEmbeddedWithTemplateResponse.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    UnclaimedDraftCreateEmbeddedResponse:
+      summary: Unclaimed Draft Create Embedded
+      value:
+        $ref: examples/json/UnclaimedDraftCreateEmbeddedResponse.json
+    UnclaimedDraftEditAndResend:
+      summary: Unclaimed Draft Edit and Resend
+      value:
+        $ref: examples/json/UnclaimedDraftEditAndResend.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    UnclaimedDraftCreateEmbeddedRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/UnclaimedDraftCreateEmbeddedRequest.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    UnclaimedDraftCreateRequestFormFieldGroups:
+      summary: Form Fields Per Document and Groups Example
+      value:
+        $ref: examples/json/UnclaimedDraftCreateRequestFormFieldGroups.json
+    UnclaimedDraftCreateEmbeddedWithTemplateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/UnclaimedDraftCreateEmbeddedWithTemplateRequest.json
+    UnclaimedDraftCreateRequestFormFieldsPerDocument:
+      summary: Form Fields Per Document Example
+      value:
+        $ref: examples/json/UnclaimedDraftCreateRequestFormFieldsPerDocument.json
+    Error409Response:
+      summary: Error 409 conflict
+      value:
+        $ref: examples/json/Error409Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
+    Error410Response:
+      summary: Error 410 deleted
+      value:
+        $ref: examples/json/Error410Response.json
+    UnclaimedDraftCreateEmbeddedRequestFormFieldGroups:
+      summary: Form Fields Per Document and Groups Example
+      value:
+        $ref: examples/json/UnclaimedDraftCreateEmbeddedRequestFormFieldGroups.json
+    UnclaimedDraftCreateEmbeddedRequestFormFieldsPerDocument:
+      summary: Form Fields Per Document Example
+      value:
+        $ref: examples/json/UnclaimedDraftCreateEmbeddedRequestFormFieldsPerDocument.json
+    UnclaimedDraftEditAndResendRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/UnclaimedDraftEditAndResendRequest.json
+    UnclaimedDraftCreateResponse:
+      summary: Unclaimed Draft Create
+      value:
+        $ref: examples/json/UnclaimedDraftCreateResponse.json
+    UnclaimedDraftCreateRequestFormFieldRules:
+      summary: Form Fields Per Document and Rules Example
+      value:
+        $ref: examples/json/UnclaimedDraftCreateRequestFormFieldRules.json
+    UnclaimedDraftCreateEmbeddedRequestFormFieldRules:
+      summary: Form Fields Per Document and Rules Example
+      value:
+        $ref: examples/json/UnclaimedDraftCreateEmbeddedRequestFormFieldRules.json
+    UnclaimedDraftCreateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/UnclaimedDraftCreateRequest.json
   headers:
     X-Ratelimit-Reset:
       description: The Unix time at which the rate limit will reset to its maximum.
@@ -1550,18 +1558,18 @@ components:
         type: integer
         format: int64
         example: 1430170900
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
     X-RateLimit-Limit:
       description: The maximum number of requests per hour that you can make.
       schema:
         type: integer
         format: int32
         example: 100
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
   securitySchemes:
     api_key:
       type: http
@@ -1579,149 +1587,6 @@ components:
 externalDocs:
   description: Legacy API Reference
   url: https://app.hellosign.com/api/reference
-x-webhooks:
-  accountCallback:
-    post:
-      summary: Account Callbacks
-      operationId: accountUpdateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/account-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: Account Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the account level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: "**Account Callback Payloads --**\n      Events that are reported at the Account level through the the *Account callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api). The *Account callback URL* can also be updated by calling [Update Account](/api/reference/operation/accountUpdate) and passing a `callback_url`."
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
-  appCallback:
-    post:
-      summary: App Callbacks
-      operationId: apiAppCreateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/api-app-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: App Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the App level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: '**API App Callback Payloads --**
-
-          Events that are reported at the API App level through the *Event callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api) for a specific app. The *Event callback URL* can also be updated by calling [Update API App](/api/reference/operation/apiAppUpdate) and passing a `callback_url`.'
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
 x-error-codes:
   bad_request:
     http_status: 400

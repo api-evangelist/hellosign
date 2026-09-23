@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dropbox Sign Account Api App API
+  title: Dropbox Sign Api App API
   description: Dropbox Sign v3 API
   termsOfService: https://www.hellosign.com/terms
   contact:
@@ -22,14 +22,14 @@ security:
   - basic_account_info
   - request_signature
 tags:
-- name: Api App
+- name: API App
   description:
     $ref: ./markdown/en/tags/api-app-tag-description.md
 paths:
   /api_app:
     post:
       tags:
-      - Api App
+      - API App
       summary: Create API App
       description: Creates a new API App.
       operationId: apiAppCreate
@@ -123,7 +123,7 @@ paths:
   /api_app/{client_id}:
     get:
       tags:
-      - Api App
+      - API App
       summary: Get API App
       description: Returns an object with information about an API App.
       operationId: apiAppGet
@@ -212,7 +212,7 @@ paths:
           description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to return an object with information about an API App, click here.
     put:
       tags:
-      - Api App
+      - API App
       summary: Update API App
       description: Updates an existing API App. Can only be invoked for apps you own. Only the fields you provide will be updated. If you wish to clear an existing optional field, provide an empty string.
       operationId: apiAppUpdate
@@ -313,7 +313,7 @@ paths:
           description: The Dropbox Sign API allows you to build custom integrations with a wide range of tools. To find out how to update an App that you own, click here.
     delete:
       tags:
-      - Api App
+      - API App
       summary: Delete API App
       description: Deletes an API App. Can only be invoked for apps you own.
       operationId: apiAppDelete
@@ -396,7 +396,7 @@ paths:
   /api_app/list:
     get:
       tags:
-      - Api App
+      - API App
       summary: List API Apps
       description: Returns a list of API Apps that are accessible by you. If you are on a team with an Admin or Developer role, this list will include apps owned by teammates.
       operationId: apiAppList
@@ -488,199 +488,6 @@ paths:
           description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to return a list of API Apps that are accessible by you, click here.
 components:
   schemas:
-    SubOptions:
-      description: Additional options supported by API App.
-      properties:
-        can_insert_everywhere:
-          description: Determines if signers can use "Insert Everywhere" when signing a document.
-          type: boolean
-          default: false
-      type: object
-    ApiAppResponse:
-      description: Contains information about an API App.
-      properties:
-        callback_url:
-          description: The app's callback URL (for events)
-          type: string
-          nullable: true
-        client_id:
-          description: The app's client id
-          type: string
-        created_at:
-          description: The time that the app was created
-          type: integer
-        domains:
-          description: The domain name(s) associated with the app
-          type: array
-          items:
-            type: string
-        name:
-          description: The name of the app
-          type: string
-        is_approved:
-          description: Boolean to indicate if the app has been approved
-          type: boolean
-        oauth:
-          $ref: '#/components/schemas/ApiAppResponseOAuth'
-        options:
-          $ref: '#/components/schemas/ApiAppResponseOptions'
-        owner_account:
-          $ref: '#/components/schemas/ApiAppResponseOwnerAccount'
-        white_labeling_options:
-          $ref: '#/components/schemas/ApiAppResponseWhiteLabelingOptions'
-      type: object
-      x-internal-class: true
-    ApiAppResponseWhiteLabelingOptions:
-      description: An object with options to customize the app's signer page
-      properties:
-        header_background_color:
-          type: string
-        legal_version:
-          type: string
-        link_color:
-          type: string
-        page_background_color:
-          type: string
-        primary_button_color:
-          type: string
-        primary_button_color_hover:
-          type: string
-        primary_button_text_color:
-          type: string
-        primary_button_text_color_hover:
-          type: string
-        secondary_button_color:
-          type: string
-        secondary_button_color_hover:
-          type: string
-        secondary_button_text_color:
-          type: string
-        secondary_button_text_color_hover:
-          type: string
-        text_color1:
-          type: string
-        text_color2:
-          type: string
-      type: object
-      nullable: true
-      x-internal-class: true
-    ApiAppResponseOAuth:
-      description: An object describing the app's OAuth properties, or null if OAuth is not configured for the app.
-      properties:
-        callback_url:
-          description: The app's OAuth callback URL.
-          type: string
-        secret:
-          description: The app's OAuth secret, or null if the app does not belong to user.
-          type: string
-          nullable: true
-        scopes:
-          description: Array of OAuth scopes used by the app.
-          type: array
-          items:
-            type: string
-        charges_users:
-          description: Boolean indicating whether the app owner or the account granting permission is billed for OAuth requests.
-          type: boolean
-      type: object
-      nullable: true
-      x-internal-class: true
-    ApiAppGetResponse:
-      required:
-      - api_app
-      properties:
-        api_app:
-          $ref: '#/components/schemas/ApiAppResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    SubOAuth:
-      description: OAuth related parameters.
-      properties:
-        callback_url:
-          description: The callback URL to be used for OAuth flows. (Required if `oauth[scopes]` is provided)
-          type: string
-        scopes:
-          description: A list of [OAuth scopes](/api/reference/tag/OAuth) to be granted to the app. (Required if `oauth[callback_url]` is provided).
-          type: array
-          items:
-            type: string
-            enum:
-            - request_signature
-            - basic_account_info
-            - account_access
-            - signature_request_access
-            - template_access
-            - team_access
-            - api_app_access
-            - ''
-      type: object
-    ApiAppResponseOwnerAccount:
-      description: An object describing the app's owner
-      properties:
-        account_id:
-          description: The owner account's ID
-          type: string
-        email_address:
-          description: The owner account's email address
-          type: string
-      type: object
-      x-internal-class: true
-    ApiAppListResponse:
-      required:
-      - api_apps
-      - list_info
-      properties:
-        api_apps:
-          description: Contains information about API Apps.
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiAppResponse'
-        list_info:
-          $ref: '#/components/schemas/ListInfoResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    ErrorResponseError:
-      description: Contains information about an error that occurred.
-      required:
-      - error_msg
-      - error_name
-      properties:
-        error_msg:
-          description: Message describing an error.
-          type: string
-        error_path:
-          description: Path at which an error occurred.
-          type: string
-        error_name:
-          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
-          type: string
-      type: object
-    ApiAppResponseOptions:
-      description: An object with options that override account settings.
-      properties:
-        can_insert_everywhere:
-          description: Boolean denoting if signers can "Insert Everywhere" in one click while signing a document
-          type: boolean
-      type: object
-      nullable: true
-      x-internal-class: true
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
     ApiAppCreateRequest:
       required:
       - name
@@ -765,19 +572,6 @@ components:
           description: Resets white labeling options to defaults. Only useful when updating an API App.
           type: boolean
       type: object
-    WarningResponse:
-      description: A list of warnings.
-      required:
-      - warning_msg
-      - warning_name
-      properties:
-        warning_msg:
-          description: Warning message
-          type: string
-        warning_name:
-          description: Warning name
-          type: string
-      type: object
     ListInfoResponse:
       description: Contains pagination information about the data returned.
       properties:
@@ -786,14 +580,82 @@ components:
           type: integer
         num_results:
           description: Total number of objects available.
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
         page:
           description: Number of the page being returned.
           type: integer
         page_size:
           description: Objects returned per page.
           type: integer
+      type: object
+      x-internal-class: true
+    ApiAppGetResponse:
+      required:
+      - api_app
+      properties:
+        api_app:
+          $ref: '#/components/schemas/ApiAppResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    ApiAppResponse:
+      description: Contains information about an API App.
+      properties:
+        callback_url:
+          description: The app's callback URL (for events)
+          type:
+          - string
+          - 'null'
+        client_id:
+          description: The app's client id
+          type: string
+        created_at:
+          description: The time that the app was created
+          type: integer
+        domains:
+          description: The domain name(s) associated with the app
+          type: array
+          items:
+            type: string
+        name:
+          description: The name of the app
+          type: string
+        is_approved:
+          description: Boolean to indicate if the app has been approved
+          type: boolean
+        oauth:
+          $ref: '#/components/schemas/ApiAppResponseOAuth'
+        options:
+          $ref: '#/components/schemas/ApiAppResponseOptions'
+        owner_account:
+          $ref: '#/components/schemas/ApiAppResponseOwnerAccount'
+        white_labeling_options:
+          $ref: '#/components/schemas/ApiAppResponseWhiteLabelingOptions'
+      type: object
+      x-internal-class: true
+    SubOptions:
+      description: Additional options supported by API App.
+      properties:
+        can_insert_everywhere:
+          description: Determines if signers can use "Insert Everywhere" when signing a document.
+          type: boolean
+          default: false
+      type: object
+    ApiAppResponseOwnerAccount:
+      description: An object describing the app's owner
+      properties:
+        account_id:
+          description: The owner account's ID
+          type: string
+        email_address:
+          description: The owner account's email address
+          type: string
       type: object
       x-internal-class: true
     ApiAppUpdateRequest:
@@ -821,63 +683,207 @@ components:
         white_labeling_options:
           $ref: '#/components/schemas/SubWhiteLabelingOptions'
       type: object
+    ApiAppResponseOAuth:
+      description: An object describing the app's OAuth properties, or null if OAuth is not configured for the app.
+      properties:
+        callback_url:
+          description: The app's OAuth callback URL.
+          type: string
+        secret:
+          description: The app's OAuth secret, or null if the app does not belong to user.
+          type:
+          - string
+          - 'null'
+        scopes:
+          description: Array of OAuth scopes used by the app.
+          type: array
+          items:
+            type: string
+        charges_users:
+          description: Boolean indicating whether the app owner or the account granting permission is billed for OAuth requests.
+          type: boolean
+      type:
+      - object
+      - 'null'
+      x-internal-class: true
+    SubOAuth:
+      description: OAuth related parameters.
+      properties:
+        callback_url:
+          description: The callback URL to be used for OAuth flows. (Required if `oauth[scopes]` is provided)
+          type: string
+        scopes:
+          description: A list of [OAuth scopes](/api/reference/tag/OAuth) to be granted to the app. (Required if `oauth[callback_url]` is provided).
+          type: array
+          items:
+            type: string
+            enum:
+            - request_signature
+            - basic_account_info
+            - account_access
+            - signature_request_access
+            - template_access
+            - team_access
+            - api_app_access
+            - ''
+      type: object
+    ApiAppResponseWhiteLabelingOptions:
+      description: An object with options to customize the app's signer page
+      properties:
+        header_background_color:
+          type: string
+        legal_version:
+          type: string
+        link_color:
+          type: string
+        page_background_color:
+          type: string
+        primary_button_color:
+          type: string
+        primary_button_color_hover:
+          type: string
+        primary_button_text_color:
+          type: string
+        primary_button_text_color_hover:
+          type: string
+        secondary_button_color:
+          type: string
+        secondary_button_color_hover:
+          type: string
+        secondary_button_text_color:
+          type: string
+        secondary_button_text_color_hover:
+          type: string
+        text_color1:
+          type: string
+        text_color2:
+          type: string
+      type:
+      - object
+      - 'null'
+      x-internal-class: true
+    ApiAppListResponse:
+      required:
+      - api_apps
+      - list_info
+      properties:
+        api_apps:
+          description: Contains information about API Apps.
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiAppResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
+      type: object
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
+      type: object
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    ApiAppResponseOptions:
+      description: An object with options that override account settings.
+      properties:
+        can_insert_everywhere:
+          description: Boolean denoting if signers can "Insert Everywhere" in one click while signing a document
+          type: boolean
+      type:
+      - object
+      - 'null'
+      x-internal-class: true
   examples:
     ApiAppUpdateResponse:
       summary: API App Update
       value:
         $ref: examples/json/ApiAppUpdateResponse.json
-    ApiAppListResponse:
-      summary: API App List
-      value:
-        $ref: examples/json/ApiAppListResponse.json
     Error401Response:
       summary: Error 401 unauthorized
       value:
         $ref: examples/json/Error401Response.json
-    ApiAppGetResponse:
-      summary: API App
-      value:
-        $ref: examples/json/ApiAppGetResponse.json
-    Error409Response:
-      summary: Error 409 conflict
-      value:
-        $ref: examples/json/Error409Response.json
     Error400Response:
       summary: Error 400 bad_request
       value:
         $ref: examples/json/Error400Response.json
-    ApiAppCreateResponse:
-      summary: API App
-      value:
-        $ref: examples/json/ApiAppCreateResponse.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
     Error4XXResponse:
       summary: Error 4XX failed_operation
       value:
         $ref: examples/json/Error4XXResponse.json
-    Error404Response:
-      summary: Error 404 not_found
+    ApiAppListResponse:
+      summary: API App List
       value:
-        $ref: examples/json/Error404Response.json
-    ApiAppCreateRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/ApiAppCreateRequest.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
+        $ref: examples/json/ApiAppListResponse.json
     Error429Response:
       summary: Error 429 exceeded_rate
       value:
         $ref: examples/json/Error429Response.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    ApiAppCreateResponse:
+      summary: API App
+      value:
+        $ref: examples/json/ApiAppCreateResponse.json
+    Error409Response:
+      summary: Error 409 conflict
+      value:
+        $ref: examples/json/Error409Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    ApiAppGetResponse:
+      summary: API App
+      value:
+        $ref: examples/json/ApiAppGetResponse.json
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
     ApiAppUpdateRequest:
       summary: Default Example
       value:
         $ref: examples/json/ApiAppUpdateRequest.json
+    ApiAppCreateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/ApiAppCreateRequest.json
   headers:
     X-Ratelimit-Reset:
       description: The Unix time at which the rate limit will reset to its maximum.
@@ -885,18 +891,18 @@ components:
         type: integer
         format: int64
         example: 1430170900
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
     X-RateLimit-Limit:
       description: The maximum number of requests per hour that you can make.
       schema:
         type: integer
         format: int32
         example: 100
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
   securitySchemes:
     api_key:
       type: http
@@ -914,149 +920,6 @@ components:
 externalDocs:
   description: Legacy API Reference
   url: https://app.hellosign.com/api/reference
-x-webhooks:
-  accountCallback:
-    post:
-      summary: Account Callbacks
-      operationId: accountUpdateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/account-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: Account Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the account level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: "**Account Callback Payloads --**\n      Events that are reported at the Account level through the the *Account callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api). The *Account callback URL* can also be updated by calling [Update Account](/api/reference/operation/accountUpdate) and passing a `callback_url`."
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
-  appCallback:
-    post:
-      summary: App Callbacks
-      operationId: apiAppCreateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/api-app-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: App Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the App level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: '**API App Callback Payloads --**
-
-          Events that are reported at the API App level through the *Event callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api) for a specific app. The *Event callback URL* can also be updated by calling [Update API App](/api/reference/operation/apiAppUpdate) and passing a `callback_url`.'
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
 x-error-codes:
   bad_request:
     http_status: 400

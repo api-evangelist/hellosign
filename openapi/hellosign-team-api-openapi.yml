@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dropbox Sign Account Team API
+  title: Dropbox Sign Team API
   description: Dropbox Sign v3 API
   termsOfService: https://www.hellosign.com/terms
   contact:
@@ -939,49 +939,234 @@ paths:
           title: List Sub Teams | Dropbox Sign for Developers
           description: The Dropbox Sign API allows you automate your team management. To find out how to get a list of sub teams that exist for a given team, click here.
 components:
+  examples:
+    TeamAddMemberRequestAccountId:
+      summary: Account ID Example
+      value:
+        $ref: examples/json/TeamAddMemberRequestAccountId.json
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    TeamCreateResponse:
+      summary: Team Create
+      value:
+        $ref: examples/json/TeamCreateResponse.json
+    TeamRemoveMemberRequestAccountId:
+      summary: Account ID Example
+      value:
+        $ref: examples/json/TeamRemoveMemberRequestAccountId.json
+    TeamInvitesResponse:
+      summary: Team Invites
+      value:
+        $ref: examples/json/TeamInvitesResponse.json
+    TeamGetInfoResponse:
+      summary: Team Get Info
+      value:
+        $ref: examples/json/TeamGetInfoResponse.json
+    TeamAddMemberRequest:
+      summary: Email Address Example
+      value:
+        $ref: examples/json/TeamAddMemberRequest.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    TeamAddMemberResponse:
+      summary: Team Add Member
+      value:
+        $ref: examples/json/TeamAddMemberResponse.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    TeamUpdateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/TeamUpdateRequest.json
+    TeamRemoveMemberRequest:
+      summary: Email Address Example
+      value:
+        $ref: examples/json/TeamRemoveMemberRequest.json
+    TeamMembersResponse:
+      summary: Team Members List
+      value:
+        $ref: examples/json/TeamMembersResponse.json
+    Error409Response:
+      summary: Error 409 conflict
+      value:
+        $ref: examples/json/Error409Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    TeamGetResponse:
+      summary: Team Get
+      value:
+        $ref: examples/json/TeamGetResponse.json
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
+    TeamSubTeamsResponse:
+      summary: Team Sub Teams List
+      value:
+        $ref: examples/json/TeamSubTeamsResponse.json
+    TeamUpdateResponse:
+      summary: Team Update
+      value:
+        $ref: examples/json/TeamUpdateResponse.json
+    TeamCreateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/TeamCreateRequest.json
+    TeamRemoveMemberResponse:
+      summary: Team Remove Member
+      value:
+        $ref: examples/json/TeamRemoveMemberResponse.json
   schemas:
-    TeamResponse:
-      description: Contains information about your team and its members
+    TeamGetInfoResponse:
+      required:
+      - team
       properties:
-        name:
-          description: The name of your Team
-          type: string
-        accounts:
+        team:
+          $ref: '#/components/schemas/TeamInfoResponse'
+        warnings:
+          description: A list of warnings.
           type: array
           items:
-            $ref: '#/components/schemas/AccountResponse'
-        invited_accounts:
-          description: A list of all Accounts that have an outstanding invitation to join your Team. Note that this response is a subset of the response parameters found in `GET /account`.
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountResponse'
-        invited_emails:
-          description: A list of email addresses that have an outstanding invitation to join your Team and do not yet have a Dropbox Sign account.
-          type: array
-          items:
-            type: string
+            $ref: '#/components/schemas/WarningResponse'
       type: object
       x-internal-class: true
-    TeamParentResponse:
-      description: Information about the parent team if a team has one, set to `null` otherwise.
+    TeamUpdateRequest:
+      properties:
+        name:
+          description: The name of your Team.
+          type: string
+      type: object
+    TeamMembersResponse:
+      required:
+      - team_members
+      - list_info
+      properties:
+        team_members:
+          description: Contains a list of team members and their roles for a specific team.
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMemberResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    TeamInfoResponse:
       properties:
         team_id:
           description: The id of a team
           type: string
+        team_parent:
+          $ref: '#/components/schemas/TeamParentResponse'
         name:
           description: The name of a team
           type: string
+        num_members:
+          description: Number of members within a team
+          type: integer
+        num_sub_teams:
+          description: Number of sub teams within a team
+          type: integer
       type: object
-      nullable: true
       x-internal-class: true
-    SubTeamResponse:
+    TeamAddMemberRequest:
       properties:
-        team_id:
-          description: The id of a team
+        account_id:
+          description: '`account_id` or `email_address` is required. If both are provided, the account id prevails.
+
+
+            Account id of the user to invite to your Team.'
           type: string
+        email_address:
+          description: '`account_id` or `email_address` is required, If both are provided, the account id prevails.
+
+
+            Email address of the user to invite to your Team.'
+          type: string
+          format: email
+        role:
+          description: 'A role member will take in a new Team.
+
+
+            **NOTE:** This parameter is used only if `team_id` is provided.'
+          type: string
+          enum:
+          - Member
+          - Developer
+          - Team Manager
+          - Admin
+      type: object
+    AccountResponseUsage:
+      description: Details concerning monthly usage
+      properties:
+        fax_pages_sent:
+          description: Number of fax pages sent
+          type:
+          - integer
+          - 'null'
+      type: object
+      x-internal-class: true
+    TeamCreateRequest:
+      properties:
         name:
-          description: The name of a team
+          description: The name of your Team.
           type: string
+          default: Untitled Team
+      type: object
+    TeamSubTeamsResponse:
+      required:
+      - sub_teams
+      - list_info
+      properties:
+        sub_teams:
+          description: Contains a list with sub teams.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubTeamResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    ListInfoResponse:
+      description: Contains pagination information about the data returned.
+      properties:
+        num_pages:
+          description: Total number of pages available.
+          type: integer
+        num_results:
+          description: Total number of objects available.
+          type:
+          - integer
+          - 'null'
+        page:
+          description: Number of the page being returned.
+          type: integer
+        page_size:
+          description: Objects returned per page.
+          type: integer
       type: object
       x-internal-class: true
     TeamRemoveMemberRequest:
@@ -1021,22 +1206,169 @@ components:
           - Team Manager
           - Admin
       type: object
-    TeamSubTeamsResponse:
-      required:
-      - sub_teams
-      - list_info
+    AccountResponseSettings:
+      description: Subset of configured settings
       properties:
-        sub_teams:
-          description: Contains a list with sub teams.
+        signer_access_codes:
+          description: Returns `true` if _Custom access codes_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_delivery:
+          description: Returns `true` if _Text message_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_authentication:
+          description: Returns `true` if _Signer authentication_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+      type: object
+      x-internal-class: true
+    TeamParentResponse:
+      description: Information about the parent team if a team has one, set to `null` otherwise.
+      properties:
+        team_id:
+          description: The id of a team
+          type: string
+        name:
+          description: The name of a team
+          type: string
+      type:
+      - object
+      - 'null'
+      x-internal-class: true
+    AccountResponseQuotas:
+      description: Details concerning remaining monthly quotas.
+      properties:
+        api_signature_requests_left:
+          description: API signature requests remaining.
+          type:
+          - integer
+          - 'null'
+        documents_left:
+          description: Signature requests remaining.
+          type:
+          - integer
+          - 'null'
+        templates_total:
+          description: Total API templates allowed.
+          type:
+          - integer
+          - 'null'
+        templates_left:
+          description: API templates remaining.
+          type:
+          - integer
+          - 'null'
+        sms_verifications_left:
+          description: SMS verifications remaining.
+          type:
+          - integer
+          - 'null'
+        num_fax_pages_left:
+          description: Number of fax pages left
+          type:
+          - integer
+          - 'null'
+      type: object
+      x-internal-class: true
+    TeamResponse:
+      description: Contains information about your team and its members
+      properties:
+        name:
+          description: The name of your Team
+          type: string
+        accounts:
           type: array
           items:
-            $ref: '#/components/schemas/SubTeamResponse'
-        list_info:
-          $ref: '#/components/schemas/ListInfoResponse'
-        warnings:
+            $ref: '#/components/schemas/AccountResponse'
+        invited_accounts:
+          description: A list of all Accounts that have an outstanding invitation to join your Team. Note that this response is a subset of the response parameters found in `GET /account`.
           type: array
           items:
-            $ref: '#/components/schemas/WarningResponse'
+            $ref: '#/components/schemas/AccountResponse'
+        invited_emails:
+          description: A list of email addresses that have an outstanding invitation to join your Team and do not yet have a Dropbox Sign account.
+          type: array
+          items:
+            type: string
+      type: object
+      x-internal-class: true
+    TeamInviteResponse:
+      properties:
+        email_address:
+          description: Email address of the user invited to this team.
+          type: string
+        team_id:
+          description: Id of the team.
+          type: string
+        role:
+          description: Role of the user invited to this team.
+          type: string
+        sent_at:
+          description: Timestamp when the invitation was sent.
+          type: integer
+        redeemed_at:
+          description: Timestamp when the invitation was redeemed.
+          type: integer
+        expires_at:
+          description: Timestamp when the invitation is expiring.
+          type: integer
+      type: object
+      x-internal-class: true
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
+      type: object
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
+      type: object
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    SubTeamResponse:
+      properties:
+        team_id:
+          description: The id of a team
+          type: string
+        name:
+          description: The name of a team
+          type: string
+      type: object
+      x-internal-class: true
+    TeamMemberResponse:
+      properties:
+        account_id:
+          description: Account id of the team member.
+          type: string
+        email_address:
+          description: Email address of the team member.
+          type: string
+        role:
+          description: The specific role a member has on the team.
+          type: string
       type: object
       x-internal-class: true
     TeamInvitesResponse:
@@ -1049,48 +1381,6 @@ components:
           items:
             $ref: '#/components/schemas/TeamInviteResponse'
         warnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    TeamGetInfoResponse:
-      required:
-      - team
-      properties:
-        team:
-          $ref: '#/components/schemas/TeamInfoResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    AccountResponseUsage:
-      description: Details concerning monthly usage
-      properties:
-        fax_pages_sent:
-          description: Number of fax pages sent
-          type: integer
-          nullable: true
-      type: object
-      x-internal-class: true
-    TeamCreateRequest:
-      properties:
-        name:
-          description: The name of your Team.
-          type: string
-          default: Untitled Team
-      type: object
-    TeamGetResponse:
-      required:
-      - team
-      properties:
-        team:
-          $ref: '#/components/schemas/TeamResponse'
-        warnings:
-          description: A list of warnings.
           type: array
           items:
             $ref: '#/components/schemas/WarningResponse'
@@ -1117,320 +1407,43 @@ components:
           $ref: '#/components/schemas/AccountResponseQuotas'
         callback_url:
           description: The URL that Dropbox Sign events will `POST` to.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         role_code:
           description: The membership role for the team.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         team_id:
           description: The id of the team account belongs to.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         locale:
           description: The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         usage:
           $ref: '#/components/schemas/AccountResponseUsage'
         settings:
           $ref: '#/components/schemas/AccountResponseSettings'
       type: object
       x-internal-class: true
-    ErrorResponseError:
-      description: Contains information about an error that occurred.
+    TeamGetResponse:
       required:
-      - error_msg
-      - error_name
+      - team
       properties:
-        error_msg:
-          description: Message describing an error.
-          type: string
-        error_path:
-          description: Path at which an error occurred.
-          type: string
-        error_name:
-          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
-          type: string
-      type: object
-    TeamInfoResponse:
-      properties:
-        team_id:
-          description: The id of a team
-          type: string
-        team_parent:
-          $ref: '#/components/schemas/TeamParentResponse'
-        name:
-          description: The name of a team
-          type: string
-        num_members:
-          description: Number of members within a team
-          type: integer
-        num_sub_teams:
-          description: Number of sub teams within a team
-          type: integer
-      type: object
-      x-internal-class: true
-    TeamMemberResponse:
-      properties:
-        account_id:
-          description: Account id of the team member.
-          type: string
-        email_address:
-          description: Email address of the team member.
-          type: string
-        role:
-          description: The specific role a member has on the team.
-          type: string
-      type: object
-      x-internal-class: true
-    TeamAddMemberRequest:
-      properties:
-        account_id:
-          description: '`account_id` or `email_address` is required. If both are provided, the account id prevails.
-
-
-            Account id of the user to invite to your Team.'
-          type: string
-        email_address:
-          description: '`account_id` or `email_address` is required, If both are provided, the account id prevails.
-
-
-            Email address of the user to invite to your Team.'
-          type: string
-          format: email
-        role:
-          description: 'A role member will take in a new Team.
-
-
-            **NOTE:** This parameter is used only if `team_id` is provided.'
-          type: string
-          enum:
-          - Member
-          - Developer
-          - Team Manager
-          - Admin
-      type: object
-    AccountResponseQuotas:
-      description: Details concerning remaining monthly quotas.
-      properties:
-        api_signature_requests_left:
-          description: API signature requests remaining.
-          type: integer
-          nullable: true
-        documents_left:
-          description: Signature requests remaining.
-          type: integer
-          nullable: true
-        templates_total:
-          description: Total API templates allowed.
-          type: integer
-          nullable: true
-        templates_left:
-          description: API templates remaining.
-          type: integer
-          nullable: true
-        sms_verifications_left:
-          description: SMS verifications remaining.
-          type: integer
-          nullable: true
-        num_fax_pages_left:
-          description: Number of fax pages left
-          type: integer
-          nullable: true
-      type: object
-      x-internal-class: true
-    AccountResponseSettings:
-      description: Subset of configured settings
-      properties:
-        signer_access_codes:
-          description: Returns `true` if _Custom access codes_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
-          type: boolean
-        sms_delivery:
-          description: Returns `true` if _Text message_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
-          type: boolean
-        sms_authentication:
-          description: Returns `true` if _Signer authentication_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
-          type: boolean
-      type: object
-      x-internal-class: true
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-    WarningResponse:
-      description: A list of warnings.
-      required:
-      - warning_msg
-      - warning_name
-      properties:
-        warning_msg:
-          description: Warning message
-          type: string
-        warning_name:
-          description: Warning name
-          type: string
-      type: object
-    ListInfoResponse:
-      description: Contains pagination information about the data returned.
-      properties:
-        num_pages:
-          description: Total number of pages available.
-          type: integer
-        num_results:
-          description: Total number of objects available.
-          type: integer
-          nullable: true
-        page:
-          description: Number of the page being returned.
-          type: integer
-        page_size:
-          description: Objects returned per page.
-          type: integer
-      type: object
-      x-internal-class: true
-    TeamInviteResponse:
-      properties:
-        email_address:
-          description: Email address of the user invited to this team.
-          type: string
-        team_id:
-          description: Id of the team.
-          type: string
-        role:
-          description: Role of the user invited to this team.
-          type: string
-        sent_at:
-          description: Timestamp when the invitation was sent.
-          type: integer
-        redeemed_at:
-          description: Timestamp when the invitation was redeemed.
-          type: integer
-        expires_at:
-          description: Timestamp when the invitation is expiring.
-          type: integer
-      type: object
-      x-internal-class: true
-    TeamMembersResponse:
-      required:
-      - team_members
-      - list_info
-      properties:
-        team_members:
-          description: Contains a list of team members and their roles for a specific team.
-          type: array
-          items:
-            $ref: '#/components/schemas/TeamMemberResponse'
-        list_info:
-          $ref: '#/components/schemas/ListInfoResponse'
+        team:
+          $ref: '#/components/schemas/TeamResponse'
         warnings:
+          description: A list of warnings.
           type: array
           items:
             $ref: '#/components/schemas/WarningResponse'
       type: object
       x-internal-class: true
-    TeamUpdateRequest:
-      properties:
-        name:
-          description: The name of your Team.
-          type: string
-      type: object
-  examples:
-    TeamGetResponse:
-      summary: Team Get
-      value:
-        $ref: examples/json/TeamGetResponse.json
-    TeamUpdateRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/TeamUpdateRequest.json
-    TeamAddMemberRequest:
-      summary: Email Address Example
-      value:
-        $ref: examples/json/TeamAddMemberRequest.json
-    Error401Response:
-      summary: Error 401 unauthorized
-      value:
-        $ref: examples/json/Error401Response.json
-    TeamMembersResponse:
-      summary: Team Members List
-      value:
-        $ref: examples/json/TeamMembersResponse.json
-    TeamRemoveMemberRequest:
-      summary: Email Address Example
-      value:
-        $ref: examples/json/TeamRemoveMemberRequest.json
-    TeamInvitesResponse:
-      summary: Team Invites
-      value:
-        $ref: examples/json/TeamInvitesResponse.json
-    TeamRemoveMemberResponse:
-      summary: Team Remove Member
-      value:
-        $ref: examples/json/TeamRemoveMemberResponse.json
-    TeamAddMemberResponse:
-      summary: Team Add Member
-      value:
-        $ref: examples/json/TeamAddMemberResponse.json
-    TeamAddMemberRequestAccountId:
-      summary: Account ID Example
-      value:
-        $ref: examples/json/TeamAddMemberRequestAccountId.json
-    TeamRemoveMemberRequestAccountId:
-      summary: Account ID Example
-      value:
-        $ref: examples/json/TeamRemoveMemberRequestAccountId.json
-    TeamUpdateResponse:
-      summary: Team Update
-      value:
-        $ref: examples/json/TeamUpdateResponse.json
-    Error409Response:
-      summary: Error 409 conflict
-      value:
-        $ref: examples/json/Error409Response.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
-      value:
-        $ref: examples/json/Error4XXResponse.json
-    Error404Response:
-      summary: Error 404 not_found
-      value:
-        $ref: examples/json/Error404Response.json
-    TeamGetInfoResponse:
-      summary: Team Get Info
-      value:
-        $ref: examples/json/TeamGetInfoResponse.json
-    TeamCreateRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/TeamCreateRequest.json
-    TeamCreateResponse:
-      summary: Team Create
-      value:
-        $ref: examples/json/TeamCreateResponse.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
-    TeamSubTeamsResponse:
-      summary: Team Sub Teams List
-      value:
-        $ref: examples/json/TeamSubTeamsResponse.json
   headers:
     X-Ratelimit-Reset:
       description: The Unix time at which the rate limit will reset to its maximum.
@@ -1438,18 +1451,18 @@ components:
         type: integer
         format: int64
         example: 1430170900
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
     X-RateLimit-Limit:
       description: The maximum number of requests per hour that you can make.
       schema:
         type: integer
         format: int32
         example: 100
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
   securitySchemes:
     api_key:
       type: http
@@ -1467,149 +1480,6 @@ components:
 externalDocs:
   description: Legacy API Reference
   url: https://app.hellosign.com/api/reference
-x-webhooks:
-  accountCallback:
-    post:
-      summary: Account Callbacks
-      operationId: accountUpdateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/account-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: Account Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the account level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: "**Account Callback Payloads --**\n      Events that are reported at the Account level through the the *Account callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api). The *Account callback URL* can also be updated by calling [Update Account](/api/reference/operation/accountUpdate) and passing a `callback_url`."
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
-  appCallback:
-    post:
-      summary: App Callbacks
-      operationId: apiAppCreateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/api-app-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: App Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the App level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: '**API App Callback Payloads --**
-
-          Events that are reported at the API App level through the *Event callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api) for a specific app. The *Event callback URL* can also be updated by calling [Update API App](/api/reference/operation/apiAppUpdate) and passing a `callback_url`.'
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
 x-error-codes:
   bad_request:
     http_status: 400

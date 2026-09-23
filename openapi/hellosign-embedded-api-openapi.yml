@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dropbox Sign Account Embedded API
+  title: Dropbox Sign Embedded API
   description: Dropbox Sign v3 API
   termsOfService: https://www.hellosign.com/terms
   contact:
@@ -218,18 +218,52 @@ paths:
           title: Get Embedded Sign URL | iFrame | Dropbox Sign for Developers
           description: The Dropbox Sign API allows you to build custom integrations. To find out how to retrieve an embedded iFrame object containing a signature url, click here.
 components:
+  examples:
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    EmbeddedEditUrlRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/EmbeddedEditUrlRequest.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    Error409Response:
+      summary: Error 409 conflict
+      value:
+        $ref: examples/json/Error409Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
+    EmbeddedSignUrlResponse:
+      summary: Embedded Sign URL
+      value:
+        $ref: examples/json/EmbeddedSignUrlResponse.json
+    EmbeddedEditUrlResponse:
+      summary: Embedded Edit URL
+      value:
+        $ref: examples/json/EmbeddedEditUrlResponse.json
   schemas:
-    EmbeddedSignUrlResponseEmbedded:
-      description: An object that contains necessary information to set up embedded signing.
-      properties:
-        sign_url:
-          description: A signature url that can be opened in an iFrame.
-          type: string
-        expires_at:
-          description: The specific time that the the `sign_url` link expires, in epoch.
-          type: integer
-      type: object
-      x-internal-class: true
     EmbeddedEditUrlResponseEmbedded:
       description: An embedded template object.
       properties:
@@ -241,6 +275,24 @@ components:
           type: integer
       type: object
       x-internal-class: true
+    SubMergeField:
+      required:
+      - name
+      - type
+      properties:
+        name:
+          description: The name of the merge field. Must be unique.
+          type: string
+        type:
+          description: The type of merge field.
+          type: string
+          enum:
+          - text
+          - checkbox
+          x-enumDescriptions:
+            text: Sets merge [field type](/api/reference/constants/#field-types) to `text`.
+            checkbox: Sets merge [field type](/api/reference/constants/#field-types) to `checkbox`.
+      type: object
     EmbeddedEditUrlRequest:
       properties:
         allow_edit_ccs:
@@ -290,23 +342,42 @@ components:
           type: boolean
           default: false
       type: object
-    SubMergeField:
+    EmbeddedEditUrlResponse:
       required:
-      - name
-      - type
+      - embedded
       properties:
-        name:
-          description: The name of the merge field. Must be unique.
+        embedded:
+          $ref: '#/components/schemas/EmbeddedEditUrlResponseEmbedded'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    EmbeddedSignUrlResponseEmbedded:
+      description: An object that contains necessary information to set up embedded signing.
+      properties:
+        sign_url:
+          description: A signature url that can be opened in an iFrame.
           type: string
-        type:
-          description: The type of merge field.
+        expires_at:
+          description: The specific time that the the `sign_url` link expires, in epoch.
+          type: integer
+      type: object
+      x-internal-class: true
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
           type: string
-          enum:
-          - text
-          - checkbox
-          x-enumDescriptions:
-            text: Sets merge [field type](/api/reference/constants/#field-types) to `text`.
-            checkbox: Sets merge [field type](/api/reference/constants/#field-types) to `checkbox`.
+        warning_name:
+          description: Warning name
+          type: string
       type: object
     ErrorResponseError:
       description: Contains information about an error that occurred.
@@ -324,18 +395,6 @@ components:
           description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
           type: string
       type: object
-    SubEditorOptions:
-      description: This allows the requester to specify editor options when a preparing a document
-      properties:
-        allow_edit_signers:
-          description: Allows requesters to edit the list of signers
-          type: boolean
-          default: false
-        allow_edit_documents:
-          description: Allows requesters to edit documents, including delete and add
-          type: boolean
-          default: false
-      type: object
     ErrorResponse:
       required:
       - error
@@ -343,32 +402,6 @@ components:
         error:
           $ref: '#/components/schemas/ErrorResponseError'
       type: object
-    WarningResponse:
-      description: A list of warnings.
-      required:
-      - warning_msg
-      - warning_name
-      properties:
-        warning_msg:
-          description: Warning message
-          type: string
-        warning_name:
-          description: Warning name
-          type: string
-      type: object
-    EmbeddedEditUrlResponse:
-      required:
-      - embedded
-      properties:
-        embedded:
-          $ref: '#/components/schemas/EmbeddedEditUrlResponseEmbedded'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
     EmbeddedSignUrlResponse:
       required:
       - embedded
@@ -382,51 +415,18 @@ components:
             $ref: '#/components/schemas/WarningResponse'
       type: object
       x-internal-class: true
-  examples:
-    Error401Response:
-      summary: Error 401 unauthorized
-      value:
-        $ref: examples/json/Error401Response.json
-    Error409Response:
-      summary: Error 409 conflict
-      value:
-        $ref: examples/json/Error409Response.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
-      value:
-        $ref: examples/json/Error4XXResponse.json
-    Error404Response:
-      summary: Error 404 not_found
-      value:
-        $ref: examples/json/Error404Response.json
-    EmbeddedEditUrlResponse:
-      summary: Embedded Edit URL
-      value:
-        $ref: examples/json/EmbeddedEditUrlResponse.json
-    EmbeddedSignUrlResponse:
-      summary: Embedded Sign URL
-      value:
-        $ref: examples/json/EmbeddedSignUrlResponse.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
-    EmbeddedEditUrlRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/EmbeddedEditUrlRequest.json
+    SubEditorOptions:
+      description: This allows the requester to specify editor options when a preparing a document
+      properties:
+        allow_edit_signers:
+          description: Allows requesters to edit the list of signers
+          type: boolean
+          default: false
+        allow_edit_documents:
+          description: Allows requesters to edit documents, including delete and add
+          type: boolean
+          default: false
+      type: object
   headers:
     X-Ratelimit-Reset:
       description: The Unix time at which the rate limit will reset to its maximum.
@@ -434,18 +434,18 @@ components:
         type: integer
         format: int64
         example: 1430170900
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
     X-RateLimit-Limit:
       description: The maximum number of requests per hour that you can make.
       schema:
         type: integer
         format: int32
         example: 100
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
   securitySchemes:
     api_key:
       type: http
@@ -463,149 +463,6 @@ components:
 externalDocs:
   description: Legacy API Reference
   url: https://app.hellosign.com/api/reference
-x-webhooks:
-  accountCallback:
-    post:
-      summary: Account Callbacks
-      operationId: accountUpdateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/account-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: Account Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the account level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: "**Account Callback Payloads --**\n      Events that are reported at the Account level through the the *Account callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api). The *Account callback URL* can also be updated by calling [Update Account](/api/reference/operation/accountUpdate) and passing a `callback_url`."
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
-  appCallback:
-    post:
-      summary: App Callbacks
-      operationId: apiAppCreateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/api-app-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: App Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the App level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: '**API App Callback Payloads --**
-
-          Events that are reported at the API App level through the *Event callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api) for a specific app. The *Event callback URL* can also be updated by calling [Update API App](/api/reference/operation/apiAppUpdate) and passing a `callback_url`.'
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
 x-error-codes:
   bad_request:
     http_status: 400

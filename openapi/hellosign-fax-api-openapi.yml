@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dropbox Sign Account Fax API
+  title: Dropbox Sign Fax API
   description: Dropbox Sign v3 API
   termsOfService: https://www.hellosign.com/terms
   contact:
@@ -470,18 +470,6 @@ paths:
           description: The Dropbox Fax API allows you to build custom integrations. To find out how to send a fax, click here.
 components:
   examples:
-    Error410Response:
-      summary: Error 410 deleted
-      value:
-        $ref: examples/json/Error410Response.json
-    FaxListResponse:
-      summary: Returns the properties and settings of multiple Faxes
-      value:
-        $ref: examples/json/FaxListResponse.json
-    FaxSendRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/FaxSendRequest.json
     Error401Response:
       summary: Error 401 unauthorized
       value:
@@ -490,60 +478,43 @@ components:
       summary: Error 400 bad_request
       value:
         $ref: examples/json/Error400Response.json
-    FaxGetResponse:
-      summary: Fax Response
-      value:
-        $ref: examples/json/FaxGetResponse.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
     Error4XXResponse:
       summary: Error 4XX failed_operation
       value:
         $ref: examples/json/Error4XXResponse.json
-    Error404Response:
-      summary: Error 404 not_found
-      value:
-        $ref: examples/json/Error404Response.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
     Error429Response:
       summary: Error 429 exceeded_rate
       value:
         $ref: examples/json/Error429Response.json
-  schemas:
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    FaxSendRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/FaxSendRequest.json
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
+    Error410Response:
+      summary: Error 410 deleted
+      value:
+        $ref: examples/json/Error410Response.json
     FaxGetResponse:
-      required:
-      - fax
-      properties:
-        fax:
-          $ref: '#/components/schemas/FaxResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    ErrorResponseError:
-      description: Contains information about an error that occurred.
-      required:
-      - error_msg
-      - error_name
-      properties:
-        error_msg:
-          description: Message describing an error.
-          type: string
-        error_path:
-          description: Path at which an error occurred.
-          type: string
-        error_name:
-          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
-          type: string
-      type: object
+      summary: Fax Response
+      value:
+        $ref: examples/json/FaxGetResponse.json
+    FaxListResponse:
+      summary: Returns the properties and settings of multiple Faxes
+      value:
+        $ref: examples/json/FaxListResponse.json
+  schemas:
     FaxResponseTransmission:
       required:
       - recipient
@@ -591,12 +562,14 @@ components:
           type: string
         subject:
           description: Fax Subject
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         message:
           description: Fax Message
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         metadata:
           description: Fax Metadata
           type: object
@@ -612,8 +585,9 @@ components:
           type: string
         final_copy_uri:
           description: The path where the completed document can be downloaded
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         transmissions:
           description: Fax Transmissions List
           type: array
@@ -621,13 +595,25 @@ components:
             $ref: '#/components/schemas/FaxResponseTransmission'
       type: object
       x-internal-class: true
-    ErrorResponse:
-      required:
-      - error
+    ListInfoResponse:
+      description: Contains pagination information about the data returned.
       properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
+        num_pages:
+          description: Total number of pages available.
+          type: integer
+        num_results:
+          description: Total number of objects available.
+          type:
+          - integer
+          - 'null'
+        page:
+          description: Number of the page being returned.
+          type: integer
+        page_size:
+          description: Objects returned per page.
+          type: integer
       type: object
+      x-internal-class: true
     FaxSendRequest:
       required:
       - recipient
@@ -691,6 +677,19 @@ components:
           $ref: '#/components/schemas/ListInfoResponse'
       type: object
       x-internal-class: true
+    FaxGetResponse:
+      required:
+      - fax
+      properties:
+        fax:
+          $ref: '#/components/schemas/FaxResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
     WarningResponse:
       description: A list of warnings.
       required:
@@ -704,24 +703,29 @@ components:
           description: Warning name
           type: string
       type: object
-    ListInfoResponse:
-      description: Contains pagination information about the data returned.
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
       properties:
-        num_pages:
-          description: Total number of pages available.
-          type: integer
-        num_results:
-          description: Total number of objects available.
-          type: integer
-          nullable: true
-        page:
-          description: Number of the page being returned.
-          type: integer
-        page_size:
-          description: Objects returned per page.
-          type: integer
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
       type: object
-      x-internal-class: true
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
   headers:
     X-Ratelimit-Reset:
       description: The Unix time at which the rate limit will reset to its maximum.
@@ -729,18 +733,18 @@ components:
         type: integer
         format: int64
         example: 1430170900
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
     X-RateLimit-Limit:
       description: The maximum number of requests per hour that you can make.
       schema:
         type: integer
         format: int32
         example: 100
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
   securitySchemes:
     api_key:
       type: http
@@ -758,149 +762,6 @@ components:
 externalDocs:
   description: Legacy API Reference
   url: https://app.hellosign.com/api/reference
-x-webhooks:
-  accountCallback:
-    post:
-      summary: Account Callbacks
-      operationId: accountUpdateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/account-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: Account Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the account level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: "**Account Callback Payloads --**\n      Events that are reported at the Account level through the the *Account callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api). The *Account callback URL* can also be updated by calling [Update Account](/api/reference/operation/accountUpdate) and passing a `callback_url`."
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
-  appCallback:
-    post:
-      summary: App Callbacks
-      operationId: apiAppCreateEventCallback
-      description:
-        $ref: ./markdown/en/descriptions/api-app-callback-description.md
-      tags:
-      - Callbacks and Events
-      x-meta:
-        seo:
-          title: App Callbacks | API Documentation | Dropbox Sign for Developers
-          description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the App level, click here.
-      x-fern-audiences:
-      - events
-      requestBody:
-        description: '**API App Callback Payloads --**
-
-          Events that are reported at the API App level through the *Event callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api) for a specific app. The *Event callback URL* can also be updated by calling [Update API App](/api/reference/operation/apiAppUpdate) and passing a `callback_url`.'
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventCallbackPayload'
-            examples:
-              signature_request_viewed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestViewed'
-              signature_request_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSigned'
-              signature_request_signer_removed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSignerRemoved'
-              signature_request_downloadable_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDownloadable'
-              signature_request_sent_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestSent'
-              signature_request_all_signed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestAllSigned'
-              signature_request_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestInvalid'
-              signature_request_email_bounce_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestEmailBounce'
-              signature_request_remind_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestRemind'
-              signature_request_incomplete_qes_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestIncompleteQes'
-              signature_request_destroyed_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDestroyed'
-              signature_request_canceled_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestCanceled'
-              signature_request_declined_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestDeclined'
-              signature_request_expired_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestExpired'
-              signature_request_reassigned_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestReassigned'
-              signature_request_prepared_example:
-                $ref: '#/components/examples/EventCallbackSignatureRequestPrepared'
-              account_confirmed_example:
-                $ref: '#/components/examples/EventCallbackAccountConfirmed'
-              unknown_error_example:
-                $ref: '#/components/examples/EventCallbackUnknownError'
-              file_error_example:
-                $ref: '#/components/examples/EventCallbackFileError'
-              template_created_example:
-                $ref: '#/components/examples/EventCallbackTemplateCreated'
-              template_error_example:
-                $ref: '#/components/examples/EventCallbackTemplateError'
-              sign_url_invalid_example:
-                $ref: '#/components/examples/EventCallbackSignUrlInvalid'
-              callback_test_example:
-                $ref: '#/components/examples/EventCallbackCallbackTest'
-      responses:
-        200:
-          $ref: '#/components/responses/EventCallbackResponse'
 x-error-codes:
   bad_request:
     http_status: 400
