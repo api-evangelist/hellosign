@@ -487,7 +487,120 @@ paths:
           title: List API Apps | API Documentation | Dropbox Sign for Developers
           description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to return a list of API Apps that are accessible by you, click here.
 components:
+  examples:
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    ApiAppCreateResponse:
+      summary: API App
+      value:
+        $ref: examples/json/ApiAppCreateResponse.json
+    ApiAppUpdateResponse:
+      summary: API App Update
+      value:
+        $ref: examples/json/ApiAppUpdateResponse.json
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    ApiAppUpdateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/ApiAppUpdateRequest.json
+    ApiAppGetResponse:
+      summary: API App
+      value:
+        $ref: examples/json/ApiAppGetResponse.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    ApiAppListResponse:
+      summary: API App List
+      value:
+        $ref: examples/json/ApiAppListResponse.json
+    Error409Response:
+      summary: Error 409 conflict
+      value:
+        $ref: examples/json/Error409Response.json
+    ApiAppCreateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/ApiAppCreateRequest.json
   schemas:
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
+      type: object
+    ListInfoResponse:
+      description: Contains pagination information about the data returned.
+      properties:
+        num_pages:
+          description: Total number of pages available.
+          type: integer
+        num_results:
+          description: Total number of objects available.
+          type:
+          - integer
+          - 'null'
+        page:
+          description: Number of the page being returned.
+          type: integer
+        page_size:
+          description: Objects returned per page.
+          type: integer
+      type: object
+      x-internal-class: true
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
+      type: object
+    SubOptions:
+      description: Additional options supported by API App.
+      properties:
+        can_insert_everywhere:
+          description: Determines if signers can use "Insert Everywhere" when signing a document.
+          type: boolean
+          default: false
+      type: object
     ApiAppCreateRequest:
       required:
       - name
@@ -517,6 +630,138 @@ components:
         white_labeling_options:
           $ref: '#/components/schemas/SubWhiteLabelingOptions'
       type: object
+    ApiAppResponseWhiteLabelingOptions:
+      description: An object with options to customize the app's signer page
+      properties:
+        header_background_color:
+          type: string
+        legal_version:
+          type: string
+        link_color:
+          type: string
+        page_background_color:
+          type: string
+        primary_button_color:
+          type: string
+        primary_button_color_hover:
+          type: string
+        primary_button_text_color:
+          type: string
+        primary_button_text_color_hover:
+          type: string
+        secondary_button_color:
+          type: string
+        secondary_button_color_hover:
+          type: string
+        secondary_button_text_color:
+          type: string
+        secondary_button_text_color_hover:
+          type: string
+        text_color1:
+          type: string
+        text_color2:
+          type: string
+      type:
+      - object
+      - 'null'
+      x-internal-class: true
+    SubOAuth:
+      description: OAuth related parameters.
+      properties:
+        callback_url:
+          description: The callback URL to be used for OAuth flows. (Required if `oauth[scopes]` is provided)
+          type: string
+        scopes:
+          description: A list of [OAuth scopes](/api/reference/tag/OAuth) to be granted to the app. (Required if `oauth[callback_url]` is provided).
+          type: array
+          items:
+            type: string
+            enum:
+            - request_signature
+            - basic_account_info
+            - account_access
+            - signature_request_access
+            - template_access
+            - team_access
+            - api_app_access
+            - ''
+      type: object
+    ApiAppResponseOptions:
+      description: An object with options that override account settings.
+      properties:
+        can_insert_everywhere:
+          description: Boolean denoting if signers can "Insert Everywhere" in one click while signing a document
+          type: boolean
+      type:
+      - object
+      - 'null'
+      x-internal-class: true
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    ApiAppGetResponse:
+      required:
+      - api_app
+      properties:
+        api_app:
+          $ref: '#/components/schemas/ApiAppResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    ApiAppResponse:
+      description: Contains information about an API App.
+      properties:
+        callback_url:
+          description: The app's callback URL (for events)
+          type:
+          - string
+          - 'null'
+        client_id:
+          description: The app's client id
+          type: string
+        created_at:
+          description: The time that the app was created
+          type: integer
+        domains:
+          description: The domain name(s) associated with the app
+          type: array
+          items:
+            type: string
+        name:
+          description: The name of the app
+          type: string
+        is_approved:
+          description: Boolean to indicate if the app has been approved
+          type: boolean
+        oauth:
+          $ref: '#/components/schemas/ApiAppResponseOAuth'
+        options:
+          $ref: '#/components/schemas/ApiAppResponseOptions'
+        owner_account:
+          $ref: '#/components/schemas/ApiAppResponseOwnerAccount'
+        white_labeling_options:
+          $ref: '#/components/schemas/ApiAppResponseWhiteLabelingOptions'
+      type: object
+      x-internal-class: true
+    ApiAppResponseOwnerAccount:
+      description: An object describing the app's owner
+      properties:
+        account_id:
+          description: The owner account's ID
+          type: string
+        email_address:
+          description: The owner account's email address
+          type: string
+      type: object
+      x-internal-class: true
     SubWhiteLabelingOptions:
       description: 'An array of elements and values serialized to a string, to be used to customize the app''s signer page. (Only applies to some API plans)
 
@@ -572,92 +817,6 @@ components:
           description: Resets white labeling options to defaults. Only useful when updating an API App.
           type: boolean
       type: object
-    ListInfoResponse:
-      description: Contains pagination information about the data returned.
-      properties:
-        num_pages:
-          description: Total number of pages available.
-          type: integer
-        num_results:
-          description: Total number of objects available.
-          type:
-          - integer
-          - 'null'
-        page:
-          description: Number of the page being returned.
-          type: integer
-        page_size:
-          description: Objects returned per page.
-          type: integer
-      type: object
-      x-internal-class: true
-    ApiAppGetResponse:
-      required:
-      - api_app
-      properties:
-        api_app:
-          $ref: '#/components/schemas/ApiAppResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    ApiAppResponse:
-      description: Contains information about an API App.
-      properties:
-        callback_url:
-          description: The app's callback URL (for events)
-          type:
-          - string
-          - 'null'
-        client_id:
-          description: The app's client id
-          type: string
-        created_at:
-          description: The time that the app was created
-          type: integer
-        domains:
-          description: The domain name(s) associated with the app
-          type: array
-          items:
-            type: string
-        name:
-          description: The name of the app
-          type: string
-        is_approved:
-          description: Boolean to indicate if the app has been approved
-          type: boolean
-        oauth:
-          $ref: '#/components/schemas/ApiAppResponseOAuth'
-        options:
-          $ref: '#/components/schemas/ApiAppResponseOptions'
-        owner_account:
-          $ref: '#/components/schemas/ApiAppResponseOwnerAccount'
-        white_labeling_options:
-          $ref: '#/components/schemas/ApiAppResponseWhiteLabelingOptions'
-      type: object
-      x-internal-class: true
-    SubOptions:
-      description: Additional options supported by API App.
-      properties:
-        can_insert_everywhere:
-          description: Determines if signers can use "Insert Everywhere" when signing a document.
-          type: boolean
-          default: false
-      type: object
-    ApiAppResponseOwnerAccount:
-      description: An object describing the app's owner
-      properties:
-        account_id:
-          description: The owner account's ID
-          type: string
-        email_address:
-          description: The owner account's email address
-          type: string
-      type: object
-      x-internal-class: true
     ApiAppUpdateRequest:
       properties:
         callback_url:
@@ -706,62 +865,6 @@ components:
       - object
       - 'null'
       x-internal-class: true
-    SubOAuth:
-      description: OAuth related parameters.
-      properties:
-        callback_url:
-          description: The callback URL to be used for OAuth flows. (Required if `oauth[scopes]` is provided)
-          type: string
-        scopes:
-          description: A list of [OAuth scopes](/api/reference/tag/OAuth) to be granted to the app. (Required if `oauth[callback_url]` is provided).
-          type: array
-          items:
-            type: string
-            enum:
-            - request_signature
-            - basic_account_info
-            - account_access
-            - signature_request_access
-            - template_access
-            - team_access
-            - api_app_access
-            - ''
-      type: object
-    ApiAppResponseWhiteLabelingOptions:
-      description: An object with options to customize the app's signer page
-      properties:
-        header_background_color:
-          type: string
-        legal_version:
-          type: string
-        link_color:
-          type: string
-        page_background_color:
-          type: string
-        primary_button_color:
-          type: string
-        primary_button_color_hover:
-          type: string
-        primary_button_text_color:
-          type: string
-        primary_button_text_color_hover:
-          type: string
-        secondary_button_color:
-          type: string
-        secondary_button_color_hover:
-          type: string
-        secondary_button_text_color:
-          type: string
-        secondary_button_text_color_hover:
-          type: string
-        text_color1:
-          type: string
-        text_color2:
-          type: string
-      type:
-      - object
-      - 'null'
-      x-internal-class: true
     ApiAppListResponse:
       required:
       - api_apps
@@ -781,128 +884,25 @@ components:
             $ref: '#/components/schemas/WarningResponse'
       type: object
       x-internal-class: true
-    WarningResponse:
-      description: A list of warnings.
-      required:
-      - warning_msg
-      - warning_name
-      properties:
-        warning_msg:
-          description: Warning message
-          type: string
-        warning_name:
-          description: Warning name
-          type: string
-      type: object
-    ErrorResponseError:
-      description: Contains information about an error that occurred.
-      required:
-      - error_msg
-      - error_name
-      properties:
-        error_msg:
-          description: Message describing an error.
-          type: string
-        error_path:
-          description: Path at which an error occurred.
-          type: string
-        error_name:
-          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
-          type: string
-      type: object
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-    ApiAppResponseOptions:
-      description: An object with options that override account settings.
-      properties:
-        can_insert_everywhere:
-          description: Boolean denoting if signers can "Insert Everywhere" in one click while signing a document
-          type: boolean
-      type:
-      - object
-      - 'null'
-      x-internal-class: true
-  examples:
-    ApiAppUpdateResponse:
-      summary: API App Update
-      value:
-        $ref: examples/json/ApiAppUpdateResponse.json
-    Error401Response:
-      summary: Error 401 unauthorized
-      value:
-        $ref: examples/json/Error401Response.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
-      value:
-        $ref: examples/json/Error4XXResponse.json
-    ApiAppListResponse:
-      summary: API App List
-      value:
-        $ref: examples/json/ApiAppListResponse.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    ApiAppCreateResponse:
-      summary: API App
-      value:
-        $ref: examples/json/ApiAppCreateResponse.json
-    Error409Response:
-      summary: Error 409 conflict
-      value:
-        $ref: examples/json/Error409Response.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
-    ApiAppGetResponse:
-      summary: API App
-      value:
-        $ref: examples/json/ApiAppGetResponse.json
-    Error404Response:
-      summary: Error 404 not_found
-      value:
-        $ref: examples/json/Error404Response.json
-    ApiAppUpdateRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/ApiAppUpdateRequest.json
-    ApiAppCreateRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/ApiAppCreateRequest.json
   headers:
-    X-Ratelimit-Reset:
-      description: The Unix time at which the rate limit will reset to its maximum.
-      schema:
-        type: integer
-        format: int64
-        example: 1430170900
-    X-RateLimit-Limit:
-      description: The maximum number of requests per hour that you can make.
-      schema:
-        type: integer
-        format: int32
-        example: 100
     X-RateLimit-Remaining:
       description: The number of requests remaining in the current rate limit window.
       schema:
         type: integer
         format: int32
         example: 99
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
+    X-Ratelimit-Reset:
+      description: The Unix time at which the rate limit will reset to its maximum.
+      schema:
+        type: integer
+        format: int64
+        example: 1430170900
   securitySchemes:
     api_key:
       type: http

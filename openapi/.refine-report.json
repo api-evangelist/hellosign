@@ -19,9 +19,7 @@
     "hellosign-template-api-openapi.yml",
     "hellosign-unclaimed-draft-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [
     "hellosign-callbacks-and-events-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. webhook:accountCallback post, webhook:appCallback post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
@@ -31,8 +29,7 @@
     "hellosign-openapi-original.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0; promoted x-webhooks (2) to the standard `webhooks` key",
     "hellosign-openapi-original.yaml: declared missing tag: Fax",
     "tag 'Callbacks and Events' spans 2 source specs (hellosign-openapi-original.yaml, hellosign-callbacks-and-events-api-openapi.yml): per-path servers applied",
-    "superseded outputs removed: hellosign-o-auth-api-openapi.yml",
-    "apis.yml register: written (+1 apis, 13 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "hellosign-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -41,7 +38,7 @@
     "hellosign-embedded-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "hellosign-fax-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "hellosign-fax-line-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "hellosign-o-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hellosign-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "hellosign-report-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "hellosign-signature-request-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "hellosign-team-api-openapi.yml: previously refined output, superseded by openapi/_original/",
