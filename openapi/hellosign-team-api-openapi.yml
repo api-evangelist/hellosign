@@ -940,91 +940,147 @@ paths:
           description: The Dropbox Sign API allows you automate your team management. To find out how to get a list of sub teams that exist for a given team, click here.
 components:
   schemas:
-    SubTeamResponse:
+    AccountResponseQuotas:
+      description: Details concerning remaining monthly quotas.
+      properties:
+        api_signature_requests_left:
+          description: API signature requests remaining.
+          type:
+          - integer
+          - 'null'
+        documents_left:
+          description: Signature requests remaining.
+          type:
+          - integer
+          - 'null'
+        templates_total:
+          description: Total API templates allowed.
+          type:
+          - integer
+          - 'null'
+        templates_left:
+          description: API templates remaining.
+          type:
+          - integer
+          - 'null'
+        sms_verifications_left:
+          description: SMS verifications remaining.
+          type:
+          - integer
+          - 'null'
+        num_fax_pages_left:
+          description: Number of fax pages left
+          type:
+          - integer
+          - 'null'
+      type: object
+      x-internal-class: true
+    TeamGetInfoResponse:
+      required:
+      - team
+      properties:
+        team:
+          $ref: '#/components/schemas/TeamInfoResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    TeamInvitesResponse:
+      required:
+      - team_invites
+      properties:
+        team_invites:
+          description: Contains a list of team invites and their roles.
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamInviteResponse'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    TeamSubTeamsResponse:
+      required:
+      - sub_teams
+      - list_info
+      properties:
+        sub_teams:
+          description: Contains a list with sub teams.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubTeamResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    TeamGetResponse:
+      required:
+      - team
+      properties:
+        team:
+          $ref: '#/components/schemas/TeamResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    TeamInfoResponse:
       properties:
         team_id:
           description: The id of a team
           type: string
+        team_parent:
+          $ref: '#/components/schemas/TeamParentResponse'
         name:
           description: The name of a team
           type: string
+        num_members:
+          description: Number of members within a team
+          type: integer
+        num_sub_teams:
+          description: Number of sub teams within a team
+          type: integer
       type: object
       x-internal-class: true
-    AccountResponseUsage:
-      description: Details concerning monthly usage
+    TeamResponse:
+      description: Contains information about your team and its members
       properties:
-        fax_pages_sent:
-          description: Number of fax pages sent
-          type:
-          - integer
-          - 'null'
-      type: object
-      x-internal-class: true
-    WarningResponse:
-      description: A list of warnings.
-      required:
-      - warning_msg
-      - warning_name
-      properties:
-        warning_msg:
-          description: Warning message
+        name:
+          description: The name of your Team
           type: string
-        warning_name:
-          description: Warning name
-          type: string
-      type: object
-    ListInfoResponse:
-      description: Contains pagination information about the data returned.
-      properties:
-        num_pages:
-          description: Total number of pages available.
-          type: integer
-        num_results:
-          description: Total number of objects available.
-          type:
-          - integer
-          - 'null'
-        page:
-          description: Number of the page being returned.
-          type: integer
-        page_size:
-          description: Objects returned per page.
-          type: integer
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountResponse'
+        invited_accounts:
+          description: A list of all Accounts that have an outstanding invitation to join your Team. Note that this response is a subset of the response parameters found in `GET /account`.
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountResponse'
+        invited_emails:
+          description: A list of email addresses that have an outstanding invitation to join your Team and do not yet have a Dropbox Sign account.
+          type: array
+          items:
+            type: string
       type: object
       x-internal-class: true
-    TeamUpdateRequest:
+    TeamCreateRequest:
       properties:
         name:
           description: The name of your Team.
           type: string
+          default: Untitled Team
       type: object
-    AccountResponseSettings:
-      description: Subset of configured settings
-      properties:
-        signer_access_codes:
-          description: Returns `true` if _Custom access codes_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
-          type: boolean
-        sms_delivery:
-          description: Returns `true` if _Text message_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
-          type: boolean
-        sms_authentication:
-          description: Returns `true` if _Signer authentication_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
-          type: boolean
-      type: object
-      x-internal-class: true
-    TeamMemberResponse:
-      properties:
-        account_id:
-          description: Account id of the team member.
-          type: string
-        email_address:
-          description: Email address of the team member.
-          type: string
-        role:
-          description: The specific role a member has on the team.
-          type: string
-      type: object
-      x-internal-class: true
     TeamInviteResponse:
       properties:
         email_address:
@@ -1063,50 +1119,127 @@ components:
           description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
           type: string
       type: object
-    TeamSubTeamsResponse:
-      required:
-      - sub_teams
-      - list_info
+    TeamParentResponse:
+      description: Information about the parent team if a team has one, set to `null` otherwise.
       properties:
-        sub_teams:
-          description: Contains a list with sub teams.
-          type: array
-          items:
-            $ref: '#/components/schemas/SubTeamResponse'
-        list_info:
-          $ref: '#/components/schemas/ListInfoResponse'
-        warnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
+        team_id:
+          description: The id of a team
+          type: string
+        name:
+          description: The name of a team
+          type: string
+      type:
+      - object
+      - 'null'
+      x-internal-class: true
+    TeamRemoveMemberRequest:
+      properties:
+        account_id:
+          description: '**account_id** or **email_address** is required. If both are provided, the account id prevails.
+
+
+            Account id to remove from your Team.'
+          type: string
+        email_address:
+          description: '**account_id** or **email_address** is required. If both are provided, the account id prevails.
+
+
+            Email address of the Account to remove from your Team.'
+          type: string
+          format: email
+        new_owner_email_address:
+          description: 'The email address of an Account on this Team to receive all documents, templates, and API apps (if applicable) from the removed Account. If not provided, and on an Enterprise plan, this data will remain with the removed Account.
+
+
+            **NOTE:** Only available for Enterprise plans.'
+          type: string
+          format: email
+        new_team_id:
+          description: Id of the new Team.
+          type: string
+        new_role:
+          description: 'A new role member will take in a new Team.
+
+
+            **NOTE:** This parameter is used only if `new_team_id` is provided.'
+          type: string
+          enum:
+          - Member
+          - Developer
+          - Team Manager
+          - Admin
+      type: object
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    AccountResponseSettings:
+      description: Subset of configured settings
+      properties:
+        signer_access_codes:
+          description: Returns `true` if _Custom access codes_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_delivery:
+          description: Returns `true` if _Text message_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_authentication:
+          description: Returns `true` if _Signer authentication_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
       type: object
       x-internal-class: true
-    TeamInvitesResponse:
-      required:
-      - team_invites
+    SubTeamResponse:
       properties:
-        team_invites:
-          description: Contains a list of team invites and their roles.
-          type: array
-          items:
-            $ref: '#/components/schemas/TeamInviteResponse'
-        warnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
+        team_id:
+          description: The id of a team
+          type: string
+        name:
+          description: The name of a team
+          type: string
       type: object
       x-internal-class: true
-    TeamGetInfoResponse:
-      required:
-      - team
+    ListInfoResponse:
+      description: Contains pagination information about the data returned.
       properties:
-        team:
-          $ref: '#/components/schemas/TeamInfoResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
+        num_pages:
+          description: Total number of pages available.
+          type: integer
+        num_results:
+          description: Total number of objects available.
+          type:
+          - integer
+          - 'null'
+        page:
+          description: Number of the page being returned.
+          type: integer
+        page_size:
+          description: Objects returned per page.
+          type: integer
+      type: object
+      x-internal-class: true
+    TeamMemberResponse:
+      properties:
+        account_id:
+          description: Account id of the team member.
+          type: string
+        email_address:
+          description: Email address of the team member.
+          type: string
+        role:
+          description: The specific role a member has on the team.
+          type: string
+      type: object
+      x-internal-class: true
+    AccountResponseUsage:
+      description: Details concerning monthly usage
+      properties:
+        fax_pages_sent:
+          description: Number of fax pages sent
+          type:
+          - integer
+          - 'null'
       type: object
       x-internal-class: true
     TeamMembersResponse:
@@ -1126,26 +1259,6 @@ components:
           items:
             $ref: '#/components/schemas/WarningResponse'
       type: object
-      x-internal-class: true
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-    TeamParentResponse:
-      description: Information about the parent team if a team has one, set to `null` otherwise.
-      properties:
-        team_id:
-          description: The id of a team
-          type: string
-        name:
-          description: The name of a team
-          type: string
-      type:
-      - object
-      - 'null'
       x-internal-class: true
     AccountResponse:
       properties:
@@ -1192,6 +1305,19 @@ components:
           $ref: '#/components/schemas/AccountResponseSettings'
       type: object
       x-internal-class: true
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
+      type: object
     TeamAddMemberRequest:
       properties:
         account_id:
@@ -1219,199 +1345,93 @@ components:
           - Team Manager
           - Admin
       type: object
-    TeamCreateRequest:
+    TeamUpdateRequest:
       properties:
         name:
           description: The name of your Team.
           type: string
-          default: Untitled Team
       type: object
-    TeamGetResponse:
-      required:
-      - team
-      properties:
-        team:
-          $ref: '#/components/schemas/TeamResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    TeamRemoveMemberRequest:
-      properties:
-        account_id:
-          description: '**account_id** or **email_address** is required. If both are provided, the account id prevails.
-
-
-            Account id to remove from your Team.'
-          type: string
-        email_address:
-          description: '**account_id** or **email_address** is required. If both are provided, the account id prevails.
-
-
-            Email address of the Account to remove from your Team.'
-          type: string
-          format: email
-        new_owner_email_address:
-          description: 'The email address of an Account on this Team to receive all documents, templates, and API apps (if applicable) from the removed Account. If not provided, and on an Enterprise plan, this data will remain with the removed Account.
-
-
-            **NOTE:** Only available for Enterprise plans.'
-          type: string
-          format: email
-        new_team_id:
-          description: Id of the new Team.
-          type: string
-        new_role:
-          description: 'A new role member will take in a new Team.
-
-
-            **NOTE:** This parameter is used only if `new_team_id` is provided.'
-          type: string
-          enum:
-          - Member
-          - Developer
-          - Team Manager
-          - Admin
-      type: object
-    TeamResponse:
-      description: Contains information about your team and its members
-      properties:
-        name:
-          description: The name of your Team
-          type: string
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountResponse'
-        invited_accounts:
-          description: A list of all Accounts that have an outstanding invitation to join your Team. Note that this response is a subset of the response parameters found in `GET /account`.
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountResponse'
-        invited_emails:
-          description: A list of email addresses that have an outstanding invitation to join your Team and do not yet have a Dropbox Sign account.
-          type: array
-          items:
-            type: string
-      type: object
-      x-internal-class: true
-    AccountResponseQuotas:
-      description: Details concerning remaining monthly quotas.
-      properties:
-        api_signature_requests_left:
-          description: API signature requests remaining.
-          type:
-          - integer
-          - 'null'
-        documents_left:
-          description: Signature requests remaining.
-          type:
-          - integer
-          - 'null'
-        templates_total:
-          description: Total API templates allowed.
-          type:
-          - integer
-          - 'null'
-        templates_left:
-          description: API templates remaining.
-          type:
-          - integer
-          - 'null'
-        sms_verifications_left:
-          description: SMS verifications remaining.
-          type:
-          - integer
-          - 'null'
-        num_fax_pages_left:
-          description: Number of fax pages left
-          type:
-          - integer
-          - 'null'
-      type: object
-      x-internal-class: true
-    TeamInfoResponse:
-      properties:
-        team_id:
-          description: The id of a team
-          type: string
-        team_parent:
-          $ref: '#/components/schemas/TeamParentResponse'
-        name:
-          description: The name of a team
-          type: string
-        num_members:
-          description: Number of members within a team
-          type: integer
-        num_sub_teams:
-          description: Number of sub teams within a team
-          type: integer
-      type: object
-      x-internal-class: true
   examples:
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    TeamMembersResponse:
-      summary: Team Members List
-      value:
-        $ref: examples/json/TeamMembersResponse.json
-    TeamSubTeamsResponse:
-      summary: Team Sub Teams List
-      value:
-        $ref: examples/json/TeamSubTeamsResponse.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
-      value:
-        $ref: examples/json/Error4XXResponse.json
-    TeamCreateResponse:
-      summary: Team Create
-      value:
-        $ref: examples/json/TeamCreateResponse.json
-    TeamRemoveMemberRequestAccountId:
-      summary: Account ID Example
-      value:
-        $ref: examples/json/TeamRemoveMemberRequestAccountId.json
     TeamUpdateRequest:
       summary: Default Example
       value:
         $ref: examples/json/TeamUpdateRequest.json
-    Error404Response:
-      summary: Error 404 not_found
-      value:
-        $ref: examples/json/Error404Response.json
     TeamCreateRequest:
       summary: Default Example
       value:
         $ref: examples/json/TeamCreateRequest.json
-    TeamAddMemberRequest:
-      summary: Email Address Example
+    Error402Response:
+      summary: Error 402 payment_required
       value:
-        $ref: examples/json/TeamAddMemberRequest.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
+        $ref: examples/json/Error402Response.json
+    Error404Response:
+      summary: Error 404 not_found
       value:
-        $ref: examples/json/Error429Response.json
+        $ref: examples/json/Error404Response.json
+    Error409Response:
+      summary: Error 409 conflict
+      value:
+        $ref: examples/json/Error409Response.json
+    TeamMembersResponse:
+      summary: Team Members List
+      value:
+        $ref: examples/json/TeamMembersResponse.json
+    TeamAddMemberResponse:
+      summary: Team Add Member
+      value:
+        $ref: examples/json/TeamAddMemberResponse.json
+    TeamGetInfoResponse:
+      summary: Team Get Info
+      value:
+        $ref: examples/json/TeamGetInfoResponse.json
     TeamAddMemberRequestAccountId:
       summary: Account ID Example
       value:
         $ref: examples/json/TeamAddMemberRequestAccountId.json
-    TeamRemoveMemberRequest:
-      summary: Email Address Example
+    TeamRemoveMemberRequestAccountId:
+      summary: Account ID Example
       value:
-        $ref: examples/json/TeamRemoveMemberRequest.json
+        $ref: examples/json/TeamRemoveMemberRequestAccountId.json
     Error401Response:
       summary: Error 401 unauthorized
       value:
         $ref: examples/json/Error401Response.json
+    TeamCreateResponse:
+      summary: Team Create
+      value:
+        $ref: examples/json/TeamCreateResponse.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    TeamSubTeamsResponse:
+      summary: Team Sub Teams List
+      value:
+        $ref: examples/json/TeamSubTeamsResponse.json
+    TeamRemoveMemberResponse:
+      summary: Team Remove Member
+      value:
+        $ref: examples/json/TeamRemoveMemberResponse.json
+    TeamRemoveMemberRequest:
+      summary: Email Address Example
+      value:
+        $ref: examples/json/TeamRemoveMemberRequest.json
+    TeamGetResponse:
+      summary: Team Get
+      value:
+        $ref: examples/json/TeamGetResponse.json
+    TeamInvitesResponse:
+      summary: Team Invites
+      value:
+        $ref: examples/json/TeamInvitesResponse.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
     TeamUpdateResponse:
       summary: Team Update
       value:
@@ -1420,43 +1440,23 @@ components:
       summary: Error 400 bad_request
       value:
         $ref: examples/json/Error400Response.json
-    TeamInvitesResponse:
-      summary: Team Invites
+    TeamAddMemberRequest:
+      summary: Email Address Example
       value:
-        $ref: examples/json/TeamInvitesResponse.json
-    Error409Response:
-      summary: Error 409 conflict
-      value:
-        $ref: examples/json/Error409Response.json
-    TeamGetInfoResponse:
-      summary: Team Get Info
-      value:
-        $ref: examples/json/TeamGetInfoResponse.json
-    TeamAddMemberResponse:
-      summary: Team Add Member
-      value:
-        $ref: examples/json/TeamAddMemberResponse.json
-    TeamRemoveMemberResponse:
-      summary: Team Remove Member
-      value:
-        $ref: examples/json/TeamRemoveMemberResponse.json
-    TeamGetResponse:
-      summary: Team Get
-      value:
-        $ref: examples/json/TeamGetResponse.json
+        $ref: examples/json/TeamAddMemberRequest.json
   headers:
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
     X-RateLimit-Limit:
       description: The maximum number of requests per hour that you can make.
       schema:
         type: integer
         format: int32
         example: 100
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
     X-Ratelimit-Reset:
       description: The Unix time at which the rate limit will reset to its maximum.
       schema:

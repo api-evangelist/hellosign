@@ -219,14 +219,18 @@ paths:
           description: The Dropbox Sign API allows you to build custom integrations. To find out how to retrieve an embedded iFrame object containing a signature url, click here.
 components:
   examples:
-    Error403Response:
-      summary: Error 403 forbidden
+    Error409Response:
+      summary: Error 409 conflict
       value:
-        $ref: examples/json/Error403Response.json
-    Error402Response:
-      summary: Error 402 payment_required
+        $ref: examples/json/Error409Response.json
+    Error401Response:
+      summary: Error 401 unauthorized
       value:
-        $ref: examples/json/Error402Response.json
+        $ref: examples/json/Error401Response.json
+    EmbeddedEditUrlResponse:
+      summary: Embedded Edit URL
+      value:
+        $ref: examples/json/EmbeddedEditUrlResponse.json
     Error4XXResponse:
       summary: Error 4XX failed_operation
       value:
@@ -235,59 +239,50 @@ components:
       summary: Default Example
       value:
         $ref: examples/json/EmbeddedEditUrlRequest.json
-    Error404Response:
-      summary: Error 404 not_found
+    Error403Response:
+      summary: Error 403 forbidden
       value:
-        $ref: examples/json/Error404Response.json
+        $ref: examples/json/Error403Response.json
     Error429Response:
       summary: Error 429 exceeded_rate
       value:
         $ref: examples/json/Error429Response.json
-    Error401Response:
-      summary: Error 401 unauthorized
-      value:
-        $ref: examples/json/Error401Response.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
-    EmbeddedEditUrlResponse:
-      summary: Embedded Edit URL
-      value:
-        $ref: examples/json/EmbeddedEditUrlResponse.json
-    Error409Response:
-      summary: Error 409 conflict
-      value:
-        $ref: examples/json/Error409Response.json
     EmbeddedSignUrlResponse:
       summary: Embedded Sign URL
       value:
         $ref: examples/json/EmbeddedSignUrlResponse.json
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+  headers:
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
+    X-Ratelimit-Reset:
+      description: The Unix time at which the rate limit will reset to its maximum.
+      schema:
+        type: integer
+        format: int64
+        example: 1430170900
   schemas:
-    WarningResponse:
-      description: A list of warnings.
-      required:
-      - warning_msg
-      - warning_name
-      properties:
-        warning_msg:
-          description: Warning message
-          type: string
-        warning_name:
-          description: Warning name
-          type: string
-      type: object
-    EmbeddedEditUrlResponseEmbedded:
-      description: An embedded template object.
-      properties:
-        edit_url:
-          description: A template url that can be opened in an iFrame.
-          type: string
-        expires_at:
-          description: The specific time that the the `edit_url` link expires, in epoch.
-          type: integer
-      type: object
-      x-internal-class: true
     EmbeddedSignUrlResponseEmbedded:
       description: An object that contains necessary information to set up embedded signing.
       properties:
@@ -383,19 +378,6 @@ components:
           type: boolean
           default: false
       type: object
-    EmbeddedEditUrlResponse:
-      required:
-      - embedded
-      properties:
-        embedded:
-          $ref: '#/components/schemas/EmbeddedEditUrlResponseEmbedded'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
     SubMergeField:
       required:
       - name
@@ -414,6 +396,30 @@ components:
             text: Sets merge [field type](/api/reference/constants/#field-types) to `text`.
             checkbox: Sets merge [field type](/api/reference/constants/#field-types) to `checkbox`.
       type: object
+    EmbeddedEditUrlResponse:
+      required:
+      - embedded
+      properties:
+        embedded:
+          $ref: '#/components/schemas/EmbeddedEditUrlResponseEmbedded'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    EmbeddedEditUrlResponseEmbedded:
+      description: An embedded template object.
+      properties:
+        edit_url:
+          description: A template url that can be opened in an iFrame.
+          type: string
+        expires_at:
+          description: The specific time that the the `edit_url` link expires, in epoch.
+          type: integer
+      type: object
+      x-internal-class: true
     EmbeddedSignUrlResponse:
       required:
       - embedded
@@ -427,25 +433,19 @@ components:
             $ref: '#/components/schemas/WarningResponse'
       type: object
       x-internal-class: true
-  headers:
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
-    X-RateLimit-Limit:
-      description: The maximum number of requests per hour that you can make.
-      schema:
-        type: integer
-        format: int32
-        example: 100
-    X-Ratelimit-Reset:
-      description: The Unix time at which the rate limit will reset to its maximum.
-      schema:
-        type: integer
-        format: int64
-        example: 1430170900
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
+      type: object
   securitySchemes:
     api_key:
       type: http

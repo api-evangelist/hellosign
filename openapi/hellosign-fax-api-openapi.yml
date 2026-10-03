@@ -469,88 +469,109 @@ paths:
           title: Send Fax | API Documentation | Dropbox Fax for Developers
           description: The Dropbox Fax API allows you to build custom integrations. To find out how to send a fax, click here.
 components:
-  examples:
-    FaxListResponse:
-      summary: Returns the properties and settings of multiple Faxes
-      value:
-        $ref: examples/json/FaxListResponse.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
-      value:
-        $ref: examples/json/Error4XXResponse.json
-    FaxGetResponse:
-      summary: Fax Response
-      value:
-        $ref: examples/json/FaxGetResponse.json
-    Error410Response:
-      summary: Error 410 deleted
-      value:
-        $ref: examples/json/Error410Response.json
-    Error404Response:
-      summary: Error 404 not_found
-      value:
-        $ref: examples/json/Error404Response.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
-    FaxSendRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/FaxSendRequest.json
-    Error401Response:
-      summary: Error 401 unauthorized
-      value:
-        $ref: examples/json/Error401Response.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
   schemas:
-    WarningResponse:
-      description: A list of warnings.
+    FaxResponse:
       required:
-      - warning_msg
-      - warning_name
+      - fax_id
+      - title
+      - original_title
+      - metadata
+      - created_at
+      - sender
+      - files_url
+      - transmissions
       properties:
-        warning_msg:
-          description: Warning message
+        fax_id:
+          description: Fax ID
           type: string
-        warning_name:
-          description: Warning name
+        title:
+          description: Fax Title
+          type: string
+        original_title:
+          description: Fax Original Title
+          type: string
+        subject:
+          description: Fax Subject
+          type:
+          - string
+          - 'null'
+        message:
+          description: Fax Message
+          type:
+          - string
+          - 'null'
+        metadata:
+          description: Fax Metadata
+          type: object
+          additionalProperties: {}
+        created_at:
+          description: Fax Created At Timestamp
+          type: integer
+        sender:
+          description: Fax Sender Email
+          type: string
+        files_url:
+          description: Fax Files URL
+          type: string
+        final_copy_uri:
+          description: The path where the completed document can be downloaded
+          type:
+          - string
+          - 'null'
+        transmissions:
+          description: Fax Transmissions List
+          type: array
+          items:
+            $ref: '#/components/schemas/FaxResponseTransmission'
+      type: object
+      x-internal-class: true
+    FaxListResponse:
+      required:
+      - faxes
+      - list_info
+      properties:
+        faxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FaxResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+      type: object
+      x-internal-class: true
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
           type: string
       type: object
-    FaxResponseTransmission:
+    ErrorResponse:
       required:
-      - recipient
-      - status_code
+      - error
       properties:
-        recipient:
-          description: Fax Transmission Recipient
-          type: string
-        status_code:
-          description: Fax Transmission Status Code
-          type: string
-          enum:
-          - success
-          - transmitting
-          - error_could_not_fax
-          - error_unknown
-          - error_busy
-          - error_no_answer
-          - error_disconnected
-          - error_bad_destination
-        sent_at:
-          description: Fax Transmission Sent Timestamp
-          type: integer
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    FaxGetResponse:
+      required:
+      - fax
+      properties:
+        fax:
+          $ref: '#/components/schemas/FaxResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
       type: object
       x-internal-class: true
     ListInfoResponse:
@@ -622,129 +643,108 @@ components:
           type: string
           example: Fax Title
       type: object
-    ErrorResponseError:
-      description: Contains information about an error that occurred.
+    FaxResponseTransmission:
       required:
-      - error_msg
-      - error_name
+      - recipient
+      - status_code
       properties:
-        error_msg:
-          description: Message describing an error.
+        recipient:
+          description: Fax Transmission Recipient
           type: string
-        error_path:
-          description: Path at which an error occurred.
+        status_code:
+          description: Fax Transmission Status Code
           type: string
-        error_name:
-          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
-          type: string
-      type: object
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-    FaxListResponse:
-      required:
-      - faxes
-      - list_info
-      properties:
-        faxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/FaxResponse'
-        list_info:
-          $ref: '#/components/schemas/ListInfoResponse'
-      type: object
-      x-internal-class: true
-    FaxGetResponse:
-      required:
-      - fax
-      properties:
-        fax:
-          $ref: '#/components/schemas/FaxResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    FaxResponse:
-      required:
-      - fax_id
-      - title
-      - original_title
-      - metadata
-      - created_at
-      - sender
-      - files_url
-      - transmissions
-      properties:
-        fax_id:
-          description: Fax ID
-          type: string
-        title:
-          description: Fax Title
-          type: string
-        original_title:
-          description: Fax Original Title
-          type: string
-        subject:
-          description: Fax Subject
-          type:
-          - string
-          - 'null'
-        message:
-          description: Fax Message
-          type:
-          - string
-          - 'null'
-        metadata:
-          description: Fax Metadata
-          type: object
-          additionalProperties: {}
-        created_at:
-          description: Fax Created At Timestamp
+          enum:
+          - success
+          - transmitting
+          - error_could_not_fax
+          - error_unknown
+          - error_busy
+          - error_no_answer
+          - error_disconnected
+          - error_bad_destination
+        sent_at:
+          description: Fax Transmission Sent Timestamp
           type: integer
-        sender:
-          description: Fax Sender Email
-          type: string
-        files_url:
-          description: Fax Files URL
-          type: string
-        final_copy_uri:
-          description: The path where the completed document can be downloaded
-          type:
-          - string
-          - 'null'
-        transmissions:
-          description: Fax Transmissions List
-          type: array
-          items:
-            $ref: '#/components/schemas/FaxResponseTransmission'
       type: object
       x-internal-class: true
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
+      type: object
   headers:
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
     X-RateLimit-Limit:
       description: The maximum number of requests per hour that you can make.
       schema:
         type: integer
         format: int32
         example: 100
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
     X-Ratelimit-Reset:
       description: The Unix time at which the rate limit will reset to its maximum.
       schema:
         type: integer
         format: int64
         example: 1430170900
+  examples:
+    FaxSendRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/FaxSendRequest.json
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    FaxListResponse:
+      summary: Returns the properties and settings of multiple Faxes
+      value:
+        $ref: examples/json/FaxListResponse.json
+    FaxGetResponse:
+      summary: Fax Response
+      value:
+        $ref: examples/json/FaxGetResponse.json
+    Error410Response:
+      summary: Error 410 deleted
+      value:
+        $ref: examples/json/Error410Response.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
   securitySchemes:
     api_key:
       type: http

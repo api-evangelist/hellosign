@@ -206,47 +206,108 @@ paths:
       x-hideTryItPanel: true
 components:
   examples:
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
-    OAuthTokenGenerateResponse:
-      summary: Retrieving the OAuth token
-      value:
-        $ref: examples/json/OAuthTokenGenerateResponse.json
-    OAuthTokenRefreshRequest:
-      summary: OAuth Token Refresh Example
-      value:
-        $ref: examples/json/OAuthTokenRefreshRequest.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
     Error401Response:
       summary: Error 401 unauthorized
       value:
         $ref: examples/json/Error401Response.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
-      value:
-        $ref: examples/json/Error4XXResponse.json
-    OAuthTokenRefreshResponse:
-      summary: Refresh an existing OAuth token
-      value:
-        $ref: examples/json/OAuthTokenRefreshResponse.json
     OAuthTokenGenerateRequest:
       summary: OAuth Token Generate Example
       value:
         $ref: examples/json/OAuthTokenGenerateRequest.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    OAuthTokenRefreshRequest:
+      summary: OAuth Token Refresh Example
+      value:
+        $ref: examples/json/OAuthTokenRefreshRequest.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    OAuthTokenRefreshResponse:
+      summary: Refresh an existing OAuth token
+      value:
+        $ref: examples/json/OAuthTokenRefreshResponse.json
+    OAuthTokenGenerateResponse:
+      summary: Retrieving the OAuth token
+      value:
+        $ref: examples/json/OAuthTokenGenerateResponse.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+  headers:
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
+    X-Ratelimit-Reset:
+      description: The Unix time at which the rate limit will reset to its maximum.
+      schema:
+        type: integer
+        format: int64
+        example: 1430170900
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
   schemas:
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
+      type: object
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    OAuthTokenRefreshRequest:
+      required:
+      - grant_type
+      - refresh_token
+      properties:
+        grant_type:
+          description: When refreshing an existing token use `refresh_token`.
+          type: string
+          default: refresh_token
+        refresh_token:
+          description: The token provided when you got the expired access token.
+          type: string
+        client_id:
+          description: The client ID for your API app. Required for new API apps. To enhance security, we recommend making it required for existing apps in your app settings.
+          type: string
+        client_secret:
+          description: The client secret for your API app. Required for new API apps. To enhance security, we recommend making it required for existing apps in your app settings.
+          type: string
+      type: object
     OAuthTokenGenerateRequest:
       required:
       - client_id
@@ -289,67 +350,6 @@ components:
           - 'null'
       type: object
       x-internal-class: true
-    OAuthTokenRefreshRequest:
-      required:
-      - grant_type
-      - refresh_token
-      properties:
-        grant_type:
-          description: When refreshing an existing token use `refresh_token`.
-          type: string
-          default: refresh_token
-        refresh_token:
-          description: The token provided when you got the expired access token.
-          type: string
-        client_id:
-          description: The client ID for your API app. Required for new API apps. To enhance security, we recommend making it required for existing apps in your app settings.
-          type: string
-        client_secret:
-          description: The client secret for your API app. Required for new API apps. To enhance security, we recommend making it required for existing apps in your app settings.
-          type: string
-      type: object
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-    ErrorResponseError:
-      description: Contains information about an error that occurred.
-      required:
-      - error_msg
-      - error_name
-      properties:
-        error_msg:
-          description: Message describing an error.
-          type: string
-        error_path:
-          description: Path at which an error occurred.
-          type: string
-        error_name:
-          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
-          type: string
-      type: object
-  headers:
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
-    X-RateLimit-Limit:
-      description: The maximum number of requests per hour that you can make.
-      schema:
-        type: integer
-        format: int32
-        example: 100
-    X-Ratelimit-Reset:
-      description: The Unix time at which the rate limit will reset to its maximum.
-      schema:
-        type: integer
-        format: int64
-        example: 1430170900
   securitySchemes:
     api_key:
       type: http
