@@ -487,293 +487,7 @@ paths:
           title: List API Apps | API Documentation | Dropbox Sign for Developers
           description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to return a list of API Apps that are accessible by you, click here.
 components:
-  examples:
-    ApiAppUpdateResponse:
-      summary: API App Update
-      value:
-        $ref: examples/json/ApiAppUpdateResponse.json
-    ApiAppUpdateRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/ApiAppUpdateRequest.json
-    Error409Response:
-      summary: Error 409 conflict
-      value:
-        $ref: examples/json/Error409Response.json
-    ApiAppGetResponse:
-      summary: API App
-      value:
-        $ref: examples/json/ApiAppGetResponse.json
-    Error401Response:
-      summary: Error 401 unauthorized
-      value:
-        $ref: examples/json/Error401Response.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
-      value:
-        $ref: examples/json/Error4XXResponse.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    ApiAppCreateRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/ApiAppCreateRequest.json
-    ApiAppListResponse:
-      summary: API App List
-      value:
-        $ref: examples/json/ApiAppListResponse.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
-    ApiAppCreateResponse:
-      summary: API App
-      value:
-        $ref: examples/json/ApiAppCreateResponse.json
-    Error404Response:
-      summary: Error 404 not_found
-      value:
-        $ref: examples/json/Error404Response.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
   schemas:
-    ApiAppListResponse:
-      required:
-      - api_apps
-      - list_info
-      properties:
-        api_apps:
-          description: Contains information about API Apps.
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiAppResponse'
-        list_info:
-          $ref: '#/components/schemas/ListInfoResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    ApiAppCreateRequest:
-      required:
-      - name
-      - domains
-      properties:
-        callback_url:
-          description: The URL at which the ApiApp should receive event callbacks.
-          type: string
-        custom_logo_file:
-          description: An image file to use as a custom logo in embedded contexts. (Only applies to some API plans)
-          type: string
-          format: binary
-        domains:
-          description: The domain names the ApiApp will be associated with.
-          type: array
-          items:
-            type: string
-          maxItems: 10
-          minItems: 1
-        name:
-          description: The name you want to assign to the ApiApp.
-          type: string
-        oauth:
-          $ref: '#/components/schemas/SubOAuth'
-        options:
-          $ref: '#/components/schemas/SubOptions'
-        white_labeling_options:
-          $ref: '#/components/schemas/SubWhiteLabelingOptions'
-      type: object
-    SubOptions:
-      description: Additional options supported by API App.
-      properties:
-        can_insert_everywhere:
-          description: Determines if signers can use "Insert Everywhere" when signing a document.
-          type: boolean
-          default: false
-      type: object
-    ApiAppResponseWhiteLabelingOptions:
-      description: An object with options to customize the app's signer page
-      properties:
-        header_background_color:
-          type: string
-        legal_version:
-          type: string
-        link_color:
-          type: string
-        page_background_color:
-          type: string
-        primary_button_color:
-          type: string
-        primary_button_color_hover:
-          type: string
-        primary_button_text_color:
-          type: string
-        primary_button_text_color_hover:
-          type: string
-        secondary_button_color:
-          type: string
-        secondary_button_color_hover:
-          type: string
-        secondary_button_text_color:
-          type: string
-        secondary_button_text_color_hover:
-          type: string
-        text_color1:
-          type: string
-        text_color2:
-          type: string
-      type:
-      - object
-      - 'null'
-      x-internal-class: true
-    ApiAppUpdateRequest:
-      properties:
-        callback_url:
-          description: The URL at which the API App should receive event callbacks.
-          type: string
-        custom_logo_file:
-          description: An image file to use as a custom logo in embedded contexts. (Only applies to some API plans)
-          type: string
-          format: binary
-        domains:
-          description: The domain names the ApiApp will be associated with.
-          type: array
-          items:
-            type: string
-          maxItems: 10
-        name:
-          description: The name you want to assign to the ApiApp.
-          type: string
-        oauth:
-          $ref: '#/components/schemas/SubOAuth'
-        options:
-          $ref: '#/components/schemas/SubOptions'
-        white_labeling_options:
-          $ref: '#/components/schemas/SubWhiteLabelingOptions'
-      type: object
-    ApiAppResponse:
-      description: Contains information about an API App.
-      properties:
-        callback_url:
-          description: The app's callback URL (for events)
-          type:
-          - string
-          - 'null'
-        client_id:
-          description: The app's client id
-          type: string
-        created_at:
-          description: The time that the app was created
-          type: integer
-        domains:
-          description: The domain name(s) associated with the app
-          type: array
-          items:
-            type: string
-        name:
-          description: The name of the app
-          type: string
-        is_approved:
-          description: Boolean to indicate if the app has been approved
-          type: boolean
-        oauth:
-          $ref: '#/components/schemas/ApiAppResponseOAuth'
-        options:
-          $ref: '#/components/schemas/ApiAppResponseOptions'
-        owner_account:
-          $ref: '#/components/schemas/ApiAppResponseOwnerAccount'
-        white_labeling_options:
-          $ref: '#/components/schemas/ApiAppResponseWhiteLabelingOptions'
-      type: object
-      x-internal-class: true
-    ErrorResponseError:
-      description: Contains information about an error that occurred.
-      required:
-      - error_msg
-      - error_name
-      properties:
-        error_msg:
-          description: Message describing an error.
-          type: string
-        error_path:
-          description: Path at which an error occurred.
-          type: string
-        error_name:
-          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
-          type: string
-      type: object
-    ApiAppResponseOAuth:
-      description: An object describing the app's OAuth properties, or null if OAuth is not configured for the app.
-      properties:
-        callback_url:
-          description: The app's OAuth callback URL.
-          type: string
-        secret:
-          description: The app's OAuth secret, or null if the app does not belong to user.
-          type:
-          - string
-          - 'null'
-        scopes:
-          description: Array of OAuth scopes used by the app.
-          type: array
-          items:
-            type: string
-        charges_users:
-          description: Boolean indicating whether the app owner or the account granting permission is billed for OAuth requests.
-          type: boolean
-      type:
-      - object
-      - 'null'
-      x-internal-class: true
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-    ApiAppGetResponse:
-      required:
-      - api_app
-      properties:
-        api_app:
-          $ref: '#/components/schemas/ApiAppResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    ListInfoResponse:
-      description: Contains pagination information about the data returned.
-      properties:
-        num_pages:
-          description: Total number of pages available.
-          type: integer
-        num_results:
-          description: Total number of objects available.
-          type:
-          - integer
-          - 'null'
-        page:
-          description: Number of the page being returned.
-          type: integer
-        page_size:
-          description: Objects returned per page.
-          type: integer
-      type: object
-      x-internal-class: true
     SubWhiteLabelingOptions:
       description: 'An array of elements and values serialized to a string, to be used to customize the app''s signer page. (Only applies to some API plans)
 
@@ -829,15 +543,24 @@ components:
           description: Resets white labeling options to defaults. Only useful when updating an API App.
           type: boolean
       type: object
-    ApiAppResponseOptions:
-      description: An object with options that override account settings.
+    ListInfoResponse:
+      description: Contains pagination information about the data returned.
       properties:
-        can_insert_everywhere:
-          description: Boolean denoting if signers can "Insert Everywhere" in one click while signing a document
-          type: boolean
-      type:
-      - object
-      - 'null'
+        num_pages:
+          description: Total number of pages available.
+          type: integer
+        num_results:
+          description: Total number of objects available.
+          type:
+          - integer
+          - 'null'
+        page:
+          description: Number of the page being returned.
+          type: integer
+        page_size:
+          description: Objects returned per page.
+          type: integer
+      type: object
       x-internal-class: true
     SubOAuth:
       description: OAuth related parameters.
@@ -860,17 +583,165 @@ components:
             - api_app_access
             - ''
       type: object
-    ApiAppResponseOwnerAccount:
-      description: An object describing the app's owner
+    ApiAppResponseOptions:
+      description: An object with options that override account settings.
       properties:
-        account_id:
-          description: The owner account's ID
+        can_insert_everywhere:
+          description: Boolean denoting if signers can "Insert Everywhere" in one click while signing a document
+          type: boolean
+      type:
+      - object
+      - 'null'
+      x-internal-class: true
+    SubOptions:
+      description: Additional options supported by API App.
+      properties:
+        can_insert_everywhere:
+          description: Determines if signers can use "Insert Everywhere" when signing a document.
+          type: boolean
+          default: false
+      type: object
+    ApiAppResponseWhiteLabelingOptions:
+      description: An object with options to customize the app's signer page
+      properties:
+        header_background_color:
           type: string
-        email_address:
-          description: The owner account's email address
+        legal_version:
           type: string
+        link_color:
+          type: string
+        page_background_color:
+          type: string
+        primary_button_color:
+          type: string
+        primary_button_color_hover:
+          type: string
+        primary_button_text_color:
+          type: string
+        primary_button_text_color_hover:
+          type: string
+        secondary_button_color:
+          type: string
+        secondary_button_color_hover:
+          type: string
+        secondary_button_text_color:
+          type: string
+        secondary_button_text_color_hover:
+          type: string
+        text_color1:
+          type: string
+        text_color2:
+          type: string
+      type:
+      - object
+      - 'null'
+      x-internal-class: true
+    ApiAppResponseOAuth:
+      description: An object describing the app's OAuth properties, or null if OAuth is not configured for the app.
+      properties:
+        callback_url:
+          description: The app's OAuth callback URL.
+          type: string
+        secret:
+          description: The app's OAuth secret, or null if the app does not belong to user.
+          type:
+          - string
+          - 'null'
+        scopes:
+          description: Array of OAuth scopes used by the app.
+          type: array
+          items:
+            type: string
+        charges_users:
+          description: Boolean indicating whether the app owner or the account granting permission is billed for OAuth requests.
+          type: boolean
+      type:
+      - object
+      - 'null'
+      x-internal-class: true
+    ApiAppResponse:
+      description: Contains information about an API App.
+      properties:
+        callback_url:
+          description: The app's callback URL (for events)
+          type:
+          - string
+          - 'null'
+        client_id:
+          description: The app's client id
+          type: string
+        created_at:
+          description: The time that the app was created
+          type: integer
+        domains:
+          description: The domain name(s) associated with the app
+          type: array
+          items:
+            type: string
+        name:
+          description: The name of the app
+          type: string
+        is_approved:
+          description: Boolean to indicate if the app has been approved
+          type: boolean
+        oauth:
+          $ref: '#/components/schemas/ApiAppResponseOAuth'
+        options:
+          $ref: '#/components/schemas/ApiAppResponseOptions'
+        owner_account:
+          $ref: '#/components/schemas/ApiAppResponseOwnerAccount'
+        white_labeling_options:
+          $ref: '#/components/schemas/ApiAppResponseWhiteLabelingOptions'
       type: object
       x-internal-class: true
+    ApiAppListResponse:
+      required:
+      - api_apps
+      - list_info
+      properties:
+        api_apps:
+          description: Contains information about API Apps.
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiAppResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    ApiAppCreateRequest:
+      required:
+      - name
+      - domains
+      properties:
+        callback_url:
+          description: The URL at which the ApiApp should receive event callbacks.
+          type: string
+        custom_logo_file:
+          description: An image file to use as a custom logo in embedded contexts. (Only applies to some API plans)
+          type: string
+          format: binary
+        domains:
+          description: The domain names the ApiApp will be associated with.
+          type: array
+          items:
+            type: string
+          maxItems: 10
+          minItems: 1
+        name:
+          description: The name you want to assign to the ApiApp.
+          type: string
+        oauth:
+          $ref: '#/components/schemas/SubOAuth'
+        options:
+          $ref: '#/components/schemas/SubOptions'
+        white_labeling_options:
+          $ref: '#/components/schemas/SubWhiteLabelingOptions'
+      type: object
     WarningResponse:
       description: A list of warnings.
       required:
@@ -884,25 +755,154 @@ components:
           description: Warning name
           type: string
       type: object
+    ApiAppResponseOwnerAccount:
+      description: An object describing the app's owner
+      properties:
+        account_id:
+          description: The owner account's ID
+          type: string
+        email_address:
+          description: The owner account's email address
+          type: string
+      type: object
+      x-internal-class: true
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    ApiAppGetResponse:
+      required:
+      - api_app
+      properties:
+        api_app:
+          $ref: '#/components/schemas/ApiAppResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    ApiAppUpdateRequest:
+      properties:
+        callback_url:
+          description: The URL at which the API App should receive event callbacks.
+          type: string
+        custom_logo_file:
+          description: An image file to use as a custom logo in embedded contexts. (Only applies to some API plans)
+          type: string
+          format: binary
+        domains:
+          description: The domain names the ApiApp will be associated with.
+          type: array
+          items:
+            type: string
+          maxItems: 10
+        name:
+          description: The name you want to assign to the ApiApp.
+          type: string
+        oauth:
+          $ref: '#/components/schemas/SubOAuth'
+        options:
+          $ref: '#/components/schemas/SubOptions'
+        white_labeling_options:
+          $ref: '#/components/schemas/SubWhiteLabelingOptions'
+      type: object
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
+      type: object
+  examples:
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
+    ApiAppUpdateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/ApiAppUpdateRequest.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    ApiAppListResponse:
+      summary: API App List
+      value:
+        $ref: examples/json/ApiAppListResponse.json
+    ApiAppUpdateResponse:
+      summary: API App Update
+      value:
+        $ref: examples/json/ApiAppUpdateResponse.json
+    ApiAppCreateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/ApiAppCreateRequest.json
+    Error409Response:
+      summary: Error 409 conflict
+      value:
+        $ref: examples/json/Error409Response.json
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    ApiAppGetResponse:
+      summary: API App
+      value:
+        $ref: examples/json/ApiAppGetResponse.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    ApiAppCreateResponse:
+      summary: API App
+      value:
+        $ref: examples/json/ApiAppCreateResponse.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
   headers:
-    X-RateLimit-Limit:
-      description: The maximum number of requests per hour that you can make.
-      schema:
-        type: integer
-        format: int32
-        example: 100
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
     X-Ratelimit-Reset:
       description: The Unix time at which the rate limit will reset to its maximum.
       schema:
         type: integer
         format: int64
         example: 1430170900
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
   securitySchemes:
     api_key:
       type: http

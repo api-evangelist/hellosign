@@ -222,7 +222,160 @@ paths:
           title: List Bulk Send Jobs | Documentation | Dropbox Sign for Developers
           description: The Dropbox Sign API allows you to build custom integrations. To find out how to return a list of BulkSendJob that you can access, click here.
 components:
+  examples:
+    BulkSendJobGetResponse:
+      summary: Bulk Send Job
+      value:
+        $ref: examples/json/BulkSendJobGetResponse.json
+    BulkSendJobListResponse:
+      summary: Bulk Send Job List
+      value:
+        $ref: examples/json/BulkSendJobListResponse.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
   schemas:
+    ListInfoResponse:
+      description: Contains pagination information about the data returned.
+      properties:
+        num_pages:
+          description: Total number of pages available.
+          type: integer
+        num_results:
+          description: Total number of objects available.
+          type:
+          - integer
+          - 'null'
+        page:
+          description: Number of the page being returned.
+          type: integer
+        page_size:
+          description: Objects returned per page.
+          type: integer
+      type: object
+      x-internal-class: true
+    SignatureRequestResponseDataBase:
+      description: An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
+      properties:
+        api_id:
+          description: The unique ID for this field.
+          type: string
+        signature_id:
+          description: The ID of the signature to which this response is linked.
+          type: string
+        name:
+          description: The name of the form field.
+          type: string
+        required:
+          description: A boolean value denoting if this field is required.
+          type: boolean
+        type:
+          type: string
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/SignatureRequestResponseDataValueText'
+          checkbox: '#/components/schemas/SignatureRequestResponseDataValueCheckbox'
+          dropdown: '#/components/schemas/SignatureRequestResponseDataValueDropdown'
+          radio: '#/components/schemas/SignatureRequestResponseDataValueRadio'
+          signature: '#/components/schemas/SignatureRequestResponseDataValueSignature'
+          date_signed: '#/components/schemas/SignatureRequestResponseDataValueDateSigned'
+          initials: '#/components/schemas/SignatureRequestResponseDataValueInitials'
+          text-merge: '#/components/schemas/SignatureRequestResponseDataValueTextMerge'
+          checkbox-merge: '#/components/schemas/SignatureRequestResponseDataValueCheckboxMerge'
+      x-internal-class: true
+      x-base-class: true
+    SignatureRequestResponseCustomFieldBase:
+      description: 'An array of Custom Field objects containing the name and type of each custom field.
+
+
+        * Text Field uses `SignatureRequestResponseCustomFieldText`
+
+        * Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`'
+      required:
+      - name
+      - type
+      properties:
+        type:
+          description: The type of this Custom Field. Only 'text' and 'checkbox' are currently supported.
+          type: string
+        name:
+          description: The name of the Custom Field.
+          type: string
+        required:
+          description: A boolean value denoting if this field is required.
+          type: boolean
+        api_id:
+          description: The unique ID for this field.
+          type: string
+        editor:
+          description: The name of the Role that is able to edit this field.
+          type:
+          - string
+          - 'null'
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/SignatureRequestResponseCustomFieldText'
+          checkbox: '#/components/schemas/SignatureRequestResponseCustomFieldCheckbox'
+      x-internal-class: true
+      x-base-class: true
+    BulkSendJobResponse:
+      description: Contains information about the BulkSendJob such as when it was created and how many signature requests are queued.
+      properties:
+        bulk_send_job_id:
+          description: The id of the BulkSendJob.
+          type:
+          - string
+          - 'null'
+        total:
+          description: The total amount of Signature Requests queued for sending.
+          type: integer
+        is_creator:
+          description: True if you are the owner of this BulkSendJob, false if it's been shared with you by a team member.
+          type: boolean
+        created_at:
+          description: Time that the BulkSendJob was created.
+          type: integer
+      type: object
+      x-internal-class: true
+    BulkSendJobGetResponseSignatureRequests:
+      title: BulkSendJobGetResponseSignatureRequests
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/SignatureRequestResponse'
+      - properties:
+          bulk_send_job_id:
+            description: The id of the BulkSendJob.
+            type: string
+          metadata:
+            description: The metadata attached to the signature request.
+            type: object
+            additionalProperties: {}
+      x-internal-class: true
     SignatureRequestResponseSignatures:
       description: An array of signature objects, 1 for each signer.
       properties:
@@ -315,38 +468,67 @@ components:
           - 'null'
       type: object
       x-internal-class: true
-    SignatureRequestResponseDataBase:
-      description: An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
+    BulkSendJobListResponse:
+      required:
+      - bulk_send_jobs
+      - list_info
       properties:
-        api_id:
-          description: The unique ID for this field.
+        bulk_send_jobs:
+          description: Contains a list of BulkSendJobs that the API caller has access to.
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkSendJobResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
           type: string
-        signature_id:
-          description: The ID of the signature to which this response is linked.
-          type: string
-        name:
-          description: The name of the form field.
-          type: string
-        required:
-          description: A boolean value denoting if this field is required.
-          type: boolean
-        type:
+        warning_name:
+          description: Warning name
           type: string
       type: object
-      discriminator:
-        propertyName: type
-        mapping:
-          text: '#/components/schemas/SignatureRequestResponseDataValueText'
-          checkbox: '#/components/schemas/SignatureRequestResponseDataValueCheckbox'
-          dropdown: '#/components/schemas/SignatureRequestResponseDataValueDropdown'
-          radio: '#/components/schemas/SignatureRequestResponseDataValueRadio'
-          signature: '#/components/schemas/SignatureRequestResponseDataValueSignature'
-          date_signed: '#/components/schemas/SignatureRequestResponseDataValueDateSigned'
-          initials: '#/components/schemas/SignatureRequestResponseDataValueInitials'
-          text-merge: '#/components/schemas/SignatureRequestResponseDataValueTextMerge'
-          checkbox-merge: '#/components/schemas/SignatureRequestResponseDataValueCheckboxMerge'
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    BulkSendJobGetResponse:
+      required:
+      - bulk_send_job
+      - list_info
+      - signature_requests
+      properties:
+        bulk_send_job:
+          $ref: '#/components/schemas/BulkSendJobResponse'
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        signature_requests:
+          description: Contains information about the Signature Requests sent in bulk.
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkSendJobGetResponseSignatureRequests'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
       x-internal-class: true
-      x-base-class: true
     SignatureRequestResponse:
       description: Contains information about a signature request.
       properties:
@@ -503,56 +685,6 @@ components:
           - 'null'
       type: object
       x-internal-class: true
-    BulkSendJobGetResponseSignatureRequests:
-      title: BulkSendJobGetResponseSignatureRequests
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/SignatureRequestResponse'
-      - properties:
-          bulk_send_job_id:
-            description: The id of the BulkSendJob.
-            type: string
-          metadata:
-            description: The metadata attached to the signature request.
-            type: object
-            additionalProperties: {}
-      x-internal-class: true
-    SignatureRequestResponseCustomFieldBase:
-      description: 'An array of Custom Field objects containing the name and type of each custom field.
-
-
-        * Text Field uses `SignatureRequestResponseCustomFieldText`
-
-        * Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`'
-      required:
-      - name
-      - type
-      properties:
-        type:
-          description: The type of this Custom Field. Only 'text' and 'checkbox' are currently supported.
-          type: string
-        name:
-          description: The name of the Custom Field.
-          type: string
-        required:
-          description: A boolean value denoting if this field is required.
-          type: boolean
-        api_id:
-          description: The unique ID for this field.
-          type: string
-        editor:
-          description: The name of the Role that is able to edit this field.
-          type:
-          - string
-          - 'null'
-      type: object
-      discriminator:
-        propertyName: type
-        mapping:
-          text: '#/components/schemas/SignatureRequestResponseCustomFieldText'
-          checkbox: '#/components/schemas/SignatureRequestResponseCustomFieldCheckbox'
-      x-internal-class: true
-      x-base-class: true
     ErrorResponseError:
       description: Contains information about an error that occurred.
       required:
@@ -569,157 +701,25 @@ components:
           description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
           type: string
       type: object
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-    BulkSendJobResponse:
-      description: Contains information about the BulkSendJob such as when it was created and how many signature requests are queued.
-      properties:
-        bulk_send_job_id:
-          description: The id of the BulkSendJob.
-          type:
-          - string
-          - 'null'
-        total:
-          description: The total amount of Signature Requests queued for sending.
-          type: integer
-        is_creator:
-          description: True if you are the owner of this BulkSendJob, false if it's been shared with you by a team member.
-          type: boolean
-        created_at:
-          description: Time that the BulkSendJob was created.
-          type: integer
-      type: object
-      x-internal-class: true
-    ListInfoResponse:
-      description: Contains pagination information about the data returned.
-      properties:
-        num_pages:
-          description: Total number of pages available.
-          type: integer
-        num_results:
-          description: Total number of objects available.
-          type:
-          - integer
-          - 'null'
-        page:
-          description: Number of the page being returned.
-          type: integer
-        page_size:
-          description: Objects returned per page.
-          type: integer
-      type: object
-      x-internal-class: true
-    BulkSendJobGetResponse:
-      required:
-      - bulk_send_job
-      - list_info
-      - signature_requests
-      properties:
-        bulk_send_job:
-          $ref: '#/components/schemas/BulkSendJobResponse'
-        list_info:
-          $ref: '#/components/schemas/ListInfoResponse'
-        signature_requests:
-          description: Contains information about the Signature Requests sent in bulk.
-          type: array
-          items:
-            $ref: '#/components/schemas/BulkSendJobGetResponseSignatureRequests'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    BulkSendJobListResponse:
-      required:
-      - bulk_send_jobs
-      - list_info
-      properties:
-        bulk_send_jobs:
-          description: Contains a list of BulkSendJobs that the API caller has access to.
-          type: array
-          items:
-            $ref: '#/components/schemas/BulkSendJobResponse'
-        list_info:
-          $ref: '#/components/schemas/ListInfoResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    WarningResponse:
-      description: A list of warnings.
-      required:
-      - warning_msg
-      - warning_name
-      properties:
-        warning_msg:
-          description: Warning message
-          type: string
-        warning_name:
-          description: Warning name
-          type: string
-      type: object
-  examples:
-    BulkSendJobListResponse:
-      summary: Bulk Send Job List
-      value:
-        $ref: examples/json/BulkSendJobListResponse.json
-    Error401Response:
-      summary: Error 401 unauthorized
-      value:
-        $ref: examples/json/Error401Response.json
-    BulkSendJobGetResponse:
-      summary: Bulk Send Job
-      value:
-        $ref: examples/json/BulkSendJobGetResponse.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
-      value:
-        $ref: examples/json/Error4XXResponse.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
   headers:
-    X-RateLimit-Limit:
-      description: The maximum number of requests per hour that you can make.
-      schema:
-        type: integer
-        format: int32
-        example: 100
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
     X-Ratelimit-Reset:
       description: The Unix time at which the rate limit will reset to its maximum.
       schema:
         type: integer
         format: int64
         example: 1430170900
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
   securitySchemes:
     api_key:
       type: http

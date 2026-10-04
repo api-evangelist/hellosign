@@ -402,6 +402,19 @@ paths:
           description: The Dropbox Sign API allows you to build with a wide range of tools. To find out how to verify whether an Account exists, click here.
 components:
   schemas:
+    AccountGetResponse:
+      required:
+      - account
+      properties:
+        account:
+          $ref: '#/components/schemas/AccountResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
     AccountResponseQuotas:
       description: Details concerning remaining monthly quotas.
       properties:
@@ -437,52 +450,14 @@ components:
           - 'null'
       type: object
       x-internal-class: true
-    AccountGetResponse:
-      required:
-      - account
+    AccountResponseUsage:
+      description: Details concerning monthly usage
       properties:
-        account:
-          $ref: '#/components/schemas/AccountResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    AccountCreateRequest:
-      required:
-      - email_address
-      properties:
-        client_id:
-          description: 'Used when creating a new account with OAuth authorization.
-
-
-            See [OAuth 2.0 Authorization](https://app.hellosign.com/api/oauthWalkthrough#OAuthAuthorization)'
-          type: string
-        client_secret:
-          description: 'Used when creating a new account with OAuth authorization.
-
-
-            See [OAuth 2.0 Authorization](https://app.hellosign.com/api/oauthWalkthrough#OAuthAuthorization)'
-          type: string
-        email_address:
-          description: The email address which will be associated with the new Account.
-          type: string
-          format: email
-        locale:
-          description: The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
-          type: string
-      type: object
-    AccountVerifyResponse:
-      properties:
-        account:
-          $ref: '#/components/schemas/AccountVerifyResponseAccount'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
+        fax_pages_sent:
+          description: Number of fax pages sent
+          type:
+          - integer
+          - 'null'
       type: object
       x-internal-class: true
     AccountUpdateRequest:
@@ -516,34 +491,63 @@ components:
           - 'null'
       type: object
       x-internal-class: true
-    ErrorResponseError:
-      description: Contains information about an error that occurred.
-      required:
-      - error_msg
-      - error_name
-      properties:
-        error_msg:
-          description: Message describing an error.
-          type: string
-        error_path:
-          description: Path at which an error occurred.
-          type: string
-        error_name:
-          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
-          type: string
-      type: object
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
     AccountVerifyResponseAccount:
       properties:
         email_address:
           description: The email address associated with the Account.
           type: string
+      type: object
+      x-internal-class: true
+    AccountCreateRequest:
+      required:
+      - email_address
+      properties:
+        client_id:
+          description: 'Used when creating a new account with OAuth authorization.
+
+
+            See [OAuth 2.0 Authorization](https://app.hellosign.com/api/oauthWalkthrough#OAuthAuthorization)'
+          type: string
+        client_secret:
+          description: 'Used when creating a new account with OAuth authorization.
+
+
+            See [OAuth 2.0 Authorization](https://app.hellosign.com/api/oauthWalkthrough#OAuthAuthorization)'
+          type: string
+        email_address:
+          description: The email address which will be associated with the new Account.
+          type: string
+          format: email
+        locale:
+          description: The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
+          type: string
+      type: object
+    WarningResponse:
+      description: A list of warnings.
+      required:
+      - warning_msg
+      - warning_name
+      properties:
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
+      type: object
+    AccountCreateResponse:
+      required:
+      - account
+      properties:
+        account:
+          $ref: '#/components/schemas/AccountResponse'
+        oauth_data:
+          $ref: '#/components/schemas/OAuthTokenResponse'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
       type: object
       x-internal-class: true
     AccountResponseSettings:
@@ -560,14 +564,22 @@ components:
           type: boolean
       type: object
       x-internal-class: true
-    AccountResponseUsage:
-      description: Details concerning monthly usage
+    ErrorResponse:
+      required:
+      - error
       properties:
-        fax_pages_sent:
-          description: Number of fax pages sent
-          type:
-          - integer
-          - 'null'
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    AccountVerifyResponse:
+      properties:
+        account:
+          $ref: '#/components/schemas/AccountVerifyResponseAccount'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
       type: object
       x-internal-class: true
     AccountVerifyRequest:
@@ -624,35 +636,51 @@ components:
           $ref: '#/components/schemas/AccountResponseSettings'
       type: object
       x-internal-class: true
-    WarningResponse:
-      description: A list of warnings.
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
       required:
-      - warning_msg
-      - warning_name
+      - error_msg
+      - error_name
       properties:
-        warning_msg:
-          description: Warning message
+        error_msg:
+          description: Message describing an error.
           type: string
-        warning_name:
-          description: Warning name
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
           type: string
       type: object
-    AccountCreateResponse:
-      required:
-      - account
-      properties:
-        account:
-          $ref: '#/components/schemas/AccountResponse'
-        oauth_data:
-          $ref: '#/components/schemas/OAuthTokenResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
   examples:
+    AccountVerifyFoundResponse:
+      summary: Account Found
+      value:
+        $ref: examples/json/AccountVerifyFoundResponse.json
+    AccountCreateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/AccountCreateRequest.json
+    AccountCreateRequestOAuth:
+      summary: OAuth Example
+      value:
+        $ref: examples/json/AccountCreateRequestOAuth.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    AccountUpdateResponse:
+      summary: Account Update
+      value:
+        $ref: examples/json/AccountUpdateResponse.json
+    AccountGetResponse:
+      summary: Account Get
+      value:
+        $ref: examples/json/AccountGetResponse.json
     AccountVerifyNotFoundResponse:
       summary: Account Not Found
       value:
@@ -661,85 +689,57 @@ components:
       summary: Error 409 conflict
       value:
         $ref: examples/json/Error409Response.json
-    AccountCreateRequestOAuth:
-      summary: OAuth Example
-      value:
-        $ref: examples/json/AccountCreateRequestOAuth.json
-    AccountCreateResponse:
-      summary: Account Create
-      value:
-        $ref: examples/json/AccountCreateResponse.json
-    AccountCreateOAuthResponse:
-      summary: Account Create with OAuth Authorization
-      value:
-        $ref: examples/json/AccountCreateOAuthResponse.json
-    AccountUpdateResponse:
-      summary: Account Update
-      value:
-        $ref: examples/json/AccountUpdateResponse.json
     Error401Response:
       summary: Error 401 unauthorized
       value:
         $ref: examples/json/Error401Response.json
+    AccountCreateResponse:
+      summary: Account Create
+      value:
+        $ref: examples/json/AccountCreateResponse.json
     AccountUpdateRequest:
       summary: Default Example
       value:
         $ref: examples/json/AccountUpdateRequest.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
+    AccountCreateOAuthResponse:
+      summary: Account Create with OAuth Authorization
       value:
-        $ref: examples/json/Error4XXResponse.json
-    AccountGetResponse:
-      summary: Account Get
-      value:
-        $ref: examples/json/AccountGetResponse.json
+        $ref: examples/json/AccountCreateOAuthResponse.json
     Error403Response:
       summary: Error 403 forbidden
       value:
         $ref: examples/json/Error403Response.json
-    AccountCreateRequest:
-      summary: Default Example
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
       value:
-        $ref: examples/json/AccountCreateRequest.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
-    AccountVerifyFoundResponse:
-      summary: Account Found
-      value:
-        $ref: examples/json/AccountVerifyFoundResponse.json
-    AccountVerifyRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/AccountVerifyRequest.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
+        $ref: examples/json/Error4XXResponse.json
     Error402Response:
       summary: Error 402 payment_required
       value:
         $ref: examples/json/Error402Response.json
+    AccountVerifyRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/AccountVerifyRequest.json
   headers:
-    X-RateLimit-Limit:
-      description: The maximum number of requests per hour that you can make.
-      schema:
-        type: integer
-        format: int32
-        example: 100
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
     X-Ratelimit-Reset:
       description: The Unix time at which the rate limit will reset to its maximum.
       schema:
         type: integer
         format: int64
         example: 1430170900
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
   securitySchemes:
     api_key:
       type: http

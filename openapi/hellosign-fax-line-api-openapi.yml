@@ -776,102 +776,6 @@ components:
           - 'null'
       type: object
       x-internal-class: true
-    FaxLineAreaCodeGetResponse:
-      required:
-      - area_codes
-      properties:
-        area_codes:
-          type: array
-          items:
-            type: integer
-      type: object
-      x-internal-class: true
-    FaxLineListResponse:
-      required:
-      - fax_lines
-      - list_info
-      properties:
-        list_info:
-          $ref: '#/components/schemas/ListInfoResponse'
-        fax_lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/FaxLineResponseFaxLine'
-        warnings:
-          $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    FaxLineDeleteRequest:
-      required:
-      - number
-      properties:
-        number:
-          description: The Fax Line number
-          type: string
-      type: object
-    FaxLineRemoveUserRequest:
-      required:
-      - number
-      properties:
-        number:
-          description: The Fax Line number
-          type: string
-        account_id:
-          description: Account ID of the user to remove access
-          type: string
-          example: ab55cd14a97219e36b5ff5fe23f2f9329b0c1e97
-        email_address:
-          description: Email address of the user to remove access
-          type: string
-          format: email
-      type: object
-    ErrorResponseError:
-      description: Contains information about an error that occurred.
-      required:
-      - error_msg
-      - error_name
-      properties:
-        error_msg:
-          description: Message describing an error.
-          type: string
-        error_path:
-          description: Path at which an error occurred.
-          type: string
-        error_name:
-          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
-          type: string
-      type: object
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-    FaxLineResponse:
-      required:
-      - fax_line
-      properties:
-        fax_line:
-          $ref: '#/components/schemas/FaxLineResponseFaxLine'
-        warnings:
-          $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    AccountResponseSettings:
-      description: Subset of configured settings
-      properties:
-        signer_access_codes:
-          description: Returns `true` if _Custom access codes_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
-          type: boolean
-        sms_delivery:
-          description: Returns `true` if _Text message_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
-          type: boolean
-        sms_authentication:
-          description: Returns `true` if _Signer authentication_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
-          type: boolean
-      type: object
-      x-internal-class: true
     ListInfoResponse:
       description: Contains pagination information about the data returned.
       properties:
@@ -891,21 +795,14 @@ components:
           type: integer
       type: object
       x-internal-class: true
-    FaxLineResponseFaxLine:
+    FaxLineAreaCodeGetResponse:
+      required:
+      - area_codes
       properties:
-        number:
-          description: Number
-          type: string
-        created_at:
-          description: Created at
-          type: integer
-        updated_at:
-          description: Updated at
-          type: integer
-        accounts:
+        area_codes:
           type: array
           items:
-            $ref: '#/components/schemas/AccountResponse'
+            type: integer
       type: object
       x-internal-class: true
     AccountResponseUsage:
@@ -918,6 +815,38 @@ components:
           - 'null'
       type: object
       x-internal-class: true
+    FaxLineRemoveUserRequest:
+      required:
+      - number
+      properties:
+        number:
+          description: The Fax Line number
+          type: string
+        account_id:
+          description: Account ID of the user to remove access
+          type: string
+          example: ab55cd14a97219e36b5ff5fe23f2f9329b0c1e97
+        email_address:
+          description: Email address of the user to remove access
+          type: string
+          format: email
+      type: object
+    FaxLineAddUserRequest:
+      required:
+      - number
+      properties:
+        number:
+          description: The Fax Line number
+          type: string
+        account_id:
+          description: Account ID
+          type: string
+          example: ab55cd14a97219e36b5ff5fe23f2f9329b0c1e97
+        email_address:
+          description: Email address
+          type: string
+          format: email
+      type: object
     FaxLineCreateRequest:
       required:
       - area_code
@@ -941,22 +870,6 @@ components:
           type: string
           example: ab55cd14a97219e36b5ff5fe23f2f9329b0c1e97
       type: object
-    FaxLineAddUserRequest:
-      required:
-      - number
-      properties:
-        number:
-          description: The Fax Line number
-          type: string
-        account_id:
-          description: Account ID
-          type: string
-          example: ab55cd14a97219e36b5ff5fe23f2f9329b0c1e97
-        email_address:
-          description: Email address
-          type: string
-          format: email
-      type: object
     WarningResponse:
       description: A list of warnings.
       required:
@@ -970,6 +883,77 @@ components:
           description: Warning name
           type: string
       type: object
+    FaxLineListResponse:
+      required:
+      - fax_lines
+      - list_info
+      properties:
+        list_info:
+          $ref: '#/components/schemas/ListInfoResponse'
+        fax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/FaxLineResponseFaxLine'
+        warnings:
+          $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    AccountResponseSettings:
+      description: Subset of configured settings
+      properties:
+        signer_access_codes:
+          description: Returns `true` if _Custom access codes_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_delivery:
+          description: Returns `true` if _Text message_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+        sms_authentication:
+          description: Returns `true` if _Signer authentication_ is enabled in Admin Console. [Read more](https://developers.hellosign.com/docs/sms-tools/walkthrough).
+          type: boolean
+      type: object
+      x-internal-class: true
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    FaxLineDeleteRequest:
+      required:
+      - number
+      properties:
+        number:
+          description: The Fax Line number
+          type: string
+      type: object
+    FaxLineResponseFaxLine:
+      properties:
+        number:
+          description: Number
+          type: string
+        created_at:
+          description: Created at
+          type: integer
+        updated_at:
+          description: Updated at
+          type: integer
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountResponse'
+      type: object
+      x-internal-class: true
+    FaxLineResponse:
+      required:
+      - fax_line
+      properties:
+        fax_line:
+          $ref: '#/components/schemas/FaxLineResponseFaxLine'
+        warnings:
+          $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
     AccountResponse:
       properties:
         account_id:
@@ -1015,43 +999,47 @@ components:
           $ref: '#/components/schemas/AccountResponseSettings'
       type: object
       x-internal-class: true
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
+      type: object
   examples:
-    Error400Response:
-      summary: Error 400 bad_request
+    Error404Response:
+      summary: Error 404 not_found
       value:
-        $ref: examples/json/Error400Response.json
-    FaxLineAreaCodeGetResponse:
-      summary: Sample Area Code Response
-      value:
-        $ref: examples/json/FaxLineAreaCodeGetResponse.json
-    FaxLineListResponse:
-      summary: Sample Fax Line List Response
-      value:
-        $ref: examples/json/FaxLineListResponse.json
-    FaxLineDeleteRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/FaxLineDeleteRequest.json
-    FaxLineRemoveUserRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/FaxLineRemoveUserRequest.json
-    Error401Response:
-      summary: Error 401 unauthorized
-      value:
-        $ref: examples/json/Error401Response.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
-      value:
-        $ref: examples/json/Error4XXResponse.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
+        $ref: examples/json/Error404Response.json
     FaxLineCreateRequest:
       summary: Default Example
       value:
         $ref: examples/json/FaxLineCreateRequest.json
+    FaxLineDeleteRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/FaxLineDeleteRequest.json
+    FaxLineAddUserRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/FaxLineAddUserRequest.json
+    FaxLineListResponse:
+      summary: Sample Fax Line List Response
+      value:
+        $ref: examples/json/FaxLineListResponse.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
     Error429Response:
       summary: Error 429 exceeded_rate
       value:
@@ -1060,37 +1048,49 @@ components:
       summary: Sample Fax Line Response
       value:
         $ref: examples/json/FaxLineResponse.json
-    Error404Response:
-      summary: Error 404 not_found
+    FaxLineAreaCodeGetResponse:
+      summary: Sample Area Code Response
       value:
-        $ref: examples/json/Error404Response.json
-    FaxLineAddUserRequest:
+        $ref: examples/json/FaxLineAreaCodeGetResponse.json
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    FaxLineRemoveUserRequest:
       summary: Default Example
       value:
-        $ref: examples/json/FaxLineAddUserRequest.json
+        $ref: examples/json/FaxLineRemoveUserRequest.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
     Error402Response:
       summary: Error 402 payment_required
       value:
         $ref: examples/json/Error402Response.json
   headers:
-    X-RateLimit-Limit:
-      description: The maximum number of requests per hour that you can make.
-      schema:
-        type: integer
-        format: int32
-        example: 100
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
     X-Ratelimit-Reset:
       description: The Unix time at which the rate limit will reset to its maximum.
       schema:
         type: integer
         format: int64
         example: 1430170900
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
   securitySchemes:
     api_key:
       type: http

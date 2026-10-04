@@ -218,71 +218,62 @@ paths:
           title: Get Embedded Sign URL | iFrame | Dropbox Sign for Developers
           description: The Dropbox Sign API allows you to build custom integrations. To find out how to retrieve an embedded iFrame object containing a signature url, click here.
 components:
-  examples:
-    Error409Response:
-      summary: Error 409 conflict
-      value:
-        $ref: examples/json/Error409Response.json
-    Error401Response:
-      summary: Error 401 unauthorized
-      value:
-        $ref: examples/json/Error401Response.json
-    EmbeddedEditUrlResponse:
-      summary: Embedded Edit URL
-      value:
-        $ref: examples/json/EmbeddedEditUrlResponse.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
-      value:
-        $ref: examples/json/Error4XXResponse.json
-    EmbeddedEditUrlRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/EmbeddedEditUrlRequest.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
-    EmbeddedSignUrlResponse:
-      summary: Embedded Sign URL
-      value:
-        $ref: examples/json/EmbeddedSignUrlResponse.json
-    Error404Response:
-      summary: Error 404 not_found
-      value:
-        $ref: examples/json/Error404Response.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
-  headers:
-    X-RateLimit-Limit:
-      description: The maximum number of requests per hour that you can make.
-      schema:
-        type: integer
-        format: int32
-        example: 100
-    X-RateLimit-Remaining:
-      description: The number of requests remaining in the current rate limit window.
-      schema:
-        type: integer
-        format: int32
-        example: 99
-    X-Ratelimit-Reset:
-      description: The Unix time at which the rate limit will reset to its maximum.
-      schema:
-        type: integer
-        format: int64
-        example: 1430170900
   schemas:
+    EmbeddedEditUrlResponseEmbedded:
+      description: An embedded template object.
+      properties:
+        edit_url:
+          description: A template url that can be opened in an iFrame.
+          type: string
+        expires_at:
+          description: The specific time that the the `edit_url` link expires, in epoch.
+          type: integer
+      type: object
+      x-internal-class: true
+    EmbeddedSignUrlResponse:
+      required:
+      - embedded
+      properties:
+        embedded:
+          $ref: '#/components/schemas/EmbeddedSignUrlResponseEmbedded'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    EmbeddedEditUrlResponse:
+      required:
+      - embedded
+      properties:
+        embedded:
+          $ref: '#/components/schemas/EmbeddedEditUrlResponseEmbedded'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    SubMergeField:
+      required:
+      - name
+      - type
+      properties:
+        name:
+          description: The name of the merge field. Must be unique.
+          type: string
+        type:
+          description: The type of merge field.
+          type: string
+          enum:
+          - text
+          - checkbox
+          x-enumDescriptions:
+            text: Sets merge [field type](/api/reference/constants/#field-types) to `text`.
+            checkbox: Sets merge [field type](/api/reference/constants/#field-types) to `checkbox`.
+      type: object
     EmbeddedSignUrlResponseEmbedded:
       description: An object that contains necessary information to set up embedded signing.
       properties:
@@ -294,41 +285,6 @@ components:
           type: integer
       type: object
       x-internal-class: true
-    ErrorResponseError:
-      description: Contains information about an error that occurred.
-      required:
-      - error_msg
-      - error_name
-      properties:
-        error_msg:
-          description: Message describing an error.
-          type: string
-        error_path:
-          description: Path at which an error occurred.
-          type: string
-        error_name:
-          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
-          type: string
-      type: object
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-    SubEditorOptions:
-      description: This allows the requester to specify editor options when a preparing a document
-      properties:
-        allow_edit_signers:
-          description: Allows requesters to edit the list of signers
-          type: boolean
-          default: false
-        allow_edit_documents:
-          description: Allows requesters to edit documents, including delete and add
-          type: boolean
-          default: false
-      type: object
     EmbeddedEditUrlRequest:
       properties:
         allow_edit_ccs:
@@ -378,61 +334,6 @@ components:
           type: boolean
           default: false
       type: object
-    SubMergeField:
-      required:
-      - name
-      - type
-      properties:
-        name:
-          description: The name of the merge field. Must be unique.
-          type: string
-        type:
-          description: The type of merge field.
-          type: string
-          enum:
-          - text
-          - checkbox
-          x-enumDescriptions:
-            text: Sets merge [field type](/api/reference/constants/#field-types) to `text`.
-            checkbox: Sets merge [field type](/api/reference/constants/#field-types) to `checkbox`.
-      type: object
-    EmbeddedEditUrlResponse:
-      required:
-      - embedded
-      properties:
-        embedded:
-          $ref: '#/components/schemas/EmbeddedEditUrlResponseEmbedded'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    EmbeddedEditUrlResponseEmbedded:
-      description: An embedded template object.
-      properties:
-        edit_url:
-          description: A template url that can be opened in an iFrame.
-          type: string
-        expires_at:
-          description: The specific time that the the `edit_url` link expires, in epoch.
-          type: integer
-      type: object
-      x-internal-class: true
-    EmbeddedSignUrlResponse:
-      required:
-      - embedded
-      properties:
-        embedded:
-          $ref: '#/components/schemas/EmbeddedSignUrlResponseEmbedded'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
     WarningResponse:
       description: A list of warnings.
       required:
@@ -446,6 +347,105 @@ components:
           description: Warning name
           type: string
       type: object
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    SubEditorOptions:
+      description: This allows the requester to specify editor options when a preparing a document
+      properties:
+        allow_edit_signers:
+          description: Allows requesters to edit the list of signers
+          type: boolean
+          default: false
+        allow_edit_documents:
+          description: Allows requesters to edit documents, including delete and add
+          type: boolean
+          default: false
+      type: object
+    ErrorResponseError:
+      description: Contains information about an error that occurred.
+      required:
+      - error_msg
+      - error_name
+      properties:
+        error_msg:
+          description: Message describing an error.
+          type: string
+        error_path:
+          description: Path at which an error occurred.
+          type: string
+        error_name:
+          description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
+          type: string
+      type: object
+  examples:
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
+    EmbeddedEditUrlResponse:
+      summary: Embedded Edit URL
+      value:
+        $ref: examples/json/EmbeddedEditUrlResponse.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    Error409Response:
+      summary: Error 409 conflict
+      value:
+        $ref: examples/json/Error409Response.json
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    EmbeddedEditUrlRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/EmbeddedEditUrlRequest.json
+    EmbeddedSignUrlResponse:
+      summary: Embedded Sign URL
+      value:
+        $ref: examples/json/EmbeddedSignUrlResponse.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+  headers:
+    X-Ratelimit-Reset:
+      description: The Unix time at which the rate limit will reset to its maximum.
+      schema:
+        type: integer
+        format: int64
+        example: 1430170900
+    X-RateLimit-Remaining:
+      description: The number of requests remaining in the current rate limit window.
+      schema:
+        type: integer
+        format: int32
+        example: 99
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
   securitySchemes:
     api_key:
       type: http
