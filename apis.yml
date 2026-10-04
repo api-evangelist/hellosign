@@ -46,6 +46,9 @@ x-tier-reason: real-api-enriched
 specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-09-16'
+x-docs-platform: fern
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
 tags:
 - Company
 - E-Signature
@@ -208,6 +211,9 @@ apis:
   - type: OpenAPI
     url: openapi/hellosign-oauth-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/hellosign-capability-edges.yml
+  name: Dropbox Sign (HelloSign) Business Capability Map
 - type: Website
   url: https://hellosign.com
 - type: ParentCompany
