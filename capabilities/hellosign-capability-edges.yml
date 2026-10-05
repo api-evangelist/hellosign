@@ -1,0 +1,25 @@
+slug: hellosign
+provider: Dropbox Sign (HelloSign)
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: API App
+  spec_file: hellosign-api-app-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.7
+  evidence: POST /api_app apiAppCreate — Create API App; GET /api_app/{client_id}; schema ApiAppResponseOAuth
+  reason: Operations register and maintain developer API applications keyed by client_id with OAuth configuration
+    — issuance and stewardship of developer credentials/OAuth clients on the vendor's developer platform.
+    Some chance it is better read as partner app programme management, hence moderate confidence.
