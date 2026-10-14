@@ -1,0 +1,32 @@
+{
+  "repo": "hellosign",
+  "feeds": [
+    {
+      "source": "https://sign.dropbox.com/blog",
+      "feed_url": "https://sign.dropbox.com/blog/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
+      "source": "https://sign.dropbox.com/blog/rss.xml",
+      "feed_url": "https://sign.dropbox.com/blog/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://developers.hellosign.com/llms.txt",
+      "feed_url": "https://developers.hellosign.com/llms.txt",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "fetched": "2026-10-10T13:15:00Z",
+  "post_count": 82,
+  "feed_nature": "vendor-blog",
+  "feed_nature_basis": "path_blog",
+  "feed_nature_note": "Whether these posts are the vendor publishing or its support community, decided on the URL path grammar of the saved posts -- not the hostname, which carries both on Khoros, and not author diversity, which flags large vendor blogs as forums. 'undetermined' means undetermined.",
+  "x-moved-from": "dropbox-sign"
+}

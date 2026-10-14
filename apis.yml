@@ -198,6 +198,11 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/hellosign-callbacks-and-events-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/hellosign-events-asyncapi.yml
+    x-moved-from: dropbox-sign (asyncapi/dropbox-sign-events-asyncapi.yml, consolidated 2026-10-14)
+  - type: Documentation
+    url: https://developers.hellosign.com/docs/events/overview/
 - aid: hellosign:hellosign-oauth-api
   name: Dropbox Sign (HelloSign) O Auth API
   description: '{''$ref'': ''./markdown/en/tags/oauth-tag-description.md''}'
@@ -211,6 +216,15 @@ apis:
   - type: OpenAPI
     url: openapi/hellosign-oauth-api-openapi.yml
 common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/dropboxsign
+  x-moved-from: dropbox-sign
+- type: Blog
+  url: https://sign.dropbox.com/blog
+  x-moved-from: dropbox-sign
+- type: LlmsText
+  url: https://developers.hellosign.com/llms.txt
+  x-moved-from: dropbox-sign
 - type: CapabilityMap
   url: capabilities/hellosign-capability-edges.yml
   name: Dropbox Sign (HelloSign) Business Capability Map

@@ -1,0 +1,536 @@
+asyncapi: 2.6.0
+info:
+  title: Dropbox Sign Events and Callbacks
+  version: '1.0.0'
+  description: |-
+    AsyncAPI description of the Dropbox Sign (formerly HelloSign) outbound
+    event / callback surface. Dropbox Sign delivers event notifications by
+    issuing HTTP POST requests to a subscriber-configured URL with a
+    `multipart/form-data` body whose `json` part contains the event payload.
+
+    Two callback scopes are supported by the platform:
+
+    - Account Callbacks: account-level events delivered to the URL configured
+      on the authenticated account (Settings > API > Account Callback, or via
+      the `account/update` endpoint).
+    - App Callbacks: API-app-scoped events delivered to the URL configured on
+      a specific API app. Any signature request created with that app's
+      `client_id` will fire app callbacks instead of (or in addition to)
+      account callbacks.
+
+    Source documentation:
+      - Events overview:     https://developers.hellosign.com/docs/events/overview/
+      - Events walkthrough:  https://developers.hellosign.com/docs/events/walkthrough/
+      - Account callbacks:   https://developers.hellosign.com/api/reference/operation/accountUpdateEventCallback/
+      - App callbacks:       https://developers.hellosign.com/api/reference/operation/apiAppCreateEventCallback/
+      - OpenAPI source:      https://github.com/hellosign/hellosign-openapi
+
+    Verification (event_hash):
+      Every callback body contains an `event.event_hash`. Subscribers verify
+      authenticity by computing HMAC-SHA256 over the UTF-8 string formed by
+      concatenating `event_time` and `event_type` (in that order, no separator),
+      keyed by the receiving account's API key, and comparing the lowercase
+      hex digest to the supplied `event_hash`. The same construction is used
+      for both account and app callbacks; the official Ruby, PHP, and Python
+      SDK helpers (`EventCallbackHelper`) pass the API key as the HMAC key in
+      both cases.
+
+      Reference (shell):
+        echo -n "${event_time}${event_type}" | \
+          openssl dgst -sha256 -hmac "${api_key}"
+
+    Response contract:
+      The subscriber MUST respond `HTTP 200` with a `text/plain` body whose
+      content is exactly `Hello API Event Received`. Anything else (including
+      a 200 with the wrong body) is treated as a failure. Failed deliveries
+      are retried up to six times with exponential backoff (5m, 15m, 45m,
+      2.25h, 6.75h, 20.25h). After 10 consecutive callback failures Dropbox
+      Sign automatically clears the callback URL.
+  contact:
+    name: Dropbox Sign API Support
+    url: https://developers.hellosign.com
+  license:
+    name: Dropbox Sign API Terms of Service
+    url: https://sign.dropbox.com/terms
+
+defaultContentType: multipart/form-data
+
+servers:
+  accountSubscriber:
+    url: '{accountCallbackUrl}'
+    protocol: https
+    description: |-
+      Customer-hosted HTTPS endpoint registered as the Account Callback URL
+      for a Dropbox Sign account. Receives every account-level event for the
+      authenticated account that is not exclusively routed to an API app.
+    variables:
+      accountCallbackUrl:
+        default: https://example.com/dropbox-sign/account-callback
+        description: Fully-qualified HTTPS URL of the account callback endpoint.
+  appSubscriber:
+    url: '{appCallbackUrl}'
+    protocol: https
+    description: |-
+      Customer-hosted HTTPS endpoint registered as the Callback URL on a
+      specific Dropbox Sign API app. Receives events for signature requests
+      created with that app's `client_id`.
+    variables:
+      appCallbackUrl:
+        default: https://example.com/dropbox-sign/app-callback
+        description: Fully-qualified HTTPS URL of the API-app callback endpoint.
+
+channels:
+  /dropbox-sign/account-callback:
+    description: |-
+      Single subscriber endpoint that receives every Dropbox Sign account
+      callback. The `event.event_type` field on the JSON body identifies the
+      event class. One event is sent per HTTP POST.
+    servers:
+      - accountSubscriber
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: receiveAccountCallback
+      summary: Receive a Dropbox Sign account callback
+      description: |-
+        Dropbox Sign POSTs the event as `multipart/form-data` with a single
+        `json` form field whose value is the JSON-encoded `EventCallbackRequest`
+        payload. Subscribers must verify `event.event_hash` and respond
+        `200 Hello API Event Received` within the retry window.
+      message:
+        $ref: '#/components/messages/AccountEventCallback'
+
+  /dropbox-sign/app-callback:
+    description: |-
+      Single subscriber endpoint that receives every Dropbox Sign API-app
+      callback. Routes events for signature requests created with the API
+      app's `client_id`. Body shape is identical to account callbacks; the
+      `event.event_metadata.reported_for_app_id` field is populated.
+    servers:
+      - appSubscriber
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: receiveAppCallback
+      summary: Receive a Dropbox Sign API-app callback
+      description: |-
+        Dropbox Sign POSTs the event as `multipart/form-data` with a single
+        `json` form field whose value is the JSON-encoded `EventCallbackRequest`
+        payload. Subscribers must verify `event.event_hash` and respond
+        `200 Hello API Event Received` within the retry window.
+      message:
+        $ref: '#/components/messages/AppEventCallback'
+
+components:
+  securitySchemes:
+    eventHash:
+      type: symmetricEncryption
+      description: |-
+        Authenticity of every callback POST is established by the
+        `event.event_hash` field embedded in the JSON payload (not an HTTP
+        header). The hash is computed as:
+
+          HMAC-SHA256( key = api_key, message = event_time + event_type )
+
+        where `event_time` and `event_type` are the corresponding fields on
+        the inbound `event` object and `api_key` is the receiving account's
+        API key (the same key used for HTTP Basic auth against the REST API).
+        The official SDK helpers (`EventCallbackHelper` in Ruby / PHP /
+        Python) implement exactly this construction for both account and
+        app callbacks.
+
+        Modelled as `symmetricEncryption` because AsyncAPI 2.6 has no
+        first-class payload-embedded HMAC scheme; the verification key is a
+        shared secret known to both Dropbox Sign and the subscriber.
+
+  messages:
+    AccountEventCallback:
+      name: AccountEventCallback
+      title: Account Callback
+      summary: |-
+        Account-scoped event delivered to the account callback URL. The
+        `event.event_type` discriminator carries the specific event name.
+      contentType: multipart/form-data
+      bindings:
+        http:
+          headers:
+            type: object
+            properties:
+              Content-Type:
+                type: string
+                const: multipart/form-data
+          bindingVersion: '0.3.0'
+      payload:
+        $ref: '#/components/schemas/EventCallbackForm'
+      examples:
+        - name: signature_request_sent
+          summary: signature_request_sent (account)
+          payload:
+            json:
+              event:
+                event_time: '1348177752'
+                event_type: signature_request_sent
+                event_hash: 3b94b5b00d4f6f37bf179f64d6e6f3f7b5b2c2b6f5e8a7d3c2b1a0f9e8d7c6b5
+                event_metadata:
+                  related_signature_id: null
+                  reported_for_account_id: F57DB1E_REPORTED_ACCOUNT
+                  reported_for_app_id: null
+                  event_message: null
+              signature_request:
+                signature_request_id: fa5c8a0b0f492d768749333ad6fcc214c111e967
+                title: Purchase Order
+                is_complete: false
+                signatures: []
+        - name: signature_request_all_signed
+          summary: signature_request_all_signed (account)
+          payload:
+            json:
+              event:
+                event_time: '1348177752'
+                event_type: signature_request_all_signed
+                event_hash: 7f4c0a1b9e8d2c3b4a5f6e7d8c9b0a1e2f3d4c5b6a7e8f9d0c1b2a3e4f5d6c7b
+                event_metadata:
+                  related_signature_id: null
+                  reported_for_account_id: F57DB1E_REPORTED_ACCOUNT
+                  reported_for_app_id: null
+                  event_message: null
+              signature_request:
+                signature_request_id: fa5c8a0b0f492d768749333ad6fcc214c111e967
+                is_complete: true
+
+    AppEventCallback:
+      name: AppEventCallback
+      title: App Callback
+      summary: |-
+        API-app-scoped event delivered to the app callback URL. The
+        `event.event_type` discriminator carries the specific event name and
+        `event.event_metadata.reported_for_app_id` carries the API app's
+        client_id.
+      contentType: multipart/form-data
+      bindings:
+        http:
+          headers:
+            type: object
+            properties:
+              Content-Type:
+                type: string
+                const: multipart/form-data
+          bindingVersion: '0.3.0'
+      payload:
+        $ref: '#/components/schemas/EventCallbackForm'
+      examples:
+        - name: callback_test
+          summary: callback_test (app)
+          payload:
+            json:
+              event:
+                event_time: '1348177752'
+                event_type: callback_test
+                event_hash: 2c0f0e1d2c3b4a5f6e7d8c9b0a1e2f3d4c5b6a7e8f9d0c1b2a3e4f5d6c7b8a9f
+                event_metadata:
+                  related_signature_id: null
+                  reported_for_account_id: null
+                  reported_for_app_id: 9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d
+                  event_message: null
+        - name: account_confirmed
+          summary: account_confirmed (app)
+          payload:
+            json:
+              event:
+                event_time: '1348177752'
+                event_type: account_confirmed
+                event_hash: 5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f
+                event_metadata:
+                  related_signature_id: null
+                  reported_for_account_id: F57DB1E_REPORTED_ACCOUNT
+                  reported_for_app_id: 9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d
+                  event_message: null
+              account:
+                account_id: F57DB1E_REPORTED_ACCOUNT
+        - name: template_created
+          summary: template_created (app)
+          payload:
+            json:
+              event:
+                event_time: '1348177752'
+                event_type: template_created
+                event_hash: 1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b
+                event_metadata:
+                  related_signature_id: null
+                  reported_for_account_id: F57DB1E_REPORTED_ACCOUNT
+                  reported_for_app_id: 9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d
+                  event_message: null
+              template:
+                template_id: c26b8a16784a872da37ea946b9ddec7c1e11dff6
+
+  schemas:
+    EventCallbackForm:
+      type: object
+      description: |-
+        Outer multipart/form-data envelope used by all Dropbox Sign event
+        callbacks. Dropbox Sign serializes the entire `EventCallbackRequest`
+        as JSON and submits it as the value of a single form field named
+        `json`. There are no other form fields and no signature header — all
+        authenticity metadata lives inside the JSON body.
+      required:
+        - json
+      properties:
+        json:
+          $ref: '#/components/schemas/EventCallbackRequest'
+
+    EventCallbackRequest:
+      type: object
+      description: |-
+        Parsed event payload that the `json` form field carries. Mirrors the
+        `EventCallbackRequest` schema in the upstream Dropbox Sign OpenAPI.
+      required:
+        - event
+      properties:
+        event:
+          $ref: '#/components/schemas/EventCallbackRequestEvent'
+        account:
+          $ref: '#/components/schemas/AccountResponse'
+        signature_request:
+          $ref: '#/components/schemas/SignatureRequestResponse'
+        template:
+          $ref: '#/components/schemas/TemplateResponse'
+
+    EventCallbackRequestEvent:
+      type: object
+      description: Basic information about the event that occurred.
+      required:
+        - event_time
+        - event_type
+        - event_hash
+      properties:
+        event_time:
+          type: string
+          description: Time the event was created (Unix epoch seconds, as a string).
+          example: '1348177752'
+        event_type:
+          type: string
+          description: |-
+            Type of callback event that was triggered. Enum is reproduced
+            verbatim from the upstream Dropbox Sign OpenAPI
+            (`EventCallbackRequestEvent.event_type`).
+          enum:
+            - account_confirmed
+            - unknown_error
+            - file_error
+            - sign_url_invalid
+            - signature_request_viewed
+            - signature_request_signed
+            - signature_request_sent
+            - signature_request_all_signed
+            - signature_request_email_bounce
+            - signature_request_remind
+            - signature_request_incomplete_qes
+            - signature_request_destroyed
+            - signature_request_canceled
+            - signature_request_downloadable
+            - signature_request_declined
+            - signature_request_reassigned
+            - signature_request_invalid
+            - signature_request_prepared
+            - signature_request_expired
+            - template_created
+            - template_error
+            - callback_test
+            - signature_request_signer_removed
+        event_hash:
+          type: string
+          description: |-
+            Lowercase hex HMAC-SHA256 digest used to verify the source of the
+            callback. Computed as
+            `HMAC-SHA256(key = api_key, message = event_time + event_type)`.
+          example: 3b94b5b00d4f6f37bf179f64d6e6f3f7b5b2c2b6f5e8a7d3c2b1a0f9e8d7c6b5
+        event_metadata:
+          $ref: '#/components/schemas/EventCallbackRequestEventMetadata'
+
+    EventCallbackRequestEventMetadata:
+      type: object
+      description: Specific metadata about the event.
+      properties:
+        related_signature_id:
+          type: string
+          nullable: true
+          description: |-
+            Signature ID for a specific signer. Applicable to
+            `signature_request_signed` and `signature_request_viewed` events.
+        reported_for_account_id:
+          type: string
+          nullable: true
+          description: Account ID the event was reported for.
+        reported_for_app_id:
+          type: string
+          nullable: true
+          description: |-
+            API app `client_id` the event was reported for. Populated for
+            app callbacks; null for pure account callbacks.
+        event_message:
+          type: string
+          nullable: true
+          description: Message about a declined or failed (due to error) signature flow.
+
+    AccountResponse:
+      type: object
+      description: |-
+        Account object included on `account_confirmed` callbacks. Modelled
+        as a loose object here; the authoritative shape lives in the
+        Dropbox Sign OpenAPI (`AccountResponse`).
+      properties:
+        account_id:
+          type: string
+          description: Unique identifier for the Dropbox Sign account.
+        email_address:
+          type: string
+          format: email
+        is_locked:
+          type: boolean
+        is_paid_hs:
+          type: boolean
+        is_paid_hf:
+          type: boolean
+        role_code:
+          type: string
+          nullable: true
+        locale:
+          type: string
+          nullable: true
+        callback_url:
+          type: string
+          nullable: true
+
+    SignatureRequestResponse:
+      type: object
+      description: |-
+        Signature request object included on `signature_request_*`
+        callbacks. Modelled as a loose object here; the authoritative shape
+        lives in the Dropbox Sign OpenAPI (`SignatureRequestResponse`).
+      properties:
+        signature_request_id:
+          type: string
+        title:
+          type: string
+        subject:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+        is_complete:
+          type: boolean
+        is_declined:
+          type: boolean
+        has_error:
+          type: boolean
+        files_url:
+          type: string
+          format: uri
+          nullable: true
+        signing_url:
+          type: string
+          format: uri
+          nullable: true
+        details_url:
+          type: string
+          format: uri
+          nullable: true
+        requester_email_address:
+          type: string
+          format: email
+          nullable: true
+        signatures:
+          type: array
+          items:
+            type: object
+            description: |-
+              Per-signer status entry. Authoritative shape is
+              `SignatureResponse` in the Dropbox Sign OpenAPI.
+            properties:
+              signature_id:
+                type: string
+              signer_email_address:
+                type: string
+                format: email
+              signer_name:
+                type: string
+                nullable: true
+              order:
+                type: integer
+                nullable: true
+              status_code:
+                type: string
+              signed_at:
+                type: integer
+                nullable: true
+              last_viewed_at:
+                type: integer
+                nullable: true
+              last_reminded_at:
+                type: integer
+                nullable: true
+              has_pin:
+                type: boolean
+              reassigned_by:
+                type: string
+                nullable: true
+              reassignment_reason:
+                type: string
+                nullable: true
+              error:
+                type: string
+                nullable: true
+
+    TemplateResponse:
+      type: object
+      description: |-
+        Template object included on `template_created` / `template_error`
+        callbacks. Modelled as a loose object here; the authoritative shape
+        lives in the Dropbox Sign OpenAPI (`TemplateResponse`).
+      properties:
+        template_id:
+          type: string
+        title:
+          type: string
+        message:
+          type: string
+          nullable: true
+        is_creator:
+          type: boolean
+        can_edit:
+          type: boolean
+        is_locked:
+          type: boolean
+        signer_roles:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              order:
+                type: integer
+                nullable: true
+        cc_roles:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+        documents:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              index:
+                type: integer
