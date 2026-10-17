@@ -117,30 +117,60 @@ paths:
           title: Create Report | API Documentation | Dropbox Sign for Developers
           description: The RESTful Dropbox Sign API easily allows you to build custom eSign integrations. To find out how to request the creation of one or more reports, click here.
 components:
+  examples:
+    ReportCreateRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/ReportCreateRequest.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    ReportCreateResponse:
+      summary: Report
+      value:
+        $ref: examples/json/ReportCreateResponse.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
   schemas:
-    ReportResponse:
-      description: Contains information about the report request.
+    ReportCreateResponse:
+      required:
+      - report
       properties:
-        success:
-          description: A message indicating the requested operation's success
-          type: string
-        start_date:
-          description: The (inclusive) start date for the report data in MM/DD/YYYY format.
-          type: string
-        end_date:
-          description: The (inclusive) end date for the report data in MM/DD/YYYY format.
-          type: string
-        report_type:
-          description: The type(s) of the report you are requesting. Allowed values are "user_activity" and "document_status". User activity reports contain list of all users and their activity during the specified date range. Document status report contain a list of signature requests created in the specified time range (and their status).
+        report:
+          $ref: '#/components/schemas/ReportResponse'
+        warnings:
+          description: A list of warnings.
           type: array
           items:
-            enum:
-            - user_activity
-            - document_status
-            - sms_activity
-            - fax_usage
+            $ref: '#/components/schemas/WarningResponse'
       type: object
       x-internal-class: true
+    ErrorResponse:
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
     WarningResponse:
       description: A list of warnings.
       required:
@@ -179,6 +209,29 @@ components:
           description: The (inclusive) start date for the report data in `MM/DD/YYYY` format.
           type: string
       type: object
+    ReportResponse:
+      description: Contains information about the report request.
+      properties:
+        success:
+          description: A message indicating the requested operation's success
+          type: string
+        start_date:
+          description: The (inclusive) start date for the report data in MM/DD/YYYY format.
+          type: string
+        end_date:
+          description: The (inclusive) end date for the report data in MM/DD/YYYY format.
+          type: string
+        report_type:
+          description: The type(s) of the report you are requesting. Allowed values are "user_activity" and "document_status". User activity reports contain list of all users and their activity during the specified date range. Document status report contain a list of signature requests created in the specified time range (and their status).
+          type: array
+          items:
+            enum:
+            - user_activity
+            - document_status
+            - sms_activity
+            - fax_usage
+      type: object
+      x-internal-class: true
     ErrorResponseError:
       description: Contains information about an error that occurred.
       required:
@@ -195,78 +248,25 @@ components:
           description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
           type: string
       type: object
-    ReportCreateResponse:
-      required:
-      - report
-      properties:
-        report:
-          $ref: '#/components/schemas/ReportResponse'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
-      type: object
-      x-internal-class: true
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
-  examples:
-    ReportCreateResponse:
-      summary: Report
-      value:
-        $ref: examples/json/ReportCreateResponse.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
-      value:
-        $ref: examples/json/Error4XXResponse.json
-    Error401Response:
-      summary: Error 401 unauthorized
-      value:
-        $ref: examples/json/Error401Response.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
-    ReportCreateRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/ReportCreateRequest.json
   headers:
-    X-RateLimit-Limit:
-      description: The maximum number of requests per hour that you can make.
-      schema:
-        type: integer
-        format: int32
-        example: 100
-    X-Ratelimit-Reset:
-      description: The Unix time at which the rate limit will reset to its maximum.
-      schema:
-        type: integer
-        format: int64
-        example: 1430170900
     X-RateLimit-Remaining:
       description: The number of requests remaining in the current rate limit window.
       schema:
         type: integer
         format: int32
         example: 99
+    X-Ratelimit-Reset:
+      description: The Unix time at which the rate limit will reset to its maximum.
+      schema:
+        type: integer
+        format: int64
+        example: 1430170900
+    X-RateLimit-Limit:
+      description: The maximum number of requests per hour that you can make.
+      schema:
+        type: integer
+        format: int32
+        example: 100
   securitySchemes:
     api_key:
       type: http

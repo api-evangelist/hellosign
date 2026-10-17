@@ -218,31 +218,76 @@ paths:
           title: Get Embedded Sign URL | iFrame | Dropbox Sign for Developers
           description: The Dropbox Sign API allows you to build custom integrations. To find out how to retrieve an embedded iFrame object containing a signature url, click here.
 components:
+  examples:
+    Error429Response:
+      summary: Error 429 exceeded_rate
+      value:
+        $ref: examples/json/Error429Response.json
+    Error401Response:
+      summary: Error 401 unauthorized
+      value:
+        $ref: examples/json/Error401Response.json
+    Error404Response:
+      summary: Error 404 not_found
+      value:
+        $ref: examples/json/Error404Response.json
+    Error400Response:
+      summary: Error 400 bad_request
+      value:
+        $ref: examples/json/Error400Response.json
+    Error409Response:
+      summary: Error 409 conflict
+      value:
+        $ref: examples/json/Error409Response.json
+    EmbeddedSignUrlResponse:
+      summary: Embedded Sign URL
+      value:
+        $ref: examples/json/EmbeddedSignUrlResponse.json
+    Error402Response:
+      summary: Error 402 payment_required
+      value:
+        $ref: examples/json/Error402Response.json
+    Error403Response:
+      summary: Error 403 forbidden
+      value:
+        $ref: examples/json/Error403Response.json
+    EmbeddedEditUrlRequest:
+      summary: Default Example
+      value:
+        $ref: examples/json/EmbeddedEditUrlRequest.json
+    EmbeddedEditUrlResponse:
+      summary: Embedded Edit URL
+      value:
+        $ref: examples/json/EmbeddedEditUrlResponse.json
+    Error4XXResponse:
+      summary: Error 4XX failed_operation
+      value:
+        $ref: examples/json/Error4XXResponse.json
   schemas:
-    EmbeddedEditUrlResponseEmbedded:
-      description: An embedded template object.
+    EmbeddedSignUrlResponseEmbedded:
+      description: An object that contains necessary information to set up embedded signing.
       properties:
-        edit_url:
-          description: A template url that can be opened in an iFrame.
+        sign_url:
+          description: A signature url that can be opened in an iFrame.
           type: string
         expires_at:
-          description: The specific time that the the `edit_url` link expires, in epoch.
+          description: The specific time that the the `sign_url` link expires, in epoch.
           type: integer
       type: object
       x-internal-class: true
-    EmbeddedSignUrlResponse:
+    WarningResponse:
+      description: A list of warnings.
       required:
-      - embedded
+      - warning_msg
+      - warning_name
       properties:
-        embedded:
-          $ref: '#/components/schemas/EmbeddedSignUrlResponseEmbedded'
-        warnings:
-          description: A list of warnings.
-          type: array
-          items:
-            $ref: '#/components/schemas/WarningResponse'
+        warning_msg:
+          description: Warning message
+          type: string
+        warning_name:
+          description: Warning name
+          type: string
       type: object
-      x-internal-class: true
     EmbeddedEditUrlResponse:
       required:
       - embedded
@@ -254,6 +299,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WarningResponse'
+      type: object
+      x-internal-class: true
+    EmbeddedEditUrlResponseEmbedded:
+      description: An embedded template object.
+      properties:
+        edit_url:
+          description: A template url that can be opened in an iFrame.
+          type: string
+        expires_at:
+          description: The specific time that the the `edit_url` link expires, in epoch.
+          type: integer
       type: object
       x-internal-class: true
     SubMergeField:
@@ -274,15 +330,24 @@ components:
             text: Sets merge [field type](/api/reference/constants/#field-types) to `text`.
             checkbox: Sets merge [field type](/api/reference/constants/#field-types) to `checkbox`.
       type: object
-    EmbeddedSignUrlResponseEmbedded:
-      description: An object that contains necessary information to set up embedded signing.
+    ErrorResponse:
+      required:
+      - error
       properties:
-        sign_url:
-          description: A signature url that can be opened in an iFrame.
-          type: string
-        expires_at:
-          description: The specific time that the the `sign_url` link expires, in epoch.
-          type: integer
+        error:
+          $ref: '#/components/schemas/ErrorResponseError'
+      type: object
+    EmbeddedSignUrlResponse:
+      required:
+      - embedded
+      properties:
+        embedded:
+          $ref: '#/components/schemas/EmbeddedSignUrlResponseEmbedded'
+        warnings:
+          description: A list of warnings.
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningResponse'
       type: object
       x-internal-class: true
     EmbeddedEditUrlRequest:
@@ -334,26 +399,6 @@ components:
           type: boolean
           default: false
       type: object
-    WarningResponse:
-      description: A list of warnings.
-      required:
-      - warning_msg
-      - warning_name
-      properties:
-        warning_msg:
-          description: Warning message
-          type: string
-        warning_name:
-          description: Warning name
-          type: string
-      type: object
-    ErrorResponse:
-      required:
-      - error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorResponseError'
-      type: object
     SubEditorOptions:
       description: This allows the requester to specify editor options when a preparing a document
       properties:
@@ -382,58 +427,7 @@ components:
           description: Name of the error. See the `x-error-codes` catalog in openapi file for a complete list of possible error codes with detailed information including HTTP status codes, causes, remediation steps, and retry guidance.
           type: string
       type: object
-  examples:
-    Error404Response:
-      summary: Error 404 not_found
-      value:
-        $ref: examples/json/Error404Response.json
-    EmbeddedEditUrlResponse:
-      summary: Embedded Edit URL
-      value:
-        $ref: examples/json/EmbeddedEditUrlResponse.json
-    Error400Response:
-      summary: Error 400 bad_request
-      value:
-        $ref: examples/json/Error400Response.json
-    Error429Response:
-      summary: Error 429 exceeded_rate
-      value:
-        $ref: examples/json/Error429Response.json
-    Error409Response:
-      summary: Error 409 conflict
-      value:
-        $ref: examples/json/Error409Response.json
-    Error401Response:
-      summary: Error 401 unauthorized
-      value:
-        $ref: examples/json/Error401Response.json
-    EmbeddedEditUrlRequest:
-      summary: Default Example
-      value:
-        $ref: examples/json/EmbeddedEditUrlRequest.json
-    EmbeddedSignUrlResponse:
-      summary: Embedded Sign URL
-      value:
-        $ref: examples/json/EmbeddedSignUrlResponse.json
-    Error403Response:
-      summary: Error 403 forbidden
-      value:
-        $ref: examples/json/Error403Response.json
-    Error4XXResponse:
-      summary: Error 4XX failed_operation
-      value:
-        $ref: examples/json/Error4XXResponse.json
-    Error402Response:
-      summary: Error 402 payment_required
-      value:
-        $ref: examples/json/Error402Response.json
   headers:
-    X-Ratelimit-Reset:
-      description: The Unix time at which the rate limit will reset to its maximum.
-      schema:
-        type: integer
-        format: int64
-        example: 1430170900
     X-RateLimit-Remaining:
       description: The number of requests remaining in the current rate limit window.
       schema:
@@ -446,6 +440,12 @@ components:
         type: integer
         format: int32
         example: 100
+    X-Ratelimit-Reset:
+      description: The Unix time at which the rate limit will reset to its maximum.
+      schema:
+        type: integer
+        format: int64
+        example: 1430170900
   securitySchemes:
     api_key:
       type: http
