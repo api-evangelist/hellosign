@@ -52,7 +52,6 @@ x-docs-platform-checked: 2026-10-03
 tags:
 - Company
 - E-Signature
-- Electronic Signature
 - Documents
 - Digital Agreements
 - Signature Workflow
@@ -67,6 +66,7 @@ tags_raw:
 - Signature Workflow
 - Embedded Signing
 - Compliance
+- Electronic Signature
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
