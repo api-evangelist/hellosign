@@ -1,22 +1,5 @@
 generated: '2026-10-15'
 edges:
-- partner_name: Google Workspace (own)
-  partner: google-workspace
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://workspace.google.com/marketplace/app/dropbox_sign_fka_as_hellosign_for_google/8454815545
-  mirror_of: google-workspace/integrations/google-workspace-integration-edges.yml
-  apps:
-  - Dropbox Sign (fka as HelloSign) for Google Docs
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Google Workspace app
 - partner_name: npm registry
   partner: npm
   partner_match: register
@@ -131,6 +114,40 @@ edges:
     status: Acquired
   detected_by: sweep-accelerator-portfolios.py
   first_seen: '2026-10-21'
+- partner_name: Google Workspace (own)
+  partner: google-workspace
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://workspace.google.com/marketplace/app/dropbox_sign_fka_as_hellosign_for_google/8454815545
+  mirror_of: google-workspace/integrations/google-workspace-integration-edges.yml
+  apps:
+  - Dropbox Sign (fka as HelloSign) for Google Docs
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Google Workspace app
+- partner_name: HubSpot (own)
+  partner: hubspot
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/hellosign
+  mirror_of: hubspot/integrations/hubspot-integration-edges.yml
+  apps:
+  - Dropbox Sign, fka HelloSign
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: WORKFLOW_AUTOMATION
 method: searched
 checked:
 - google-workspace/integrations/google-workspace-integration-edges.yml
@@ -148,5 +165,6 @@ checked:
 - https://www.antler.co/portfolio
 - https://www.techstars.com/portfolio
 - https://www.ycombinator.com/companies
+- hubspot/integrations/hubspot-integration-edges.yml
 source:
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
