@@ -1000,3 +1000,9 @@ x-error-events:
     cause: The embedded sign_url is no longer valid (e.g. expired).
     remediation: Generate a fresh embedded sign_url via the embedded sign URL endpoint.
     retryable: 'yes'
+x-provenance:
+  method: harvested
+  publisher: Dropbox Sign (HelloSign)
+  source: https://developers.hellosign.com/openapi/api-reference.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
