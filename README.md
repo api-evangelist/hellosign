@@ -1,4 +1,4 @@
-# Hellosign
+# Dropbox Sign (HelloSign)
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,6 +64,180 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Hellosign is a company surfaced as a portfolio company of y-combinator and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Dropbox Sign (formerly HelloSign) is an eSignature platform whose v3 REST API lets developers send documents for legally binding electronic signature, build reusable templates, embed signing directly in their own apps, run bulk send jobs, and manage accounts, teams, and API apps. The API exposes 73 operations across 12 product areas (Signature Request, Template, Bulk Send, Embedded, Account, Team, Report, Fax, Fax Line, Unclaimed Draft, API App, OAuth), with API-key and OAuth 2.0 authentication, 23 webhook event types, official SDKs in six languages, and a published hosted documentation MCP server. HelloSign was a Y Combinator company (S11), acquired by Dropbox in 2019 and rebranded to Dropbox Sign in 2022; the API base host remains api.hellosign.com.
 
-Backed by: y-combinator
+**Areas:** Company · E-Signature · Documents · Digital Agreements · Signature Workflow · Embedded Signing · Compliance
+
+## Dropbox Sign (HelloSign) on APIs.io
+
+Everything profiled for Dropbox Sign (HelloSign) is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hellosign/](https://apis.io/providers/hellosign/)** — or go straight to one of the APIs or properties below.
+
+### APIs (13)
+
+- [Dropbox Sign (HelloSign) Account API](https://apis.io/apis/hellosign/hellosign-account-api/) — {'$ref': './markdown/en/tags/account-tag-description.md'}
+- [Dropbox Sign (HelloSign) Api App API](https://apis.io/apis/hellosign/hellosign-api-app-api/) — {'$ref': './markdown/en/tags/api-app-tag-description.md'}
+- [Dropbox Sign (HelloSign) Bulk Send Job API](https://apis.io/apis/hellosign/hellosign-bulk-send-job-api/) — {'$ref': './markdown/en/tags/bulk-send-job-tag-description.md'}
+- [Dropbox Sign (HelloSign) Embedded API](https://apis.io/apis/hellosign/hellosign-embedded-api/) — {'$ref': './markdown/en/tags/embedded-tag-description.md'}
+- [Dropbox Sign (HelloSign) Fax API](https://apis.io/apis/hellosign/hellosign-fax-api/) — The Fax API from Dropbox Sign (HelloSign) — 4 operation(s) for fax.
+- [Dropbox Sign (HelloSign) Fax Line API](https://apis.io/apis/hellosign/hellosign-fax-line-api/) — {'$ref': './markdown/en/tags/fax-lines-tag-description.md'}
+- [Dropbox Sign (HelloSign) Report API](https://apis.io/apis/hellosign/hellosign-report-api/) — {'$ref': './markdown/en/tags/report-tag-description.md'}
+- [Dropbox Sign (HelloSign) Signature Request API](https://apis.io/apis/hellosign/hellosign-signature-request-api/) — {'$ref': './markdown/en/tags/signature-request-tag-description.md'}
+- [Dropbox Sign (HelloSign) Team API](https://apis.io/apis/hellosign/hellosign-team-api/) — {'$ref': './markdown/en/tags/team-tag-description.md'}
+- [Dropbox Sign (HelloSign) Template API](https://apis.io/apis/hellosign/hellosign-template-api/) — {'$ref': './markdown/en/tags/template-tag-description.md'}
+- [Dropbox Sign (HelloSign) Unclaimed Draft API](https://apis.io/apis/hellosign/hellosign-unclaimed-draft-api/) — {'$ref': './markdown/en/tags/unclaimed-draft-tag-description.md'}
+- [Dropbox Sign (HelloSign) Callbacks and Events API](https://apis.io/apis/hellosign/hellosign-callbacks-and-events-api/) — The Callbacks and Events API from Dropbox Sign (HelloSign) — 0 operation(s) for callbacks and events.
+- [Dropbox Sign (HelloSign) O Auth API](https://apis.io/apis/hellosign/hellosign-oauth-api/) — {'$ref': './markdown/en/tags/oauth-tag-description.md'}
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (2)
+
+Event-driven and webhook contracts.
+
+- [Dropbox Sign Events and Callbacks](https://apis.io/asyncapis/hellosign/hellosign-events-asyncapi/)
+- [Hellosign Events Webhooks](https://apis.io/asyncapis/hellosign/hellosign-events-webhooks/)
+
+#### Event channels (2)
+
+Individual events and webhooks the provider emits.
+
+- [/dropbox-sign/account-callback](https://apis.io/channels/hellosign/dropbox-sign-account-callback/)
+- [/dropbox-sign/app-callback](https://apis.io/channels/hellosign/dropbox-sign-app-callback/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [dropbox-sign-docs](https://apis.io/servers/hellosign/dropbox-sign-docs/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Hellosign Agentic Access](https://apis.io/agentic-access/hellosign/hellosign-agentic-access/)
+
+#### Collections (24)
+
+Postman and Open Collection request collections.
+
+- [Dropbox Sign Account API](https://apis.io/collections/hellosign/open-hellosign-account-api/)
+- [Dropbox Sign Account Api App API](https://apis.io/collections/hellosign/open-hellosign-api-app-api/)
+- [Dropbox Sign Account Bulk Send Job API](https://apis.io/collections/hellosign/open-hellosign-bulk-send-job-api/)
+- [Dropbox Sign Account Embedded API](https://apis.io/collections/hellosign/open-hellosign-embedded-api/)
+- [Dropbox Sign Account Fax API](https://apis.io/collections/hellosign/open-hellosign-fax-api/)
+- [Dropbox Sign Account Fax Line API](https://apis.io/collections/hellosign/open-hellosign-fax-line-api/)
+- [Dropbox Sign Account OAuth API](https://apis.io/collections/hellosign/open-hellosign-oauth-api/)
+- [Dropbox Sign Account Report API](https://apis.io/collections/hellosign/open-hellosign-report-api/)
+- [Dropbox Sign Account Signature Request API](https://apis.io/collections/hellosign/open-hellosign-signature-request-api/)
+- [Dropbox Sign Account Team API](https://apis.io/collections/hellosign/open-hellosign-team-api/)
+- [Dropbox Sign Account Template API](https://apis.io/collections/hellosign/open-hellosign-template-api/)
+- [Dropbox Sign Account Unclaimed Draft API](https://apis.io/collections/hellosign/open-hellosign-unclaimed-draft-api/)
+- [Dropbox Sign Account API](https://apis.io/collections/hellosign/postman-hellosign-account-api/)
+- [Dropbox Sign Account Api App API](https://apis.io/collections/hellosign/postman-hellosign-api-app-api/)
+- [Dropbox Sign Account Bulk Send Job API](https://apis.io/collections/hellosign/postman-hellosign-bulk-send-job-api/)
+- [Dropbox Sign Account Embedded API](https://apis.io/collections/hellosign/postman-hellosign-embedded-api/)
+- [Dropbox Sign Account Fax API](https://apis.io/collections/hellosign/postman-hellosign-fax-api/)
+- [Dropbox Sign Account Fax Line API](https://apis.io/collections/hellosign/postman-hellosign-fax-line-api/)
+- [Dropbox Sign Account OAuth API](https://apis.io/collections/hellosign/postman-hellosign-oauth-api/)
+- [Dropbox Sign Account Report API](https://apis.io/collections/hellosign/postman-hellosign-report-api/)
+- [Dropbox Sign Account Signature Request API](https://apis.io/collections/hellosign/postman-hellosign-signature-request-api/)
+- [Dropbox Sign Account Team API](https://apis.io/collections/hellosign/postman-hellosign-team-api/)
+- [Dropbox Sign Account Template API](https://apis.io/collections/hellosign/postman-hellosign-template-api/)
+- [Dropbox Sign Account Unclaimed Draft API](https://apis.io/collections/hellosign/postman-hellosign-unclaimed-draft-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Hellosign Openapi Overlay](https://apis.io/overlays/hellosign/hellosign-openapi-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Hellosign Authentication](https://apis.io/security/hellosign/hellosign-authentication/)
+- [Hellosign Domain Security](https://apis.io/security/hellosign/hellosign-domain-security/)
+- [Hellosign Trust Center](https://apis.io/security/hellosign/hellosign-trust-center/)
+- [Hellosign Vulnerability Disclosure](https://apis.io/security/hellosign/hellosign-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Hellosign Scopes](https://apis.io/scopes/hellosign/hellosign-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://hellosign.com)
+- [Documentation](https://developers.hellosign.com/docs/overview/)
+- [Getting started](https://developers.hellosign.com/api/api-quickstart)
+- [API reference](https://developers.hellosign.com/api/reference/)
+- [Pricing](https://sign.dropbox.com/products/api)
+- [Sign up](https://app.hellosign.com/account/signUp)
+- [Support](https://help.dropbox.com/sign)
+- [Blog](https://sign.dropbox.com/blog)
+- [Security](https://app.intigriti.com/programs/dropbox/dropbox-vdp)
+- [Compliance](https://sign.dropbox.com/trust)
+- [Terms of service](https://www.hellosign.com/terms)
+- [Privacy policy](https://www.hellosign.com/privacy)
+- [GitHub](https://github.com/hellosign)
+- [Status](https://status.hellosign.com/)
+
+## API Evangelist rating
+
+**Kin Score 60.5** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 60.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 50.0 |
+| Developer ergonomics | 67.3 |
+| Access clarity | 60.5 |
+
+**Agent readiness 46.0** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | verified |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | verified |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 45.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hellosign/](https://apis.io/providers/hellosign/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Dropbox Sign (HelloSign): the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hellosign/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
